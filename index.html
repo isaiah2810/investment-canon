@@ -131,6 +131,13 @@
   <button class="filter-btn" data-cat="psychology">Psychology</button>
 </div>
 
+<div class="controls" id="tier-filters">
+  <button class="filter-btn active" data-tier="all">All Tiers</button>
+  <button class="filter-btn" data-tier="1" style="--active-bg:var(--tier1)">🏆 Tier 1</button>
+  <button class="filter-btn" data-tier="2" style="--active-bg:var(--tier2)">📘 Tier 2</button>
+  <button class="filter-btn" data-tier="3" style="--active-bg:var(--tier3)">📗 Tier 3</button>
+</div>
+
 <div id="content"></div>
 
 <div class="desert-island" id="desert-island">
@@ -416,13 +423,15 @@ const tierLabelColors = {1:"var(--tier1)",2:"var(--tier2)",3:"var(--tier3)"};
 function renderBooks(){
   const container = document.getElementById("content");
   const searchVal = document.getElementById("search").value.toLowerCase();
-  const activeFilter = document.querySelector(".filter-btn.active").dataset.cat;
+  const activeFilter = document.querySelector("#filters .filter-btn.active").dataset.cat;
+  const activeTier = document.querySelector("#tier-filters .filter-btn.active").dataset.tier;
   
   let html = "";
   categories.forEach(cat => {
     if(activeFilter !== "all" && activeFilter !== cat.id) return;
     
     const filtered = cat.books.filter(b => {
+      if(activeTier !== "all" && b.tier !== parseInt(activeTier)) return false;
       if(!searchVal) return true;
       return b.t.toLowerCase().includes(searchVal) || b.a.toLowerCase().includes(searchVal) || b.r.toLowerCase().includes(searchVal);
     });
@@ -471,7 +480,7 @@ function renderBooks(){
   container.innerHTML = html || '<div style="text-align:center;padding:48px;color:var(--text-muted)">No results found</div>';
   
   // Desert island visibility
-  document.getElementById("desert-island").style.display = (activeFilter === "all" && !searchVal) ? "block" : "none";
+  document.getElementById("desert-island").style.display = (activeFilter === "all" && activeTier === "all" && !searchVal) ? "block" : "none";
 }
 
 function renderDesertIsland(){
@@ -511,10 +520,18 @@ function renderLetters(){
   document.getElementById("letters-grid").innerHTML = html;
 }
 
-// Event listeners
-document.querySelectorAll(".filter-btn").forEach(btn => {
+// Event listeners — scoped per filter row
+document.querySelectorAll("#filters .filter-btn").forEach(btn => {
   btn.addEventListener("click", () => {
-    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll("#filters .filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderBooks();
+  });
+});
+
+document.querySelectorAll("#tier-filters .filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#tier-filters .filter-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
     renderBooks();
   });
