@@ -48,6 +48,10 @@
   td{padding:10px;border-bottom:1px solid rgba(30,30,46,0.5);white-space:nowrap}
   tr:hover{background:var(--card-hover)}
   .ticker-cell{font-weight:700}
+  th.sortable{cursor:pointer;user-select:none;transition:color .2s}
+  th.sortable:hover{color:var(--accent)}
+  th.sortable.asc::after{content:' ▲';font-size:8px;color:var(--accent)}
+  th.sortable.desc::after{content:' ▼';font-size:8px;color:var(--accent)}
   .acct-badge{font-size:9px;padding:1px 6px;border-radius:8px;background:rgba(255,255,255,0.06);color:var(--text-muted);margin-left:4px}
   .daily-pos{color:var(--green)}.daily-neg{color:var(--red)}.daily-flat{color:var(--text-muted)}
   .pnl-pos{color:var(--green);font-weight:600}.pnl-neg{color:var(--red);font-weight:600}
@@ -114,6 +118,8 @@ async function loadData() {
 let activeView = "accounts";
 let activeFilter = "all"; // "all" or account/person name
 let chart = null;
+let sortCol = "valueGbp";
+let sortDir = "desc";
 
 function latest() { return DATA.snapshots[DATA.snapshots.length - 1]; }
 function prev() { return DATA.snapshots.length > 1 ? DATA.snapshots[DATA.snapshots.length - 2] : null; }
@@ -287,22 +293,44 @@ function renderTable() {
     }
   }
   
-  // Sort by value descending
-  positions.sort((a, b) => b.valueGbp - a.valueGbp);
+  // Sort
+  const dir = sortDir === 'asc' ? 1 : -1;
+  positions.sort((a, b) => {
+    let va = a[sortCol], vb = b[sortCol];
+    if (typeof va === 'string') return dir * va.localeCompare(vb);
+    return dir * ((va||0) - (vb||0));
+  });
   
   // Render
   const showAcctCol = activeView !== 'accounts' || activeAcct === 'all';
-  document.getElementById("table-head").innerHTML = `<tr>
-    <th>Ticker</th>
-    ${showAcctCol ? '<th>Account</th>' : ''}
-    <th>Price</th>
-    <th>Daily</th>
-    <th>Units</th>
-    <th>Avg Cost</th>
-    <th>Value (£)</th>
-    <th>P&L (£)</th>
-    <th>P&L %</th>
-  </tr>`;
+  const cols = [
+    {key:'ticker', label:'Ticker', sortable:true},
+    ...(showAcctCol ? [{key:'accounts', label:'Account', sortable:true}] : []),
+    {key:'currentPrice', label:'Price', sortable:true},
+    {key:'dailyChange', label:'Daily', sortable:true},
+    {key:'units', label:'Units', sortable:true},
+    {key:'avgPrice', label:'Avg Cost', sortable:false},
+    {key:'valueGbp', label:'Value (£)', sortable:true},
+    {key:'pnlGbp', label:'P&L (£)', sortable:true},
+    {key:'pnlPct', label:'P&L %', sortable:true},
+  ];
+  
+  const headHtml = cols.map(c => {
+    if (!c.sortable) return `<th>${c.label}</th>`;
+    const cls = sortCol === c.key ? (sortDir === 'asc' ? 'sortable asc' : 'sortable desc') : 'sortable';
+    return `<th class="${cls}" data-sort="${c.key}">${c.label}</th>`;
+  }).join('');
+  document.getElementById("table-head").innerHTML = `<tr>${headHtml}</tr>`;
+  
+  // Attach sort handlers
+  document.querySelectorAll("th.sortable").forEach(th => {
+    th.addEventListener("click", () => {
+      const col = th.dataset.sort;
+      if (sortCol === col) { sortDir = sortDir === 'desc' ? 'asc' : 'desc'; }
+      else { sortCol = col; sortDir = col === 'ticker' || col === 'accounts' ? 'asc' : 'desc'; }
+      renderTable();
+    });
+  });
   
   let totalVal = 0, totalPnl = 0, totalCost = 0;
   let bodyHtml = '';
