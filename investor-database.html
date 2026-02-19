@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investor Database — Carlin Invests</title>
+<style>
+  :root {
+    --bg:#0a0a0f;--card-bg:#12121a;--card-border:#1e1e2e;--card-hover:#1a1a28;
+    --text:#e0e0e8;--text-muted:#888899;--accent:#f59e0b;--accent-dim:#78500d;
+    --tag-bg:rgba(255,255,255,0.06);
+    --green:#10b981;--red:#ef4444;--blue:#3b82f6;--purple:#a855f7;--orange:#f97316;
+    --gold:#f59e0b;--silver:#94a3b8;--bronze:#d97706;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;background:var(--bg);color:var(--text);padding:24px;min-height:100vh}
+  .header{text-align:center;margin-bottom:28px}
+  .header h1{font-size:28px;font-weight:700;margin-bottom:4px}
+  .header h1 span{color:var(--accent)}
+  .header p{color:var(--text-muted);font-size:13px;margin-top:4px}
+  .stats-bar{display:flex;justify-content:center;gap:32px;margin-bottom:24px;flex-wrap:wrap}
+  .stat .num{font-size:28px;font-weight:700;color:var(--accent);text-align:center}
+  .stat .label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);text-align:center}
+  .controls{display:flex;justify-content:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+  .filter-btn{background:var(--tag-bg);border:1px solid var(--card-border);color:var(--text-muted);padding:5px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:500;transition:all .2s}
+  .filter-btn:hover{border-color:var(--accent);color:var(--text)}
+  .filter-btn.active{background:var(--accent);color:#000;border-color:var(--accent);font-weight:600}
+  .sort-controls{display:flex;justify-content:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+  .sort-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
+  .sort-btn{background:var(--tag-bg);border:1px solid var(--card-border);color:var(--text-muted);padding:4px 12px;border-radius:16px;cursor:pointer;font-size:11px;font-weight:500;transition:all .2s}
+  .sort-btn:hover{border-color:var(--blue);color:var(--text)}
+  .sort-btn.active{background:rgba(59,130,246,0.15);color:var(--blue);border-color:rgba(59,130,246,0.3);font-weight:600}
+  .search-box{display:flex;justify-content:center;margin-bottom:16px}
+  .search-box input{background:var(--card-bg);border:1px solid var(--card-border);color:var(--text);padding:9px 14px;border-radius:8px;font-size:14px;width:100%;max-width:500px;outline:none;transition:border-color .2s}
+  .search-box input:focus{border-color:var(--accent)}
+  .search-box input::placeholder{color:var(--text-muted)}
+  .toggle-row{display:flex;justify-content:center;gap:16px;margin-bottom:20px}
+  .toggle{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);cursor:pointer}
+  .toggle input{accent-color:var(--accent)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px;margin-bottom:32px}
+  .card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:16px;transition:all .2s;position:relative;overflow:hidden}
+  .card:hover{background:var(--card-hover);border-color:var(--accent-dim);transform:translateY(-1px)}
+  .card .accent-line{position:absolute;top:0;left:0;right:0;height:2px}
+  .card .top-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+  .card .name{font-size:14px;font-weight:700;line-height:1.3}
+  .card .medal{font-size:18px}
+  .card .firm{font-size:11px;color:var(--accent);margin-bottom:2px}
+  .card .meta{font-size:11px;color:var(--text-muted);margin-bottom:8px}
+  .card .desc{font-size:11px;color:var(--text-muted);line-height:1.5;margin-bottom:10px}
+  .card .stats-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  .card .stat-pill{background:var(--tag-bg);border-radius:8px;padding:6px 10px;text-align:center;min-width:70px}
+  .card .stat-pill .val{font-size:14px;font-weight:700;line-height:1.2}
+  .card .stat-pill .lbl{font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+  .cagr-positive .val{color:var(--green)}
+  .cagr-negative .val{color:var(--red)}
+  .alpha-positive .val{color:var(--green)}
+  .card .tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
+  .tag{font-size:9px;padding:2px 8px;border-radius:10px;font-weight:600;letter-spacing:.3px}
+  .tag-verified{background:rgba(16,185,129,0.15);color:var(--green);border:1px solid rgba(16,185,129,0.3)}
+  .tag-partial{background:rgba(245,158,11,0.15);color:var(--accent);border:1px solid rgba(245,158,11,0.3)}
+  .tag-private{background:rgba(148,163,184,0.1);color:var(--silver);border:1px solid rgba(148,163,184,0.2)}
+  .tag-cat{background:rgba(59,130,246,0.1);color:var(--blue);border:1px solid rgba(59,130,246,0.2)}
+  .tag-book{background:rgba(168,85,247,0.1);color:var(--purple);border:1px solid rgba(168,85,247,0.2)}
+  .score-bar{height:4px;border-radius:2px;background:var(--card-border);margin-top:10px;overflow:hidden}
+  .score-bar .fill{height:100%;border-radius:2px;transition:width .3s}
+  .no-data{text-align:center;padding:12px;color:var(--text-muted);font-size:12px;font-style:italic}
+  .section-header{text-align:center;margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--card-border)}
+  .section-header h2{font-size:17px;font-weight:700}
+  .section-header p{font-size:12px;color:var(--text-muted)}
+  .ranking-table{width:100%;border-collapse:collapse;margin-bottom:32px}
+  .ranking-table th{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);text-align:left;padding:8px 12px;border-bottom:1px solid var(--card-border)}
+  .ranking-table td{font-size:13px;padding:10px 12px;border-bottom:1px solid rgba(30,30,46,0.5)}
+  .ranking-table tr:hover{background:var(--card-hover)}
+  .ranking-table .rank-col{font-weight:700;color:var(--accent);width:40px}
+  .ranking-table .cagr-col{font-weight:700;color:var(--green)}
+  .ranking-table .period-col{color:var(--text-muted);font-size:11px}
+  .updated{text-align:center;color:var(--text-muted);font-size:11px;margin-top:40px;padding-top:16px;border-top:1px solid var(--card-border)}
+  @media(max-width:600px){.grid{grid-template-columns:1fr}body{padding:16px}.stats-bar{gap:20px}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏆 <span>Investor</span> Database</h1>
+  <p>The World's Greatest Investors — Verified Track Records & Performance Rankings</p>
+  <p style="margin-top:2px;font-size:12px;color:var(--text-muted)">Carlin Invests • February 2026</p>
+</div>
+
+<div class="stats-bar" id="stats-bar"></div>
+
+<div class="search-box"><input type="text" id="search" placeholder="Search investors, firms, strategies..." /></div>
+
+<div class="controls" id="cat-filters"></div>
+
+<div class="sort-controls">
+  <span class="sort-label">Sort by:</span>
+  <button class="sort-btn active" data-sort="score">Score ↓</button>
+  <button class="sort-btn" data-sort="cagr">CAGR ↓</button>
+  <button class="sort-btn" data-sort="recency">Most Recent</button>
+  <button class="sort-btn" data-sort="longevity">Longest Track Record</button>
+  <button class="sort-btn" data-sort="alpha">Alpha ↓</button>
+  <button class="sort-btn" data-sort="name">A → Z</button>
+</div>
+
+<div class="toggle-row">
+  <label class="toggle"><input type="checkbox" id="showVerifiedOnly"> Verified data only</label>
+  <label class="toggle"><input type="checkbox" id="showWithBooks"> Has books/writings</label>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="section-header">
+  <h2>📊 Performance Leaderboard</h2>
+  <p>Ranked by verified long-term net CAGR (minimum 10-year track record)</p>
+</div>
+<table class="ranking-table" id="ranking-table"></table>
+
+<div class="updated">Generated: 19 February 2026 • Investor Database v1 • Carlin Invests</div>
+
+<script>
+const investors = [
+  // VALUE
+  {n:"Benjamin Graham",cat:"Value",firm:"Graham-Newman Corp",yStart:1920,yEnd:1956,active:false,cagr:17,period:"1936–1956",bench:12.2,alpha:4.8,aum:"$50M",verify:"partial",desc:"Father of value investing. Created margin of safety, Mr. Market concepts. Taught Buffett at Columbia.",books:["Security Analysis","The Intelligent Investor"],source:"The Intelligent Investor appendix"},
+  {n:"Warren Buffett",cat:"Value",firm:"Buffett Partnership → Berkshire Hathaway",yStart:1956,yEnd:2026,active:true,cagr:29.5,period:"1956–1969 (partnerships)",bench:7.4,alpha:22.1,aum:"$900B+ (BRK mkt cap)",verify:"yes",desc:"Greatest capital allocator in history. Partnership era 29.5%/yr, Berkshire book value 19.8%/yr since 1965.",books:["Berkshire Annual Letters"],source:"Buffett Partnership Letters; Berkshire Annual Letters",cagr2:19.8,period2:"1965–2023 (Berkshire)"},
+  {n:"Charlie Munger",cat:"Value",firm:"Wheeler-Munger → Berkshire Hathaway",yStart:1962,yEnd:2023,active:false,cagr:24.3,period:"1962–1975",bench:6.4,alpha:17.9,aum:"N/A (BRK)",verify:"yes",desc:"Buffett's partner. Introduced 'buy quality at fair prices' over Graham's cigar butts. Mental models framework.",books:["Poor Charlie's Almanack"],source:"Buffett's Superinvestors essay"},
+  {n:"Seth Klarman",cat:"Value",firm:"Baupost Group",yStart:1982,yEnd:2026,active:true,cagr:20,period:"1982–present (est.)",bench:10,alpha:10,aum:"$30B",verify:"partial",desc:"Most secretive great value investor. ~20% CAGR with significant cash holdings. Risk-first approach.",books:["Margin of Safety"],source:"Wikipedia (unaudited)"},
+  {n:"Howard Marks",cat:"Distressed",firm:"TCW → Oaktree Capital",yStart:1978,yEnd:2026,active:true,cagr:19,period:"1988–present",bench:10,alpha:9,aum:"$170B",verify:"partial",desc:"Co-founded world's largest distressed debt firm. Famous client memos read by Buffett first thing.",books:["The Most Important Thing","Mastering the Market Cycle"],source:"Oaktree; Wikipedia"},
+  {n:"Joel Greenblatt",cat:"Value",firm:"Gotham Capital → Gotham AM",yStart:1985,yEnd:2026,active:true,cagr:30,period:"1985–1994 (Gotham)",bench:15,alpha:15,aum:"$500M",verify:"yes",desc:"50% gross / 30% net at Gotham Capital. Invented the Magic Formula combining earnings yield + ROIC.",books:["You Can Be a Stock Market Genius","The Little Book That Beats the Market"],source:"Greenblatt's own books; Wikipedia"},
+  {n:"Mohnish Pabrai",cat:"Value",firm:"Pabrai Investment Funds",yStart:1999,yEnd:2026,active:true,cagr:26,period:"1999–2007 (est.)",bench:10,alpha:16,aum:"$500M",verify:"partial",desc:"Concentrated Buffett-style. 'Heads I win, tails I don't lose much.' Heavy 2008 losses, strong recovery.",books:["The Dhandho Investor"],source:"Fund letters (partial)"},
+  {n:"Guy Spier",cat:"Value",firm:"Aquamarine Fund",yStart:1997,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$200M",verify:"partial",desc:"Concentrated value. Paid $650k for lunch with Buffett (with Pabrai). Focus on behavioural self-improvement.",books:["Education of a Value Investor"],source:"Limited public data"},
+  {n:"Walter Schloss",cat:"Value",firm:"WJS Partners",yStart:1955,yEnd:2002,active:false,cagr:15.7,period:"1956–2002",bench:11.2,alpha:4.5,aum:"$130M",verify:"yes",desc:"Pure Graham disciple. 46-year track record. Never used Bloomberg or Excel. Bought cheap net-nets.",books:[],source:"Buffett's Superinvestors of Graham-and-Doddsville (1984)"},
+  {n:"Irving Kahn",cat:"Value",firm:"Kahn Brothers",yStart:1928,yEnd:2015,active:false,cagr:null,period:"",bench:null,alpha:null,aum:"$1B",verify:"partial",desc:"Graham's teaching assistant. Invested for 87 years until death at 109. One of the longest careers in finance.",books:[],source:"Limited public data"},
+  {n:"Bruce Berkowitz",cat:"Value",firm:"Fairholme Fund",yStart:1999,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$20B peak",verify:"yes",desc:"Morningstar Fund Manager of the Decade (2000s). Concentrated, contrarian. AIG/BAC/St Joe bets.",books:[],source:"Fairholme Fund (FAIRX) public data"},
+  {n:"Francisco García Paramés",cat:"Value",firm:"Bestinver → Cobas AM",yStart:1993,yEnd:2026,active:true,cagr:16,period:"1993–2014 (Bestinver)",bench:10,alpha:6,aum:"€10B",verify:"partial",desc:"'The Warren Buffett of Spain.' Dominated European value investing for two decades at Bestinver.",books:["Investing for the Long Term"],source:"Bestinver historical records"},
+  {n:"Li Lu",cat:"Value",firm:"Himalaya Capital",yStart:1997,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$5B+",verify:"private",desc:"Munger called him potentially 'the next Warren Buffett.' China/Asia focus. Manages Munger's family money.",books:[],source:"Private — no public data"},
+  {n:"Bill Miller",cat:"Growth",firm:"Legg Mason Capital Mgmt",yStart:1982,yEnd:2016,active:false,cagr:16,period:"1991–2005 (streak)",bench:11,alpha:5,aum:"$20B",verify:"yes",desc:"Beat S&P 500 for 15 consecutive years (record). Then -55% in 2008. Value/growth hybrid approach.",books:[],source:"Legg Mason records; Bloomberg"},
+  // MACRO
+  {n:"George Soros",cat:"Macro",firm:"Quantum Fund / Soros Fund Mgmt",yStart:1969,yEnd:2011,active:false,cagr:20,period:"1969–2000 (net est.)",bench:11,alpha:9,aum:"$22B",verify:"partial",desc:"'Broke the Bank of England' 1992 (£1B profit). Reflexivity theory. ~30% gross over 31 years.",books:["The Alchemy of Finance","Soros on Soros"],source:"Academic papers; Bloomberg; Wikipedia",cagrGross:30},
+  {n:"Stanley Druckenmiller",cat:"Macro",firm:"Duquesne Capital; Quantum Fund",yStart:1981,yEnd:2010,active:false,cagr:30,period:"1981–2010 (gross)",bench:12,alpha:18,aum:"$12B",verify:"partial",desc:"Never had a losing year in 30 years. Managed Quantum for Soros 1988-2000. Converted to family office.",books:[],source:"Market Wizards; Bloomberg"},
+  {n:"Jim Rogers",cat:"Macro",firm:"Quantum Fund → Beeland Interests",yStart:1970,yEnd:2026,active:true,cagr:42,period:"1970–1980 (Quantum, gross)",bench:7,alpha:35,aum:"N/A",verify:"partial",desc:"Co-founded Quantum with Soros. Fund returned 4,200% in 10 years. Retired at 37. Commodities super-bull.",books:["Investment Biker","Hot Commodities","Adventure Capitalist"],source:"Public statements; Bloomberg"},
+  {n:"Paul Tudor Jones",cat:"Macro",firm:"Tudor Investment Corp",yStart:1980,yEnd:2026,active:true,cagr:19,period:"1980–2010",bench:11,alpha:8,aum:"$20B",verify:"partial",desc:"Predicted and profited from 1987 Black Monday (+62% in October). Trend following + macro.",books:[],source:"Market Wizards; Bloomberg"},
+  {n:"Ray Dalio",cat:"Macro",firm:"Bridgewater Associates",yStart:1975,yEnd:2022,active:false,cagr:12,period:"1991–present (Pure Alpha, est.)",bench:10,alpha:2,aum:"$150B",verify:"partial",desc:"Built world's largest hedge fund. All Weather/risk parity pioneer. Pure Alpha ~12% net (est.).",books:["Principles","The Changing World Order","Big Debt Crises"],source:"Media reports; Bloomberg estimates"},
+  {n:"Bruce Kovner",cat:"Macro",firm:"Caxton Associates",yStart:1983,yEnd:2011,active:false,cagr:21,period:"1983–2011 (est.)",bench:11,alpha:10,aum:"$14B",verify:"partial",desc:"Turned $3,000 into billions. Global macro with strong risk management. Very private.",books:[],source:"Market Wizards; Bloomberg estimates"},
+  {n:"Louis Bacon",cat:"Macro",firm:"Moore Capital Mgmt",yStart:1989,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$15B",verify:"private",desc:"Global macro. Strong early years reportedly >25%/yr. More mixed later. Very private.",books:[],source:"Private"},
+  {n:"Alan Howard",cat:"Macro",firm:"Brevan Howard",yStart:2002,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$30B+",verify:"private",desc:"European macro powerhouse. Strong 2008/2022 performance (crisis alpha). Quant-influenced.",books:[],source:"Private"},
+  // GROWTH
+  {n:"Philip Fisher",cat:"Growth",firm:"Fisher & Co",yStart:1931,yEnd:1999,active:false,cagr:null,period:"",bench:null,alpha:null,aum:"N/A",verify:"partial",desc:"Pioneer of growth investing. Scuttlebutt method. Held Motorola for decades. Buffett's '15% Fisher.'",books:["Common Stocks and Uncommon Profits"],source:"Anecdotal — no audited fund data"},
+  {n:"Peter Lynch",cat:"Growth",firm:"Fidelity Magellan",yStart:1977,yEnd:1990,active:false,cagr:29.2,period:"1977–1990",bench:15.8,alpha:13.4,aum:"$14B",verify:"yes",desc:"Best 13-year mutual fund record. AUM grew from $18M to $14B. Coined 'ten bagger.'",books:["One Up on Wall Street","Beating the Street"],source:"Wikipedia; Fidelity records"},
+  {n:"Cathie Wood",cat:"Growth",firm:"ARK Invest",yStart:2014,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$60B peak (2021)",verify:"yes",desc:"+153% in 2020, then -75% from peak. Morningstar: 3rd-highest 'wealth destroyer' 2014-2023. Net loss $7.1B.",books:[],source:"Morningstar; Wikipedia"},
+  {n:"Chuck Akre",cat:"Growth",firm:"Akre Capital Mgmt",yStart:1989,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$12B",verify:"partial",desc:"'Compounders' philosophy. Focuses on high-ROIC businesses with reinvestment runway. Low turnover.",books:[],source:"Limited public data"},
+  {n:"Terry Smith",cat:"Growth",firm:"Fundsmith",yStart:2010,yEnd:2026,active:true,cagr:15,period:"2010–2024",bench:12,alpha:3,aum:"£35B",verify:"yes",desc:"'Buy good companies, don't overpay, do nothing.' Consistently outperformed MSCI World since inception.",books:["Accounting for Growth"],source:"Fundsmith Annual Reports"},
+  {n:"Nick Sleep",cat:"Value",firm:"Nomad Investment Partnership",yStart:2001,yEnd:2014,active:false,cagr:18,period:"2001–2014",bench:8,alpha:10,aum:"$1.2B",verify:"partial",desc:"'Scale economics shared' insight (Amazon, Costco). Closed fund voluntarily. Letters widely shared.",books:[],source:"Nomad Partnership Letters (public)"},
+  // QUANT
+  {n:"Jim Simons",cat:"Quant",firm:"Renaissance Technologies (Medallion)",yStart:1988,yEnd:2018,active:false,cagr:39,period:"1988–2018 (net)",bench:10,alpha:29,aum:"$10B (Medallion)",verify:"partial",desc:"Best verified hedge fund record in history. 66% gross / 39% net over 30 years. Employee-only since 1993.",books:[],source:"Zuckerman 'The Man Who Solved the Market' (2019); SEC; Bloomberg",cagrGross:66},
+  {n:"Cliff Asness",cat:"Quant",firm:"AQR Capital Management",yStart:1998,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$140B",verify:"partial",desc:"Factor investing pioneer. Value, momentum, quality, carry across all asset classes. Academic rigour.",books:[],source:"AQR website; academic papers"},
+  {n:"David Shaw",cat:"Quant",firm:"D.E. Shaw Group",yStart:1988,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$60B",verify:"private",desc:"Computational finance pioneer. Recruited Jeff Bezos (pre-Amazon). Systematic multi-strategy.",books:[],source:"Private"},
+  {n:"Ed Thorp",cat:"Quant",firm:"Princeton Newport Partners",yStart:1969,yEnd:1988,active:false,cagr:19.1,period:"1969–1988",bench:10,alpha:9.1,aum:"$273M",verify:"yes",desc:"First true quant fund. Only 3 losing months in 19 years. Beat blackjack before beating markets.",books:["Beat the Dealer","A Man for All Markets"],source:"A Man for All Markets (autobiography)"},
+  {n:"Ken Griffin",cat:"Quant",firm:"Citadel LLC",yStart:1990,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$60B",verify:"partial",desc:"Multi-strategy (quant + discretionary). Wellington Fund +38% in 2022. Started trading from Harvard dorm.",books:[],source:"Bloomberg; partial fund data"},
+  {n:"David Harding",cat:"Quant",firm:"Winton Group",yStart:1997,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$8B",verify:"partial",desc:"Trend following / systematic CTA. Co-founded Man AHL before Winton. Statistical approach to markets.",books:[],source:"Partial fund data"},
+  // ACTIVIST
+  {n:"Carl Icahn",cat:"Activist",firm:"Icahn Enterprises",yStart:1978,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$18B (IEP)",verify:"partial",desc:"Pioneer activist / corporate raider. Hostile takeovers forcing corporate change. Net worth ~$6.7B.",books:[],source:"Icahn Enterprises (IEP) public; Bloomberg"},
+  {n:"Bill Ackman",cat:"Activist",firm:"Pershing Square Capital Mgmt",yStart:1993,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$18B",verify:"yes",desc:"COVID hedge: $27M → $2.6B in 2 weeks (100x). Worst: Valeant (-$4B). PSH listed fund.",books:[],source:"Pershing Square Holdings (PSH) public"},
+  {n:"David Einhorn",cat:"Activist",firm:"Greenlight Capital",yStart:1996,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$5B peak",verify:"partial",desc:"Famous Lehman Brothers short before 2008 crash. Forensic accounting approach. Mixed post-2015.",books:["Fooling Some of the People All of the Time"],source:"Greenlight Re partial data"},
+  {n:"Dan Loeb",cat:"Activist",firm:"Third Point LLC",yStart:1995,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$20B",verify:"partial",desc:"Activist + event-driven. Famous poison pen letters to management. Yahoo, Sony, Nestlé campaigns.",books:[],source:"Third Point letters (partial)"},
+  {n:"Nelson Peltz",cat:"Activist",firm:"Trian Fund Management",yStart:1984,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$10B",verify:"partial",desc:"Operational activist. P&G, GE, Wendy's, Unilever campaigns. Focuses on operational improvement.",books:[],source:"Trian public filings"},
+  {n:"Paul Singer",cat:"Activist",firm:"Elliott Management",yStart:1977,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$55B",verify:"private",desc:"Distressed + activist. Famously seized Argentine navy ship over debt dispute. Relentless litigator.",books:[],source:"Private"},
+  // DISTRESSED
+  {n:"David Tepper",cat:"Distressed",firm:"Appaloosa Management",yStart:1993,yEnd:2026,active:true,cagr:25,period:"1993–2015 (est.)",bench:10,alpha:15,aum:"$20B",verify:"partial",desc:"2009 bank stock trade: +120% that year. Reportedly ~25%/yr over 22 years. Earned $2.2B personal in 2012.",books:[],source:"Bloomberg; media reports"},
+  {n:"Marty Whitman",cat:"Distressed",firm:"Third Avenue Management",yStart:1974,yEnd:2012,active:false,cagr:null,period:"",bench:null,alpha:null,aum:"$6B",verify:"partial",desc:"Deep value + distressed debt from balance sheet. 'Safe and cheap.' Quarterly letters are legendary.",books:["Value Investing: A Balanced Approach"],source:"Third Avenue Fund (partial)"},
+  {n:"John Paulson",cat:"Distressed",firm:"Paulson & Co",yStart:1994,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$36B peak",verify:"partial",desc:"'The Greatest Trade Ever' — shorted subprime 2007-08, made ~$15B for fund, $4B personal. Mixed since.",books:[],source:"Zuckerman 'The Greatest Trade Ever'"},
+  {n:"Michael Burry",cat:"Distressed",firm:"Scion Asset Management",yStart:2000,yEnd:2026,active:true,cagr:null,period:"2000–2008 (489% total)",bench:2,alpha:null,aum:"$600M",verify:"partial",desc:"489% total return 2000-2008 vs S&P +2%. Famous subprime short. Re-opened Scion 2013.",books:[],source:"The Big Short (Lewis); SEC filings"},
+  // RESOURCES
+  {n:"Rick Rule",cat:"Resources",firm:"Sprott → Rule Investment Media",yStart:1974,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"N/A (private)",verify:"private",desc:"Legendary resource sector investor. 'You're either a contrarian or a victim.' 50+ years in junior mining.",books:[],source:"Private — no audited CAGR"},
+  {n:"Eric Sprott",cat:"Resources",firm:"Sprott Asset Management",yStart:1981,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$20B+ (firm)",verify:"partial",desc:"Made fortune in gold stocks 2001-2011 bull. Famous physical silver calls. Some listed funds.",books:[],source:"Sprott funds (partial)"},
+  {n:"Ross Beaty",cat:"Resources",firm:"Pan American Silver; Equinox Gold",yStart:1985,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"N/A",verify:"partial",desc:"Built Pan American Silver into major producer. Pivoted to copper (Lumina) and gold. Serial mine builder.",books:[],source:"Company-level returns only"},
+  {n:"Robert Friedland",cat:"Resources",firm:"Ivanhoe Mines",yStart:1980,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"N/A",verify:"partial",desc:"Voisey's Bay nickel → $4.3B sale to Inco (1996). Now Kamoa-Kakula copper (DRC). Extraordinary deal returns.",books:[],source:"Deal-level; not fund-style CAGR"},
+  {n:"Frank Holmes",cat:"Resources",firm:"US Global Investors",yStart:1989,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$4B",verify:"yes",desc:"Gold and resource fund manager. US Global Investors publicly listed (GROW). Accessible resource commentary.",books:[],source:"US Global Investors (listed)"},
+  {n:"Keith Neumeyer",cat:"Resources",firm:"First Majestic Silver",yStart:2000,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"N/A",verify:"partial",desc:"CEO-investor. Built First Majestic into major silver producer. Vocal silver bull and market commentator.",books:[],source:"Company returns; not personal CAGR"},
+  {n:"Pierre Lassonde",cat:"Resources",firm:"Franco-Nevada",yStart:1983,yEnd:2026,active:true,cagr:null,period:"$1 → $1,000+ (1983–2020)",bench:null,alpha:null,aum:"$30B+ (FNV mkt cap)",verify:"partial",desc:"Co-founded Franco-Nevada 1983, pioneered gold royalty/streaming model. Spawned entire royalty sub-sector.",books:["The Gold Book"],source:"Franco-Nevada company filings"},
+  // FIXED INCOME
+  {n:"Bill Gross",cat:"Fixed Income",firm:"PIMCO → Janus Henderson",yStart:1971,yEnd:2019,active:false,cagr:null,period:"",bench:null,alpha:null,aum:"$270B (PIMCO Total Return)",verify:"yes",desc:"'The Bond King.' PIMCO Total Return was world's largest bond fund. Best bond track record of the era.",books:[],source:"Bloomberg; Morningstar"},
+  {n:"Jeffrey Gundlach",cat:"Fixed Income",firm:"TCW → DoubleLine Capital",yStart:1984,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$100B+",verify:"yes",desc:"'The New Bond King.' DoubleLine Total Return (DBLTX) publicly tracked. Accurate macro calls.",books:[],source:"DoubleLine fund data (DBLTX)"},
+  {n:"Mohamed El-Erian",cat:"Fixed Income",firm:"PIMCO → Allianz",yStart:1983,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"N/A",verify:"partial",desc:"Former PIMCO CEO/co-CIO. Now chief economic advisor at Allianz. Macro commentator.",books:["When Markets Collide"],source:"Limited personal track record"},
+  {n:"Dan Fuss",cat:"Fixed Income",firm:"Loomis Sayles",yStart:1976,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$20B+",verify:"yes",desc:"One of the longest-tenured bond fund managers. Loomis Sayles Bond Fund (LSBRX) publicly tracked.",books:[],source:"Loomis Sayles fund data"},
+  // VC/PE
+  {n:"Peter Thiel",cat:"VC/PE",firm:"Founders Fund; Palantir",yStart:1998,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$12B+ (FF)",verify:"private",desc:"PayPal co-founder. First outside Facebook investor ($500K → $1B+). Contrarian tech philosophy.",books:["Zero to One"],source:"Private — VC returns not public"},
+  {n:"Marc Andreessen",cat:"VC/PE",firm:"Andreessen Horowitz (a16z)",yStart:2009,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$35B+",verify:"private",desc:"Netscape founder. a16z became dominant Silicon Valley VC. 'Software is eating the world.'",books:[],source:"Private — VC returns not public"},
+  {n:"John Doerr",cat:"VC/PE",firm:"Kleiner Perkins",yStart:1980,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$20B+",verify:"private",desc:"Backed Google, Amazon, Netscape, Sun Microsystems. OG Silicon Valley VC.",books:["Measure What Matters"],source:"Private — VC returns not public"},
+  // EMERGING MARKETS
+  {n:"Mark Mobius",cat:"EM",firm:"Templeton EM → Mobius Capital",yStart:1987,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$50B+ (Templeton era)",verify:"partial",desc:"Pioneered EM asset class. Managed Templeton EM Group for 30+ years. Now Mobius Capital Partners.",books:["The Little Book of Emerging Markets"],source:"Bloomberg; annual reports"},
+  {n:"Prem Watsa",cat:"EM",firm:"Fairfax Financial",yStart:1985,yEnd:2026,active:true,cagr:15.6,period:"1985–2023 (book value)",bench:11,alpha:4.6,aum:"$80B+ assets",verify:"yes",desc:"'The Canadian Buffett.' Massive short positions protected through 2008 (~$2B gain). India expansion.",books:[],source:"Fairfax Annual Letters; TSX filings"},
+  // HISTORICAL
+  {n:"Jesse Livermore",cat:"Historical",firm:"Own account",yStart:1897,yEnd:1940,active:false,cagr:null,period:"",bench:null,alpha:null,aum:"$100M peak (1929)",verify:"private",desc:"'The Boy Plunger.' Made fortunes shorting 1906, 1929. Lost it all multiple times. Died broke.",books:["Reminiscences of a Stock Operator (Lefèvre)"],source:"Unverifiable — pre-modern records"},
+  {n:"John Templeton",cat:"Historical",firm:"Templeton Growth Fund",yStart:1954,yEnd:1992,active:false,cagr:15,period:"1954–1992",bench:10,alpha:5,aum:"$22B",verify:"yes",desc:"Pioneer of global investing. Bought every NYSE stock under $1 in 1939. 'Greatest global stock picker' (Money mag).",books:["Templeton Plan"],source:"Franklin Templeton records; Wikipedia"},
+  {n:"Philip Carret",cat:"Historical",firm:"Pioneer Fund",yStart:1928,yEnd:1998,active:false,cagr:13,period:"1928–1983",bench:9,alpha:4,aum:"N/A",verify:"yes",desc:"Founded Pioneer Fund 1928 — one of oldest mutual funds. Invested for 70 years. Lived to 101. Buffett's hero.",books:["The Art of Speculation"],source:"Pioneer Fund records"},
+  {n:"Bernard Baruch",cat:"Historical",firm:"Own account",yStart:1898,yEnd:1965,active:false,cagr:null,period:"",bench:null,alpha:null,aum:"$100M+",verify:"private",desc:"Wall Street speculator turned presidential advisor. Made fortune before 1929 crash by exiting early.",books:["My Own Story"],source:"Unverifiable"},
+];
+
+// Scoring function
+function scoreInvestor(inv) {
+  let score = 0;
+  // CAGR component (0-40 points)
+  if(inv.cagr !== null) {
+    score += Math.min(40, inv.cagr * 1.2);
+  }
+  // Alpha component (0-20 points)
+  if(inv.alpha !== null && inv.alpha > 0) {
+    score += Math.min(20, inv.alpha * 1.0);
+  }
+  // Track record length (0-15 points)
+  if(inv.yEnd && inv.yStart) {
+    const years = (inv.active ? 2026 : inv.yEnd) - inv.yStart;
+    score += Math.min(15, years * 0.3);
+  }
+  // Verification bonus (0-10 points)
+  if(inv.verify === "yes") score += 10;
+  else if(inv.verify === "partial") score += 5;
+  // Books/influence bonus (0-5 points)
+  if(inv.books && inv.books.length > 0) score += Math.min(5, inv.books.length * 2);
+  // Recency bonus (0-10 points) — still active or ended recently
+  if(inv.active) score += 8;
+  else if(inv.yEnd >= 2010) score += 5;
+  else if(inv.yEnd >= 2000) score += 3;
+  
+  return Math.round(score);
+}
+
+investors.forEach(inv => { inv.score = scoreInvestor(inv); });
+
+const categories = [...new Set(investors.map(i=>i.cat))];
+const catColors = {
+  "Value":"#f59e0b","Macro":"#3b82f6","Growth":"#10b981","Quant":"#a855f7",
+  "Activist":"#ef4444","Distressed":"#f97316","Resources":"#84cc16","Fixed Income":"#06b6d4",
+  "VC/PE":"#ec4899","EM":"#14b8a6","Historical":"#94a3b8"
+};
+
+function getVerifyTag(v){
+  if(v==="yes") return '<span class="tag tag-verified">✅ VERIFIED</span>';
+  if(v==="partial") return '<span class="tag tag-partial">⚠️ PARTIAL</span>';
+  return '<span class="tag tag-private">🔒 PRIVATE</span>';
+}
+
+function getMedal(rank){
+  if(rank===1) return "🥇";
+  if(rank===2) return "🥈";
+  if(rank===3) return "🥉";
+  return "";
+}
+
+function getScoreColor(score){
+  if(score >= 70) return "var(--green)";
+  if(score >= 50) return "var(--accent)";
+  if(score >= 30) return "var(--blue)";
+  return "var(--text-muted)";
+}
+
+function render(){
+  const search = document.getElementById("search").value.toLowerCase();
+  const activeCat = document.querySelector("#cat-filters .filter-btn.active")?.dataset.cat || "all";
+  const activeSort = document.querySelector(".sort-btn.active")?.dataset.sort || "score";
+  const verifiedOnly = document.getElementById("showVerifiedOnly").checked;
+  const booksOnly = document.getElementById("showWithBooks").checked;
+
+  let filtered = investors.filter(inv => {
+    if(activeCat !== "all" && inv.cat !== activeCat) return false;
+    if(verifiedOnly && inv.verify !== "yes") return false;
+    if(booksOnly && (!inv.books || inv.books.length === 0)) return false;
+    if(search) {
+      const haystack = (inv.n + " " + inv.firm + " " + inv.cat + " " + inv.desc + " " + (inv.books||[]).join(" ")).toLowerCase();
+      if(!haystack.includes(search)) return false;
+    }
+    return true;
+  });
+
+  // Sort
+  filtered.sort((a,b) => {
+    switch(activeSort){
+      case "score": return b.score - a.score;
+      case "cagr": return (b.cagr||0) - (a.cagr||0);
+      case "recency":
+        const aEnd = a.active ? 2026 : (a.yEnd||0);
+        const bEnd = b.active ? 2026 : (b.yEnd||0);
+        return bEnd - aEnd;
+      case "longevity":
+        const aLen = ((a.active?2026:a.yEnd)||0) - (a.yStart||0);
+        const bLen = ((b.active?2026:b.yEnd)||0) - (b.yStart||0);
+        return bLen - aLen;
+      case "alpha": return (b.alpha||0) - (a.alpha||0);
+      case "name": return a.n.localeCompare(b.n);
+      default: return b.score - a.score;
+    }
+  });
+
+  // Stats
+  const totalInv = investors.length;
+  const withData = investors.filter(i=>i.cagr!==null).length;
+  const verified = investors.filter(i=>i.verify==="yes").length;
+  document.getElementById("stats-bar").innerHTML = `
+    <div class="stat"><div class="num">${totalInv}</div><div class="label">Investors</div></div>
+    <div class="stat"><div class="num">${categories.length}</div><div class="label">Categories</div></div>
+    <div class="stat"><div class="num">${withData}</div><div class="label">With CAGR Data</div></div>
+    <div class="stat"><div class="num">${verified}</div><div class="label">Fully Verified</div></div>
+  `;
+
+  // Cards
+  const maxScore = Math.max(...investors.map(i=>i.score));
+  let html = "";
+  const sortedByScore = [...investors].sort((a,b)=>b.score-a.score);
+
+  filtered.forEach((inv,idx) => {
+    const globalRank = sortedByScore.indexOf(inv) + 1;
+    const medal = getMedal(globalRank);
+    const scoreColor = getScoreColor(inv.score);
+    const scorePct = (inv.score / maxScore * 100).toFixed(0);
+    const catColor = catColors[inv.cat] || "var(--text-muted)";
+    const years = inv.active ? `${inv.yStart}–present` : `${inv.yStart}–${inv.yEnd}`;
+    const duration = (inv.active ? 2026 : inv.yEnd) - inv.yStart;
+
+    let statsHtml = "";
+    if(inv.cagr !== null) {
+      statsHtml += `<div class="stat-pill cagr-positive"><div class="val">${inv.cagr}%</div><div class="lbl">CAGR</div></div>`;
+    }
+    if(inv.alpha !== null && inv.alpha > 0) {
+      statsHtml += `<div class="stat-pill alpha-positive"><div class="val">+${inv.alpha}%</div><div class="lbl">Alpha</div></div>`;
+    }
+    if(inv.period) {
+      statsHtml += `<div class="stat-pill"><div class="val" style="font-size:11px;color:var(--text-muted)">${inv.period}</div><div class="lbl">Period</div></div>`;
+    }
+
+    let booksHtml = "";
+    if(inv.books && inv.books.length > 0) {
+      booksHtml = inv.books.map(b=>`<span class="tag tag-book">📖 ${b}</span>`).join("");
+    }
+
+    html += `<div class="card">
+      <div class="accent-line" style="background:${catColor}"></div>
+      <div class="top-row">
+        <div>
+          <div class="name">${medal} ${inv.n}</div>
+          <div class="firm">${inv.firm}</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:20px;font-weight:800;color:${scoreColor}">${inv.score}</div>
+          <div style="font-size:9px;color:var(--text-muted)">SCORE</div>
+        </div>
+      </div>
+      <div class="meta">${years} • ${duration} years${inv.aum ? ' • AUM: '+inv.aum : ''}</div>
+      <div class="desc">${inv.desc}</div>
+      ${statsHtml ? '<div class="stats-row">'+statsHtml+'</div>' : ''}
+      <div class="tags">
+        <span class="tag tag-cat" style="background:${catColor}22;color:${catColor};border-color:${catColor}44">${inv.cat}</span>
+        ${getVerifyTag(inv.verify)}
+        ${booksHtml}
+      </div>
+      <div class="score-bar"><div class="fill" style="width:${scorePct}%;background:${scoreColor}"></div></div>
+    </div>`;
+  });
+
+  document.getElementById("grid").innerHTML = html || '<div class="no-data">No investors match your filters</div>';
+
+  // Ranking table
+  const ranked = investors.filter(i=>i.cagr!==null).sort((a,b)=>b.cagr-a.cagr);
+  let tableHtml = `<tr><th>Rank</th><th>Investor</th><th>Strategy</th><th>Net CAGR</th><th>Period</th><th>Alpha</th><th>Source</th></tr>`;
+  ranked.forEach((inv,i) => {
+    tableHtml += `<tr>
+      <td class="rank-col">${getMedal(i+1)||'#'+(i+1)}</td>
+      <td><strong>${inv.n}</strong></td>
+      <td style="color:${catColors[inv.cat]||'var(--text-muted)'};font-size:12px">${inv.cat}</td>
+      <td class="cagr-col">${inv.cagr}%</td>
+      <td class="period-col">${inv.period}</td>
+      <td style="color:${inv.alpha>0?'var(--green)':'var(--text-muted)'}">${inv.alpha?'+'+inv.alpha+'%':'—'}</td>
+      <td style="font-size:11px;color:var(--text-muted)">${inv.source||'—'}</td>
+    </tr>`;
+  });
+  document.getElementById("ranking-table").innerHTML = tableHtml;
+}
+
+// Build category filters
+let filtersHtml = '<button class="filter-btn active" data-cat="all">All</button>';
+categories.forEach(cat => {
+  filtersHtml += `<button class="filter-btn" data-cat="${cat}">${cat}</button>`;
+});
+document.getElementById("cat-filters").innerHTML = filtersHtml;
+
+// Event listeners
+document.getElementById("cat-filters").addEventListener("click", e => {
+  if(!e.target.classList.contains("filter-btn")) return;
+  document.querySelectorAll("#cat-filters .filter-btn").forEach(b=>b.classList.remove("active"));
+  e.target.classList.add("active");
+  render();
+});
+
+document.querySelectorAll(".sort-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".sort-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    render();
+  });
+});
+
+document.getElementById("search").addEventListener("input", render);
+document.getElementById("showVerifiedOnly").addEventListener("change", render);
+document.getElementById("showWithBooks").addEventListener("change", render);
+
+render();
+</script>
+</body>
+</html>
