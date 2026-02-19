@@ -108,7 +108,7 @@
 <script>
 // Data will be injected by the build script or loaded from JSON
 let DATA = null;
-const DATA_URL = "data/portfolio_history.json";
+const DATA_URL = "data/portfolio_history.json?t=" + Date.now();
 
 async function loadData() {
   try {
