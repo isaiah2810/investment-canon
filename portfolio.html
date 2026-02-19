@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Dashboard — Carlin Invests</title>
+<style>
+  :root {
+    --bg:#0a0a0f;--card-bg:#12121a;--card-border:#1e1e2e;--card-hover:#1a1a28;
+    --text:#e0e0e8;--text-muted:#888899;--accent:#f59e0b;--accent-dim:#78500d;
+    --green:#10b981;--red:#ef4444;--blue:#3b82f6;--purple:#a855f7;
+    --gold:#f59e0b;--silver:#94a3b8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;background:var(--bg);color:var(--text);padding:20px;min-height:100vh}
+  .header{text-align:center;margin-bottom:24px}
+  .header h1{font-size:26px;font-weight:700} .header h1 span{color:var(--accent)}
+  .header .sub{color:var(--text-muted);font-size:12px;margin-top:4px}
+  .header .updated{color:var(--text-muted);font-size:11px;margin-top:2px}
+
+  /* Hero stats */
+  .hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:20px}
+  .hero-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:16px;text-align:center}
+  .hero-card .val{font-size:24px;font-weight:800;line-height:1.2}
+  .hero-card .lbl{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:4px}
+  .positive{color:var(--green)}.negative{color:var(--red)}
+
+  /* Tabs */
+  .tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;justify-content:center}
+  .tab{background:rgba(255,255,255,0.06);border:1px solid var(--card-border);color:var(--text-muted);padding:6px 16px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:500;transition:all .2s}
+  .tab:hover{border-color:var(--accent);color:var(--text)}
+  .tab.active{background:var(--accent);color:#000;border-color:var(--accent);font-weight:600}
+
+  /* Person summary cards */
+  .people-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:20px}
+  .person-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:14px;transition:border-color .2s;cursor:pointer}
+  .person-card:hover{border-color:var(--accent-dim)}
+  .person-card.active{border-color:var(--accent)}
+  .person-card .name{font-size:14px;font-weight:700;margin-bottom:2px}
+  .person-card .accounts{font-size:10px;color:var(--text-muted);margin-bottom:8px}
+  .person-card .row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px}
+  .person-card .row .label{color:var(--text-muted)}
+
+  /* Position table */
+  .table-wrap{overflow-x:auto;margin-bottom:20px}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th{text-align:left;padding:8px 10px;font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--text-muted);border-bottom:1px solid var(--card-border);white-space:nowrap}
+  td{padding:10px;border-bottom:1px solid rgba(30,30,46,0.5);white-space:nowrap}
+  tr:hover{background:var(--card-hover)}
+  .ticker-cell{font-weight:700}
+  .acct-badge{font-size:9px;padding:1px 6px;border-radius:8px;background:rgba(255,255,255,0.06);color:var(--text-muted);margin-left:4px}
+  .daily-pos{color:var(--green)}.daily-neg{color:var(--red)}.daily-flat{color:var(--text-muted)}
+  .pnl-pos{color:var(--green);font-weight:600}.pnl-neg{color:var(--red);font-weight:600}
+
+  /* Aggregate section */
+  .section-title{font-size:16px;font-weight:700;margin:24px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--card-border)}
+  .section-title span{color:var(--accent)}
+
+  /* PnL chart placeholder */
+  .chart-area{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:20px;margin-bottom:20px;min-height:200px}
+  .chart-area canvas{width:100%!important;height:200px!important}
+
+  .footer{text-align:center;color:var(--text-muted);font-size:10px;margin-top:32px;padding-top:12px;border-top:1px solid var(--card-border)}
+
+  @media(max-width:600px){body{padding:12px}.hero{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 <span>Portfolio</span> Dashboard</h1>
+  <div class="sub">Family Investment Tracker — Real-Time P&L</div>
+  <div class="updated" id="lastUpdated"></div>
+</div>
+
+<div class="hero" id="hero"></div>
+
+<div class="section-title">👤 <span>By Person</span></div>
+<div class="people-row" id="people-row"></div>
+
+<div class="section-title">📈 <span>P&L History</span></div>
+<div class="chart-area"><canvas id="pnlChart"></canvas></div>
+
+<div class="tabs" id="view-tabs">
+  <button class="tab active" data-view="accounts">By Account</button>
+  <button class="tab" data-view="people">By Person</button>
+  <button class="tab" data-view="aggregate">Aggregate</button>
+</div>
+
+<div class="tabs" id="acct-tabs"></div>
+
+<div class="table-wrap"><table id="positions-table"><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div>
+
+<div class="footer">Portfolio Dashboard v1 • Carlin Invests • Auto-updated at market close</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script>
+// Data will be injected by the build script or loaded from JSON
+let DATA = null;
+const DATA_URL = "data/portfolio_history.json";
+
+async function loadData() {
+  try {
+    const r = await fetch(DATA_URL);
+    DATA = await r.json();
+    render();
+  } catch(e) {
+    // Try embedded data
+    if(window.PORTFOLIO_DATA) { DATA = window.PORTFOLIO_DATA; render(); }
+    else { document.getElementById("hero").innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted)">No data yet — dashboard populates after first market close snapshot.</div>'; }
+  }
+}
+
+let activeView = "accounts";
+let activeFilter = "all"; // "all" or account/person name
+let chart = null;
+
+function latest() { return DATA.snapshots[DATA.snapshots.length - 1]; }
+function prev() { return DATA.snapshots.length > 1 ? DATA.snapshots[DATA.snapshots.length - 2] : null; }
+
+function fmt(n) { return '£' + n.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+function fmtPct(n) { return (n >= 0 ? '+' : '') + n.toFixed(2) + '%'; }
+function pnlClass(n) { return n > 0 ? 'positive' : n < 0 ? 'negative' : ''; }
+function dailyClass(n) { return n > 0 ? 'daily-pos' : n < 0 ? 'daily-neg' : 'daily-flat'; }
+
+function renderHero() {
+  const s = latest();
+  const ft = s.family_total;
+  const totalAccounts = Object.keys(s.accounts).length;
+  const totalPositions = Object.values(s.accounts).reduce((sum, a) => sum + a.positions.length, 0);
+  
+  document.getElementById("lastUpdated").textContent = `Last updated: ${s.date} at ${s.timestamp.split('T')[1].substring(0,5)}`;
+  
+  document.getElementById("hero").innerHTML = `
+    <div class="hero-card"><div class="val">${fmt(ft.total_gbp)}</div><div class="lbl">Family Total</div></div>
+    <div class="hero-card"><div class="val">${fmt(ft.investments_gbp)}</div><div class="lbl">Investments</div></div>
+    <div class="hero-card"><div class="val">${fmt(ft.cash_gbp)}</div><div class="lbl">Cash</div></div>
+    <div class="hero-card"><div class="val ${pnlClass(ft.pnl_gbp)}">${fmt(ft.pnl_gbp)}</div><div class="lbl">Total P&L</div></div>
+    <div class="hero-card"><div class="val ${pnlClass(ft.pnl_pct)}">${fmtPct(ft.pnl_pct)}</div><div class="lbl">P&L %</div></div>
+    <div class="hero-card"><div class="val" style="color:var(--accent)">${totalPositions}</div><div class="lbl">Positions</div></div>
+  `;
+}
+
+function renderPeople() {
+  const s = latest();
+  const people = s.people || {};
+  let html = '';
+  
+  // Add "All" card
+  const ft = s.family_total;
+  html += `<div class="person-card ${activeFilter==='all'?'active':''}" data-person="all">
+    <div class="name">👨‍👩‍👧 Family</div>
+    <div class="accounts">${Object.keys(s.accounts).length} accounts</div>
+    <div class="row"><span class="label">Total</span><span>${fmt(ft.total_gbp)}</span></div>
+    <div class="row"><span class="label">P&L</span><span class="${pnlClass(ft.pnl_pct)}">${fmtPct(ft.pnl_pct)}</span></div>
+  </div>`;
+  
+  for (const [name, data] of Object.entries(people)) {
+    const emoji = name === 'Carlin' ? '👤' : name === 'Nana' ? '👧' : '👩';
+    html += `<div class="person-card ${activeFilter===name?'active':''}" data-person="${name}">
+      <div class="name">${emoji} ${name}</div>
+      <div class="accounts">${data.accounts.join(' + ')}</div>
+      <div class="row"><span class="label">Investments</span><span>${fmt(data.investments_gbp)}</span></div>
+      <div class="row"><span class="label">Cash</span><span>${fmt(data.cash_gbp)}</span></div>
+      <div class="row"><span class="label">Total</span><span>${fmt(data.total_gbp)}</span></div>
+      <div class="row"><span class="label">P&L</span><span class="${pnlClass(data.pnl_pct)}">${fmtPct(data.pnl_pct)}</span></div>
+    </div>`;
+  }
+  
+  document.getElementById("people-row").innerHTML = html;
+  
+  // Click handlers
+  document.querySelectorAll(".person-card").forEach(card => {
+    card.addEventListener("click", () => {
+      activeFilter = card.dataset.person;
+      renderPeople();
+      renderAcctTabs();
+      renderTable();
+    });
+  });
+}
+
+function renderAcctTabs() {
+  const s = latest();
+  let html = '';
+  
+  if (activeView === 'accounts') {
+    const accounts = activeFilter === 'all' 
+      ? Object.keys(s.accounts) 
+      : (s.people[activeFilter]?.accounts || Object.keys(s.accounts));
+    
+    html += `<button class="tab active" data-acct="all">All Accounts</button>`;
+    accounts.forEach(a => {
+      html += `<button class="tab" data-acct="${a}">${a}</button>`;
+    });
+  }
+  
+  document.getElementById("acct-tabs").innerHTML = html;
+  document.querySelectorAll("#acct-tabs .tab").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("#acct-tabs .tab").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderTable();
+    });
+  });
+}
+
+function renderTable() {
+  const s = latest();
+  const activeAcct = document.querySelector("#acct-tabs .tab.active")?.dataset.acct || "all";
+  
+  let positions = [];
+  
+  if (activeView === 'aggregate') {
+    // Show aggregate positions
+    for (const [ticker, data] of Object.entries(s.aggregate)) {
+      positions.push({
+        ticker,
+        name: data.name,
+        exchange: data.exchange,
+        currency: data.currency,
+        units: data.total_units,
+        avgPrice: data.weighted_avg_price,
+        currentPrice: data.current_price,
+        dailyChange: data.daily_change_pct,
+        valueGbp: data.value_gbp,
+        costGbp: data.total_cost_gbp,
+        pnlGbp: data.pnl_gbp,
+        pnlPct: data.pnl_pct,
+        accounts: data.accounts.map(a => a.account).join(', ')
+      });
+    }
+  } else if (activeView === 'people') {
+    // Show person-level aggregated positions
+    const people = activeFilter === 'all' ? Object.keys(s.people) : [activeFilter];
+    for (const person of people) {
+      const pdata = s.people[person];
+      if (!pdata) continue;
+      for (const [ticker, data] of Object.entries(pdata.positions)) {
+        positions.push({
+          ticker,
+          name: data.name,
+          exchange: data.exchange,
+          currency: data.currency,
+          units: data.total_units,
+          avgPrice: data.weighted_avg_price,
+          currentPrice: data.current_price,
+          dailyChange: data.daily_change_pct,
+          valueGbp: data.value_gbp,
+          costGbp: data.total_cost_gbp,
+          pnlGbp: data.pnl_gbp,
+          pnlPct: data.pnl_pct,
+          accounts: person
+        });
+      }
+    }
+  } else {
+    // Account view
+    let accountsToShow;
+    if (activeFilter === 'all') {
+      accountsToShow = activeAcct === 'all' ? Object.keys(s.accounts) : [activeAcct];
+    } else {
+      const personAccounts = s.people[activeFilter]?.accounts || [];
+      accountsToShow = activeAcct === 'all' ? personAccounts : [activeAcct];
+    }
+    
+    for (const acctName of accountsToShow) {
+      const acct = s.accounts[acctName];
+      if (!acct) continue;
+      for (const pos of acct.positions) {
+        positions.push({
+          ticker: pos.ticker,
+          name: pos.name,
+          exchange: pos.exchange,
+          currency: pos.currency,
+          units: pos.units,
+          avgPrice: pos.avg_price,
+          currentPrice: pos.current_price,
+          dailyChange: pos.daily_change_pct,
+          valueGbp: pos.value_gbp,
+          costGbp: pos.book_cost_gbp,
+          pnlGbp: pos.pnl_gbp,
+          pnlPct: pos.pnl_pct,
+          accounts: acctName
+        });
+      }
+    }
+  }
+  
+  // Sort by value descending
+  positions.sort((a, b) => b.valueGbp - a.valueGbp);
+  
+  // Render
+  const showAcctCol = activeView !== 'accounts' || activeAcct === 'all';
+  document.getElementById("table-head").innerHTML = `<tr>
+    <th>Ticker</th>
+    ${showAcctCol ? '<th>Account</th>' : ''}
+    <th>Price</th>
+    <th>Daily</th>
+    <th>Units</th>
+    <th>Avg Cost</th>
+    <th>Value (£)</th>
+    <th>P&L (£)</th>
+    <th>P&L %</th>
+  </tr>`;
+  
+  let totalVal = 0, totalPnl = 0, totalCost = 0;
+  let bodyHtml = '';
+  
+  positions.forEach(p => {
+    totalVal += p.valueGbp;
+    totalPnl += p.pnlGbp;
+    totalCost += p.costGbp;
+    
+    const priceStr = p.currency === 'GBP' ? `£${p.currentPrice.toFixed(2)}` :
+                     p.currency === 'CAD' ? `C$${p.currentPrice.toFixed(3)}` :
+                     p.currency === 'AUD' ? `A$${p.currentPrice.toFixed(3)}` :
+                     `$${p.currentPrice.toFixed(2)}`;
+    const avgStr = p.currency === 'GBP' ? `£${p.avgPrice.toFixed(2)}` :
+                   p.currency === 'CAD' ? `C$${p.avgPrice.toFixed(3)}` :
+                   p.currency === 'AUD' ? `A$${p.avgPrice.toFixed(3)}` :
+                   `$${p.avgPrice.toFixed(2)}`;
+    const unitsStr = p.units >= 1000 ? p.units.toLocaleString('en-GB', {maximumFractionDigits:0}) : p.units.toLocaleString('en-GB', {maximumFractionDigits:2});
+    
+    bodyHtml += `<tr>
+      <td class="ticker-cell">${p.ticker} <span style="font-size:9px;color:var(--text-muted)">${p.exchange}</span></td>
+      ${showAcctCol ? `<td><span class="acct-badge">${p.accounts}</span></td>` : ''}
+      <td>${priceStr}</td>
+      <td class="${dailyClass(p.dailyChange)}">${fmtPct(p.dailyChange)}</td>
+      <td>${unitsStr}</td>
+      <td style="color:var(--text-muted)">${avgStr}</td>
+      <td>${fmt(p.valueGbp)}</td>
+      <td class="${p.pnlGbp>=0?'pnl-pos':'pnl-neg'}">${fmt(p.pnlGbp)}</td>
+      <td class="${p.pnlPct>=0?'pnl-pos':'pnl-neg'}">${fmtPct(p.pnlPct)}</td>
+    </tr>`;
+  });
+  
+  // Footer row
+  const totalPnlPct = totalCost > 0 ? (totalPnl / totalCost * 100) : 0;
+  bodyHtml += `<tr style="border-top:2px solid var(--card-border);font-weight:700">
+    <td>TOTAL</td>
+    ${showAcctCol ? '<td></td>' : ''}
+    <td></td><td></td><td></td><td></td>
+    <td>${fmt(totalVal)}</td>
+    <td class="${totalPnl>=0?'pnl-pos':'pnl-neg'}">${fmt(totalPnl)}</td>
+    <td class="${totalPnlPct>=0?'pnl-pos':'pnl-neg'}">${fmtPct(totalPnlPct)}</td>
+  </tr>`;
+  
+  document.getElementById("table-body").innerHTML = bodyHtml;
+}
+
+function renderChart() {
+  if (!DATA || DATA.snapshots.length < 1) return;
+  
+  const labels = DATA.snapshots.map(s => s.date);
+  const familyPnl = DATA.snapshots.map(s => s.family_total.pnl_pct);
+  
+  // Person-level series
+  const people = Object.keys(DATA.snapshots[DATA.snapshots.length-1].people || {});
+  const personSeries = {};
+  people.forEach(p => {
+    personSeries[p] = DATA.snapshots.map(s => s.people?.[p]?.pnl_pct ?? null);
+  });
+  
+  const colors = {Family:'#f59e0b', Carlin:'#3b82f6', Nana:'#10b981', Dada:'#a855f7'};
+  
+  const datasets = [
+    {label:'Family', data:familyPnl, borderColor:colors.Family, backgroundColor:colors.Family+'20', tension:0.3, borderWidth:2, fill:true}
+  ];
+  people.forEach(p => {
+    datasets.push({label:p, data:personSeries[p], borderColor:colors[p]||'#888', tension:0.3, borderWidth:1.5, borderDash:[4,2], fill:false, pointRadius:2});
+  });
+  
+  const ctx = document.getElementById('pnlChart').getContext('2d');
+  if (chart) chart.destroy();
+  
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {labels, datasets},
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {labels:{color:'#888899',font:{size:11}}},
+        tooltip: {
+          callbacks: {label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y >= 0 ? '+' : ''}${ctx.parsed.y.toFixed(2)}%`}
+        }
+      },
+      scales: {
+        x: {ticks:{color:'#888899',font:{size:10}},grid:{color:'rgba(30,30,46,0.5)'}},
+        y: {ticks:{color:'#888899',font:{size:10},callback:v=>v+'%'},grid:{color:'rgba(30,30,46,0.5)'},
+          title:{display:true,text:'P&L %',color:'#888899'}}
+      }
+    }
+  });
+}
+
+function render() {
+  renderHero();
+  renderPeople();
+  renderAcctTabs();
+  renderTable();
+  renderChart();
+}
+
+// View tab handlers
+document.querySelectorAll("#view-tabs .tab").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#view-tabs .tab").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeView = btn.dataset.view;
+    renderAcctTabs();
+    renderTable();
+  });
+});
+
+loadData();
+</script>
+</body>
+</html>
