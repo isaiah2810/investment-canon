@@ -2,7 +2,7 @@
   "snapshots": [
     {
       "date": "2026-02-19",
-      "timestamp": "2026-02-19T22:10:51.452383",
+      "timestamp": "2026-02-19T22:11:20.390932",
       "fx_rates": {
         "GBP": 1.0,
         "CAD": 0.5422999858856201,
@@ -237,9 +237,9 @@
               "current_price": 126.53,
               "daily_change_pct": 1.65,
               "value_gbp": 11466.51,
-              "book_cost_gbp": 7026.75,
-              "pnl_gbp": 4439.75,
-              "pnl_pct": 63.18
+              "book_cost_gbp": 9459.69,
+              "pnl_gbp": 2006.82,
+              "pnl_pct": 21.21
             },
             {
               "ticker": "NAU",
@@ -299,9 +299,9 @@
             }
           ],
           "total_value_gbp": 26323.68,
-          "total_cost_gbp": 20076.79,
-          "pnl_gbp": 6246.89,
-          "pnl_pct": 31.11
+          "total_cost_gbp": 22509.73,
+          "pnl_gbp": 3813.95,
+          "pnl_pct": 16.94
         },
         "DADA": {
           "cash_gbp": 2800.0,
@@ -709,7 +709,7 @@
           "exchange": "LSE",
           "total_units": 122,
           "total_cost_local": 9459.690046,
-          "total_cost_gbp": 7026.75,
+          "total_cost_gbp": 9459.69,
           "current_price": 126.53,
           "daily_change_pct": 1.65,
           "accounts": [
@@ -721,8 +721,8 @@
           ],
           "value_gbp": 11466.51,
           "weighted_avg_price": 77.5384,
-          "pnl_gbp": 4439.76,
-          "pnl_pct": 63.18
+          "pnl_gbp": 2006.82,
+          "pnl_pct": 21.21
         },
         "FF": {
           "name": "First Mining Gold Corp",
@@ -918,9 +918,9 @@
         "investments_gbp": 99545.06,
         "cash_gbp": 5636.36,
         "total_gbp": 105181.42,
-        "book_cost_gbp": 101094.56,
-        "pnl_gbp": -1549.5,
-        "pnl_pct": -1.53
+        "book_cost_gbp": 103527.5,
+        "pnl_gbp": -3982.44,
+        "pnl_pct": -3.85
       },
       "people": {
         "Carlin": {
@@ -1180,9 +1180,9 @@
           "investments_gbp": 26323.68,
           "cash_gbp": 2416.89,
           "total_gbp": 28740.57,
-          "book_cost_gbp": 20076.79,
-          "pnl_gbp": 6246.89,
-          "pnl_pct": 31.11,
+          "book_cost_gbp": 22509.73,
+          "pnl_gbp": 3813.95,
+          "pnl_pct": 16.94,
           "positions": {
             "HSTR": {
               "name": "Heliostar Metals Ltd",
@@ -1232,7 +1232,7 @@
               "exchange": "LSE",
               "total_units": 122,
               "total_cost_local": 9459.690046,
-              "total_cost_gbp": 7026.75,
+              "total_cost_gbp": 9459.69,
               "current_price": 126.53,
               "daily_change_pct": 1.65,
               "value_gbp": 11466.51,
@@ -1244,8 +1244,8 @@
                 }
               ],
               "weighted_avg_price": 77.5384,
-              "pnl_gbp": 4439.76,
-              "pnl_pct": 63.18
+              "pnl_gbp": 2006.82,
+              "pnl_pct": 21.21
             },
             "NAU": {
               "name": "Nevgold Corp",
@@ -1520,7 +1520,7 @@
   "metadata": {
     "created": "2026-02-19T21:45:29.935815",
     "version": 1,
-    "lastUpdated": "2026-02-19T22:10:52.605114",
+    "lastUpdated": "2026-02-19T22:11:21.609710",
     "totalSnapshots": 1
   }
 }
