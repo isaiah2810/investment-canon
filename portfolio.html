@@ -67,9 +67,16 @@
   .footer{text-align:center;color:var(--text-muted);font-size:10px;margin-top:32px;padding-top:12px;border-top:1px solid var(--card-border)}
 
   @media(max-width:600px){body{padding:12px}.hero{grid-template-columns:repeat(2,1fr)}}
+  .site-nav{display:flex;justify-content:center;gap:6px;padding:12px 20px;background:#08080d;border-bottom:1px solid #1e1e2e;position:sticky;top:0;z-index:100}
+  .site-nav a{color:#888899;text-decoration:none;font-size:12px;font-weight:500;padding:6px 16px;border-radius:20px;border:1px solid #1e1e2e;transition:all .2s}
+  .site-nav a:hover{color:#e0e0e8;border-color:#f59e0b}
+  .site-nav a.active{background:#f59e0b;color:#000;border-color:#f59e0b;font-weight:600}
+  .site-nav .brand{color:#f59e0b;font-weight:700;font-size:13px;margin-right:8px;align-self:center}
 </style>
 </head>
 <body>
+
+<nav class="site-nav"><span class="brand">Carlin Invests</span><a href="index.html">📚 Canon</a><a href="investor-database.html">🏆 Investors</a><a href="portfolio.html" class="active">📊 Portfolio</a></nav>
 
 <div class="header">
   <h1>📊 <span>Portfolio</span> Dashboard</h1>
