@@ -48,7 +48,7 @@
   .tier-label{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;padding-left:4px;display:flex;align-items:center;gap:8px}
   .tier-label .line{flex:1;height:1px;background:var(--card-border)}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
-  .card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:14px;transition:all .2s;position:relative;overflow:hidden;cursor:default}
+  .card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:14px;transition:all .2s;position:relative;overflow:hidden;cursor:pointer;text-decoration:none;display:block;color:inherit}
   .card:hover{background:var(--card-hover);border-color:var(--accent-dim);transform:translateY(-1px)}
   .card .accent-line{position:absolute;top:0;left:0;right:0;height:2px}
   .card .rank{position:absolute;top:10px;right:12px;font-size:20px;font-weight:800;color:rgba(255,255,255,0.06)}
@@ -450,15 +450,16 @@ function renderBooks(){
           }
           cites += '</div>';
         }
-        html += `<div class="card" data-search="${(b.t+' '+b.a+' '+b.r).toLowerCase()}">
+        const amazonUrl = `https://www.amazon.co.uk/s?k=${encodeURIComponent(b.t + ' ' + b.a)}&i=stripbooks`;
+        html += `<a href="${amazonUrl}" target="_blank" rel="noopener" class="card" data-search="${(b.t+' '+b.a+' '+b.r).toLowerCase()}">
           <div class="accent-line" style="background:${tierColors[tier]}"></div>
           <div class="rank">#${globalRank}</div>
-          <div class="title">${b.t}</div>
+          <div class="title">${b.t} <span style="font-size:10px;opacity:0.4;margin-left:4px">↗</span></div>
           <div class="author">${b.a}</div>
           ${b.y > 0 ? `<div class="year">${b.y}</div>` : ''}
           <div class="reason">${b.r}</div>
           ${cites}
-        </div>`;
+        </a>`;
       });
       
       html += `</div></div>`;
