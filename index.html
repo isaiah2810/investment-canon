@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Investment Canon</title>
+<style>
+  :root {
+    --bg:#0a0a0f;--card-bg:#12121a;--card-border:#1e1e2e;--card-hover:#1a1a28;
+    --text:#e0e0e8;--text-muted:#888899;--accent:#f59e0b;--accent-dim:#78500d;
+    --tag-bg:rgba(255,255,255,0.06);
+    --tier1:#f59e0b;--tier2:#3b82f6;--tier3:#10b981;
+    --marks:#f59e0b;--damodaran:#3b82f6;--rule:#10b981;--dalio:#ef4444;--schiff:#a855f7;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;background:var(--bg);color:var(--text);padding:24px;min-height:100vh}
+  .header{text-align:center;margin-bottom:28px}
+  .header h1{font-size:28px;font-weight:700;margin-bottom:4px}
+  .header h1 span{color:var(--accent)}
+  .header p{color:var(--text-muted);font-size:13px;margin-top:4px}
+  .header .subtitle{font-size:14px;color:var(--text-muted);font-style:italic;margin-top:2px}
+  .stats-bar{display:flex;justify-content:center;gap:32px;margin-bottom:24px;flex-wrap:wrap}
+  .stat .num{font-size:28px;font-weight:700;color:var(--accent);text-align:center}
+  .stat .label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);text-align:center}
+  .legend{display:flex;justify-content:center;gap:16px;margin-bottom:8px;flex-wrap:wrap}
+  .legend-item{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text-muted)}
+  .legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .controls{display:flex;justify-content:center;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .filter-btn{background:var(--tag-bg);border:1px solid var(--card-border);color:var(--text-muted);padding:5px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:500;transition:all .2s}
+  .filter-btn:hover{border-color:var(--accent);color:var(--text)}
+  .filter-btn.active{background:var(--accent);color:#000;border-color:var(--accent);font-weight:600}
+  .search-box{display:flex;justify-content:center;margin-bottom:20px}
+  .search-box input{background:var(--card-bg);border:1px solid var(--card-border);color:var(--text);padding:9px 14px;border-radius:8px;font-size:14px;width:100%;max-width:500px;outline:none;transition:border-color .2s}
+  .search-box input:focus{border-color:var(--accent)}
+  .search-box input::placeholder{color:var(--text-muted)}
+  .tier-legend{display:flex;justify-content:center;gap:24px;margin-bottom:24px;flex-wrap:wrap}
+  .tier-badge{font-size:11px;padding:3px 10px;border-radius:12px;font-weight:600;letter-spacing:.3px}
+  .tier-1{background:rgba(245,158,11,0.15);color:var(--tier1);border:1px solid rgba(245,158,11,0.3)}
+  .tier-2{background:rgba(59,130,246,0.15);color:var(--tier2);border:1px solid rgba(59,130,246,0.3)}
+  .tier-3{background:rgba(16,185,129,0.15);color:var(--tier3);border:1px solid rgba(16,185,129,0.3)}
+  .category-section{margin-bottom:40px}
+  .category-header{display:flex;align-items:center;gap:12px;margin-bottom:6px;padding-bottom:8px;border-bottom:1px solid var(--card-border)}
+  .category-icon{font-size:22px}
+  .category-header h2{font-size:17px;font-weight:700}
+  .category-header .count{color:var(--text-muted);font-size:12px;margin-left:auto}
+  .category-desc{color:var(--text-muted);font-size:12px;margin-bottom:16px;line-height:1.5}
+  .tier-group{margin-bottom:20px}
+  .tier-label{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;padding-left:4px;display:flex;align-items:center;gap:8px}
+  .tier-label .line{flex:1;height:1px;background:var(--card-border)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+  .card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:14px;transition:all .2s;position:relative;overflow:hidden;cursor:default}
+  .card:hover{background:var(--card-hover);border-color:var(--accent-dim);transform:translateY(-1px)}
+  .card .accent-line{position:absolute;top:0;left:0;right:0;height:2px}
+  .card .rank{position:absolute;top:10px;right:12px;font-size:20px;font-weight:800;color:rgba(255,255,255,0.06)}
+  .card .title{font-size:13px;font-weight:600;margin-bottom:2px;padding-right:30px;line-height:1.4}
+  .card .author{font-size:11px;color:var(--accent);margin-bottom:4px}
+  .card .year{font-size:10px;color:var(--text-muted);margin-bottom:6px}
+  .card .reason{font-size:11px;color:var(--text-muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card .citations{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
+  .cite-dot{width:18px;height:18px;border-radius:50%;font-size:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#000}
+  .cite-marks{background:var(--marks)}
+  .cite-damodaran{background:var(--damodaran);color:#fff}
+  .cite-rule{background:var(--rule)}
+  .cite-dalio{background:var(--dalio);color:#fff}
+  .cite-schiff{background:var(--schiff);color:#fff}
+  .desert-island{margin:40px 0;padding:24px;background:var(--card-bg);border:1px solid var(--accent-dim);border-radius:12px}
+  .desert-island h2{font-size:18px;font-weight:700;margin-bottom:4px;color:var(--accent)}
+  .desert-island p{font-size:12px;color:var(--text-muted);margin-bottom:16px}
+  .desert-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px}
+  .desert-item{display:flex;gap:10px;align-items:baseline;font-size:13px}
+  .desert-num{color:var(--accent);font-weight:700;min-width:20px}
+  .desert-title{font-weight:600}
+  .desert-author{color:var(--text-muted);font-size:12px}
+  .bonus-section{margin-top:40px}
+  .bonus-section h2{font-size:17px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+  .bonus-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+  .bonus-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:14px;transition:all .2s}
+  .bonus-card:hover{background:var(--card-hover);border-color:var(--accent-dim)}
+  .bonus-card .name{font-size:13px;font-weight:600;margin-bottom:2px}
+  .bonus-card .meta{font-size:11px;color:var(--accent);margin-bottom:4px}
+  .bonus-card .desc{font-size:11px;color:var(--text-muted);line-height:1.5}
+  .updated{text-align:center;color:var(--text-muted);font-size:11px;margin-top:40px;padding-top:16px;border-top:1px solid var(--card-border)}
+  .hidden{display:none!important}
+  @media(max-width:600px){
+    .grid,.desert-list,.bonus-grid{grid-template-columns:1fr}
+    .stats-bar{gap:20px}
+    body{padding:16px}
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📚 <span>The Investment</span> Canon</h1>
+  <div class="subtitle">The Definitive Reading List for an AI Investment Committee</div>
+  <p>Compiled February 2026 • Carlin Invests</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="num">170</div><div class="label">Books</div></div>
+  <div class="stat"><div class="num">30</div><div class="label">Papers</div></div>
+  <div class="stat"><div class="num">20</div><div class="label">Podcasts</div></div>
+  <div class="stat"><div class="num">10</div><div class="label">Letter Series</div></div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--marks)"></div>Marks</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--damodaran)"></div>Damodaran</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--rule)"></div>Rule</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--dalio)"></div>Dalio</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--schiff)"></div>Schiff</div>
+</div>
+
+<div class="tier-legend">
+  <span class="tier-badge tier-1">🏆 Tier 1 — Foundational</span>
+  <span class="tier-badge tier-2">📘 Tier 2 — Essential</span>
+  <span class="tier-badge tier-3">📗 Tier 3 — Enriching</span>
+</div>
+
+<div class="search-box"><input type="text" id="search" placeholder="Search books, authors, topics..." /></div>
+
+<div class="controls" id="filters">
+  <button class="filter-btn active" data-cat="all">All</button>
+  <button class="filter-btn" data-cat="philosophy">Philosophy</button>
+  <button class="filter-btn" data-cat="valuation">Valuation</button>
+  <button class="filter-btn" data-cat="theory">Theory</button>
+  <button class="filter-btn" data-cat="history">Fin. History</button>
+  <button class="filter-btn" data-cat="macro">Macro</button>
+  <button class="filter-btn" data-cat="resources">Resources</button>
+  <button class="filter-btn" data-cat="human-history">Human History</button>
+  <button class="filter-btn" data-cat="psychology">Psychology</button>
+</div>
+
+<div id="content"></div>
+
+<div class="desert-island" id="desert-island">
+  <h2>🏝️ The Desert Island Top 20</h2>
+  <p>If you could only read 20 books from this entire canon, these are the ones.</p>
+  <div class="desert-list" id="desert-list"></div>
+</div>
+
+<div class="bonus-section" id="podcasts-section">
+  <h2>🎙️ Essential Podcast Series</h2>
+  <div class="bonus-grid" id="podcasts-grid"></div>
+</div>
+
+<div class="bonus-section" id="letters-section">
+  <h2>✉️ Essential Memo & Letter Series</h2>
+  <div class="bonus-grid" id="letters-grid"></div>
+</div>
+
+<div class="updated">Generated: 19 February 2026 • The Investment Canon v1</div>
+
+<script>
+const categories = [
+  {
+    id:"philosophy",icon:"💡",name:"Investment Philosophy & Value Investing",
+    desc:"The intellectual foundations of value investing — from Graham's margin of safety to Munger's mental models.",
+    books:[
+      {t:"The Intelligent Investor",a:"Benjamin Graham",y:1949,tier:1,r:"The foundational text on value investing — defines margin of safety, Mr. Market, and the investor's temperament",c:"MDRGS"},
+      {t:"Security Analysis",a:"Benjamin Graham & David Dodd",y:1934,tier:1,r:"The original analytical framework for evaluating securities from the balance sheet up — the practitioner's bible",c:"MDRG"},
+      {t:"The Most Important Thing",a:"Howard Marks",y:2011,tier:1,r:"Distills second-level thinking, risk control, and contrarian investing into the clearest modern framework",c:"MD"},
+      {t:"The Essays of Warren Buffett",a:"Warren Buffett (ed. Cunningham)",y:1997,tier:1,r:"Buffett's shareholder letters reorganised by topic — the most lucid thinking on capital allocation ever written",c:"MDRGS"},
+      {t:"Common Stocks and Uncommon Profits",a:"Philip Fisher",y:1958,tier:1,r:"Introduced growth investing and the scuttlebutt method — Buffett's '85% Graham, 15% Fisher'",c:"MDR"},
+      {t:"Poor Charlie's Almanack",a:"Charlie Munger (ed. Kaufman)",y:2005,tier:1,r:"Munger's latticework of mental models — the multidisciplinary approach to rational decision-making",c:"MR"},
+      {t:"Margin of Safety",a:"Seth Klarman",y:1991,tier:2,r:"The out-of-print masterclass on risk-averse value investing, institutional folly, and absolute returns",c:"MR"},
+      {t:"You Can Be a Stock Market Genius",a:"Joel Greenblatt",y:1997,tier:2,r:"Best practical guide to special situations: spin-offs, restructurings, merger securities",c:"M"},
+      {t:"One Up on Wall Street",a:"Peter Lynch",y:1989,tier:2,r:"Democratised stock picking with the 'invest in what you know' philosophy backed by Lynch's legendary track record",c:"D"},
+      {t:"Value Investing: From Graham to Buffett and Beyond",a:"Bruce Greenwald et al.",y:2001,tier:2,r:"The Columbia Business School approach: earnings power value, franchise value, and competitive advantage",c:"MD"},
+      {t:"The Outsiders",a:"William Thorndike",y:2012,tier:2,r:"Eight unconventional CEOs who radically outperformed by treating capital allocation as their primary job",c:"M"},
+      {t:"The Dhandho Investor",a:"Mohnish Pabrai",y:2007,tier:2,r:"'Heads I win, tails I don't lose much' — asymmetric risk-reward applied to equities via concentrated value investing",c:"M"},
+      {t:"Mastering the Market Cycle",a:"Howard Marks",y:2018,tier:2,r:"Marks' companion to The Most Important Thing — how to position portfolios across market cycles",c:"M"},
+      {t:"The Little Book That Beats the Market",a:"Joel Greenblatt",y:2005,tier:3,r:"Greenblatt's magic formula — high earnings yield + high return on capital as a systematic value strategy",c:"D"},
+      {t:"Competition Demystified",a:"Bruce Greenwald & Judd Kahn",y:2005,tier:3,r:"Shows how barriers to entry — not growth — determine which companies deserve premium valuations",c:"D"},
+      {t:"Quality of Earnings",a:"Thornton O'Glove",y:1987,tier:3,r:"Forensic accounting guide that teaches you to read between the lines of financial statements",c:""},
+      {t:"Financial Shenanigans",a:"Howard Schilit",y:1993,tier:3,r:"How to detect accounting gimmicks and earnings manipulation before the market does",c:"D"},
+      {t:"Where Are the Customers' Yachts?",a:"Fred Schwed",y:1940,tier:3,r:"The wittiest book on Wall Street's conflicts of interest — still devastating 85 years later",c:"MD"},
+      {t:"100 to 1 in the Stock Market",a:"Thomas Phelps",y:1972,tier:3,r:"Study of stocks that returned 100x+ — makes the case for patience and holding great businesses",c:"R"},
+      {t:"Education of a Value Investor",a:"Guy Spier",y:2014,tier:3,r:"Honest self-examination of how behavioural and environmental factors shape investment process",c:"M"}
+    ]
+  },
+  {
+    id:"valuation",icon:"📊",name:"Valuation",
+    desc:"The mechanics of determining what a business is worth — from DCF to relative valuation to forensic accounting.",
+    books:[
+      {t:"Investment Valuation",a:"Aswath Damodaran",y:2012,tier:1,r:"The definitive valuation textbook — DCF, relative valuation, real options — from the 'Dean of Valuation'",c:"D"},
+      {t:"Valuation (McKinsey)",a:"Tim Koller, Marc Goedhart, David Wessels",y:1990,tier:1,r:"McKinsey's corporate valuation framework — the gold standard for investment banking and consulting",c:"D"},
+      {t:"Expectations Investing",a:"Michael Mauboussin & Alfred Rappaport",y:2001,tier:1,r:"Reverse-engineers market expectations from stock prices — then asks 'what needs to go right?'",c:"MD"},
+      {t:"The Dark Side of Valuation",a:"Aswath Damodaran",y:2009,tier:2,r:"How to value young, distressed, declining, and intangible-heavy companies that break standard models",c:"D"},
+      {t:"Damodaran on Valuation",a:"Aswath Damodaran",y:1994,tier:2,r:"More concise than Investment Valuation — best single-volume introduction to DCF and relative valuation",c:"D"},
+      {t:"Financial Statement Analysis and Security Valuation",a:"Stephen Penman",y:2001,tier:2,r:"Bridges accounting and valuation — shows how to build valuations directly from financial statements",c:"D"},
+      {t:"Narrative and Numbers",a:"Aswath Damodaran",y:2017,tier:2,r:"Bridges the storytelling of business strategy with the rigour of quantitative valuation",c:"D"},
+      {t:"Creative Cash Flow Reporting",a:"Charles Mulford & Eugene Comiskey",y:2005,tier:2,r:"Exposes how companies manipulate cash flow statements — the forensic companion to valuation",c:""},
+      {t:"The Little Book of Valuation",a:"Aswath Damodaran",y:2011,tier:3,r:"Accessible entry point to Damodaran's framework — valuation for the non-specialist",c:"D"},
+      {t:"Applied Corporate Finance",a:"Aswath Damodaran",y:1999,tier:3,r:"How companies should make investment, financing, and dividend decisions — valuation from the inside",c:"D"},
+      {t:"The Art of Company Valuation",a:"Nicolas Schmidlin",y:2014,tier:3,r:"European perspective on practical fundamental analysis — strong on balance sheet quality",c:""},
+      {t:"Accounting for Value",a:"Stephen Penman",y:2011,tier:3,r:"Makes the case that accounting-based valuation (residual income) is superior to DCF for equities",c:"D"},
+      {t:"Equity Asset Valuation (CFA)",a:"Jerald Pinto et al.",y:2010,tier:3,r:"Comprehensive CFA-level coverage of every valuation method — the practitioner's reference",c:""},
+      {t:"International Valuation",a:"James English",y:2001,tier:3,r:"Extends valuation frameworks to emerging markets and cross-border situations",c:""},
+      {t:"Measuring & Managing Value in High-Tech Start-ups",a:"Aswath Damodaran",y:2009,tier:3,r:"Venture-stage valuation where traditional metrics fail — probabilistic frameworks and option value",c:"D"}
+    ]
+  },
+  {
+    id:"theory",icon:"⚙️",name:"Financial Theory",
+    desc:"The theoretical underpinnings of markets — portfolio theory, risk, randomness, and the limits of models.",
+    books:[
+      {t:"Expected Returns",a:"Antti Ilmanen",y:2011,tier:1,r:"The most comprehensive empirical survey of risk premia across all major asset classes — the quant's bible",c:"MDG"},
+      {t:"The Black Swan",a:"Nassim Nicholas Taleb",y:2007,tier:1,r:"Fat tails, epistemic arrogance, and the disproportionate impact of rare events on portfolios and history",c:"MDGS"},
+      {t:"Against the Gods",a:"Peter Bernstein",y:1996,tier:1,r:"History of risk measurement from probability theory to modern portfolio theory — intellectual DNA of finance",c:"MDG"},
+      {t:"The Alchemy of Finance",a:"George Soros",y:1987,tier:1,r:"Soros' theory of reflexivity — how market participants' biased perceptions create self-reinforcing cycles",c:"MGS"},
+      {t:"Fooled by Randomness",a:"Nassim Nicholas Taleb",y:2001,tier:2,r:"The role of luck and randomness in markets and life — why we systematically confuse skill with fortune",c:"MDG"},
+      {t:"A Random Walk Down Wall Street",a:"Burton Malkiel",y:1973,tier:2,r:"The efficient market hypothesis made accessible — required reading even if you disagree",c:"MD"},
+      {t:"Stocks for the Long Run",a:"Jeremy Siegel",y:1994,tier:2,r:"200 years of equity returns data — establishes the long-term case for stocks over bonds, gold, and cash",c:"DGS"},
+      {t:"Capital Ideas",a:"Peter Bernstein",y:1992,tier:2,r:"How academic theory (CAPM, Black-Scholes, EMH) transformed Wall Street",c:"MD"},
+      {t:"Pioneering Portfolio Management",a:"David Swensen",y:2000,tier:2,r:"Yale Model architect's guide to institutional asset allocation — the endowment approach",c:"MDG"},
+      {t:"When Genius Failed",a:"Roger Lowenstein",y:2000,tier:2,r:"LTCM's collapse — when brilliant quantitative models meet liquidity risk and leverage",c:"MDG"},
+      {t:"Antifragile",a:"Nassim Nicholas Taleb",y:2012,tier:2,r:"Beyond robustness — how some systems gain from disorder — redesigns portfolio construction thinking",c:"MG"},
+      {t:"Triumph of the Optimists",a:"Dimson, Marsh & Staunton",y:2002,tier:2,r:"101 years of global investment returns — the definitive empirical foundation for asset allocation",c:"DG"},
+      {t:"The (Mis)Behaviour of Markets",a:"Benoit Mandelbrot",y:2004,tier:2,r:"Fractal geometry applied to markets — demolishes the Gaussian assumptions underlying most risk models",c:"MG"},
+      {t:"More Than You Know",a:"Michael Mauboussin",y:2006,tier:3,r:"Multidisciplinary investing — complex adaptive systems, ant colonies, and the wisdom of crowds",c:"M"},
+      {t:"Fortune's Formula",a:"William Poundstone",y:2005,tier:3,r:"The Kelly Criterion, Claude Shannon, and the information-theoretic approach to position sizing",c:"M"},
+      {t:"Options, Futures, and Other Derivatives",a:"John Hull",y:1988,tier:3,r:"The standard derivatives textbook — pricing theory, hedging, and risk management",c:"D"},
+      {t:"Principles of Corporate Finance",a:"Brealey, Myers & Allen",y:1981,tier:3,r:"The foundational MBA corporate finance textbook — NPV, WACC, capital structure, and dividend policy",c:"D"},
+      {t:"Efficiently Inefficient",a:"Lasse Heje Pedersen",y:2015,tier:3,r:"Markets efficient enough to make it hard, inefficient enough to reward the skilled",c:"D"},
+      {t:"Skin in the Game",a:"Nassim Nicholas Taleb",y:2018,tier:3,r:"Asymmetric risk-bearing and moral hazard — why incentive alignment matters more than intelligence",c:"M"},
+      {t:"Dynamic Hedging",a:"Nassim Nicholas Taleb",y:1997,tier:3,r:"The practitioner's guide to managing options portfolios — the technical side of Taleb's philosophy",c:""}
+    ]
+  },
+  {
+    id:"history",icon:"📜",name:"Financial History",
+    desc:"Every crash, bubble, and crisis that shaped modern markets — because history doesn't repeat, but it rhymes.",
+    books:[
+      {t:"Manias, Panics, and Crashes",a:"Charles Kindleberger",y:1978,tier:1,r:"The definitive taxonomy of financial crises — Minsky's instability hypothesis brought to vivid life",c:"MDGS"},
+      {t:"This Time Is Different",a:"Carmen Reinhart & Kenneth Rogoff",y:2009,tier:1,r:"Eight centuries of sovereign debt crises — proves that financial amnesia is the most dangerous human trait",c:"MDGS"},
+      {t:"The Big Short",a:"Michael Lewis",y:2010,tier:1,r:"The 2008 subprime crisis told through the contrarians who saw it coming",c:"MDG"},
+      {t:"Lords of Finance",a:"Liaquat Ahamed",y:2009,tier:1,r:"Four central bankers and the destruction of the interwar economy — monetary policy errors that created the Depression",c:"MGS"},
+      {t:"The Great Crash 1929",a:"John Kenneth Galbraith",y:1955,tier:2,r:"The psychology and mechanics of the 1929 crash — eerily recognisable in every subsequent bubble",c:"MGS"},
+      {t:"Too Big to Fail",a:"Andrew Ross Sorkin",y:2009,tier:2,r:"Minute-by-minute account of the 2008 crisis negotiations — systemic risk and moral hazard",c:"MG"},
+      {t:"Reminiscences of a Stock Operator",a:"Edwin Lefèvre",y:1923,tier:2,r:"Thinly veiled biography of Jesse Livermore — timeless lessons on speculation and market psychology",c:"MR"},
+      {t:"The Ascent of Money",a:"Niall Ferguson",y:2008,tier:2,r:"Evolution of financial instruments from Mesopotamian clay tablets to credit default swaps",c:"MG"},
+      {t:"The House of Morgan",a:"Ron Chernow",y:1990,tier:2,r:"150 years of the most powerful bank in history — private banking and sovereign power intertwined",c:"MG"},
+      {t:"Devil Take the Hindmost",a:"Edward Chancellor",y:1999,tier:2,r:"History of speculation from ancient Rome to the dot-com bubble",c:"MS"},
+      {t:"Extraordinary Popular Delusions",a:"Charles Mackay",y:1841,tier:2,r:"Tulip mania, the South Sea Bubble, the Mississippi Scheme — the original text on crowd psychology",c:"MDS"},
+      {t:"Liar's Poker",a:"Michael Lewis",y:1989,tier:3,r:"Wall Street's bond trading culture of the 1980s — the beginning of Lewis's unmatched financial journalism",c:"M"},
+      {t:"A History of the US in Five Crashes",a:"Scott Nations",y:2017,tier:3,r:"1907, 1929, 1987, 2008, 2010 Flash Crash — market structure evolution through its worst moments",c:""},
+      {t:"Titan",a:"Ron Chernow",y:1998,tier:3,r:"The archetypal monopolist — capital allocation, industry structure, and the creation of Standard Oil",c:"M"},
+      {t:"The Wealth and Poverty of Nations",a:"David Landes",y:1998,tier:3,r:"Why some nations got rich and others didn't — geography, culture, and institutions",c:"G"},
+      {t:"Barbarians at the Gate",a:"Bryan Burrough & John Helyar",y:1989,tier:3,r:"The RJR Nabisco LBO — the definitive account of 1980s leveraged buyout excess",c:"M"},
+      {t:"Den of Thieves",a:"James Stewart",y:1991,tier:3,r:"Inside the Milken/Boesky insider trading scandal — the dark side of 1980s financial innovation",c:""},
+      {t:"Business Adventures",a:"John Brooks",y:1969,tier:3,r:"Bill Gates' and Warren Buffett's favourite business book — 12 classic New Yorker stories",c:"M"},
+      {t:"More Money Than God",a:"Sebastian Mallaby",y:2010,tier:3,r:"History of hedge funds from A.W. Jones to the quant crisis — how alpha is generated and destroyed",c:"M"},
+      {t:"The Money Game",a:"Adam Smith (George Goodman)",y:1968,tier:3,r:"Sardonic portrait of 1960s Wall Street — identity, psychology, and the game behind the game",c:"M"},
+      {t:"Boomerang",a:"Michael Lewis",y:2011,tier:3,r:"How the global credit bubble manifested differently in Iceland, Greece, Ireland, and Germany",c:"M"}
+    ]
+  },
+  {
+    id:"macro",icon:"🌍",name:"Macro & Monetary",
+    desc:"How economies work, why they break, and the role of money, debt, and central banks in shaping everything.",
+    books:[
+      {t:"Principles for Dealing with the Changing World Order",a:"Ray Dalio",y:2021,tier:1,r:"Rise and decline of reserve currency empires — the long debt cycle framework",c:"G"},
+      {t:"Big Debt Crises",a:"Ray Dalio",y:2018,tier:1,r:"Dalio's template for understanding deleveragings — 48 historical case studies",c:"G"},
+      {t:"A Monetary History of the United States",a:"Milton Friedman & Anna Schwartz",y:1963,tier:1,r:"The monetarist masterwork — proved the Fed caused the Great Depression through monetary contraction",c:"GS"},
+      {t:"The General Theory",a:"John Maynard Keynes",y:1936,tier:1,r:"The intellectual foundation of macroeconomic policy — animal spirits, liquidity preference, paradox of thrift",c:"MDG"},
+      {t:"The Price of Time",a:"Edward Chancellor",y:2022,tier:2,r:"History of interest rates and the consequences of their manipulation — zero rates destroy economies",c:"MS"},
+      {t:"How an Economy Grows and Why It Crashes",a:"Peter Schiff & Andrew Schiff",y:2010,tier:2,r:"Austrian economics explained through parable — the anti-Keynesian framework",c:"S"},
+      {t:"The Road to Serfdom",a:"Friedrich Hayek",y:1944,tier:2,r:"The classical liberal warning against central planning — foundational for Austrian school thinking",c:"S"},
+      {t:"Economics in One Lesson",a:"Henry Hazlitt",y:1946,tier:2,r:"Bastiat's 'seen and unseen' applied to economic policy — clearest intro to free-market economics",c:"S"},
+      {t:"The End of Alchemy",a:"Mervyn King",y:2016,tier:2,r:"Former BoE governor's radical critique of modern banking — why the system remains fragile post-2008",c:"MG"},
+      {t:"Exorbitant Privilege",a:"Barry Eichengreen",y:2011,tier:2,r:"History and future of the US dollar's reserve currency status",c:"G"},
+      {t:"Currency Wars",a:"James Rickards",y:2011,tier:2,r:"Competitive devaluation as geopolitical weapon — three historical currency wars and the coming fourth",c:"S"},
+      {t:"The Dao of Capital",a:"Mark Spitznagel",y:2013,tier:2,r:"Austrian investing applied — roundabout strategies, intertemporal thinking, and tail-risk hedging",c:"S"},
+      {t:"Crash Proof",a:"Peter Schiff",y:2009,tier:3,r:"Schiff's framework for protecting wealth from dollar debasement, inflation, and sovereign debt crisis",c:"S"},
+      {t:"The Creature from Jekyll Island",a:"G. Edward Griffin",y:1994,tier:3,r:"History and critique of the Federal Reserve System — essential reading for monetary sceptics",c:"S"},
+      {t:"Human Action",a:"Ludwig von Mises",y:1949,tier:3,r:"The magnum opus of Austrian economics — praxeology and the case against government intervention",c:"S"},
+      {t:"Principles for Navigating Big Debt Crises",a:"Ray Dalio",y:2018,tier:3,r:"Companion to Big Debt Crises — the levers available in inflationary vs deflationary deleveragings",c:"G"},
+      {t:"The Death of Money",a:"James Rickards",y:2014,tier:3,r:"The coming collapse of the international monetary system — extension of Currency Wars thesis",c:"S"},
+      {t:"The Euro",a:"Joseph Stiglitz",y:2016,tier:3,r:"How the euro's structural flaws create recurring crises — essential for European macro risk",c:""},
+      {t:"Capital in the Twenty-First Century",a:"Thomas Piketty",y:2013,tier:3,r:"r > g and the long-run dynamics of wealth concentration — reframed macro debate worldwide",c:""},
+      {t:"Globalisation and Its Discontents",a:"Joseph Stiglitz",y:2002,tier:3,r:"Critique of IMF and World Bank policies — essential context for emerging market investment",c:"G"},
+      {t:"Debt: The First 5,000 Years",a:"David Graeber",y:2011,tier:3,r:"Anthropological history of debt and credit — challenges the conventional barter-to-money narrative",c:"G"},
+      {t:"Gold: The Once and Future Money",a:"Nathan Lewis",y:2007,tier:3,r:"The case for gold-backed monetary systems — historical evidence from centuries of monetary policy",c:"S"}
+    ]
+  },
+  {
+    id:"resources",icon:"⛏️",name:"Resource / Commodity Investing",
+    desc:"Oil, gold, silver, copper, uranium, rare earths — the physical foundation of the modern economy.",
+    books:[
+      {t:"Hot Commodities",a:"Jim Rogers",y:2004,tier:1,r:"The investment case for commodities from one of the greatest macro traders",c:"RS"},
+      {t:"The Prize",a:"Daniel Yergin",y:1991,tier:1,r:"Pulitzer-winning history of the oil industry — geopolitics, economics, and the resource that shaped the 20th century",c:"RG"},
+      {t:"The World for Sale",a:"Javier Blas & Jack Farchy",y:2021,tier:1,r:"The untold story of commodity trading houses — Glencore, Vitol, Trafigura — and how they shape global markets",c:""},
+      {t:"The New Case for Gold",a:"James Rickards",y:2016,tier:2,r:"Modern gold bull thesis — monetary system fragility, central bank gold accumulation, and fair value estimates",c:"S"},
+      {t:"Adventure Capitalist",a:"Jim Rogers",y:2003,tier:2,r:"Rogers' round-the-world trip investing in frontier markets — ground-level commodity and macro intelligence",c:"R"},
+      {t:"The Quest",a:"Daniel Yergin",y:2011,tier:2,r:"Sequel to The Prize — the future of energy: oil, gas, renewables, and the geopolitics of the energy transition",c:"R"},
+      {t:"Resource Rulers",a:"Rick Rule (contributor)",y:2012,tier:2,r:"Interviews with the world's top natural resource investors — practical frameworks for mining and energy",c:"R"},
+      {t:"Oil 101",a:"Morgan Downey",y:2009,tier:2,r:"The definitive primer on the oil industry — from geology to refining to trading",c:"R"},
+      {t:"Material World",a:"Ed Conway",y:2023,tier:2,r:"How six materials (sand, salt, iron, copper, oil, lithium) shaped civilisation",c:""},
+      {t:"The Seven Rules of Wall Street (Mining)",a:"Rick Rule",y:0,tier:2,r:"Rule's frameworks for natural resource investing — contrarian buying, project evaluation, management assessment",c:"R"},
+      {t:"Guide to Investing in Gold and Silver",a:"Michael Maloney",y:2008,tier:3,r:"Accessible guide to precious metals investing — monetary history, cycles, and physical ownership",c:"S"},
+      {t:"The Alchemy of Air",a:"Thomas Hager",y:2008,tier:3,r:"How the Haber-Bosch process transformed agriculture and warfare",c:""},
+      {t:"Bull! A History of the Boom and Bust",a:"Maggie Mahar",y:2003,tier:3,r:"Commodity and equity cycles through history — how the bull/bear cycle works at structural level",c:""},
+      {t:"Mineral Exploration and Mining Essentials",a:"Robert Stevens",y:2010,tier:3,r:"Technical primer on geology, mining methods, and project evaluation — for hard-rock mining investors",c:"R"},
+      {t:"Uranium",a:"Tom Zoellner",y:2009,tier:3,r:"History and science of uranium from discovery to nuclear power — context for uranium bull market",c:"R"},
+      {t:"The New Geography of Jobs",a:"Enrico Moretti",y:2012,tier:3,r:"How innovation hubs create resource demand clusters — understanding commodity demand drivers",c:""},
+      {t:"The Coming Copper Boom",a:"Various Research",y:2024,tier:3,r:"Critical research theme — electrification, EVs, and structural copper deficit",c:"R"},
+      {t:"The Elements of Investing in Commodities",a:"CFA Research Foundation",y:2015,tier:3,r:"Institutional-grade primer — contango, backwardation, roll yield, and portfolio construction",c:""}
+    ]
+  },
+  {
+    id:"human-history",icon:"🏛️",name:"Human History — Investment-Relevant",
+    desc:"The long arc of civilisation — empires, collapses, trade routes, and the forces that drive nations to wealth or ruin.",
+    books:[
+      {t:"Sapiens",a:"Yuval Noah Harari",y:2011,tier:1,r:"How shared myths (including money and corporations) enable human cooperation at scale",c:"G"},
+      {t:"Guns, Germs, and Steel",a:"Jared Diamond",y:1997,tier:1,r:"Why Eurasia dominated — geography and biology as determinants of civilisational trajectories",c:"G"},
+      {t:"Why Nations Fail",a:"Daron Acemoglu & James Robinson",y:2012,tier:1,r:"Inclusive vs extractive institutions as the primary determinant of national prosperity",c:"G"},
+      {t:"The Lessons of History",a:"Will & Ariel Durant",y:1968,tier:1,r:"100 pages distilling 5,000 years of civilisation into patterns — biology, morals, economics, government, war",c:"MG"},
+      {t:"The Rise and Fall of the Great Powers",a:"Paul Kennedy",y:1987,tier:2,r:"Imperial overstretch and the economic foundations of military power — directly applicable to US hegemony",c:"GS"},
+      {t:"Collapse",a:"Jared Diamond",y:2005,tier:2,r:"Environmental destruction, resource depletion, and institutional failure as causes of civilisational collapse",c:"G"},
+      {t:"The Fourth Turning",a:"William Strauss & Neil Howe",y:1997,tier:2,r:"Generational cycles and the predictable rhythm of crisis — influential on Dalio and many macro investors",c:"GS"},
+      {t:"Civilisation",a:"Niall Ferguson",y:2011,tier:2,r:"The six 'killer apps' that gave the West dominance — competition, science, property, medicine, consumption, work",c:"G"},
+      {t:"Energy and Civilization",a:"Vaclav Smil",y:2017,tier:2,r:"How energy transitions drive economic transformation — from biomass to fossil fuels to renewables",c:"G"},
+      {t:"The Silk Roads",a:"Peter Frankopan",y:2015,tier:2,r:"World history recentred on Central Asia — trade routes, resource flows, and the economic engine of empires",c:""},
+      {t:"The Wealth and Poverty of Nations",a:"David Landes",y:1998,tier:2,r:"Why some nations got rich: culture, institutions, and geography as drivers of long-run economic divergence",c:"G"},
+      {t:"1177 B.C.: The Year Civilization Collapsed",a:"Eric Cline",y:2014,tier:3,r:"Bronze Age collapse as a systems-failure case study — cascading risks, interconnection, and fragility",c:""},
+      {t:"Empire of Cotton",a:"Sven Beckert",y:2014,tier:3,r:"How cotton drove global capitalism — slavery, industrialisation, and the first truly global commodity",c:""},
+      {t:"The Rational Optimist",a:"Matt Ridley",y:2010,tier:3,r:"Exchange and specialisation as the engines of human progress — the long-term bull case for humanity",c:""},
+      {t:"Scale",a:"Geoffrey West",y:2017,tier:3,r:"Universal scaling laws in cities, companies, and organisms — why companies die but cities don't",c:""},
+      {t:"The Fate of Rome",a:"Kyle Harper",y:2017,tier:3,r:"Climate change and plague as drivers of Roman economic decline — environmental risk as investment thesis",c:""},
+      {t:"The Great Leveler",a:"Walter Scheidel",y:2017,tier:3,r:"Violence and inequality through history — only war, revolution, plague, and state collapse reset wealth",c:"G"},
+      {t:"Homo Deus",a:"Yuval Noah Harari",y:2015,tier:3,r:"The future of humanity — algorithms, biotechnology, and the economic implications of technological disruption",c:""},
+      {t:"The Ages of Globalization",a:"Jeffrey Sachs",y:2020,tier:3,r:"Seven ages of globalisation from the Paleolithic to today — trade, technology, and institutional evolution",c:""},
+      {t:"Debt: The First 5,000 Years",a:"David Graeber",y:2011,tier:3,r:"Money, debt, and credit from Sumer to Wall Street — anthropological lens on financial systems",c:"G"}
+    ]
+  },
+  {
+    id:"psychology",icon:"🧠",name:"Psychology & Behavioural Finance",
+    desc:"Why smart people make dumb decisions — cognitive biases, heuristics, and the neuroscience of risk-taking.",
+    books:[
+      {t:"Thinking, Fast and Slow",a:"Daniel Kahneman",y:2011,tier:1,r:"System 1 vs System 2 — the Nobel laureate's masterwork on cognitive biases that distort investment decisions",c:"MDG"},
+      {t:"Influence",a:"Robert Cialdini",y:1984,tier:1,r:"Six weapons of influence — reciprocation, commitment, social proof, liking, authority, scarcity",c:"MR"},
+      {t:"Irrational Exuberance",a:"Robert Shiller",y:2000,tier:1,r:"CAPE ratio and bubble psychology — the framework that called two major market tops",c:"MDGS"},
+      {t:"Misbehaving",a:"Richard Thaler",y:2015,tier:2,r:"The founding story of behavioural economics — market anomalies, mental accounting, endowment effect",c:"MD"},
+      {t:"The Psychology of Money",a:"Morgan Housel",y:2020,tier:2,r:"20 timeless lessons about wealth, greed, and happiness — the most accessible modern book on money psychology",c:"M"},
+      {t:"Animal Spirits",a:"George Akerlof & Robert Shiller",y:2009,tier:2,r:"How confidence, fairness, corruption, money illusion, and stories drive the macroeconomy",c:"MG"},
+      {t:"Superforecasting",a:"Philip Tetlock & Dan Gardner",y:2015,tier:2,r:"What makes some forecasters dramatically better — probabilistic thinking, calibration, intellectual humility",c:"MG"},
+      {t:"Seeking Wisdom: From Darwin to Munger",a:"Peter Bevelin",y:2003,tier:2,r:"Mental models from biology, psychology, physics, engineering applied to better decision-making",c:"MR"},
+      {t:"The Undoing Project",a:"Michael Lewis",y:2016,tier:2,r:"The Kahneman-Tversky partnership that created behavioural economics — told with narrative brilliance",c:"M"},
+      {t:"The Man Who Solved the Market",a:"Gregory Zuckerman",y:2019,tier:2,r:"Jim Simons and Renaissance Technologies — the data-driven antidote to behavioural bias",c:""},
+      {t:"Judgment Under Uncertainty",a:"Kahneman, Slovic & Tversky",y:1982,tier:3,r:"The original academic collection on heuristics and biases — the research that started it all",c:"D"},
+      {t:"Nudge",a:"Richard Thaler & Cass Sunstein",y:2008,tier:3,r:"Choice architecture and libertarian paternalism — how the design of decisions shapes outcomes",c:""},
+      {t:"Predictably Irrational",a:"Dan Ariely",y:2008,tier:3,r:"Systematic irrationality in everyday decisions — relativity, anchoring, and the cost of zero",c:""},
+      {t:"Expert Political Judgment",a:"Philip Tetlock",y:2005,tier:3,r:"Foxes vs hedgehogs — proves most expert predictions are worse than simple algorithms",c:"MG"},
+      {t:"The Art of Thinking Clearly",a:"Rolf Dobelli",y:2013,tier:3,r:"99 cognitive biases with clear examples — the quick-reference guide to systematic errors",c:""},
+      {t:"Stumbling on Happiness",a:"Daniel Gilbert",y:2006,tier:3,r:"Why we're terrible at predicting what will make us happy — relevant to investor utility functions",c:""},
+      {t:"The Hour Between Dog and Wolf",a:"John Coates",y:2012,tier:3,r:"Neuroscience of risk-taking — how testosterone and cortisol cycles drive trader behaviour",c:"M"},
+      {t:"Your Money and Your Brain",a:"Jason Zweig",y:2007,tier:3,r:"Neuroeconomics applied to investing — how the brain's reward circuits create investing mistakes",c:"M"},
+      {t:"Noise",a:"Kahneman, Sibony & Sunstein",y:2021,tier:3,r:"Variability in human judgment — why two analysts given the same data reach different conclusions",c:""},
+      {t:"The Crowd",a:"Gustave Le Bon",y:1895,tier:3,r:"The founding text on crowd psychology — how individuals behave differently in groups (markets)",c:"M"}
+    ]
+  }
+];
+
+const desertIsland = [
+  {t:"The Intelligent Investor",a:"Graham"},{t:"Security Analysis",a:"Graham & Dodd"},
+  {t:"The Most Important Thing",a:"Howard Marks"},{t:"Expected Returns",a:"Antti Ilmanen"},
+  {t:"Thinking, Fast and Slow",a:"Daniel Kahneman"},{t:"Manias, Panics, and Crashes",a:"Kindleberger"},
+  {t:"Investment Valuation",a:"Damodaran"},{t:"The Essays of Warren Buffett",a:"Buffett/Cunningham"},
+  {t:"Poor Charlie's Almanack",a:"Munger"},{t:"The Black Swan",a:"Taleb"},
+  {t:"Principles for the Changing World Order",a:"Dalio"},{t:"The Prize",a:"Yergin"},
+  {t:"Margin of Safety",a:"Klarman"},{t:"This Time Is Different",a:"Reinhart & Rogoff"},
+  {t:"Against the Gods",a:"Bernstein"},{t:"Influence",a:"Cialdini"},
+  {t:"Guns, Germs, and Steel",a:"Diamond"},{t:"Irrational Exuberance",a:"Shiller"},
+  {t:"Common Stocks and Uncommon Profits",a:"Fisher"},{t:"The Alchemy of Finance",a:"Soros"}
+];
+
+const podcasts = [
+  {n:"Invest Like the Best",h:"Patrick O'Shaughnessy",t:1,d:"Highest-quality long-form interviews with top allocators, founders, and thinkers"},
+  {n:"The Investors Podcast (TIP)",h:"Preston Pysh & Stig Brodersen",t:1,d:"Deep dives into investment books, Berkshire, and macro"},
+  {n:"Capital Allocators",h:"Ted Seides",t:1,d:"How endowments, pensions, and family offices actually allocate"},
+  {n:"Masters in Business",h:"Barry Ritholtz",t:1,d:"Bloomberg's flagship — interviews with Marks, Damodaran, Dalio, Klarman"},
+  {n:"Odd Lots",h:"Joe Weisenthal & Tracy Alloway",t:1,d:"Bloomberg deep-dive into the plumbing of markets — supply chains, repo, commodities"},
+  {n:"Macro Voices",h:"Erik Townsend",t:2,d:"Institutional-grade macro analysis — deep on energy, gold, and monetary policy"},
+  {n:"Real Vision",h:"Raoul Pal et al.",t:2,d:"Long-form video interviews with macro heavyweights"},
+  {n:"The Peter Schiff Show",h:"Peter Schiff",t:2,d:"The bear case — essential for hard-money and Austrian perspectives"},
+  {n:"Rule Investment Media",h:"Rick Rule",t:2,d:"The dean of resource investing — decades of mining evaluation experience"},
+  {n:"We Study Billionaires",h:"TIP Network",t:2,d:"Deep analysis of investment legends' strategies"},
+  {n:"Palisades Gold Radio",h:"Tom Bodrovics",t:2,d:"In-depth interviews with mining executives, geologists, and precious metals analysts"},
+  {n:"The Meb Faber Show",h:"Meb Faber",t:2,d:"Systematic investing, CAPE, global value, and trend following"},
+  {n:"Rational Reminder",h:"Ben Felix & Cameron Passmore",t:2,d:"Academic research translated into practical portfolio decisions"},
+  {n:"Animal Spirits",h:"Michael Batnick & Ben Carlson",t:2,d:"Accessible weekly market commentary with a behavioural lens"},
+  {n:"Hardcore History",h:"Dan Carlin",t:3,d:"The most compelling history podcast — provides the deep context behind macro cycles"},
+  {n:"Revolutions",h:"Mike Duncan",t:3,d:"English, American, French, Haitian revolutions — the political risk investor's companion"},
+  {n:"The History of Rome",h:"Mike Duncan",t:3,d:"Rise and fall of the greatest empire — institutional decay, monetary debasement, and collapse"},
+  {n:"50 Years in 50 Minutes",h:"Ray Dalio / Bridgewater",t:3,d:"Dalio's economic history framework in audio form"},
+  {n:"Acquired",h:"Ben Gilbert & David Rosenthal",t:3,d:"Multi-hour deep dives into how the world's greatest companies were built"}
+];
+
+const letters = [
+  {n:"Oaktree Memos",a:"Howard Marks",f:"~6-10/year",d:"The best ongoing education in risk, cycles, and second-level thinking"},
+  {n:"Berkshire Hathaway Shareholder Letters",a:"Warren Buffett",f:"Annual",d:"60+ years of the greatest capital allocator explaining his decisions"},
+  {n:"Bridgewater Daily Observations",a:"Ray Dalio / Bridgewater",f:"Daily",d:"The macro machine's view — monetary policy, economic indicators, and the debt cycle"},
+  {n:"GMO Quarterly Letters",a:"Jeremy Grantham",f:"Quarterly",d:"Bubble identification, mean reversion, and long-term asset class return forecasts"},
+  {n:"Baupost Group Letters",a:"Seth Klarman",f:"Annual",d:"The most secretive value investor's thinking on risk, process, and margin of safety"},
+  {n:"Third Avenue Value Fund Letters",a:"Marty Whitman",f:"Quarterly",d:"Deep value, distressed debt, and balance sheet analysis from a legendary contrarian"},
+  {n:"Greenlight Capital Letters",a:"David Einhorn",f:"Quarterly",d:"Short selling, forensic accounting, and variant perception"},
+  {n:"Hussman Weekly Market Comment",a:"John Hussman",f:"Weekly",d:"Valuation-based market analysis — CAPE, margin-adjusted metrics, and the speculative cycle"},
+  {n:"AQR Perspectives",a:"Cliff Asness et al.",f:"Irregular",d:"Quantitative investing, factor research, and intellectual honesty about what works"},
+  {n:"Damodaran Blog",a:"Aswath Damodaran",f:"Regular",d:"Real-time valuation analysis of current events — IPOs, market tops, individual companies"}
+];
+
+const citeMap = {M:"Marks",D:"Damodaran",R:"Rule",G:"Dalio",S:"Schiff"};
+const citeClass = {M:"cite-marks",D:"cite-damodaran",R:"cite-rule",G:"cite-dalio",S:"cite-schiff"};
+const tierColors = {1:"var(--tier1)",2:"var(--tier2)",3:"var(--tier3)"};
+const tierNames = {1:"🏆 Tier 1 — Foundational",2:"📘 Tier 2 — Essential",3:"📗 Tier 3 — Enriching"};
+const tierLabelColors = {1:"var(--tier1)",2:"var(--tier2)",3:"var(--tier3)"};
+
+function renderBooks(){
+  const container = document.getElementById("content");
+  const searchVal = document.getElementById("search").value.toLowerCase();
+  const activeFilter = document.querySelector(".filter-btn.active").dataset.cat;
+  
+  let html = "";
+  categories.forEach(cat => {
+    if(activeFilter !== "all" && activeFilter !== cat.id) return;
+    
+    const filtered = cat.books.filter(b => {
+      if(!searchVal) return true;
+      return b.t.toLowerCase().includes(searchVal) || b.a.toLowerCase().includes(searchVal) || b.r.toLowerCase().includes(searchVal);
+    });
+    if(filtered.length === 0) return;
+    
+    html += `<div class="category-section" data-cat="${cat.id}">`;
+    html += `<div class="category-header"><span class="category-icon">${cat.icon}</span><h2>${cat.name}</h2><span class="count">${cat.books.length} books</span></div>`;
+    html += `<div class="category-desc">${cat.desc}</div>`;
+    
+    [1,2,3].forEach(tier => {
+      const tierBooks = filtered.filter(b => b.tier === tier);
+      if(tierBooks.length === 0) return;
+      
+      html += `<div class="tier-group">`;
+      html += `<div class="tier-label" style="color:${tierLabelColors[tier]}">${tierNames[tier]} <span class="line"></span></div>`;
+      html += `<div class="grid">`;
+      
+      tierBooks.forEach((b,i) => {
+        const globalRank = cat.books.indexOf(b) + 1;
+        let cites = "";
+        if(b.c){
+          cites = '<div class="citations">';
+          for(const ch of b.c){
+            if(citeMap[ch]) cites += `<div class="cite-dot ${citeClass[ch]}" title="${citeMap[ch]}">${ch}</div>`;
+          }
+          cites += '</div>';
+        }
+        html += `<div class="card" data-search="${(b.t+' '+b.a+' '+b.r).toLowerCase()}">
+          <div class="accent-line" style="background:${tierColors[tier]}"></div>
+          <div class="rank">#${globalRank}</div>
+          <div class="title">${b.t}</div>
+          <div class="author">${b.a}</div>
+          ${b.y > 0 ? `<div class="year">${b.y}</div>` : ''}
+          <div class="reason">${b.r}</div>
+          ${cites}
+        </div>`;
+      });
+      
+      html += `</div></div>`;
+    });
+    
+    html += `</div>`;
+  });
+  
+  container.innerHTML = html || '<div style="text-align:center;padding:48px;color:var(--text-muted)">No results found</div>';
+  
+  // Desert island visibility
+  document.getElementById("desert-island").style.display = (activeFilter === "all" && !searchVal) ? "block" : "none";
+}
+
+function renderDesertIsland(){
+  let html = "";
+  desertIsland.forEach((b,i) => {
+    html += `<div class="desert-item"><span class="desert-num">${i+1}.</span><span class="desert-title">${b.t}</span><span class="desert-author">— ${b.a}</span></div>`;
+  });
+  document.getElementById("desert-list").innerHTML = html;
+}
+
+function renderPodcasts(){
+  const tierNames = {1:"Tier 1 — Must-Subscribe",2:"Tier 2 — Category Specialists",3:"Tier 3 — History & Context"};
+  let html = "";
+  [1,2,3].forEach(tier => {
+    const items = podcasts.filter(p => p.t === tier);
+    html += `<div style="grid-column:1/-1;font-size:12px;font-weight:700;color:${tierLabelColors[tier]};letter-spacing:1px;text-transform:uppercase;margin-top:8px">${tierNames[tier]}</div>`;
+    items.forEach(p => {
+      html += `<div class="bonus-card">
+        <div class="name">🎙️ ${p.n}</div>
+        <div class="meta">${p.h}</div>
+        <div class="desc">${p.d}</div>
+      </div>`;
+    });
+  });
+  document.getElementById("podcasts-grid").innerHTML = html;
+}
+
+function renderLetters(){
+  let html = "";
+  letters.forEach(l => {
+    html += `<div class="bonus-card">
+      <div class="name">✉️ ${l.n}</div>
+      <div class="meta">${l.a} • ${l.f}</div>
+      <div class="desc">${l.d}</div>
+    </div>`;
+  });
+  document.getElementById("letters-grid").innerHTML = html;
+}
+
+// Event listeners
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderBooks();
+  });
+});
+
+document.getElementById("search").addEventListener("input", renderBooks);
+
+// Initial render
+renderBooks();
+renderDesertIsland();
+renderPodcasts();
+renderLetters();
+</script>
+</body>
+</html>
