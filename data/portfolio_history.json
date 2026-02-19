@@ -2,7 +2,7 @@
   "snapshots": [
     {
       "date": "2026-02-19",
-      "timestamp": "2026-02-19T21:59:32.029930",
+      "timestamp": "2026-02-19T22:00:21.407270",
       "fx_rates": {
         "GBP": 1.0,
         "CAD": 0.5424000024795532,
@@ -236,9 +236,9 @@
               "avg_price": 77.538443,
               "current_price": 126.53,
               "daily_change_pct": 1.65,
-              "value_gbp": 15436.66,
+              "value_gbp": 11464.5,
               "book_cost_gbp": 9459.69,
-              "pnl_gbp": 5976.97,
+              "pnl_gbp": 2004.81,
               "pnl_pct": 63.18
             },
             {
@@ -298,10 +298,10 @@
               "pnl_pct": 2.22
             }
           ],
-          "total_value_gbp": 30296.58,
+          "total_value_gbp": 26324.41,
           "total_cost_gbp": 33523.93,
-          "pnl_gbp": -3227.35,
-          "pnl_pct": -9.63
+          "pnl_gbp": -7199.52,
+          "pnl_pct": -21.48
         },
         "DADA": {
           "cash_gbp": 2800.0,
@@ -719,10 +719,10 @@
               "avg_price": 77.538443
             }
           ],
-          "value_gbp": 15436.66,
+          "value_gbp": 11464.5,
           "weighted_avg_price": 77.5384,
-          "pnl_gbp": 5976.97,
-          "pnl_pct": 63.18
+          "pnl_gbp": 2004.81,
+          "pnl_pct": 21.19
         },
         "FF": {
           "name": "First Mining Gold Corp",
@@ -915,12 +915,12 @@
         }
       },
       "family_total": {
-        "investments_gbp": 103544.55,
+        "investments_gbp": 99572.38,
         "cash_gbp": 5636.36,
-        "total_gbp": 109180.91,
+        "total_gbp": 105208.74,
         "book_cost_gbp": 173844.77,
-        "pnl_gbp": -70300.22,
-        "pnl_pct": -40.44
+        "pnl_gbp": -74272.39,
+        "pnl_pct": -42.72
       },
       "people": {
         "Carlin": {
@@ -1177,12 +1177,12 @@
           "accounts": [
             "NANA"
           ],
-          "investments_gbp": 30296.58,
+          "investments_gbp": 26324.41,
           "cash_gbp": 2416.89,
-          "total_gbp": 32713.47,
+          "total_gbp": 28741.3,
           "book_cost_gbp": 33523.93,
-          "pnl_gbp": -3227.35,
-          "pnl_pct": -9.63,
+          "pnl_gbp": -7199.52,
+          "pnl_pct": -21.48,
           "positions": {
             "HSTR": {
               "name": "Heliostar Metals Ltd",
@@ -1235,7 +1235,7 @@
               "total_cost_gbp": 9459.69,
               "current_price": 126.53,
               "daily_change_pct": 1.65,
-              "value_gbp": 15436.66,
+              "value_gbp": 11464.5,
               "accounts": [
                 {
                   "account": "NANA",
@@ -1244,8 +1244,8 @@
                 }
               ],
               "weighted_avg_price": 77.5384,
-              "pnl_gbp": 5976.97,
-              "pnl_pct": 63.18
+              "pnl_gbp": 2004.81,
+              "pnl_pct": 21.19
             },
             "NAU": {
               "name": "Nevgold Corp",
@@ -1520,7 +1520,7 @@
   "metadata": {
     "created": "2026-02-19T21:45:29.935815",
     "version": 1,
-    "lastUpdated": "2026-02-19T21:59:33.325868",
+    "lastUpdated": "2026-02-19T22:00:22.623898",
     "totalSnapshots": 1
   }
 }
