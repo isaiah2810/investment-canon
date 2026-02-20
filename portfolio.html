@@ -70,6 +70,17 @@
 
   .footer{text-align:center;color:var(--text-muted);font-size:10px;margin-top:32px;padding-top:12px;border-top:1px solid var(--card-border)}
 
+  /* Refresh button */
+  .refresh-btn{background:var(--accent);border:1px solid var(--accent);color:#000;padding:10px 24px;border-radius:24px;cursor:pointer;font-size:13px;font-weight:700;transition:all .2s;display:inline-flex;align-items:center;gap:6px;margin-top:12px;box-shadow:0 2px 8px rgba(245,158,11,0.3)}
+  .refresh-btn:hover{background:rgba(245,158,11,0.9);transform:translateY(-1px);box-shadow:0 4px 12px rgba(245,158,11,0.4)}
+  .refresh-btn:active{transform:scale(0.97)}
+  .refresh-btn.loading{opacity:0.7;pointer-events:none}
+  .refresh-btn .spinner{display:none;width:14px;height:14px;border:2px solid rgba(0,0,0,0.3);border-top-color:#000;border-radius:50%;animation:spin .8s linear infinite}
+  .refresh-btn.loading .spinner{display:inline-block}
+  .refresh-btn.loading .refresh-icon{display:none}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .refresh-status{font-size:11px;color:var(--text-muted);margin-top:6px;min-height:16px;font-weight:500}
+
   @media(max-width:600px){body{padding:12px}.hero{grid-template-columns:repeat(2,1fr)}}
   .site-nav{display:flex;justify-content:center;gap:6px;padding:12px 20px;background:#08080d;border-bottom:1px solid #1e1e2e;position:sticky;top:0;z-index:100}
   .site-nav a{color:#888899;text-decoration:none;font-size:12px;font-weight:500;padding:6px 16px;border-radius:20px;border:1px solid #1e1e2e;transition:all .2s}
@@ -86,6 +97,12 @@
   <h1>📊 <span>Portfolio</span> Dashboard</h1>
   <div class="sub">Family Investment Tracker — Real-Time P&L</div>
   <div class="updated" id="lastUpdated"></div>
+  <button class="refresh-btn" id="refreshBtn" onclick="refreshPrices()">
+    <span class="refresh-icon">🔄</span>
+    <span class="spinner"></span>
+    Refresh Prices
+  </button>
+  <div class="refresh-status" id="refreshStatus"></div>
 </div>
 
 <div class="hero" id="hero"></div>
@@ -651,6 +668,271 @@ document.querySelectorAll("#view-tabs .tab").forEach(btn => {
     renderTable();
   });
 });
+
+// ====== LIVE REFRESH ======
+
+const FINNHUB_KEY = 'd5es909r01qmi0skkrigd5es909r01qmi0skkrj0';
+
+// Map dashboard ticker → Finnhub symbol
+const TICKER_MAP = {
+  'QIMC':'QIMC.CN', 'HSLV':'HSLV.TO', 'ETM':'ETM.AX', 'GSPR':'GSPR.V',
+  'TI':'TI.TO', 'CTGO':'CTGO', 'MGG':'MGG.V', 'NAU':'NAU.V', 'OSS':'OSS',
+  'ALTA':'ALTA.V', 'HSTR':'HSTR.V', 'FF':'FF.TO', 'LG':'LG.V',
+  'GDXJ':'GDXJ.L', 'GDX':'GDX', 'CDE':'CDE', 'SSLN':'SSLN.L',
+  'SBRY':'SBRY.L', 'GRG':'GRG.L', 'GDGB':'GDGB.L', 'MASS':'MASS.V', 'TRT':'TRT'
+};
+
+// Tickers that return prices in pence (need /100 for GBP)
+const PENCE_TICKERS = new Set(['SBRY.L', 'GRG.L', 'SSLN.L', 'GDGB.L']);
+
+async function fetchFinnhubQuote(symbol) {
+  const url = `https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(symbol)}&token=${FINNHUB_KEY}`;
+  const r = await fetch(url);
+  if (!r.ok) return null;
+  const d = await r.json();
+  if (!d || d.c === 0) return null;
+  return d; // { c: current, d: change, dp: change%, h: high, l: low, o: open, pc: prev close, t: timestamp }
+}
+
+async function fetchFxRates() {
+  // Fetch FX rates: USD/GBP, CAD/GBP, AUD/GBP via Finnhub forex rates
+  const rates = { GBP: 1.0 };
+  const pairs = [
+    { ccy: 'USD', symbol: 'OANDA:GBP_USD', invert: true },
+    { ccy: 'CAD', symbol: 'OANDA:GBP_CAD', invert: true },
+    { ccy: 'AUD', symbol: 'OANDA:GBP_AUD', invert: true }
+  ];
+  for (const p of pairs) {
+    try {
+      const q = await fetchFinnhubQuote(p.symbol);
+      if (q && q.c > 0) {
+        rates[p.ccy] = p.invert ? (1 / q.c) : q.c;
+      }
+    } catch(e) { console.warn(`FX error for ${p.ccy}:`, e); }
+  }
+  // Fallback if forex quotes fail — try crypto-style forex
+  if (!rates.USD) {
+    try {
+      const r = await fetch(`https://finnhub.io/api/v1/forex/rates?base=GBP&token=${FINNHUB_KEY}`);
+      const d = await r.json();
+      if (d && d.quote) {
+        if (d.quote.USD) rates.USD = 1 / d.quote.USD;
+        if (d.quote.CAD) rates.CAD = 1 / d.quote.CAD;
+        if (d.quote.AUD) rates.AUD = 1 / d.quote.AUD;
+      }
+    } catch(e) { console.warn('FX fallback error:', e); }
+  }
+  return rates;
+}
+
+function getCurrencyForTicker(finnhubSymbol) {
+  if (finnhubSymbol.endsWith('.TO') || finnhubSymbol.endsWith('.V') || finnhubSymbol.endsWith('.CN')) return 'CAD';
+  if (finnhubSymbol.endsWith('.AX')) return 'AUD';
+  if (finnhubSymbol.endsWith('.L')) return 'GBP';
+  return 'USD';
+}
+
+async function refreshPrices() {
+  if (!DATA) return;
+  
+  const btn = document.getElementById('refreshBtn');
+  const status = document.getElementById('refreshStatus');
+  btn.classList.add('loading');
+  status.textContent = 'Fetching FX rates...';
+  
+  try {
+    // 1. Fetch FX rates
+    const fxRates = await fetchFxRates();
+    console.log('FX rates:', fxRates);
+    
+    // 2. Fetch all unique ticker prices
+    const s = latest();
+    const uniqueTickers = new Set();
+    for (const acct of Object.values(s.accounts)) {
+      for (const p of acct.positions) {
+        uniqueTickers.add(p.ticker);
+      }
+    }
+    
+    const prices = {}; // ticker → { price, dailyChangePct, prevClose }
+    const tickerArray = [...uniqueTickers];
+    let fetched = 0;
+    
+    for (const ticker of tickerArray) {
+      const finnhubSym = TICKER_MAP[ticker];
+      if (!finnhubSym) { console.warn(`No Finnhub mapping for ${ticker}`); continue; }
+      
+      status.textContent = `Fetching ${ticker} (${++fetched}/${tickerArray.length})...`;
+      
+      try {
+        const q = await fetchFinnhubQuote(finnhubSym);
+        if (q && q.c > 0) {
+          let price = q.c;
+          // Convert pence to pounds for LSE tickers
+          if (PENCE_TICKERS.has(finnhubSym)) {
+            price = price / 100;
+          }
+          prices[ticker] = {
+            price: price,
+            dailyChangePct: q.dp || 0,
+            prevClose: q.pc || 0
+          };
+        }
+      } catch(e) { console.warn(`Price error for ${ticker}:`, e); }
+      
+      // Small delay to respect API rate limits (30 calls/sec on free tier)
+      await new Promise(r => setTimeout(r, 100));
+    }
+    
+    console.log('Live prices:', prices);
+    status.textContent = 'Recalculating P&L...';
+    
+    // 3. Update all positions with live prices
+    for (const [acctName, acct] of Object.entries(s.accounts)) {
+      let acctTotalValue = 0;
+      let acctTotalCost = 0;
+      
+      for (const pos of acct.positions) {
+        const liveData = prices[pos.ticker];
+        if (liveData) {
+          pos.current_price = liveData.price;
+          pos.daily_change_pct = liveData.dailyChangePct;
+        }
+        
+        // Recalculate GBP values
+        const ccy = pos.currency;
+        const fxRate = fxRates[ccy] || 1;
+        pos.value_gbp = pos.units * pos.current_price * fxRate;
+        pos.book_cost_gbp = pos.units * pos.avg_price * fxRate;
+        pos.pnl_gbp = pos.value_gbp - pos.book_cost_gbp;
+        pos.pnl_pct = pos.book_cost_gbp > 0 ? (pos.pnl_gbp / pos.book_cost_gbp * 100) : 0;
+        
+        acctTotalValue += pos.value_gbp;
+        acctTotalCost += pos.book_cost_gbp;
+      }
+      
+      acct.total_value_gbp = acctTotalValue;
+      acct.total_cost_gbp = acctTotalCost;
+      acct.pnl_gbp = acctTotalValue - acctTotalCost;
+      acct.pnl_pct = acctTotalCost > 0 ? (acct.pnl_gbp / acctTotalCost * 100) : 0;
+    }
+    
+    // 4. Recalculate people aggregates
+    const peopleMap = {
+      'Carlin': ['CP II', 'CP IBKR'],
+      'Nana': ['NANA'],
+      'Dada': ['DADA']
+    };
+    
+    for (const [person, accounts] of Object.entries(peopleMap)) {
+      if (!s.people[person]) continue;
+      let invGbp = 0, costGbp = 0, cashGbp = 0;
+      const positionsAgg = {};
+      
+      for (const acctName of accounts) {
+        const acct = s.accounts[acctName];
+        if (!acct) continue;
+        invGbp += acct.total_value_gbp;
+        costGbp += acct.total_cost_gbp;
+        cashGbp += acct.cash_gbp;
+        
+        for (const pos of acct.positions) {
+          if (!positionsAgg[pos.ticker]) {
+            positionsAgg[pos.ticker] = {
+              name: pos.name, exchange: pos.exchange, currency: pos.currency,
+              total_units: 0, total_value_gbp: 0, total_cost_gbp: 0,
+              current_price: pos.current_price, daily_change_pct: pos.daily_change_pct,
+              weighted_avg_sum: 0
+            };
+          }
+          const a = positionsAgg[pos.ticker];
+          a.total_units += pos.units;
+          a.total_value_gbp += pos.value_gbp;
+          a.total_cost_gbp += pos.book_cost_gbp;
+          a.weighted_avg_sum += pos.avg_price * pos.units;
+          a.current_price = pos.current_price;
+          a.daily_change_pct = pos.daily_change_pct;
+        }
+      }
+      
+      // Finalize person positions
+      for (const [ticker, a] of Object.entries(positionsAgg)) {
+        a.weighted_avg_price = a.total_units > 0 ? a.weighted_avg_sum / a.total_units : 0;
+        a.value_gbp = a.total_value_gbp;
+        a.pnl_gbp = a.total_value_gbp - a.total_cost_gbp;
+        a.pnl_pct = a.total_cost_gbp > 0 ? (a.pnl_gbp / a.total_cost_gbp * 100) : 0;
+        delete a.weighted_avg_sum;
+      }
+      
+      s.people[person].investments_gbp = invGbp;
+      s.people[person].total_gbp = invGbp + cashGbp;
+      s.people[person].cash_gbp = cashGbp;
+      s.people[person].pnl_gbp = invGbp - costGbp;
+      s.people[person].pnl_pct = costGbp > 0 ? ((invGbp - costGbp) / costGbp * 100) : 0;
+      s.people[person].positions = positionsAgg;
+    }
+    
+    // 5. Recalculate aggregate (all accounts)
+    const aggAll = {};
+    for (const [acctName, acct] of Object.entries(s.accounts)) {
+      for (const pos of acct.positions) {
+        if (!aggAll[pos.ticker]) {
+          aggAll[pos.ticker] = {
+            name: pos.name, exchange: pos.exchange, currency: pos.currency,
+            total_units: 0, current_price: pos.current_price, daily_change_pct: pos.daily_change_pct,
+            value_gbp: 0, total_cost_gbp: 0, weighted_avg_sum: 0, accounts: []
+          };
+        }
+        const a = aggAll[pos.ticker];
+        a.total_units += pos.units;
+        a.value_gbp += pos.value_gbp;
+        a.total_cost_gbp += pos.book_cost_gbp;
+        a.weighted_avg_sum += pos.avg_price * pos.units;
+        a.current_price = pos.current_price;
+        a.daily_change_pct = pos.daily_change_pct;
+        a.accounts.push({ account: acctName });
+      }
+    }
+    for (const [ticker, a] of Object.entries(aggAll)) {
+      a.weighted_avg_price = a.total_units > 0 ? a.weighted_avg_sum / a.total_units : 0;
+      a.pnl_gbp = a.value_gbp - a.total_cost_gbp;
+      a.pnl_pct = a.total_cost_gbp > 0 ? (a.pnl_gbp / a.total_cost_gbp * 100) : 0;
+      delete a.weighted_avg_sum;
+    }
+    s.aggregate = aggAll;
+    
+    // 6. Recalculate family total
+    let famInv = 0, famCost = 0, famCash = 0;
+    for (const acct of Object.values(s.accounts)) {
+      famInv += acct.total_value_gbp;
+      famCost += acct.total_cost_gbp;
+      famCash += acct.cash_gbp;
+    }
+    s.family_total.investments_gbp = famInv;
+    s.family_total.cash_gbp = famCash;
+    s.family_total.total_gbp = famInv + famCash;
+    s.family_total.book_cost_gbp = famCost;
+    s.family_total.pnl_gbp = famInv - famCost;
+    s.family_total.pnl_pct = famCost > 0 ? ((famInv - famCost) / famCost * 100) : 0;
+    
+    // 7. Update timestamp
+    const now = new Date();
+    s.timestamp = now.toISOString();
+    document.getElementById('lastUpdated').textContent = `Live prices refreshed: ${now.toLocaleTimeString('en-GB', {hour:'2-digit',minute:'2-digit',second:'2-digit'})}`;
+    
+    // 8. Re-render everything
+    render();
+    
+    const failedCount = tickerArray.length - Object.keys(prices).length;
+    status.textContent = `✅ ${Object.keys(prices).length} prices updated` + (failedCount > 0 ? ` (${failedCount} failed)` : '') + ` · FX: USD=${(1/fxRates.USD).toFixed(4)}, CAD=${(1/fxRates.CAD).toFixed(4)}, AUD=${(1/fxRates.AUD).toFixed(4)}`;
+    
+  } catch(e) {
+    console.error('Refresh error:', e);
+    status.textContent = `❌ Error: ${e.message}`;
+  } finally {
+    btn.classList.remove('loading');
+  }
+}
 
 loadData();
 </script>
