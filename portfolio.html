@@ -671,9 +671,7 @@ document.querySelectorAll("#view-tabs .tab").forEach(btn => {
 
 // ====== LIVE REFRESH ======
 
-const FINNHUB_KEY = 'd5es909r01qmi0skkrigd5es909r01qmi0skkrj0';
-
-// Map dashboard ticker → Finnhub symbol
+// Map dashboard ticker → Yahoo Finance symbol
 const TICKER_MAP = {
   'QIMC':'QIMC.CN', 'HSLV':'HSLV.TO', 'ETM':'ETM.AX', 'GSPR':'GSPR.V',
   'TI':'TI.TO', 'CTGO':'CTGO', 'MGG':'MGG.V', 'NAU':'NAU.V', 'OSS':'OSS',
@@ -682,54 +680,40 @@ const TICKER_MAP = {
   'SBRY':'SBRY.L', 'GRG':'GRG.L', 'GDGB':'GDGB.L', 'MASS':'MASS.V', 'TRT':'TRT'
 };
 
-// Tickers that return prices in pence (need /100 for GBP)
-const PENCE_TICKERS = new Set(['SBRY.L', 'GRG.L', 'SSLN.L', 'GDGB.L']);
-
-async function fetchFinnhubQuote(symbol) {
-  const url = `https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(symbol)}&token=${FINNHUB_KEY}`;
-  const r = await fetch(url);
+async function fetchYahooQuote(symbol) {
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=1d`;
+  const r = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
   if (!r.ok) return null;
   const d = await r.json();
-  if (!d || d.c === 0) return null;
-  return d; // { c: current, d: change, dp: change%, h: high, l: low, o: open, pc: prev close, t: timestamp }
+  const result = d?.chart?.result?.[0];
+  if (!result) return null;
+  const meta = result.meta;
+  if (!meta || !meta.regularMarketPrice) return null;
+  return {
+    price: meta.regularMarketPrice,
+    prevClose: meta.chartPreviousClose || meta.previousClose || 0,
+    currency: meta.currency // e.g. 'USD', 'CAD', 'GBp', 'GBP', 'AUD'
+  };
 }
 
 async function fetchFxRates() {
-  // Fetch FX rates: USD/GBP, CAD/GBP, AUD/GBP via Finnhub forex rates
+  // Fetch FX rates via Yahoo Finance: GBP/USD, GBP/CAD, GBP/AUD
   const rates = { GBP: 1.0 };
   const pairs = [
-    { ccy: 'USD', symbol: 'OANDA:GBP_USD', invert: true },
-    { ccy: 'CAD', symbol: 'OANDA:GBP_CAD', invert: true },
-    { ccy: 'AUD', symbol: 'OANDA:GBP_AUD', invert: true }
+    { ccy: 'USD', symbol: 'GBPUSD=X' },
+    { ccy: 'CAD', symbol: 'GBPCAD=X' },
+    { ccy: 'AUD', symbol: 'GBPAUD=X' }
   ];
   for (const p of pairs) {
     try {
-      const q = await fetchFinnhubQuote(p.symbol);
-      if (q && q.c > 0) {
-        rates[p.ccy] = p.invert ? (1 / q.c) : q.c;
+      const q = await fetchYahooQuote(p.symbol);
+      if (q && q.price > 0) {
+        // GBP/USD = how many USD per 1 GBP, so to convert USD→GBP we divide: 1/rate
+        rates[p.ccy] = 1 / q.price;
       }
     } catch(e) { console.warn(`FX error for ${p.ccy}:`, e); }
   }
-  // Fallback if forex quotes fail — try crypto-style forex
-  if (!rates.USD) {
-    try {
-      const r = await fetch(`https://finnhub.io/api/v1/forex/rates?base=GBP&token=${FINNHUB_KEY}`);
-      const d = await r.json();
-      if (d && d.quote) {
-        if (d.quote.USD) rates.USD = 1 / d.quote.USD;
-        if (d.quote.CAD) rates.CAD = 1 / d.quote.CAD;
-        if (d.quote.AUD) rates.AUD = 1 / d.quote.AUD;
-      }
-    } catch(e) { console.warn('FX fallback error:', e); }
-  }
   return rates;
-}
-
-function getCurrencyForTicker(finnhubSymbol) {
-  if (finnhubSymbol.endsWith('.TO') || finnhubSymbol.endsWith('.V') || finnhubSymbol.endsWith('.CN')) return 'CAD';
-  if (finnhubSymbol.endsWith('.AX')) return 'AUD';
-  if (finnhubSymbol.endsWith('.L')) return 'GBP';
-  return 'USD';
 }
 
 async function refreshPrices() {
@@ -759,29 +743,32 @@ async function refreshPrices() {
     let fetched = 0;
     
     for (const ticker of tickerArray) {
-      const finnhubSym = TICKER_MAP[ticker];
-      if (!finnhubSym) { console.warn(`No Finnhub mapping for ${ticker}`); continue; }
+      const yahooSym = TICKER_MAP[ticker];
+      if (!yahooSym) { console.warn(`No Yahoo mapping for ${ticker}`); continue; }
       
       status.textContent = `Fetching ${ticker} (${++fetched}/${tickerArray.length})...`;
       
       try {
-        const q = await fetchFinnhubQuote(finnhubSym);
-        if (q && q.c > 0) {
-          let price = q.c;
-          // Convert pence to pounds for LSE tickers
-          if (PENCE_TICKERS.has(finnhubSym)) {
+        const q = await fetchYahooQuote(yahooSym);
+        if (q && q.price > 0) {
+          let price = q.price;
+          let prevClose = q.prevClose;
+          // Yahoo returns GBp (pence) for some LSE tickers — convert to GBP
+          if (q.currency === 'GBp') {
             price = price / 100;
+            prevClose = prevClose / 100;
           }
+          const dailyChangePct = prevClose > 0 ? ((price - prevClose) / prevClose * 100) : 0;
           prices[ticker] = {
             price: price,
-            dailyChangePct: q.dp || 0,
-            prevClose: q.pc || 0
+            dailyChangePct: dailyChangePct,
+            prevClose: prevClose
           };
         }
       } catch(e) { console.warn(`Price error for ${ticker}:`, e); }
       
-      // Small delay to respect API rate limits (30 calls/sec on free tier)
-      await new Promise(r => setTimeout(r, 100));
+      // Small delay to be respectful to Yahoo API
+      await new Promise(r => setTimeout(r, 150));
     }
     
     console.log('Live prices:', prices);
@@ -924,7 +911,8 @@ async function refreshPrices() {
     render();
     
     const failedCount = tickerArray.length - Object.keys(prices).length;
-    status.textContent = `✅ ${Object.keys(prices).length} prices updated` + (failedCount > 0 ? ` (${failedCount} failed)` : '') + ` · FX: USD=${(1/fxRates.USD).toFixed(4)}, CAD=${(1/fxRates.CAD).toFixed(4)}, AUD=${(1/fxRates.AUD).toFixed(4)}`;
+    const fxStr = ['USD','CAD','AUD'].map(c => `${c}=${fxRates[c] ? fxRates[c].toFixed(4) : 'N/A'}`).join(', ');
+    status.textContent = `✅ ${Object.keys(prices).length} prices updated` + (failedCount > 0 ? ` (${failedCount} failed)` : '') + ` · FX: ${fxStr}`;
     
   } catch(e) {
     console.error('Refresh error:', e);
