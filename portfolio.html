@@ -670,51 +670,11 @@ document.querySelectorAll("#view-tabs .tab").forEach(btn => {
 });
 
 // ====== LIVE REFRESH ======
+// Uses local price_server.py proxy (port 8777) to bypass Yahoo Finance CORS restrictions.
+// The server fetches from Yahoo Finance server-side and returns JSON with CORS headers.
+// Start with: python3 ~/clawd/stock-monitor/price_server.py
 
-// Map dashboard ticker → Yahoo Finance symbol
-const TICKER_MAP = {
-  'QIMC':'QIMC.CN', 'HSLV':'HSLV.TO', 'ETM':'ETM.AX', 'GSPR':'GSPR.V',
-  'TI':'TI.TO', 'CTGO':'CTGO', 'MGG':'MGG.V', 'NAU':'NAU.V', 'OSS':'OSS',
-  'ALTA':'ALTA.V', 'HSTR':'HSTR.V', 'FF':'FF.TO', 'LG':'LG.V',
-  'GDXJ':'GDXJ.L', 'GDX':'GDX', 'CDE':'CDE', 'SSLN':'SSLN.L',
-  'SBRY':'SBRY.L', 'GRG':'GRG.L', 'GDGB':'GDGB.L', 'MASS':'MASS.V', 'TRT':'TRT'
-};
-
-async function fetchYahooQuote(symbol) {
-  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=1d`;
-  const r = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
-  if (!r.ok) return null;
-  const d = await r.json();
-  const result = d?.chart?.result?.[0];
-  if (!result) return null;
-  const meta = result.meta;
-  if (!meta || !meta.regularMarketPrice) return null;
-  return {
-    price: meta.regularMarketPrice,
-    prevClose: meta.chartPreviousClose || meta.previousClose || 0,
-    currency: meta.currency // e.g. 'USD', 'CAD', 'GBp', 'GBP', 'AUD'
-  };
-}
-
-async function fetchFxRates() {
-  // Fetch FX rates via Yahoo Finance: GBP/USD, GBP/CAD, GBP/AUD
-  const rates = { GBP: 1.0 };
-  const pairs = [
-    { ccy: 'USD', symbol: 'GBPUSD=X' },
-    { ccy: 'CAD', symbol: 'GBPCAD=X' },
-    { ccy: 'AUD', symbol: 'GBPAUD=X' }
-  ];
-  for (const p of pairs) {
-    try {
-      const q = await fetchYahooQuote(p.symbol);
-      if (q && q.price > 0) {
-        // GBP/USD = how many USD per 1 GBP, so to convert USD→GBP we divide: 1/rate
-        rates[p.ccy] = 1 / q.price;
-      }
-    } catch(e) { console.warn(`FX error for ${p.ccy}:`, e); }
-  }
-  return rates;
-}
+const PRICE_SERVER_URL = 'http://localhost:8777';
 
 async function refreshPrices() {
   if (!DATA) return;
@@ -722,59 +682,36 @@ async function refreshPrices() {
   const btn = document.getElementById('refreshBtn');
   const status = document.getElementById('refreshStatus');
   btn.classList.add('loading');
-  status.textContent = 'Fetching FX rates...';
+  status.textContent = 'Connecting to price server...';
   
   try {
-    // 1. Fetch FX rates
-    const fxRates = await fetchFxRates();
-    console.log('FX rates:', fxRates);
-    
-    // 2. Fetch all unique ticker prices
-    const s = latest();
-    const uniqueTickers = new Set();
-    for (const acct of Object.values(s.accounts)) {
-      for (const p of acct.positions) {
-        uniqueTickers.add(p.ticker);
-      }
+    // 1. Fetch all prices + FX from local proxy (single call, ~2s)
+    let resp;
+    try {
+      resp = await fetch(`${PRICE_SERVER_URL}/api/prices`);
+    } catch(e) {
+      status.textContent = '❌ Price server not running. Start with: python3 ~/clawd/stock-monitor/price_server.py';
+      btn.classList.remove('loading');
+      return;
     }
     
-    const prices = {}; // ticker → { price, dailyChangePct, prevClose }
-    const tickerArray = [...uniqueTickers];
-    let fetched = 0;
-    
-    for (const ticker of tickerArray) {
-      const yahooSym = TICKER_MAP[ticker];
-      if (!yahooSym) { console.warn(`No Yahoo mapping for ${ticker}`); continue; }
-      
-      status.textContent = `Fetching ${ticker} (${++fetched}/${tickerArray.length})...`;
-      
-      try {
-        const q = await fetchYahooQuote(yahooSym);
-        if (q && q.price > 0) {
-          let price = q.price;
-          let prevClose = q.prevClose;
-          // Yahoo returns GBp (pence) for some LSE tickers — convert to GBP
-          if (q.currency === 'GBp') {
-            price = price / 100;
-            prevClose = prevClose / 100;
-          }
-          const dailyChangePct = prevClose > 0 ? ((price - prevClose) / prevClose * 100) : 0;
-          prices[ticker] = {
-            price: price,
-            dailyChangePct: dailyChangePct,
-            prevClose: prevClose
-          };
-        }
-      } catch(e) { console.warn(`Price error for ${ticker}:`, e); }
-      
-      // Small delay to be respectful to Yahoo API
-      await new Promise(r => setTimeout(r, 150));
+    if (!resp.ok) {
+      status.textContent = `❌ Price server error: ${resp.status}`;
+      btn.classList.remove('loading');
+      return;
     }
+    
+    const data = await resp.json();
+    const prices = data.prices;    // { ticker: { price, prev_close, daily_change_pct, currency } }
+    const fxRates = data.fx_rates; // { USD: 0.74, CAD: 0.54, AUD: 0.52, GBP: 1.0 }
     
     console.log('Live prices:', prices);
-    status.textContent = 'Recalculating P&L...';
+    console.log('FX rates:', fxRates);
+    status.textContent = `Recalculating P&L (${data.fetched} prices, ${data.elapsed_seconds}s)...`;
     
-    // 3. Update all positions with live prices
+    const s = latest();
+    
+    // 2. Update all positions with live prices
     for (const [acctName, acct] of Object.entries(s.accounts)) {
       let acctTotalValue = 0;
       let acctTotalCost = 0;
@@ -783,7 +720,7 @@ async function refreshPrices() {
         const liveData = prices[pos.ticker];
         if (liveData) {
           pos.current_price = liveData.price;
-          pos.daily_change_pct = liveData.dailyChangePct;
+          pos.daily_change_pct = liveData.daily_change_pct;
         }
         
         // Recalculate GBP values
@@ -804,7 +741,7 @@ async function refreshPrices() {
       acct.pnl_pct = acctTotalCost > 0 ? (acct.pnl_gbp / acctTotalCost * 100) : 0;
     }
     
-    // 4. Recalculate people aggregates
+    // 3. Recalculate people aggregates
     const peopleMap = {
       'Carlin': ['CP II', 'CP IBKR'],
       'Nana': ['NANA'],
@@ -842,7 +779,6 @@ async function refreshPrices() {
         }
       }
       
-      // Finalize person positions
       for (const [ticker, a] of Object.entries(positionsAgg)) {
         a.weighted_avg_price = a.total_units > 0 ? a.weighted_avg_sum / a.total_units : 0;
         a.value_gbp = a.total_value_gbp;
@@ -859,7 +795,7 @@ async function refreshPrices() {
       s.people[person].positions = positionsAgg;
     }
     
-    // 5. Recalculate aggregate (all accounts)
+    // 4. Recalculate aggregate (all accounts)
     const aggAll = {};
     for (const [acctName, acct] of Object.entries(s.accounts)) {
       for (const pos of acct.positions) {
@@ -888,7 +824,7 @@ async function refreshPrices() {
     }
     s.aggregate = aggAll;
     
-    // 6. Recalculate family total
+    // 5. Recalculate family total
     let famInv = 0, famCost = 0, famCash = 0;
     for (const acct of Object.values(s.accounts)) {
       famInv += acct.total_value_gbp;
@@ -902,17 +838,16 @@ async function refreshPrices() {
     s.family_total.pnl_gbp = famInv - famCost;
     s.family_total.pnl_pct = famCost > 0 ? ((famInv - famCost) / famCost * 100) : 0;
     
-    // 7. Update timestamp
+    // 6. Update timestamp
     const now = new Date();
     s.timestamp = now.toISOString();
     document.getElementById('lastUpdated').textContent = `Live prices refreshed: ${now.toLocaleTimeString('en-GB', {hour:'2-digit',minute:'2-digit',second:'2-digit'})}`;
     
-    // 8. Re-render everything
+    // 7. Re-render everything
     render();
     
-    const failedCount = tickerArray.length - Object.keys(prices).length;
     const fxStr = ['USD','CAD','AUD'].map(c => `${c}=${fxRates[c] ? fxRates[c].toFixed(4) : 'N/A'}`).join(', ');
-    status.textContent = `✅ ${Object.keys(prices).length} prices updated` + (failedCount > 0 ? ` (${failedCount} failed)` : '') + ` · FX: ${fxStr}`;
+    status.textContent = `✅ ${data.fetched} prices updated` + (data.failed > 0 ? ` (${data.failed} failed: ${data.failed_tickers.join(', ')})` : '') + ` · FX: ${fxStr} · ${data.elapsed_seconds}s`;
     
   } catch(e) {
     console.error('Refresh error:', e);
