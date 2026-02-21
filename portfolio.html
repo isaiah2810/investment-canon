@@ -674,7 +674,10 @@ document.querySelectorAll("#view-tabs .tab").forEach(btn => {
 // The server fetches from Yahoo Finance server-side and returns JSON with CORS headers.
 // Start with: python3 ~/clawd/stock-monitor/price_server.py
 
-const PRICE_SERVER_URL = 'http://localhost:8777';
+// Auto-detect: if served from price server (localhost:8777), use same origin; otherwise connect to it
+const PRICE_SERVER_URL = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+  ? location.origin  // same-origin when served from price server
+  : 'http://localhost:8777';
 
 async function refreshPrices() {
   if (!DATA) return;
