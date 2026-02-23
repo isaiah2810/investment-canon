@@ -726,8 +726,9 @@ async function refreshPrices() {
           pos.daily_change_pct = liveData.daily_change_pct;
         }
         
-        // Recalculate GBP values
-        const ccy = pos.currency;
+        // Recalculate GBP values — use live currency from price server if available
+        const liveInfo = prices[pos.ticker];
+        const ccy = (liveInfo && liveInfo.currency) ? liveInfo.currency : pos.currency;
         const fxRate = fxRates[ccy] || 1;
         pos.value_gbp = pos.units * pos.current_price * fxRate;
         pos.book_cost_gbp = pos.units * pos.avg_price * fxRate;
