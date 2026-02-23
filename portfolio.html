@@ -81,7 +81,22 @@
   @keyframes spin{to{transform:rotate(360deg)}}
   .refresh-status{font-size:11px;color:var(--text-muted);margin-top:6px;min-height:16px;font-weight:500}
 
+  /* Staleness banner */
+  .stale-banner{background:rgba(245,158,11,0.15);border:1px solid var(--accent-dim);border-radius:10px;padding:10px 16px;margin-bottom:16px;text-align:center;font-size:12px;color:var(--accent);display:none}
+  .stale-banner.visible{display:block}
+  .stale-banner .dismiss{cursor:pointer;margin-left:8px;opacity:0.6}
+  .stale-banner .dismiss:hover{opacity:1}
+
+  /* Auto-refresh indicator */
+  .auto-refresh-info{font-size:10px;color:var(--text-muted);margin-top:4px}
+
   @media(max-width:600px){body{padding:12px}.hero{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:768px){
+    #analytics div[style*="grid-template-columns: 1fr 1fr"],
+    #analytics div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
+    .stat-box{padding:8px}
+    .stat-val{font-size:18px}
+  }
   .site-nav{display:flex;justify-content:center;gap:6px;padding:12px 20px;background:#08080d;border-bottom:1px solid #1e1e2e;position:sticky;top:0;z-index:100}
   .site-nav a{color:#888899;text-decoration:none;font-size:12px;font-weight:500;padding:6px 16px;border-radius:20px;border:1px solid #1e1e2e;transition:all .2s}
   .site-nav a:hover{color:#e0e0e8;border-color:#f59e0b}
@@ -103,6 +118,12 @@
     Refresh Prices
   </button>
   <div class="refresh-status" id="refreshStatus"></div>
+  <div class="auto-refresh-info" id="autoRefreshInfo"></div>
+</div>
+
+<div class="stale-banner" id="staleBanner">
+  ⚠️ <span id="staleText">Data may be outdated</span>
+  <span class="dismiss" onclick="document.getElementById('staleBanner').classList.remove('visible')">✕</span>
 </div>
 
 <div class="hero" id="hero"></div>
@@ -138,11 +159,21 @@ async function loadData() {
     const r = await fetch(DATA_URL);
     DATA = await r.json();
     render();
+    onDataLoaded();
   } catch(e) {
     // Try embedded data
-    if(window.PORTFOLIO_DATA) { DATA = window.PORTFOLIO_DATA; render(); }
+    if(window.PORTFOLIO_DATA) { DATA = window.PORTFOLIO_DATA; render(); onDataLoaded(); }
     else { document.getElementById("hero").innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted)">No data yet — dashboard populates after first market close snapshot.</div>'; }
   }
+}
+
+function onDataLoaded() {
+  checkStaleness();
+  // Auto-refresh prices on page load
+  refreshPrices().then(() => {
+    document.getElementById('staleBanner').classList.remove('visible');
+  }).catch(e => console.warn('Auto-refresh failed:', e));
+  startAutoRefresh();
 }
 
 let activeView = "accounts";
@@ -715,6 +746,8 @@ async function refreshPrices() {
     const s = latest();
     
     // 2. Update all positions with live prices
+    // IMPORTANT: book_cost_gbp is PRESERVED from snapshot — it was calculated at purchase time
+    // with the historical FX rate. Only current value changes with live prices.
     for (const [acctName, acct] of Object.entries(s.accounts)) {
       let acctTotalValue = 0;
       let acctTotalCost = 0;
@@ -726,12 +759,14 @@ async function refreshPrices() {
           pos.daily_change_pct = liveData.daily_change_pct;
         }
         
-        // Recalculate GBP values — use live currency from price server if available
+        // Recalculate current VALUE in GBP using live FX rate
         const liveInfo = prices[pos.ticker];
         const ccy = (liveInfo && liveInfo.currency) ? liveInfo.currency : pos.currency;
         const fxRate = fxRates[ccy] || 1;
         pos.value_gbp = pos.units * pos.current_price * fxRate;
-        pos.book_cost_gbp = pos.units * pos.avg_price * fxRate;
+        
+        // book_cost_gbp is PRESERVED from the snapshot — do NOT recalculate
+        // It was computed at snapshot time with the correct historical context
         pos.pnl_gbp = pos.value_gbp - pos.book_cost_gbp;
         pos.pnl_pct = pos.book_cost_gbp > 0 ? (pos.pnl_gbp / pos.book_cost_gbp * 100) : 0;
         
@@ -860,6 +895,65 @@ async function refreshPrices() {
     btn.classList.remove('loading');
   }
 }
+
+// ====== AUTO-REFRESH ======
+let autoRefreshInterval = null;
+const AUTO_REFRESH_MS = 5 * 60 * 1000; // 5 minutes
+
+function isMarketHours() {
+  const now = new Date();
+  const hour = now.getUTCHours();
+  const day = now.getUTCDay();
+  // Skip weekends
+  if (day === 0 || day === 6) return false;
+  // Markets open roughly 08:00-21:00 UTC (covers LSE 08:00-16:30, NYSE 14:30-21:00, TSX 14:30-21:00)
+  return hour >= 8 && hour < 21;
+}
+
+function checkStaleness() {
+  if (!DATA) return;
+  const s = latest();
+  const snapshotTime = new Date(s.timestamp);
+  const now = new Date();
+  const hoursOld = (now - snapshotTime) / (1000 * 60 * 60);
+  
+  const banner = document.getElementById('staleBanner');
+  const text = document.getElementById('staleText');
+  
+  if (hoursOld > 2) {
+    const timeStr = hoursOld >= 24 
+      ? `${Math.floor(hoursOld / 24)} day${Math.floor(hoursOld / 24) > 1 ? 's' : ''} old`
+      : `${Math.floor(hoursOld)} hour${Math.floor(hoursOld) > 1 ? 's' : ''} old`;
+    text.textContent = `Snapshot data is ${timeStr} — refreshing live prices...`;
+    banner.classList.add('visible');
+  }
+}
+
+function startAutoRefresh() {
+  if (autoRefreshInterval) clearInterval(autoRefreshInterval);
+  autoRefreshInterval = setInterval(() => {
+    if (isMarketHours()) {
+      console.log('Auto-refreshing prices (market hours)...');
+      refreshPrices();
+    } else {
+      console.log('Auto-refresh skipped (outside market hours)');
+    }
+  }, AUTO_REFRESH_MS);
+  
+  updateAutoRefreshInfo();
+}
+
+function updateAutoRefreshInfo() {
+  const el = document.getElementById('autoRefreshInfo');
+  if (!el) return;
+  const marketOpen = isMarketHours();
+  el.textContent = marketOpen 
+    ? '🟢 Markets open · Auto-refreshing every 5 min'
+    : '🔴 Markets closed · Auto-refresh paused';
+}
+
+// Update market status every minute
+setInterval(updateAutoRefreshInfo, 60000);
 
 loadData();
 </script>
