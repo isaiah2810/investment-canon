@@ -80,6 +80,11 @@
   .refresh-btn.loading .refresh-icon{display:none}
   @keyframes spin{to{transform:rotate(360deg)}}
   .refresh-status{font-size:11px;color:var(--text-muted);margin-top:6px;min-height:16px;font-weight:500}
+  
+  /* Download button */
+  .download-btn{background:rgba(59,130,246,0.2);border:1px solid var(--blue);color:var(--blue);padding:10px 24px;border-radius:24px;cursor:pointer;font-size:13px;font-weight:700;transition:all .2s;display:inline-flex;align-items:center;gap:6px;margin-top:12px;margin-left:8px}
+  .download-btn:hover{background:rgba(59,130,246,0.3);transform:translateY(-1px)}
+  .download-btn:active{transform:scale(0.97)}
 
   /* Staleness banner */
   .stale-banner{background:rgba(245,158,11,0.15);border:1px solid var(--accent-dim);border-radius:10px;padding:10px 16px;margin-bottom:16px;text-align:center;font-size:12px;color:var(--accent);display:none}
@@ -116,6 +121,9 @@
     <span class="refresh-icon">🔄</span>
     <span class="spinner"></span>
     Refresh Prices
+  </button>
+  <button class="download-btn" onclick="exportToCSV()">
+    📥 Export CSV
   </button>
   <div class="refresh-status" id="refreshStatus"></div>
   <div class="auto-refresh-info" id="autoRefreshInfo"></div>
@@ -894,6 +902,128 @@ async function refreshPrices() {
   } finally {
     btn.classList.remove('loading');
   }
+}
+
+// ====== EXPORT TO CSV ======
+function exportToCSV() {
+  if (!DATA) {
+    alert('No data to export');
+    return;
+  }
+  
+  const s = latest();
+  const timestamp = new Date().toISOString().split('T')[0];
+  let filename = `portfolio-${activeView}-${timestamp}.csv`;
+  let rows = [];
+  
+  // Build CSV based on current view
+  if (activeView === 'aggregate') {
+    // Aggregate view
+    rows.push(['Ticker', 'Name', 'Exchange', 'Currency', 'Units', 'Avg Price', 'Current Price', 'Daily Change %', 'Value (GBP)', 'Cost (GBP)', 'P&L (GBP)', 'P&L %', 'Accounts']);
+    
+    for (const [ticker, data] of Object.entries(s.aggregate)) {
+      rows.push([
+        ticker,
+        data.name,
+        data.exchange,
+        data.currency,
+        data.total_units.toFixed(4),
+        data.weighted_avg_price.toFixed(4),
+        data.current_price.toFixed(4),
+        data.daily_change_pct.toFixed(2),
+        data.value_gbp.toFixed(2),
+        data.total_cost_gbp.toFixed(2),
+        data.pnl_gbp.toFixed(2),
+        data.pnl_pct.toFixed(2),
+        data.accounts.map(a => a.account).join('; ')
+      ]);
+    }
+  } else if (activeView === 'people') {
+    // People view
+    const activeFilter = document.querySelector("#acct-tabs .tab.active")?.dataset.acct || "all";
+    const people = activeFilter === 'all' ? Object.keys(s.people) : [activeFilter];
+    
+    rows.push(['Person', 'Ticker', 'Name', 'Exchange', 'Currency', 'Units', 'Avg Price', 'Current Price', 'Daily Change %', 'Value (GBP)', 'Cost (GBP)', 'P&L (GBP)', 'P&L %', 'Accounts']);
+    
+    for (const person of people) {
+      const pdata = s.people[person];
+      if (!pdata) continue;
+      
+      for (const [ticker, data] of Object.entries(pdata.positions)) {
+        rows.push([
+          person,
+          ticker,
+          data.name,
+          data.exchange,
+          data.currency,
+          data.total_units.toFixed(4),
+          data.weighted_avg_price.toFixed(4),
+          data.current_price.toFixed(4),
+          data.daily_change_pct.toFixed(2),
+          data.value_gbp.toFixed(2),
+          data.total_cost_gbp.toFixed(2),
+          data.pnl_gbp.toFixed(2),
+          data.pnl_pct.toFixed(2),
+          data.accounts.map(a => a.account).join('; ')
+        ]);
+      }
+    }
+  } else {
+    // Account view
+    const activeAcct = document.querySelector("#acct-tabs .tab.active")?.dataset.acct || "all";
+    const accounts = activeAcct === 'all' ? s.accounts : s.accounts.filter(a => a.account === activeAcct);
+    
+    rows.push(['Account', 'Ticker', 'Name', 'Exchange', 'Currency', 'Units', 'Avg Price', 'Current Price', 'Daily Change %', 'Value (GBP)', 'Cost (GBP)', 'P&L (GBP)', 'P&L %']);
+    
+    for (const acct of accounts) {
+      for (const pos of acct.positions) {
+        rows.push([
+          acct.account,
+          pos.ticker,
+          pos.name,
+          pos.exchange,
+          pos.currency,
+          pos.units.toFixed(4),
+          pos.avg_price.toFixed(4),
+          pos.current_price.toFixed(4),
+          pos.daily_change_pct.toFixed(2),
+          pos.value_gbp.toFixed(2),
+          pos.book_cost_gbp.toFixed(2),
+          pos.pnl_gbp.toFixed(2),
+          pos.pnl_pct.toFixed(2)
+        ]);
+      }
+    }
+  }
+  
+  // Convert to CSV string
+  const csvContent = rows.map(row => 
+    row.map(cell => {
+      // Escape quotes and wrap in quotes if contains comma/quote/newline
+      const str = String(cell);
+      if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+        return '"' + str.replace(/"/g, '""') + '"';
+      }
+      return str;
+    }).join(',')
+  ).join('\n');
+  
+  // Download
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  const url = URL.createObjectURL(blob);
+  link.setAttribute('href', url);
+  link.setAttribute('download', filename);
+  link.style.visibility = 'hidden';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+  
+  // Show feedback
+  const status = document.getElementById('refreshStatus');
+  status.textContent = `✅ Exported ${rows.length - 1} positions to ${filename}`;
+  setTimeout(() => status.textContent = '', 3000);
 }
 
 // ====== AUTO-REFRESH ======
