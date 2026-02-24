@@ -953,11 +953,14 @@ async function refreshPrices() {
     
     // 6. Update timestamp
     const now = new Date();
+    s.date = now.toISOString().split('T')[0];
     s.timestamp = now.toISOString();
-    document.getElementById('lastUpdated').textContent = `Live prices refreshed: ${now.toLocaleTimeString('en-GB', {hour:'2-digit',minute:'2-digit',second:'2-digit'})}`;
     
     // 7. Re-render everything
     render();
+    
+    document.getElementById('lastUpdated').textContent = `Live prices refreshed: ${now.toLocaleTimeString('en-GB', {hour:'2-digit',minute:'2-digit',second:'2-digit'})}`;
+
     
     const fxStr = ['USD','CAD','AUD'].map(c => `${c}=${fxRates[c] ? fxRates[c].toFixed(4) : 'N/A'}`).join(', ');
     status.textContent = `✅ ${data.fetched} prices updated` + (data.failed > 0 ? ` (${data.failed} failed: ${data.failed_tickers.join(', ')})` : '') + ` · FX: ${fxStr} · ${data.elapsed_seconds}s`;
