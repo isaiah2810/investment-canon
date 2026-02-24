@@ -48,7 +48,8 @@
   th{text-align:left;padding:8px 10px;font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--text-muted);border-bottom:1px solid var(--card-border);white-space:nowrap}
   td{padding:10px;border-bottom:1px solid rgba(30,30,46,0.5);white-space:nowrap}
   tr:hover{background:var(--card-hover)}
-  .ticker-cell{font-weight:700}
+  .ticker-cell{font-weight:700;cursor:pointer;color:var(--text);transition:color .2s}
+  .ticker-cell:hover{color:var(--accent)}
   .stat-box{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:12px;text-align:center}
   .stat-val{font-size:22px;font-weight:700;color:var(--text)}
   .stat-label{font-size:10px;color:var(--text-muted);margin-top:2px;text-transform:uppercase;letter-spacing:0.5px}
@@ -95,7 +96,21 @@
   /* Auto-refresh indicator */
   .auto-refresh-info{font-size:10px;color:var(--text-muted);margin-top:4px}
 
-  @media(max-width:600px){body{padding:12px}.hero{grid-template-columns:repeat(2,1fr)}}
+  /* Position detail modal */
+  .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;align-items:center;justify-content:center}
+  .modal-overlay.visible{display:flex}
+  .modal-content{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:24px;max-width:600px;width:90%;max-height:80vh;overflow-y:auto;position:relative}
+  .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--card-border)}
+  .modal-header h2{font-size:20px;font-weight:700}
+  .modal-header .close{cursor:pointer;font-size:24px;color:var(--text-muted);transition:color .2s}
+  .modal-header .close:hover{color:var(--text)}
+  .modal-row{display:flex;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid rgba(30,30,46,0.3)}
+  .modal-row .label{color:var(--text-muted);font-weight:500}
+  .modal-row .value{font-weight:600}
+  .modal-section{margin-top:20px}
+  .modal-section-title{font-size:14px;font-weight:700;margin-bottom:10px;color:var(--accent)}
+
+  @media(max-width:600px){body{padding:12px}.hero{grid-template-columns:repeat(2,1fr)}.modal-content{width:95%;padding:16px}}
   @media(max-width:768px){
     #analytics div[style*="grid-template-columns: 1fr 1fr"],
     #analytics div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
@@ -155,6 +170,17 @@
 <div id="analytics"></div>
 
 <div class="footer">Portfolio Dashboard v1 • Carlin Invests • Auto-updated at market close</div>
+
+<!-- Position Detail Modal -->
+<div class="modal-overlay" id="positionModal" onclick="closeModal(event)">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <h2 id="modalTicker">-</h2>
+      <span class="close" onclick="closeModal()">&times;</span>
+    </div>
+    <div id="modalBody"></div>
+  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <script>
@@ -420,7 +446,7 @@ function renderTable() {
     const unitsStr = p.units >= 1000 ? p.units.toLocaleString('en-GB', {maximumFractionDigits:0}) : p.units.toLocaleString('en-GB', {maximumFractionDigits:2});
     
     bodyHtml += `<tr>
-      <td class="ticker-cell">${p.ticker} <span style="font-size:9px;color:var(--text-muted)">${p.exchange}</span></td>
+      <td class="ticker-cell" onclick="showPositionModal('${p.ticker}')">${p.ticker} <span style="font-size:9px;color:var(--text-muted)">${p.exchange}</span></td>
       ${showAcctCol ? `<td><span class="acct-badge">${p.accounts}</span></td>` : ''}
       <td>${priceStr}</td>
       <td class="${dailyClass(p.dailyChange)}">${fmtPct(p.dailyChange)}</td>
@@ -1024,6 +1050,125 @@ function exportToCSV() {
   const status = document.getElementById('refreshStatus');
   status.textContent = `✅ Exported ${rows.length - 1} positions to ${filename}`;
   setTimeout(() => status.textContent = '', 3000);
+}
+
+// ====== POSITION DETAIL MODAL ======
+function showPositionModal(ticker) {
+  if (!DATA) return;
+  
+  const s = latest();
+  let positionData = null;
+  
+  // Find position data based on current view
+  if (activeView === 'aggregate' && s.aggregate[ticker]) {
+    positionData = s.aggregate[ticker];
+  } else if (activeView === 'people') {
+    const activeFilter = document.querySelector("#acct-tabs .tab.active")?.dataset.acct || "all";
+    const people = activeFilter === 'all' ? Object.keys(s.people) : [activeFilter];
+    for (const person of people) {
+      if (s.people[person]?.positions[ticker]) {
+        positionData = s.people[person].positions[ticker];
+        positionData.person = person;
+        break;
+      }
+    }
+  } else {
+    // Account view
+    const activeAcct = document.querySelector("#acct-tabs .tab.active")?.dataset.acct || "all";
+    const accounts = activeAcct === 'all' ? s.accounts : s.accounts.filter(a => a.account === activeAcct);
+    for (const acct of accounts) {
+      const pos = acct.positions.find(p => p.ticker === ticker);
+      if (pos) {
+        positionData = pos;
+        positionData.account = acct.account;
+        break;
+      }
+    }
+  }
+  
+  if (!positionData) return;
+  
+  // Build modal content
+  document.getElementById('modalTicker').textContent = `${ticker} — ${positionData.name}`;
+  
+  const priceStr = positionData.currency === 'GBP' ? `£${positionData.current_price.toFixed(4)}` :
+                   positionData.currency === 'CAD' ? `C$${positionData.current_price.toFixed(4)}` :
+                   positionData.currency === 'AUD' ? `A$${positionData.current_price.toFixed(4)}` :
+                   `$${positionData.current_price.toFixed(4)}`;
+  
+  const avgStr = positionData.currency === 'GBP' ? `£${positionData.weighted_avg_price?.toFixed(4) || positionData.avg_price?.toFixed(4)}` :
+                 positionData.currency === 'CAD' ? `C$${positionData.weighted_avg_price?.toFixed(4) || positionData.avg_price?.toFixed(4)}` :
+                 positionData.currency === 'AUD' ? `A$${positionData.weighted_avg_price?.toFixed(4) || positionData.avg_price?.toFixed(4)}` :
+                 `$${positionData.weighted_avg_price?.toFixed(4) || positionData.avg_price?.toFixed(4)}`;
+  
+  const units = positionData.total_units || positionData.units;
+  const valueGbp = positionData.value_gbp;
+  const costGbp = positionData.total_cost_gbp || positionData.book_cost_gbp;
+  const pnlGbp = positionData.pnl_gbp;
+  const pnlPct = positionData.pnl_pct;
+  const dailyChangePct = positionData.daily_change_pct;
+  
+  let html = `
+    <div class="modal-section">
+      <div class="modal-row">
+        <span class="label">Exchange</span>
+        <span class="value">${positionData.exchange}</span>
+      </div>
+      <div class="modal-row">
+        <span class="label">Currency</span>
+        <span class="value">${positionData.currency}</span>
+      </div>
+      ${positionData.person ? `<div class="modal-row"><span class="label">Person</span><span class="value">${positionData.person}</span></div>` : ''}
+      ${positionData.account ? `<div class="modal-row"><span class="label">Account</span><span class="value">${positionData.account}</span></div>` : ''}
+      ${positionData.accounts ? `<div class="modal-row"><span class="label">Accounts</span><span class="value">${positionData.accounts.map(a => a.account).join(', ')}</span></div>` : ''}
+    </div>
+    
+    <div class="modal-section">
+      <div class="modal-section-title">📊 Position Details</div>
+      <div class="modal-row">
+        <span class="label">Units Held</span>
+        <span class="value">${units.toLocaleString('en-GB', {maximumFractionDigits: 4})}</span>
+      </div>
+      <div class="modal-row">
+        <span class="label">Current Price</span>
+        <span class="value">${priceStr}</span>
+      </div>
+      <div class="modal-row">
+        <span class="label">Average Cost</span>
+        <span class="value">${avgStr}</span>
+      </div>
+      <div class="modal-row">
+        <span class="label">Daily Change</span>
+        <span class="value ${dailyChangePct >= 0 ? 'positive' : 'negative'}">${fmtPct(dailyChangePct)}</span>
+      </div>
+    </div>
+    
+    <div class="modal-section">
+      <div class="modal-section-title">💰 P&L Summary</div>
+      <div class="modal-row">
+        <span class="label">Current Value</span>
+        <span class="value">${fmt(valueGbp)}</span>
+      </div>
+      <div class="modal-row">
+        <span class="label">Book Cost</span>
+        <span class="value">${fmt(costGbp)}</span>
+      </div>
+      <div class="modal-row" style="border-bottom:none;padding-top:12px;margin-top:8px;border-top:1px solid var(--card-border)">
+        <span class="label" style="font-weight:700">Profit/Loss</span>
+        <span class="value ${pnlGbp >= 0 ? 'positive' : 'negative'}" style="font-size:16px">${fmt(pnlGbp)} (${fmtPct(pnlPct)})</span>
+      </div>
+    </div>
+  `;
+  
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('positionModal').classList.add('visible');
+}
+
+function closeModal(event) {
+  // Close on overlay click or explicit close button
+  if (!event || event.target.id === 'positionModal') {
+    document.getElementById('positionModal').classList.remove('visible');
+  }
 }
 
 // ====== AUTO-REFRESH ======
