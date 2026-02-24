@@ -782,7 +782,7 @@ document.querySelectorAll("#view-tabs .tab").forEach(btn => {
 // Auto-detect: if local, use same origin; if GitHub Pages, use Cloudflare tunnel to price server
 const PRICE_SERVER_URL = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
   ? location.origin  // same-origin when served from price server
-  : 'https://kyle-charles-asian-pacific.trycloudflare.com';
+  : 'https://sitting-tiny-causes-forth.trycloudflare.com';
 
 async function refreshPrices() {
   if (!DATA) return;
