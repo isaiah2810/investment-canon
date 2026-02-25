@@ -163,20 +163,6 @@
 <div class="people-row" id="people-row"></div>
 
 <div class="section-title">📈 <span>P&L History</span></div>
-<div class="benchmark-controls" style="display:flex;gap:12px;justify-content:center;margin-bottom:12px;flex-wrap:wrap">
-  <label style="display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer;color:var(--text-muted)">
-    <input type="checkbox" id="benchSP500" onchange="renderChart()" style="cursor:pointer"> 
-    <span>📊 S&P 500</span>
-  </label>
-  <label style="display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer;color:var(--text-muted)">
-    <input type="checkbox" id="benchFTSE" onchange="renderChart()" style="cursor:pointer">
-    <span>🇬🇧 FTSE 100</span>
-  </label>
-  <label style="display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer;color:var(--text-muted)">
-    <input type="checkbox" id="benchGold" onchange="renderChart()" style="cursor:pointer">
-    <span>✨ Gold</span>
-  </label>
-</div>
 <div class="chart-area"><canvas id="pnlChart"></canvas></div>
 
 <div class="tabs" id="view-tabs">
@@ -263,7 +249,6 @@ function onDataLoaded() {
 let activeView = "accounts";
 let activeFilter = "all"; // "all" or account/person name
 let chart = null;
-let BENCHMARK_DATA = null; // Cached benchmark historical data
 let sortCol = "valueGbp";
 let sortDir = "desc";
 
@@ -719,7 +704,7 @@ function renderAnalytics() {
   document.getElementById("analytics").innerHTML = html;
 }
 
-async function renderChart() {
+function renderChart() {
   if (!DATA || DATA.snapshots.length < 1) return;
   
   const labels = DATA.snapshots.map(s => s.date);
@@ -740,71 +725,6 @@ async function renderChart() {
   people.forEach(p => {
     datasets.push({label:p, data:personSeries[p], borderColor:colors[p]||'#888', tension:0.3, borderWidth:1.5, borderDash:[4,2], fill:false, pointRadius:2});
   });
-  
-  // Add benchmarks if selected
-  const includeSP500 = document.getElementById('benchSP500')?.checked;
-  const includeFTSE = document.getElementById('benchFTSE')?.checked;
-  const includeGold = document.getElementById('benchGold')?.checked;
-
-  if ((includeSP500 || includeFTSE || includeGold) && !BENCHMARK_DATA) {
-    // Fetch benchmark data if not cached
-    await fetchBenchmarkData();
-  }
-
-  if (BENCHMARK_DATA) {
-    const portfolioDates = DATA.snapshots.map(s => s.date);
-    
-    if (includeSP500 && BENCHMARK_DATA['^GSPC']) {
-      const bench = BENCHMARK_DATA['^GSPC'];
-      const aligned = alignBenchmarkData(bench, portfolioDates);
-      datasets.push({
-        label: '📊 S&P 500',
-        data: aligned,
-        borderColor: '#6b7280',
-        backgroundColor: 'transparent',
-        tension: 0.3,
-        borderWidth: 1.5,
-        borderDash: [6, 4],
-        fill: false,
-        pointRadius: 1,
-        pointHoverRadius: 4
-      });
-    }
-    
-    if (includeFTSE && BENCHMARK_DATA['^FTSE']) {
-      const bench = BENCHMARK_DATA['^FTSE'];
-      const aligned = alignBenchmarkData(bench, portfolioDates);
-      datasets.push({
-        label: '🇬🇧 FTSE 100',
-        data: aligned,
-        borderColor: '#8b5cf6',
-        backgroundColor: 'transparent',
-        tension: 0.3,
-        borderWidth: 1.5,
-        borderDash: [2, 3],
-        fill: false,
-        pointRadius: 1,
-        pointHoverRadius: 4
-      });
-    }
-    
-    if (includeGold && BENCHMARK_DATA['GC=F']) {
-      const bench = BENCHMARK_DATA['GC=F'];
-      const aligned = alignBenchmarkData(bench, portfolioDates);
-      datasets.push({
-        label: '✨ Gold',
-        data: aligned,
-        borderColor: '#fbbf24',
-        backgroundColor: 'transparent',
-        tension: 0.3,
-        borderWidth: 1.5,
-        borderDash: [8, 2],
-        fill: false,
-        pointRadius: 1,
-        pointHoverRadius: 4
-      });
-    }
-  }
   
   const ctx = document.getElementById('pnlChart').getContext('2d');
   if (chart) chart.destroy();
@@ -832,92 +752,6 @@ async function renderChart() {
       }
     }
   });
-}
-
-// Fetch benchmark historical data
-async function fetchBenchmarkData() {
-  if (!DATA || DATA.snapshots.length < 2) return null;
-  if (BENCHMARK_DATA) return BENCHMARK_DATA; // Return cached
-
-  const dates = DATA.snapshots.map(s => s.date);
-  const startDate = dates[0];
-  const endDate = dates[dates.length - 1];
-  
-  console.log(`Fetching benchmark data from ${startDate} to ${endDate}`);
-  
-  try {
-    const benchmarks = {
-      '^GSPC': 'S&P 500',
-      '^FTSE': 'FTSE 100',
-      'GC=F': 'Gold'
-    };
-    
-    const results = {};
-    
-    for (const [ticker, name] of Object.entries(benchmarks)) {
-      try {
-        const resp = await fetch(`${PRICE_SERVER_URL}/api/history?ticker=${ticker}&start=${startDate}&end=${endDate}`);
-        if (!resp.ok) {
-          console.warn(`Failed to fetch ${name}: ${resp.status}`);
-          continue;
-        }
-        const data = await resp.json();
-        
-        if (!data.prices || data.prices.length === 0) {
-          console.warn(`No price data for ${name}`);
-          continue;
-        }
-        
-        // Calculate percentage change from first date
-        const firstPrice = data.prices[0].close;
-        const pctChanges = data.prices.map(p => ((p.close - firstPrice) / firstPrice) * 100);
-        
-        results[ticker] = {
-          name,
-          dates: data.prices.map(p => p.date),
-          pctChanges
-        };
-        
-        console.log(`✅ ${name}: ${data.prices.length} data points, first=${firstPrice.toFixed(2)}`);
-      } catch (e) {
-        console.warn(`Error fetching ${name}:`, e);
-      }
-    }
-    
-    BENCHMARK_DATA = results;
-    return results;
-  } catch (e) {
-    console.error('Benchmark fetch error:', e);
-    return null;
-  }
-}
-
-// Helper function to align benchmark data with portfolio dates
-function alignBenchmarkData(benchmark, portfolioDates) {
-  const aligned = [];
-  for (const pDate of portfolioDates) {
-    // Find closest benchmark date (on or after portfolio date)
-    let closestIdx = -1;
-    let minDiff = Infinity;
-    
-    for (let i = 0; i < benchmark.dates.length; i++) {
-      const bDate = new Date(benchmark.dates[i]);
-      const pDateObj = new Date(pDate);
-      const diff = Math.abs(bDate - pDateObj);
-      
-      if (diff < minDiff) {
-        minDiff = diff;
-        closestIdx = i;
-      }
-    }
-    
-    if (closestIdx >= 0) {
-      aligned.push(benchmark.pctChanges[closestIdx]);
-    } else {
-      aligned.push(null);
-    }
-  }
-  return aligned;
 }
 
 function render() {
