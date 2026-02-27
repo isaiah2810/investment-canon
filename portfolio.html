@@ -136,11 +136,38 @@
   .site-nav .brand{color:var(--accent);font-weight:700;font-size:13px;margin-right:8px;align-self:center}
   .theme-toggle{cursor:pointer;font-size:20px;padding:4px 12px;border-radius:20px;border:1px solid var(--card-border);background:transparent;transition:all .2s;margin-left:auto}
   .theme-toggle:hover{border-color:var(--accent)}
+  .lock-btn{cursor:pointer;font-size:18px;padding:4px 12px;border-radius:20px;border:1px solid var(--card-border);background:transparent;transition:all .2s;margin-left:6px}
+  .lock-btn:hover{border-color:var(--red);color:var(--red)}
+
+  /* Auth modal */
+  .auth-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.95);z-index:9999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+  .auth-modal{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:32px;max-width:400px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,0.5);text-align:center}
+  .auth-modal h2{font-size:22px;margin-bottom:8px;color:var(--text)}
+  .auth-modal p{color:var(--text-muted);font-size:13px;margin-bottom:24px;line-height:1.5}
+  .auth-modal input{width:100%;padding:14px;font-size:18px;text-align:center;border:2px solid var(--card-border);border-radius:10px;background:var(--bg);color:var(--text);margin-bottom:16px;letter-spacing:4px;font-weight:600;transition:border-color .2s}
+  .auth-modal input:focus{outline:none;border-color:var(--accent)}
+  .auth-modal .error{color:var(--red);font-size:12px;margin-bottom:12px;min-height:18px}
+  .auth-submit{background:var(--accent);border:none;color:#000;padding:12px 32px;border-radius:24px;cursor:pointer;font-size:14px;font-weight:700;width:100%;transition:all .2s}
+  .auth-submit:hover{background:rgba(245,158,11,0.9);transform:translateY(-1px)}
+  .auth-submit:active{transform:scale(0.97)}
+  .auth-modal .lock-icon{font-size:48px;margin-bottom:16px}
 </style>
 </head>
 <body>
 
-<nav class="site-nav"><span class="brand">Carlin Invests</span><a href="index.html">📚 Canon</a><a href="investor-database.html">🏆 Investors</a><a href="portfolio.html" class="active">📊 Portfolio</a><button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button></nav>
+<!-- Auth overlay (shown until authenticated) -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <div class="lock-icon">🔒</div>
+    <h2>Portfolio Access</h2>
+    <p>This dashboard contains private family financial data.<br>Please enter your PIN to continue.</p>
+    <input type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="••••" id="authPinInput" autocomplete="off">
+    <div class="error" id="authError"></div>
+    <button class="auth-submit" onclick="checkAuth()">Unlock</button>
+  </div>
+</div>
+
+<nav class="site-nav"><span class="brand">Carlin Invests</span><a href="index.html">📚 Canon</a><a href="investor-database.html">🏆 Investors</a><a href="portfolio.html" class="active">📊 Portfolio</a><button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button><button class="lock-btn" onclick="logout()" title="Lock Dashboard">🔐</button></nav>
 
 <div class="header">
   <h1>📊 <span>Portfolio</span> Dashboard</h1>
@@ -168,8 +195,13 @@
 <div class="section-title">👤 <span>By Person</span></div>
 <div class="people-row" id="people-row"></div>
 
-<div class="section-title">📈 <span>P&L History</span></div>
+<div class="section-title">📈 <span>History</span></div>
 <div class="benchmark-controls" style="display:flex;gap:12px;justify-content:center;margin-bottom:12px;flex-wrap:wrap">
+  <div style="background:rgba(255,255,255,0.06);border-radius:16px;padding:2px;display:flex">
+    <button id="modePnl" onclick="setChartMode('pnl')" style="background:var(--accent);color:#000;border:none;border-radius:14px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer">P&L %</button>
+    <button id="modeValue" onclick="setChartMode('value')" style="background:transparent;color:var(--text-muted);border:none;border-radius:14px;padding:4px 12px;font-size:11px;font-weight:500;cursor:pointer">Value £</button>
+  </div>
+  <div style="width:1px;background:var(--card-border);margin:0 4px"></div>
   <label style="display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer;color:var(--text-muted)">
     <input type="checkbox" id="benchSP500" onchange="renderChart()" style="cursor:pointer"> 
     <span>📊 S&P 500</span>
@@ -239,6 +271,76 @@ function updateThemeIcon(theme) {
 
 // Initialize theme before page load
 initTheme();
+
+// ====== AUTHENTICATION ======
+const AUTH_HASH = '76ced5b53829bb4ca8ab376be09683e92512ef0aab8fb68fcee5121596f94143'; // SHA-256 of PIN
+
+async function sha256(message) {
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function checkAuth() {
+  const input = document.getElementById('authPinInput');
+  const error = document.getElementById('authError');
+  const pin = input.value.trim();
+  
+  if (pin.length !== 4 || !/^\d{4}$/.test(pin)) {
+    error.textContent = 'Please enter a 4-digit PIN';
+    input.value = '';
+    input.focus();
+    return;
+  }
+  
+  const hash = await sha256(pin);
+  
+  if (hash === AUTH_HASH) {
+    // Correct PIN
+    sessionStorage.setItem('portfolio_auth', 'true');
+    document.getElementById('authOverlay').style.display = 'none';
+    error.textContent = '';
+    input.value = '';
+    // Load data after authentication
+    loadData();
+  } else {
+    // Wrong PIN
+    error.textContent = 'Incorrect PIN. Please try again.';
+    input.value = '';
+    input.focus();
+  }
+}
+
+function logout() {
+  if (confirm('Lock dashboard? You will need to re-enter PIN.')) {
+    sessionStorage.removeItem('portfolio_auth');
+    location.reload();
+  }
+}
+
+function checkAuthStatus() {
+  const isAuth = sessionStorage.getItem('portfolio_auth') === 'true';
+  const overlay = document.getElementById('authOverlay');
+  
+  if (isAuth) {
+    overlay.style.display = 'none';
+    loadData(); // Load data if already authenticated
+  } else {
+    overlay.style.display = 'flex';
+    // Focus PIN input
+    setTimeout(() => {
+      document.getElementById('authPinInput').focus();
+    }, 100);
+    // Add Enter key listener
+    document.getElementById('authPinInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') checkAuth();
+    });
+  }
+}
+
+// Check auth on page load
+checkAuthStatus();
 
 // Data will be injected by the build script or loaded from JSON
 let DATA = null;
@@ -1503,7 +1605,7 @@ window.addEventListener('appinstalled', () => {
   deferredPrompt = null;
 });
 
-loadData();
+// loadData() is now called by checkAuthStatus() after authentication
 </script>
 </body>
 </html>
