@@ -9098,12 +9098,12 @@
     },
     {
       "date": "2026-02-27",
-      "timestamp": "2026-02-27T21:05:00.686717",
+      "timestamp": "2026-02-27T21:05:31.525205",
       "fx_rates": {
         "GBP": 1.0,
         "CAD": 0.5435000061988831,
         "USD": 0.7420200109481812,
-        "AUD": 0.5275999903678894
+        "AUD": 0.5274999737739563
       },
       "accounts": {
         "CP II": {
@@ -9146,9 +9146,9 @@
               "avg_price": 0.132099,
               "current_price": 0.1,
               "daily_change_pct": -4.76,
-              "value_gbp": 30231.48,
-              "book_cost_gbp": 39935.54,
-              "pnl_gbp": -9704.06,
+              "value_gbp": 30225.75,
+              "book_cost_gbp": 39927.97,
+              "pnl_gbp": -9702.22,
               "pnl_pct": -24.3
             },
             {
@@ -9250,10 +9250,10 @@
               "pnl_pct": 1.34
             }
           ],
-          "total_value_gbp": 63009.61,
-          "total_cost_gbp": 66107.7,
-          "pnl_gbp": -3098.09,
-          "pnl_pct": -4.69
+          "total_value_gbp": 63003.88,
+          "total_cost_gbp": 66100.13,
+          "pnl_gbp": -3096.25,
+          "pnl_pct": -4.68
         },
         "CP IBKR": {
           "cash_gbp": 328.56,
@@ -9281,15 +9281,15 @@
               "avg_price": 0.14,
               "current_price": 0.1,
               "daily_change_pct": -4.76,
-              "value_gbp": 1846.6,
-              "book_cost_gbp": 2585.24,
-              "pnl_gbp": -738.64,
+              "value_gbp": 1846.25,
+              "book_cost_gbp": 2584.75,
+              "pnl_gbp": -738.5,
               "pnl_pct": -28.57
             }
           ],
-          "total_value_gbp": 3057.25,
-          "total_cost_gbp": 3671.15,
-          "pnl_gbp": -613.9,
+          "total_value_gbp": 3056.9,
+          "total_cost_gbp": 3670.66,
+          "pnl_gbp": -613.76,
           "pnl_pct": -16.72
         },
         "NANA": {
@@ -9570,7 +9570,7 @@
           "exchange": "ASX",
           "total_units": 608000,
           "total_cost_local": 80592.727,
-          "total_cost_gbp": 42520.78,
+          "total_cost_gbp": 42512.72,
           "current_price": 0.1,
           "daily_change_pct": -4.76,
           "accounts": [
@@ -9585,9 +9585,9 @@
               "avg_price": 0.14
             }
           ],
-          "value_gbp": 32078.08,
+          "value_gbp": 32072.0,
           "weighted_avg_price": 0.1326,
-          "pnl_gbp": -10442.7,
+          "pnl_gbp": -10440.72,
           "pnl_pct": -24.56
         },
         "CTGO": {
@@ -10011,11 +10011,11 @@
         }
       },
       "family_total": {
-        "investments_gbp": 110582.96,
+        "investments_gbp": 110576.88,
         "cash_gbp": 5636.36,
-        "total_gbp": 116219.32,
-        "book_cost_gbp": 103931.5,
-        "pnl_gbp": 6651.46,
+        "total_gbp": 116213.24,
+        "book_cost_gbp": 103923.44,
+        "pnl_gbp": 6653.44,
         "pnl_pct": 6.4
       },
       "people": {
@@ -10024,11 +10024,11 @@
             "CP II",
             "CP IBKR"
           ],
-          "investments_gbp": 66066.86,
+          "investments_gbp": 66060.78,
           "cash_gbp": 419.47,
-          "total_gbp": 66486.33,
-          "book_cost_gbp": 69778.85,
-          "pnl_gbp": -3711.99,
+          "total_gbp": 66480.25,
+          "book_cost_gbp": 69770.79,
+          "pnl_gbp": -3710.01,
           "pnl_pct": -5.32,
           "positions": {
             "HSLV": {
@@ -10079,10 +10079,10 @@
               "exchange": "ASX",
               "total_units": 608000,
               "total_cost_local": 80592.727,
-              "total_cost_gbp": 42520.78,
+              "total_cost_gbp": 42512.72,
               "current_price": 0.1,
               "daily_change_pct": -4.76,
-              "value_gbp": 32078.08,
+              "value_gbp": 32072.0,
               "accounts": [
                 {
                   "account": "CP II",
@@ -10096,7 +10096,7 @@
                 }
               ],
               "weighted_avg_price": 0.1326,
-              "pnl_gbp": -10442.7,
+              "pnl_gbp": -10440.72,
               "pnl_pct": -24.56
             },
             "CTGO": {
@@ -10616,7 +10616,7 @@
   "metadata": {
     "created": "2026-02-19T21:45:29.935815",
     "version": 1,
-    "lastUpdated": "2026-02-27T21:05:02.251630",
+    "lastUpdated": "2026-02-27T21:05:32.990944",
     "totalSnapshots": 7
   }
 }
