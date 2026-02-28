@@ -244,6 +244,39 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <script>
+// ====== VARIABLES ======
+let activeView = "accounts";
+let activeFilter = "all"; // "all" or account/person name
+let chart = null;
+let chartMode = 'pnl'; // 'pnl' or 'value'
+let BENCHMARK_DATA = null; // Cached benchmark historical data
+let sortCol = "valueGbp";
+let sortDir = "desc";
+
+function setChartMode(mode) {
+  chartMode = mode;
+  // Update UI
+  const btnPnl = document.getElementById('modePnl');
+  const btnVal = document.getElementById('modeValue');
+  
+  if (mode === 'pnl') {
+    btnPnl.style.background = 'var(--accent)';
+    btnPnl.style.color = '#000';
+    btnPnl.style.fontWeight = '700';
+    btnVal.style.background = 'transparent';
+    btnVal.style.color = 'var(--text-muted)';
+    btnVal.style.fontWeight = '500';
+  } else {
+    btnVal.style.background = 'var(--accent)';
+    btnVal.style.color = '#000';
+    btnVal.style.fontWeight = '700';
+    btnPnl.style.background = 'transparent';
+    btnPnl.style.color = 'var(--text-muted)';
+    btnPnl.style.fontWeight = '500';
+  }
+  renderChart();
+}
+
 // ====== THEME ======
 function initTheme() {
   const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -401,37 +434,7 @@ function onDataLoaded() {
   startAutoRefresh();
 }
 
-let activeView = "accounts";
-let activeFilter = "all"; // "all" or account/person name
-let chart = null;
-let chartMode = 'pnl'; // 'pnl' or 'value'
-let BENCHMARK_DATA = null; // Cached benchmark historical data
-let sortCol = "valueGbp";
-let sortDir = "desc";
 
-function setChartMode(mode) {
-  chartMode = mode;
-  // Update UI
-  const btnPnl = document.getElementById('modePnl');
-  const btnVal = document.getElementById('modeValue');
-  
-  if (mode === 'pnl') {
-    btnPnl.style.background = 'var(--accent)';
-    btnPnl.style.color = '#000';
-    btnPnl.style.fontWeight = '700';
-    btnVal.style.background = 'transparent';
-    btnVal.style.color = 'var(--text-muted)';
-    btnVal.style.fontWeight = '500';
-  } else {
-    btnVal.style.background = 'var(--accent)';
-    btnVal.style.color = '#000';
-    btnVal.style.fontWeight = '700';
-    btnPnl.style.background = 'transparent';
-    btnPnl.style.color = 'var(--text-muted)';
-    btnPnl.style.fontWeight = '500';
-  }
-  renderChart();
-}
 
 function latest() { return DATA.snapshots[DATA.snapshots.length - 1]; }
 function prev() { return DATA.snapshots.length > 1 ? DATA.snapshots[DATA.snapshots.length - 2] : null; }
