@@ -344,18 +344,44 @@ checkAuthStatus();
 
 // Data will be injected by the build script or loaded from JSON
 let DATA = null;
-const DATA_URL = "data/portfolio_history.json?t=" + Date.now();
+let FULL_HISTORY_LOADED = false;
+const LATEST_URL = "data/portfolio_latest.json?t=" + Date.now();
+const HISTORY_URL = "data/portfolio_history.json?t=" + Date.now();
 
 async function loadData() {
+  // Load latest snapshot first (small, fast)
   try {
-    const r = await fetch(DATA_URL);
+    const r = await fetch(LATEST_URL);
     DATA = await r.json();
     render();
     onDataLoaded();
   } catch(e) {
-    // Try embedded data
-    if(window.PORTFOLIO_DATA) { DATA = window.PORTFOLIO_DATA; render(); onDataLoaded(); }
-    else { document.getElementById("hero").innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted)">No data yet — dashboard populates after first market close snapshot.</div>'; }
+    // Fallback to full history if latest doesn't exist (backward compatibility)
+    try {
+      const r = await fetch(HISTORY_URL);
+      DATA = await r.json();
+      FULL_HISTORY_LOADED = true;
+      render();
+      onDataLoaded();
+    } catch(e2) {
+      // Try embedded data
+      if(window.PORTFOLIO_DATA) { DATA = window.PORTFOLIO_DATA; render(); onDataLoaded(); }
+      else { document.getElementById("hero").innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted)">No data yet — dashboard populates after first market close snapshot.</div>'; }
+    }
+  }
+}
+
+async function loadFullHistory() {
+  // Lazy-load full history for chart rendering (only called when needed)
+  if (FULL_HISTORY_LOADED) return;
+  
+  try {
+    const r = await fetch(HISTORY_URL);
+    const fullData = await r.json();
+    DATA.snapshots = fullData.snapshots; // Replace snapshots with full history
+    FULL_HISTORY_LOADED = true;
+  } catch(e) {
+    console.warn('Failed to load full history:', e);
   }
 }
 
@@ -829,6 +855,9 @@ function renderAnalytics() {
 
 async function renderChart() {
   if (!DATA || DATA.snapshots.length < 1) return;
+  
+  // Lazy-load full history if not already loaded
+  await loadFullHistory();
   
   const labels = DATA.snapshots.map(s => s.date);
   const familyPnl = DATA.snapshots.map(s => s.family_total.pnl_pct);
