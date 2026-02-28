@@ -1,0 +1,2788 @@
+{
+  "generated_at": "2026-02-28T21:00:00",
+  "note": "Default scores - update with actual risk assessments",
+  "categories": {
+    "macro": [
+      "Interest Rates",
+      "Inflation",
+      "Currency Risk",
+      "Commodity Prices",
+      "Geopolitical",
+      "Regulatory/Policy",
+      "Market Sentiment"
+    ],
+    "company": [
+      "Management Quality",
+      "Balance Sheet",
+      "Revenue Growth",
+      "Profitability",
+      "Competitive Position",
+      "ESG/Social License",
+      "Exploration Risk",
+      "Execution Risk"
+    ],
+    "portfolio": [
+      "Concentration Risk",
+      "Correlation Risk",
+      "Liquidity Risk",
+      "Sector Exposure",
+      "Currency Exposure",
+      "Valuation Risk",
+      "Momentum",
+      "Volatility Trend",
+      "Technical Setup"
+    ]
+  },
+  "positions": {
+    "ALTA": {
+      "name": "Altamira Gold Corp",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "CDE": {
+      "name": "Coeur Mining Inc",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "CTGO": {
+      "name": "Contango Ore Inc",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "ETM": {
+      "name": "Energy Transition Minerals Ltd",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "FF": {
+      "name": "First Mining Gold Corp",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "GDGB": {
+      "name": "VanEck Gold Miners UCITS ETF (GBP Acc)",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "GDX": {
+      "name": "VanEck Gold Miners ETF",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "GDXJ": {
+      "name": "VanEck Junior Gold Miners UCITS ETF",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "GRG": {
+      "name": "Greggs plc",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "GSPR": {
+      "name": "GSP Resource Corp",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "HSLV": {
+      "name": "Highlander Silver Corp",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "HSTR": {
+      "name": "Heliostar Metals Ltd",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "LG": {
+      "name": "Lahontan Gold Corp",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "MASS": {
+      "name": "Masivo Silver Corp",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "MGG": {
+      "name": "Minaurum Silver Inc",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "NAU": {
+      "name": "Nevgold Corp",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "OSS": {
+      "name": "One Stop Systems Inc",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "QIMC": {
+      "name": "Quebec Innovative Materials Corp",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "SBRY": {
+      "name": "J Sainsbury plc",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "SSLN": {
+      "name": "iShares Physical Silver ETC",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "TI": {
+      "name": "Titan Mining Corp",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    },
+    "TRT": {
+      "name": "Trio-Tech International",
+      "scores": {
+        "Interest Rates": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Inflation": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Risk": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Commodity Prices": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Geopolitical": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Regulatory/Policy": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Market Sentiment": {
+          "category": "macro",
+          "severity": "low",
+          "notes": ""
+        },
+        "Management Quality": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Balance Sheet": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Revenue Growth": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Profitability": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Competitive Position": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "ESG/Social License": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Exploration Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Execution Risk": {
+          "category": "company",
+          "severity": "low",
+          "notes": ""
+        },
+        "Concentration Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Correlation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Liquidity Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Sector Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Currency Exposure": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Valuation Risk": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Momentum": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Volatility Trend": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        },
+        "Technical Setup": {
+          "category": "portfolio",
+          "severity": "low",
+          "notes": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1282 @@
+{
+  "generated_at": "2026-02-28T21:29:16.338300",
+  "benchmark": "S&P 500 (^GSPC)",
+  "tickers": {
+    "HSLV": {
+      "name": "Highlander Silver Corp",
+      "currency": "CAD",
+      "timeframes": {
+        "1M": {
+          "sd": 7.1509,
+          "sd_annualized": 113.52,
+          "beta": 2.96,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 5.6796,
+          "sd_annualized": 90.16,
+          "beta": 2.776,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 5.2734,
+          "sd_annualized": 83.71,
+          "beta": 2.33,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 4.5475,
+          "sd_annualized": 72.19,
+          "beta": 1.415,
+          "data_points": 199
+        },
+        "3Y": {
+          "sd": 4.5475,
+          "sd_annualized": 72.19,
+          "beta": 1.415,
+          "data_points": 199
+        },
+        "5Y": {
+          "sd": 4.5475,
+          "sd_annualized": 72.19,
+          "beta": 1.415,
+          "data_points": 199
+        },
+        "10Y": {
+          "sd": 4.5475,
+          "sd_annualized": 72.19,
+          "beta": 1.415,
+          "data_points": 199
+        },
+        "Full": {
+          "sd": 4.5475,
+          "sd_annualized": 72.19,
+          "beta": 1.415,
+          "data_points": 199
+        }
+      },
+      "avg_volume_30d": 866846.6666666666,
+      "liquidity_ratio": 0.0005939259499607695,
+      "status": "ok",
+      "trend_flag": "trend_break"
+    },
+    "QIMC": {
+      "name": "Quebec Innovative Materials Corp",
+      "currency": "CAD",
+      "timeframes": {
+        "1M": {
+          "sd": 5.9325,
+          "sd_annualized": 94.18,
+          "beta": 2.051,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 5.9802,
+          "sd_annualized": 94.93,
+          "beta": 1.405,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 6.3763,
+          "sd_annualized": 101.22,
+          "beta": 2.266,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 7.5257,
+          "sd_annualized": 119.47,
+          "beta": 1.773,
+          "data_points": 250
+        },
+        "3Y": {
+          "sd": 12.1242,
+          "sd_annualized": 192.47,
+          "beta": 1.23,
+          "data_points": 752
+        },
+        "5Y": {
+          "sd": 12.8646,
+          "sd_annualized": 204.22,
+          "beta": 1.045,
+          "data_points": 1217
+        },
+        "10Y": {
+          "sd": 12.8646,
+          "sd_annualized": 204.22,
+          "beta": 1.045,
+          "data_points": 1217
+        },
+        "Full": {
+          "sd": 12.8646,
+          "sd_annualized": 204.22,
+          "beta": 1.045,
+          "data_points": 1217
+        }
+      },
+      "avg_volume_30d": 502134.8,
+      "liquidity_ratio": 0.005396355945072015,
+      "status": "ok",
+      "trend_flag": "normal"
+    },
+    "ETM": {
+      "name": "Energy Transition Minerals Ltd",
+      "currency": "AUD",
+      "timeframes": {
+        "1M": {
+          "sd": 7.1186,
+          "sd_annualized": 113.0,
+          "beta": null,
+          "data_points": 21
+        },
+        "3M": {
+          "sd": 9.461,
+          "sd_annualized": 150.19,
+          "beta": null,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 7.9568,
+          "sd_annualized": 126.31,
+          "beta": null,
+          "data_points": 125
+        },
+        "12M": {
+          "sd": 8.35,
+          "sd_annualized": 132.55,
+          "beta": null,
+          "data_points": 252
+        },
+        "3Y": {
+          "sd": 6.9478,
+          "sd_annualized": 110.29,
+          "beta": null,
+          "data_points": 758
+        },
+        "5Y": {
+          "sd": 6.5529,
+          "sd_annualized": 104.02,
+          "beta": null,
+          "data_points": 1264
+        },
+        "10Y": {
+          "sd": 6.0409,
+          "sd_annualized": 95.9,
+          "beta": null,
+          "data_points": 2528
+        },
+        "Full": {
+          "sd": 9.6899,
+          "sd_annualized": 153.82,
+          "beta": null,
+          "data_points": 4983
+        }
+      },
+      "avg_volume_30d": 9067911.366666667,
+      "liquidity_ratio": 0.0352929012050592,
+      "status": "ok",
+      "trend_flag": "normal"
+    },
+    "CTGO": {
+      "name": "Contango Ore Inc",
+      "currency": "USD",
+      "timeframes": {
+        "1M": {
+          "sd": 5.2099,
+          "sd_annualized": 82.7,
+          "beta": 2.328,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 4.0711,
+          "sd_annualized": 64.63,
+          "beta": 0.986,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 3.6522,
+          "sd_annualized": 57.98,
+          "beta": 0.963,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 3.98,
+          "sd_annualized": 63.18,
+          "beta": 0.654,
+          "data_points": 250
+        },
+        "3Y": {
+          "sd": 4.0894,
+          "sd_annualized": 64.92,
+          "beta": 0.796,
+          "data_points": 751
+        },
+        "5Y": {
+          "sd": 3.9768,
+          "sd_annualized": 63.13,
+          "beta": 0.293,
+          "data_points": 1255
+        },
+        "10Y": {
+          "sd": 5.2169,
+          "sd_annualized": 82.81,
+          "beta": 0.273,
+          "data_points": 2512
+        },
+        "Full": {
+          "sd": 7.3895,
+          "sd_annualized": 117.31,
+          "beta": 0.176,
+          "data_points": 3818
+        }
+      },
+      "avg_volume_30d": 256430.0,
+      "liquidity_ratio": 0.0007763112915396969,
+      "status": "ok",
+      "trend_flag": "elevated"
+    },
+    "OSS": {
+      "name": "One Stop Systems Inc",
+      "currency": "USD",
+      "timeframes": {
+        "1M": {
+          "sd": 8.6788,
+          "sd_annualized": 137.77,
+          "beta": 4.526,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 7.8088,
+          "sd_annualized": 123.96,
+          "beta": 2.355,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 7.0915,
+          "sd_annualized": 112.57,
+          "beta": 3.25,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 6.4797,
+          "sd_annualized": 102.86,
+          "beta": 1.599,
+          "data_points": 250
+        },
+        "3Y": {
+          "sd": 5.7006,
+          "sd_annualized": 90.49,
+          "beta": 1.391,
+          "data_points": 751
+        },
+        "5Y": {
+          "sd": 4.8863,
+          "sd_annualized": 77.57,
+          "beta": 0.896,
+          "data_points": 1255
+        },
+        "10Y": {
+          "sd": 5.1281,
+          "sd_annualized": 81.41,
+          "beta": 0.965,
+          "data_points": 2028
+        },
+        "Full": {
+          "sd": 5.1281,
+          "sd_annualized": 81.41,
+          "beta": 0.965,
+          "data_points": 2028
+        }
+      },
+      "avg_volume_30d": 2297210.0,
+      "liquidity_ratio": 3.226572176849999e-05,
+      "status": "ok",
+      "trend_flag": "elevated"
+    },
+    "MGG": {
+      "name": "Minaurum Silver Inc",
+      "currency": "CAD",
+      "timeframes": {
+        "1M": {
+          "sd": 7.6917,
+          "sd_annualized": 122.1,
+          "beta": 3.784,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 6.9392,
+          "sd_annualized": 110.16,
+          "beta": 3.056,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 7.1339,
+          "sd_annualized": 113.25,
+          "beta": 2.559,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 6.7824,
+          "sd_annualized": 107.67,
+          "beta": 1.32,
+          "data_points": 250
+        },
+        "3Y": {
+          "sd": 7.1349,
+          "sd_annualized": 113.26,
+          "beta": 1.183,
+          "data_points": 752
+        },
+        "5Y": {
+          "sd": 6.8976,
+          "sd_annualized": 109.5,
+          "beta": 0.882,
+          "data_points": 1254
+        },
+        "10Y": {
+          "sd": 6.3628,
+          "sd_annualized": 101.01,
+          "beta": 0.63,
+          "data_points": 2507
+        },
+        "Full": {
+          "sd": 7.8866,
+          "sd_annualized": 125.2,
+          "beta": 0.46,
+          "data_points": 4016
+        }
+      },
+      "avg_volume_30d": 1576133.3333333333,
+      "liquidity_ratio": 0.009338053220425014,
+      "status": "ok",
+      "trend_flag": "normal"
+    },
+    "GSPR": {
+      "name": "GSP Resource Corp",
+      "currency": "CAD",
+      "timeframes": {
+        "1M": {
+          "sd": 9.4294,
+          "sd_annualized": 149.69,
+          "beta": 3.611,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 9.0307,
+          "sd_annualized": 143.36,
+          "beta": 2.374,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 7.0994,
+          "sd_annualized": 112.7,
+          "beta": 1.453,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 6.7248,
+          "sd_annualized": 106.75,
+          "beta": 0.621,
+          "data_points": 250
+        },
+        "3Y": {
+          "sd": 6.9522,
+          "sd_annualized": 110.36,
+          "beta": 0.266,
+          "data_points": 752
+        },
+        "5Y": {
+          "sd": 6.7914,
+          "sd_annualized": 107.81,
+          "beta": 0.026,
+          "data_points": 1254
+        },
+        "10Y": {
+          "sd": 7.5072,
+          "sd_annualized": 119.17,
+          "beta": 0.319,
+          "data_points": 1814
+        },
+        "Full": {
+          "sd": 7.5072,
+          "sd_annualized": 119.17,
+          "beta": 0.319,
+          "data_points": 1814
+        }
+      },
+      "avg_volume_30d": 79373.8,
+      "liquidity_ratio": 0.1911752705843451,
+      "status": "ok",
+      "trend_flag": "elevated"
+    },
+    "TI": {
+      "name": "Titan Mining Corp",
+      "currency": "CAD",
+      "timeframes": {
+        "1M": {
+          "sd": 7.4933,
+          "sd_annualized": 118.95,
+          "beta": 2.542,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 7.1329,
+          "sd_annualized": 113.23,
+          "beta": 1.245,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 7.1451,
+          "sd_annualized": 113.42,
+          "beta": 1.476,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 6.7853,
+          "sd_annualized": 107.71,
+          "beta": 0.813,
+          "data_points": 250
+        },
+        "3Y": {
+          "sd": 5.6737,
+          "sd_annualized": 90.07,
+          "beta": 0.575,
+          "data_points": 752
+        },
+        "5Y": {
+          "sd": 5.4494,
+          "sd_annualized": 86.51,
+          "beta": 0.423,
+          "data_points": 1254
+        },
+        "10Y": {
+          "sd": 5.7505,
+          "sd_annualized": 91.29,
+          "beta": 0.656,
+          "data_points": 2097
+        },
+        "Full": {
+          "sd": 5.7505,
+          "sd_annualized": 91.29,
+          "beta": 0.656,
+          "data_points": 2097
+        }
+      },
+      "avg_volume_30d": 203780.0,
+      "liquidity_ratio": 0.006028942811373516,
+      "status": "ok",
+      "trend_flag": "normal"
+    },
+    "NAU": {
+      "name": "Nevgold Corp",
+      "currency": "CAD",
+      "timeframes": {
+        "1M": {
+          "sd": 5.82,
+          "sd_annualized": 92.39,
+          "beta": 2.222,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 5.3924,
+          "sd_annualized": 85.6,
+          "beta": 2.234,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 6.3214,
+          "sd_annualized": 100.35,
+          "beta": 1.578,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 6.0438,
+          "sd_annualized": 95.94,
+          "beta": 0.647,
+          "data_points": 250
+        },
+        "3Y": {
+          "sd": 5.3858,
+          "sd_annualized": 85.5,
+          "beta": 0.468,
+          "data_points": 752
+        },
+        "5Y": {
+          "sd": 5.4604,
+          "sd_annualized": 86.68,
+          "beta": 0.323,
+          "data_points": 1254
+        },
+        "10Y": {
+          "sd": 12.0821,
+          "sd_annualized": 191.8,
+          "beta": 0.31,
+          "data_points": 2507
+        },
+        "Full": {
+          "sd": 183.7605,
+          "sd_annualized": 2917.11,
+          "beta": -0.058,
+          "data_points": 3352
+        }
+      },
+      "avg_volume_30d": 1272780.0,
+      "liquidity_ratio": 0.005278977453351658,
+      "status": "ok",
+      "trend_flag": "normal"
+    },
+    "ALTA": {
+      "name": "Altamira Gold Corp",
+      "currency": "CAD",
+      "timeframes": {
+        "1M": {
+          "sd": 7.1669,
+          "sd_annualized": 113.77,
+          "beta": 2.242,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 5.15,
+          "sd_annualized": 81.75,
+          "beta": 1.28,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 7.087,
+          "sd_annualized": 112.5,
+          "beta": 1.062,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 6.0995,
+          "sd_annualized": 96.83,
+          "beta": 0.139,
+          "data_points": 250
+        },
+        "3Y": {
+          "sd": 5.9519,
+          "sd_annualized": 94.48,
+          "beta": 0.206,
+          "data_points": 752
+        },
+        "5Y": {
+          "sd": 6.3244,
+          "sd_annualized": 100.4,
+          "beta": 0.166,
+          "data_points": 1254
+        },
+        "10Y": {
+          "sd": 7.384,
+          "sd_annualized": 117.22,
+          "beta": 0.787,
+          "data_points": 2507
+        },
+        "Full": {
+          "sd": 18.0864,
+          "sd_annualized": 287.11,
+          "beta": 0.058,
+          "data_points": 6967
+        }
+      },
+      "avg_volume_30d": 205503.33333333334,
+      "liquidity_ratio": 0.044831389596275806,
+      "status": "ok",
+      "trend_flag": "normal"
+    },
+    "MASS": {
+      "name": "Masivo Silver Corp",
+      "currency": "CAD",
+      "timeframes": {
+        "1M": {
+          "sd": 7.6079,
+          "sd_annualized": 120.77,
+          "beta": -0.897,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 8.7854,
+          "sd_annualized": 139.46,
+          "beta": -1.757,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 12.0175,
+          "sd_annualized": 190.77,
+          "beta": -1.105,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 10.3458,
+          "sd_annualized": 164.23,
+          "beta": -0.023,
+          "data_points": 250
+        },
+        "3Y": {
+          "sd": 9.9717,
+          "sd_annualized": 158.3,
+          "beta": -0.196,
+          "data_points": 752
+        },
+        "5Y": {
+          "sd": 15.0781,
+          "sd_annualized": 239.36,
+          "beta": 0.62,
+          "data_points": 1254
+        },
+        "10Y": {
+          "sd": 12.3803,
+          "sd_annualized": 196.53,
+          "beta": 0.609,
+          "data_points": 2507
+        },
+        "Full": {
+          "sd": 11.8912,
+          "sd_annualized": 188.77,
+          "beta": 0.552,
+          "data_points": 2925
+        }
+      },
+      "avg_volume_30d": 406443.3333333333,
+      "liquidity_ratio": 0.018000496546911385,
+      "status": "ok",
+      "trend_flag": "normal"
+    },
+    "HSTR": {
+      "name": "Heliostar Metals Ltd",
+      "currency": "CAD",
+      "timeframes": {
+        "1M": {
+          "sd": 5.4255,
+          "sd_annualized": 86.13,
+          "beta": 2.614,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 3.8462,
+          "sd_annualized": 61.06,
+          "beta": 1.416,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 4.0428,
+          "sd_annualized": 64.18,
+          "beta": 1.436,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 4.3398,
+          "sd_annualized": 68.89,
+          "beta": 0.903,
+          "data_points": 250
+        },
+        "3Y": {
+          "sd": 8.4609,
+          "sd_annualized": 134.31,
+          "beta": 0.463,
+          "data_points": 752
+        },
+        "5Y": {
+          "sd": 7.3944,
+          "sd_annualized": 117.38,
+          "beta": 0.502,
+          "data_points": 1254
+        },
+        "10Y": {
+          "sd": 32.1129,
+          "sd_annualized": 509.78,
+          "beta": 0.353,
+          "data_points": 2507
+        },
+        "Full": {
+          "sd": 22.4249,
+          "sd_annualized": 355.98,
+          "beta": -0.045,
+          "data_points": 6967
+        }
+      },
+      "avg_volume_30d": 651700.0,
+      "liquidity_ratio": 0.0012257471198301533,
+      "status": "ok",
+      "trend_flag": "elevated"
+    },
+    "GDXJ": {
+      "name": "VanEck Junior Gold Miners UCITS ETF",
+      "currency": "GBP",
+      "timeframes": {
+        "1M": {
+          "sd": 4.0512,
+          "sd_annualized": 64.31,
+          "beta": null,
+          "data_points": 21
+        },
+        "3M": {
+          "sd": 3.2109,
+          "sd_annualized": 50.97,
+          "beta": null,
+          "data_points": 62
+        },
+        "6M": {
+          "sd": 3.1631,
+          "sd_annualized": 50.21,
+          "beta": null,
+          "data_points": 125
+        },
+        "12M": {
+          "sd": 2.8471,
+          "sd_annualized": 45.2,
+          "beta": null,
+          "data_points": 251
+        },
+        "3Y": {
+          "sd": 2.4249,
+          "sd_annualized": 38.49,
+          "beta": null,
+          "data_points": 756
+        },
+        "5Y": {
+          "sd": 2.4138,
+          "sd_annualized": 38.32,
+          "beta": null,
+          "data_points": 1260
+        },
+        "10Y": {
+          "sd": 2.5378,
+          "sd_annualized": 40.29,
+          "beta": null,
+          "data_points": 2523
+        },
+        "Full": {
+          "sd": 2.5496,
+          "sd_annualized": 40.47,
+          "beta": null,
+          "data_points": 2760
+        }
+      },
+      "avg_volume_30d": 99115.3,
+      "liquidity_ratio": 0.0009123477917949116,
+      "status": "ok",
+      "trend_flag": "elevated"
+    },
+    "FF": {
+      "name": "First Mining Gold Corp",
+      "currency": "CAD",
+      "timeframes": {
+        "1M": {
+          "sd": 6.7245,
+          "sd_annualized": 106.75,
+          "beta": 1.322,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 5.4279,
+          "sd_annualized": 86.16,
+          "beta": 1.041,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 5.503,
+          "sd_annualized": 87.36,
+          "beta": 1.548,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 4.9007,
+          "sd_annualized": 77.8,
+          "beta": 0.105,
+          "data_points": 250
+        },
+        "3Y": {
+          "sd": 4.2114,
+          "sd_annualized": 66.85,
+          "beta": 0.176,
+          "data_points": 752
+        },
+        "5Y": {
+          "sd": 3.7401,
+          "sd_annualized": 59.37,
+          "beta": 0.376,
+          "data_points": 1254
+        },
+        "10Y": {
+          "sd": 4.113,
+          "sd_annualized": 65.29,
+          "beta": 0.339,
+          "data_points": 2507
+        },
+        "Full": {
+          "sd": 4.1648,
+          "sd_annualized": 66.11,
+          "beta": 0.297,
+          "data_points": 2724
+        }
+      },
+      "avg_volume_30d": 7015610.0,
+      "liquidity_ratio": 0.000930681277180459,
+      "status": "ok",
+      "trend_flag": "elevated"
+    },
+    "LG": {
+      "name": "Lahontan Gold Corp",
+      "currency": "CAD",
+      "timeframes": {
+        "1M": {
+          "sd": 12.6644,
+          "sd_annualized": 201.04,
+          "beta": 7.474,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 8.9222,
+          "sd_annualized": 141.63,
+          "beta": 4.182,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 7.9225,
+          "sd_annualized": 125.77,
+          "beta": 2.145,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 7.7077,
+          "sd_annualized": 122.36,
+          "beta": 1.387,
+          "data_points": 250
+        },
+        "3Y": {
+          "sd": 7.6973,
+          "sd_annualized": 122.19,
+          "beta": 0.817,
+          "data_points": 752
+        },
+        "5Y": {
+          "sd": 7.8124,
+          "sd_annualized": 124.02,
+          "beta": 0.677,
+          "data_points": 972
+        },
+        "10Y": {
+          "sd": 7.8124,
+          "sd_annualized": 124.02,
+          "beta": 0.677,
+          "data_points": 972
+        },
+        "Full": {
+          "sd": 7.8124,
+          "sd_annualized": 124.02,
+          "beta": 0.677,
+          "data_points": 972
+        }
+      },
+      "avg_volume_30d": 2367223.466666667,
+      "liquidity_ratio": 0.0026327500466542452,
+      "status": "ok",
+      "trend_flag": "trend_break"
+    },
+    "GDX": {
+      "name": "VanEck Gold Miners ETF",
+      "currency": "USD",
+      "timeframes": {
+        "1M": {
+          "sd": 4.7019,
+          "sd_annualized": 74.64,
+          "beta": 2.361,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 3.214,
+          "sd_annualized": 51.02,
+          "beta": 1.247,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 3.0089,
+          "sd_annualized": 47.77,
+          "beta": 1.223,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 2.69,
+          "sd_annualized": 42.7,
+          "beta": 0.447,
+          "data_points": 250
+        },
+        "3Y": {
+          "sd": 2.2284,
+          "sd_annualized": 35.37,
+          "beta": 0.58,
+          "data_points": 751
+        },
+        "5Y": {
+          "sd": 2.2011,
+          "sd_annualized": 34.94,
+          "beta": 0.63,
+          "data_points": 1255
+        },
+        "10Y": {
+          "sd": 2.3509,
+          "sd_annualized": 37.32,
+          "beta": 0.4,
+          "data_points": 2512
+        },
+        "Full": {
+          "sd": 2.5861,
+          "sd_annualized": 41.05,
+          "beta": 0.568,
+          "data_points": 4973
+        }
+      },
+      "avg_volume_30d": 30609636.666666668,
+      "liquidity_ratio": 1.118714331680056e-06,
+      "status": "ok",
+      "trend_flag": "trend_break"
+    },
+    "SSLN": {
+      "name": "iShares Physical Silver ETC",
+      "currency": "GBP",
+      "timeframes": {
+        "1M": {
+          "sd": 7.8118,
+          "sd_annualized": 124.01,
+          "beta": null,
+          "data_points": 21
+        },
+        "3M": {
+          "sd": 13.8072,
+          "sd_annualized": 219.18,
+          "beta": null,
+          "data_points": 62
+        },
+        "6M": {
+          "sd": 9.8174,
+          "sd_annualized": 155.85,
+          "beta": null,
+          "data_points": 125
+        },
+        "12M": {
+          "sd": 6.9925,
+          "sd_annualized": 111.0,
+          "beta": null,
+          "data_points": 251
+        },
+        "3Y": {
+          "sd": 4.2274,
+          "sd_annualized": 67.11,
+          "beta": null,
+          "data_points": 756
+        },
+        "5Y": {
+          "sd": 3.4124,
+          "sd_annualized": 54.17,
+          "beta": null,
+          "data_points": 1260
+        },
+        "10Y": {
+          "sd": 2.6558,
+          "sd_annualized": 42.16,
+          "beta": null,
+          "data_points": 2523
+        },
+        "Full": {
+          "sd": 2.5343,
+          "sd_annualized": 40.23,
+          "beta": null,
+          "data_points": 3759
+        }
+      },
+      "avg_volume_30d": 905540.4666666667,
+      "liquidity_ratio": 5.559228546170023e-05,
+      "status": "ok",
+      "trend_flag": "normal"
+    },
+    "TRT": {
+      "name": "Trio-Tech International",
+      "currency": "USD",
+      "timeframes": {
+        "1M": {
+          "sd": 5.2147,
+          "sd_annualized": 82.78,
+          "beta": 0.943,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 5.0616,
+          "sd_annualized": 80.35,
+          "beta": 0.702,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 4.4925,
+          "sd_annualized": 71.32,
+          "beta": 0.474,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 3.7886,
+          "sd_annualized": 60.14,
+          "beta": 0.217,
+          "data_points": 250
+        },
+        "3Y": {
+          "sd": 3.475,
+          "sd_annualized": 55.16,
+          "beta": 0.312,
+          "data_points": 751
+        },
+        "5Y": {
+          "sd": 4.0349,
+          "sd_annualized": 64.05,
+          "beta": 0.736,
+          "data_points": 1255
+        },
+        "10Y": {
+          "sd": 3.6885,
+          "sd_annualized": 58.55,
+          "beta": 0.566,
+          "data_points": 2512
+        },
+        "Full": {
+          "sd": 3.9614,
+          "sd_annualized": 62.88,
+          "beta": 0.417,
+          "data_points": 7542
+        }
+      },
+      "avg_volume_30d": 57456.666666666664,
+      "liquidity_ratio": 0.007374424955790622,
+      "status": "ok",
+      "trend_flag": "elevated"
+    },
+    "CDE": {
+      "name": "Coeur Mining Inc",
+      "currency": "USD",
+      "timeframes": {
+        "1M": {
+          "sd": 6.6654,
+          "sd_annualized": 105.81,
+          "beta": 4.165,
+          "data_points": 20
+        },
+        "3M": {
+          "sd": 4.8644,
+          "sd_annualized": 77.22,
+          "beta": 2.929,
+          "data_points": 61
+        },
+        "6M": {
+          "sd": 4.8048,
+          "sd_annualized": 76.27,
+          "beta": 2.458,
+          "data_points": 124
+        },
+        "12M": {
+          "sd": 4.5373,
+          "sd_annualized": 72.03,
+          "beta": 1.353,
+          "data_points": 250
+        },
+        "3Y": {
+          "sd": 4.3216,
+          "sd_annualized": 68.6,
+          "beta": 1.526,
+          "data_points": 751
+        },
+        "5Y": {
+          "sd": 4.2597,
+          "sd_annualized": 67.62,
+          "beta": 1.431,
+          "data_points": 1255
+        },
+        "10Y": {
+          "sd": 4.3396,
+          "sd_annualized": 68.89,
+          "beta": 1.204,
+          "data_points": 2512
+        },
+        "Full": {
+          "sd": 4.5687,
+          "sd_annualized": 72.53,
+          "beta": 0.867,
+          "data_points": 7542
+        }
+      },
+      "avg_volume_30d": 27519323.333333332,
+      "liquidity_ratio": 2.0256317372979866e-06,
+      "status": "ok",
+      "trend_flag": "elevated"
+    },
+    "SBRY": {
+      "name": "J Sainsbury plc",
+      "currency": "GBP",
+      "timeframes": {
+        "1M": {
+          "sd": 1.0477,
+          "sd_annualized": 16.63,
+          "beta": null,
+          "data_points": 21
+        },
+        "3M": {
+          "sd": 1.2883,
+          "sd_annualized": 20.45,
+          "beta": null,
+          "data_points": 62
+        },
+        "6M": {
+          "sd": 1.3747,
+          "sd_annualized": 21.82,
+          "beta": null,
+          "data_points": 126
+        },
+        "12M": {
+          "sd": 1.4416,
+          "sd_annualized": 22.88,
+          "beta": null,
+          "data_points": 252
+        },
+        "3Y": {
+          "sd": 1.3773,
+          "sd_annualized": 21.86,
+          "beta": null,
+          "data_points": 757
+        },
+        "5Y": {
+          "sd": 1.5201,
+          "sd_annualized": 24.13,
+          "beta": null,
+          "data_points": 1261
+        },
+        "10Y": {
+          "sd": 1.632,
+          "sd_annualized": 25.91,
+          "beta": null,
+          "data_points": 2524
+        },
+        "Full": {
+          "sd": 1.785,
+          "sd_annualized": 28.34,
+          "beta": null,
+          "data_points": 7655
+        }
+      },
+      "avg_volume_30d": 6883865.8,
+      "liquidity_ratio": 1.4526721308250953e-05,
+      "status": "ok",
+      "trend_flag": "normal"
+    },
+    "GDGB": {
+      "name": "VanEck Gold Miners UCITS ETF (GBP Acc)",
+      "currency": "GBP",
+      "timeframes": {
+        "1M": {
+          "sd": 3.2968,
+          "sd_annualized": 52.33,
+          "beta": null,
+          "data_points": 21
+        },
+        "3M": {
+          "sd": 2.7142,
+          "sd_annualized": 43.09,
+          "beta": null,
+          "data_points": 62
+        },
+        "6M": {
+          "sd": 2.7342,
+          "sd_annualized": 43.4,
+          "beta": null,
+          "data_points": 125
+        },
+        "12M": {
+          "sd": 2.4024,
+          "sd_annualized": 38.14,
+          "beta": null,
+          "data_points": 251
+        },
+        "3Y": {
+          "sd": 2.0282,
+          "sd_annualized": 32.2,
+          "beta": null,
+          "data_points": 756
+        },
+        "5Y": {
+          "sd": 1.961,
+          "sd_annualized": 31.13,
+          "beta": null,
+          "data_points": 1260
+        },
+        "10Y": {
+          "sd": 1.9784,
+          "sd_annualized": 31.41,
+          "beta": null,
+          "data_points": 2200
+        },
+        "Full": {
+          "sd": 1.9784,
+          "sd_annualized": 31.41,
+          "beta": null,
+          "data_points": 2200
+        }
+      },
+      "avg_volume_30d": 90907.0,
+      "liquidity_ratio": 3.159772933175396e-05,
+      "status": "ok",
+      "trend_flag": "elevated"
+    },
+    "GRG": {
+      "name": "Greggs plc",
+      "currency": "GBP",
+      "timeframes": {
+        "1M": {
+          "sd": 1.682,
+          "sd_annualized": 26.7,
+          "beta": null,
+          "data_points": 21
+        },
+        "3M": {
+          "sd": 2.091,
+          "sd_annualized": 33.19,
+          "beta": null,
+          "data_points": 62
+        },
+        "6M": {
+          "sd": 1.9716,
+          "sd_annualized": 31.3,
+          "beta": null,
+          "data_points": 126
+        },
+        "12M": {
+          "sd": 2.2497,
+          "sd_annualized": 35.71,
+          "beta": null,
+          "data_points": 252
+        },
+        "3Y": {
+          "sd": 1.8624,
+          "sd_annualized": 29.56,
+          "beta": null,
+          "data_points": 757
+        },
+        "5Y": {
+          "sd": 1.9491,
+          "sd_annualized": 30.94,
+          "beta": null,
+          "data_points": 1261
+        },
+        "10Y": {
+          "sd": 2.095,
+          "sd_annualized": 33.26,
+          "beta": null,
+          "data_points": 2524
+        },
+        "Full": {
+          "sd": 1.6572,
+          "sd_annualized": 26.31,
+          "beta": null,
+          "data_points": 7655
+        }
+      },
+      "avg_volume_30d": 530981.0666666667,
+      "liquidity_ratio": 1.8833063225355432e-06,
+      "status": "ok",
+      "trend_flag": "normal"
+    }
+  }
+}

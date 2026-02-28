@@ -122,6 +122,72 @@
   .modal-section{margin-top:20px}
   .modal-section-title{font-size:14px;font-weight:700;margin-bottom:10px;color:var(--accent)}
 
+  /* ── OTF Risk Engine Sections ── */
+  .risk-section{margin-top:24px}
+  .risk-section-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;cursor:pointer;transition:all .2s;user-select:none}
+  .risk-section-header:hover{border-color:var(--accent-dim)}
+  .risk-section-header h2{font-size:16px;font-weight:700;margin:0;display:flex;align-items:center;gap:8px}
+  .risk-section-header h2 span{color:var(--accent)}
+  .risk-section-header .chevron{font-size:14px;color:var(--text-muted);transition:transform .2s}
+  .risk-section-header.open .chevron{transform:rotate(180deg)}
+  .risk-section-body{display:none;margin-top:8px;padding:16px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;overflow-x:auto}
+  .risk-section-body.open{display:block}
+
+  /* Volatility table */
+  .vol-table{width:100%;border-collapse:collapse;font-size:11px}
+  .vol-table th{text-align:center;padding:6px 8px;font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);border-bottom:1px solid var(--card-border);white-space:nowrap}
+  .vol-table th:first-child{text-align:left}
+  .vol-table td{padding:6px 8px;text-align:center;border-bottom:1px solid rgba(30,30,46,0.3);white-space:nowrap}
+  .vol-table td:first-child{text-align:left;font-weight:600}
+  .vol-table tr:hover{background:var(--card-hover)}
+
+  /* Status flags */
+  .flag-normal{color:var(--green)}.flag-elevated{color:#eab308}.flag-critical{color:var(--red)}
+  .flag-pill{font-size:9px;padding:2px 8px;border-radius:10px;font-weight:600}
+  .flag-pill.green{background:rgba(16,185,129,0.15);color:var(--green)}
+  .flag-pill.yellow{background:rgba(234,179,8,0.15);color:#eab308}
+  .flag-pill.orange{background:rgba(249,115,22,0.15);color:#f97316}
+  .flag-pill.red{background:rgba(239,68,68,0.15);color:var(--red)}
+
+  /* Correlation heatmap */
+  .corr-cell{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;border-radius:4px;color:#fff}
+  .corr-grid{display:grid;gap:2px;overflow-x:auto}
+  .corr-label{font-size:9px;font-weight:600;color:var(--text-muted);text-align:center;display:flex;align-items:center;justify-content:center}
+
+  /* Risk heatmap grid */
+  .risk-grid{display:grid;grid-template-columns:auto repeat(24,1fr);gap:2px;font-size:9px;overflow-x:auto}
+  .risk-grid .ticker-label{font-weight:700;padding:4px 8px;display:flex;align-items:center;white-space:nowrap}
+  .risk-cell{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .15s}
+  .risk-cell:hover{transform:scale(1.2);z-index:1}
+  .risk-cell.low{background:rgba(16,185,129,0.2);color:var(--green)}
+  .risk-cell.medium{background:rgba(234,179,8,0.2);color:#eab308}
+  .risk-cell.high{background:rgba(249,115,22,0.25);color:#f97316}
+  .risk-cell.critical{background:rgba(239,68,68,0.25);color:var(--red)}
+
+  /* Stress test */
+  .stress-controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .stress-btn{background:rgba(255,255,255,0.06);border:1px solid var(--card-border);color:var(--text);padding:6px 14px;border-radius:16px;cursor:pointer;font-size:11px;transition:all .2s}
+  .stress-btn:hover{border-color:var(--accent);color:var(--accent)}
+  .stress-btn.active{background:var(--accent);color:#000;border-color:var(--accent);font-weight:600}
+  .stress-result{background:rgba(0,0,0,0.3);border-radius:8px;padding:16px;margin-top:12px}
+  .stress-impact{font-size:28px;font-weight:800}
+  .recovery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:12px}
+  .recovery-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:10px;text-align:center}
+  .recovery-card .rate{font-size:14px;font-weight:700;color:var(--accent)}
+  .recovery-card .time{font-size:20px;font-weight:800;margin-top:4px}
+  .recovery-card .label{font-size:9px;color:var(--text-muted);margin-top:2px}
+
+  /* Custom stress input */
+  .stress-custom{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
+  .stress-custom select,.stress-custom input{background:var(--card-bg);border:1px solid var(--card-border);color:var(--text);padding:6px 10px;border-radius:8px;font-size:12px}
+  .stress-custom input{width:80px}
+
+  /* Technical board */
+  .tech-table{width:100%;border-collapse:collapse;font-size:12px}
+  .tech-table th{text-align:left;padding:8px 10px;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);border-bottom:1px solid var(--card-border);white-space:nowrap}
+  .tech-table td{padding:8px 10px;border-bottom:1px solid rgba(30,30,46,0.3)}
+  .tech-table tr:hover{background:var(--card-hover)}
+
   @media(max-width:600px){body{padding:12px}.hero{grid-template-columns:repeat(2,1fr)}.modal-content{width:95%;padding:16px}}
   @media(max-width:768px){
     #analytics div[style*="grid-template-columns: 1fr 1fr"],
@@ -229,7 +295,77 @@
 
 <div id="analytics"></div>
 
-<div class="footer">Portfolio Dashboard v1 • Carlin Invests • Auto-updated at market close</div>
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- OTF RISK ENGINE SECTIONS                                              -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<!-- 1. Volatility Dashboard -->
+<div class="risk-section" id="volatility-section">
+  <div class="risk-section-header" onclick="toggleSection('volatility')">
+    <h2>📊 <span>Volatility</span> Dashboard</h2>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="risk-section-body" id="volatility-body">
+    <div id="volatility-content"><p style="color:var(--text-muted);font-size:12px">Loading volatility data...</p></div>
+  </div>
+</div>
+
+<!-- 2. Liquidity Monitor -->
+<div class="risk-section" id="liquidity-section">
+  <div class="risk-section-header" onclick="toggleSection('liquidity')">
+    <h2>💧 <span>Liquidity</span> Monitor</h2>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="risk-section-body" id="liquidity-body">
+    <div id="liquidity-content"><p style="color:var(--text-muted);font-size:12px">Loading liquidity data...</p></div>
+  </div>
+</div>
+
+<!-- 3. Correlation Matrix -->
+<div class="risk-section" id="correlation-section">
+  <div class="risk-section-header" onclick="toggleSection('correlation')">
+    <h2>🔗 <span>Correlation</span> Matrix</h2>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="risk-section-body" id="correlation-body">
+    <div id="correlation-content"><p style="color:var(--text-muted);font-size:12px">Loading correlation data...</p></div>
+  </div>
+</div>
+
+<!-- 4. Technical Tracking Board -->
+<div class="risk-section" id="technical-section">
+  <div class="risk-section-header" onclick="toggleSection('technical')">
+    <h2>📐 <span>Technical</span> Tracking Board</h2>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="risk-section-body" id="technical-body">
+    <div id="technical-content"><p style="color:var(--text-muted);font-size:12px">Loading technical data...</p></div>
+  </div>
+</div>
+
+<!-- 5. Risk Heatmap -->
+<div class="risk-section" id="riskheatmap-section">
+  <div class="risk-section-header" onclick="toggleSection('riskheatmap')">
+    <h2>🔥 <span>Risk</span> Heatmap</h2>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="risk-section-body" id="riskheatmap-body">
+    <div id="riskheatmap-content"><p style="color:var(--text-muted);font-size:12px">Loading risk data...</p></div>
+  </div>
+</div>
+
+<!-- 6. Stress Test Simulator -->
+<div class="risk-section" id="stresstest-section">
+  <div class="risk-section-header" onclick="toggleSection('stresstest')">
+    <h2>⚡ <span>Stress Test</span> Simulator</h2>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="risk-section-body" id="stresstest-body">
+    <div id="stresstest-content"><p style="color:var(--text-muted);font-size:12px">Loading stress test...</p></div>
+  </div>
+</div>
+
+<div class="footer">Portfolio Dashboard v2 • Carlin Invests • OTF Risk Engine • Auto-updated at market close</div>
 
 <!-- Position Detail Modal -->
 <div class="modal-overlay" id="positionModal" onclick="closeModal(event)">
@@ -1621,6 +1757,628 @@ function updateAutoRefreshInfo() {
 
 // Update market status every minute
 setInterval(updateAutoRefreshInfo, 60000);
+
+// ============================================================================
+// OTF RISK ENGINE — 6 New Dashboard Sections
+// ============================================================================
+
+// ── Section toggle ──
+function toggleSection(id) {
+  const header = document.querySelector(`#${id}-section .risk-section-header`);
+  const body = document.getElementById(`${id}-body`);
+  header.classList.toggle('open');
+  body.classList.toggle('open');
+}
+
+// ── Data caches ──
+let VOLATILITY_DATA = null;
+let CORRELATION_DATA = null;
+let TECHNICAL_DATA = null;
+let RISK_DATA = null;
+
+// ── Load all risk engine data ──
+async function loadRiskEngineData() {
+  const t = Date.now();
+  try {
+    const [volResp, corrResp, techResp, riskResp] = await Promise.allSettled([
+      fetch(`data/volatility_data.json?t=${t}`),
+      fetch(`data/correlation_data.json?t=${t}`),
+      fetch(`data/technical_tracking.json?t=${t}`),
+      fetch(`data/risk_scores.json?t=${t}`)
+    ]);
+    
+    if (volResp.status === 'fulfilled' && volResp.value.ok) {
+      VOLATILITY_DATA = await volResp.value.json();
+    }
+    if (corrResp.status === 'fulfilled' && corrResp.value.ok) {
+      CORRELATION_DATA = await corrResp.value.json();
+    }
+    if (techResp.status === 'fulfilled' && techResp.value.ok) {
+      TECHNICAL_DATA = await techResp.value.json();
+    }
+    if (riskResp.status === 'fulfilled' && riskResp.value.ok) {
+      RISK_DATA = await riskResp.value.json();
+    }
+  } catch(e) {
+    console.warn('Risk engine data load error:', e);
+  }
+  
+  renderVolatility();
+  renderLiquidity();
+  renderCorrelation();
+  renderTechnical();
+  renderRiskHeatmap();
+  renderStressTest();
+}
+
+// ── 1. Volatility Dashboard ──
+function renderVolatility() {
+  const el = document.getElementById('volatility-content');
+  if (!VOLATILITY_DATA || !VOLATILITY_DATA.tickers) {
+    el.innerHTML = '<p style="color:var(--text-muted);font-size:12px">No volatility data available. Run <code>python3 volatility_calc.py</code> to generate.</p>';
+    return;
+  }
+  
+  const tickers = VOLATILITY_DATA.tickers;
+  const timeframes = ['1M','3M','6M','12M','3Y','5Y','10Y','Full'];
+  
+  // Flag helper
+  function flagHtml(flag) {
+    if (flag === 'trend_break') return '<span class="flag-pill red">🔴 Trend Break</span>';
+    if (flag === 'elevated') return '<span class="flag-pill yellow">🟡 Elevated</span>';
+    if (flag === 'normal') return '<span class="flag-pill green">🟢 Normal</span>';
+    return '<span class="flag-pill" style="background:rgba(255,255,255,0.06);color:var(--text-muted)">—</span>';
+  }
+  
+  function sdCell(val) {
+    if (val === null || val === undefined) return '<td style="color:var(--text-muted)">—</td>';
+    let color = 'var(--text)';
+    if (val > 80) color = 'var(--red)';
+    else if (val > 50) color = '#f97316';
+    else if (val > 35) color = '#eab308';
+    return `<td style="color:${color};font-weight:500">${val.toFixed(1)}%</td>`;
+  }
+  
+  let html = `<div style="margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+    <span style="font-size:11px;color:var(--text-muted)">Annualized standard deviation of daily returns • Beta vs S&P 500</span>
+    <span style="font-size:10px;color:var(--text-muted)">Generated: ${new Date(VOLATILITY_DATA.generated_at).toLocaleString('en-GB')}</span>
+  </div>`;
+  
+  // SD Table
+  html += `<div style="font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)">📈 Standard Deviation (Annualized %)</div>`;
+  html += '<table class="vol-table"><thead><tr><th style="text-align:left">Ticker</th>';
+  timeframes.forEach(tf => html += `<th>${tf}</th>`);
+  html += '<th>Status</th></tr></thead><tbody>';
+  
+  const sortedTickers = Object.entries(tickers).sort((a,b) => a[0].localeCompare(b[0]));
+  for (const [ticker, data] of sortedTickers) {
+    html += `<tr><td style="font-weight:700">${ticker}</td>`;
+    timeframes.forEach(tf => {
+      const tfData = data.timeframes?.[tf];
+      html += sdCell(tfData?.sd_annualized);
+    });
+    html += `<td>${flagHtml(data.trend_flag)}</td></tr>`;
+  }
+  html += '</tbody></table>';
+  
+  // Beta Table
+  html += `<div style="font-size:13px;font-weight:700;margin:20px 0 6px;color:var(--accent)">β Beta vs S&P 500</div>`;
+  html += '<table class="vol-table"><thead><tr><th style="text-align:left">Ticker</th>';
+  timeframes.forEach(tf => html += `<th>${tf}</th>`);
+  html += '</tr></thead><tbody>';
+  
+  for (const [ticker, data] of sortedTickers) {
+    html += `<tr><td style="font-weight:700">${ticker}</td>`;
+    timeframes.forEach(tf => {
+      const tfData = data.timeframes?.[tf];
+      const beta = tfData?.beta;
+      if (beta === null || beta === undefined) {
+        html += '<td style="color:var(--text-muted)">—</td>';
+      } else {
+        let color = 'var(--text)';
+        if (Math.abs(beta) > 1.5) color = 'var(--red)';
+        else if (Math.abs(beta) > 1) color = '#eab308';
+        html += `<td style="color:${color};font-weight:500">${beta.toFixed(2)}</td>`;
+      }
+    });
+    html += '</tr>';
+  }
+  html += '</tbody></table>';
+  
+  el.innerHTML = html;
+}
+
+// ── 2. Liquidity Monitor ──
+function renderLiquidity() {
+  const el = document.getElementById('liquidity-content');
+  if (!VOLATILITY_DATA || !VOLATILITY_DATA.tickers) {
+    el.innerHTML = '<p style="color:var(--text-muted);font-size:12px">No liquidity data available.</p>';
+    return;
+  }
+  
+  const tickers = VOLATILITY_DATA.tickers;
+  
+  function liqFlag(ratio) {
+    if (ratio === null || ratio === undefined) return '<span class="flag-pill" style="background:rgba(255,255,255,0.06);color:var(--text-muted)">N/A</span>';
+    const pct = ratio * 100;
+    if (pct < 10) return `<span class="flag-pill green">🟢 ${pct.toFixed(1)}%</span>`;
+    if (pct < 50) return `<span class="flag-pill yellow">🟡 ${pct.toFixed(1)}%</span>`;
+    return `<span class="flag-pill red">🔴 ${pct.toFixed(1)}%</span>`;
+  }
+  
+  let html = `<div style="margin-bottom:12px;font-size:11px;color:var(--text-muted)">
+    Position Value ÷ (30-day Avg Daily Volume × Price) • Lower = more liquid
+  </div>`;
+  
+  html += '<table class="vol-table"><thead><tr><th style="text-align:left">Ticker</th><th>30d Avg Volume</th><th>Liquidity Ratio</th><th>Status</th></tr></thead><tbody>';
+  
+  const sortedByLiq = Object.entries(tickers).sort((a,b) => {
+    const la = a[1].liquidity_ratio ?? 999;
+    const lb = b[1].liquidity_ratio ?? 999;
+    return lb - la; // worst first
+  });
+  
+  for (const [ticker, data] of sortedByLiq) {
+    const vol = data.avg_volume_30d;
+    const volStr = vol ? (vol >= 1e6 ? (vol/1e6).toFixed(1)+'M' : vol >= 1e3 ? (vol/1e3).toFixed(0)+'K' : vol.toFixed(0)) : '—';
+    const ratioStr = data.liquidity_ratio !== null ? (data.liquidity_ratio * 100).toFixed(1) + '%' : '—';
+    
+    html += `<tr>
+      <td style="font-weight:700">${ticker} <span style="font-size:9px;color:var(--text-muted)">${data.name || ''}</span></td>
+      <td>${volStr}</td>
+      <td>${ratioStr}</td>
+      <td>${liqFlag(data.liquidity_ratio)}</td>
+    </tr>`;
+  }
+  html += '</tbody></table>';
+  
+  el.innerHTML = html;
+}
+
+// ── 3. Correlation Matrix ──
+function renderCorrelation() {
+  const el = document.getElementById('correlation-content');
+  if (!CORRELATION_DATA || !CORRELATION_DATA.matrix || !CORRELATION_DATA.tickers) {
+    el.innerHTML = '<p style="color:var(--text-muted);font-size:12px">No correlation data available.</p>';
+    return;
+  }
+  
+  const tickers = CORRELATION_DATA.tickers;
+  const matrix = CORRELATION_DATA.matrix;
+  const n = tickers.length;
+  
+  function corrColor(val) {
+    if (val === null || val === undefined) return 'rgba(255,255,255,0.05)';
+    // Red for high positive, blue for negative, neutral for ~0
+    if (val >= 0.7) return `rgba(239,68,68,${0.3 + val * 0.5})`;
+    if (val >= 0.4) return `rgba(249,115,22,${0.2 + val * 0.4})`;
+    if (val >= 0) return `rgba(255,255,255,${0.03 + val * 0.1})`;
+    return `rgba(59,130,246,${0.2 + Math.abs(val) * 0.5})`;
+  }
+  
+  let html = `<div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px">
+    <div class="stat-box" style="flex:1;min-width:140px"><div class="stat-val" style="color:var(--accent)">${CORRELATION_DATA.diversification_score ?? '—'}</div><div class="stat-label">Diversification Score (0-100)</div></div>
+    <div class="stat-box" style="flex:1;min-width:140px"><div class="stat-val">${CORRELATION_DATA.average_correlation?.toFixed(3) ?? '—'}</div><div class="stat-label">Avg Abs Correlation</div></div>
+    <div class="stat-box" style="flex:1;min-width:140px"><div class="stat-val" style="color:${(CORRELATION_DATA.high_correlation_clusters?.length || 0) > 3 ? 'var(--red)' : 'var(--text)'}">${CORRELATION_DATA.high_correlation_clusters?.length ?? 0}</div><div class="stat-label">High Corr Pairs (>0.7)</div></div>
+  </div>`;
+  
+  // High correlation alerts
+  if (CORRELATION_DATA.high_correlation_clusters?.length > 0) {
+    html += '<div style="margin-bottom:16px">';
+    CORRELATION_DATA.high_correlation_clusters.forEach(c => {
+      html += `<span class="flag-pill red" style="margin:2px 4px;display:inline-block">${c.pair[0]} ↔ ${c.pair[1]}: ${c.correlation.toFixed(3)}</span>`;
+    });
+    html += '</div>';
+  }
+  
+  // Heatmap table
+  html += `<div style="overflow-x:auto"><table class="vol-table" style="font-size:10px">
+    <thead><tr><th></th>`;
+  tickers.forEach(t => html += `<th style="writing-mode:vertical-lr;transform:rotate(180deg);height:60px;font-size:9px">${t}</th>`);
+  html += '</tr></thead><tbody>';
+  
+  tickers.forEach(t1 => {
+    html += `<tr><td style="font-weight:700;font-size:10px">${t1}</td>`;
+    tickers.forEach(t2 => {
+      const val = matrix[t1]?.[t2];
+      const bg = corrColor(val);
+      const text = val !== null && val !== undefined ? val.toFixed(2) : '';
+      const textColor = (val !== null && (val > 0.6 || val < -0.3)) ? '#fff' : 'var(--text)';
+      html += `<td style="background:${bg};color:${textColor};font-size:9px;font-weight:600;padding:4px;text-align:center" title="${t1} vs ${t2}: ${val?.toFixed(3) ?? 'N/A'}">${text}</td>`;
+    });
+    html += '</tr>';
+  });
+  html += '</tbody></table></div>';
+  
+  el.innerHTML = html;
+}
+
+// ── 4. Technical Tracking Board ──
+function renderTechnical() {
+  const el = document.getElementById('technical-content');
+  if (!TECHNICAL_DATA || !TECHNICAL_DATA.positions) {
+    el.innerHTML = '<p style="color:var(--text-muted);font-size:12px">No technical tracking data available.</p>';
+    return;
+  }
+  
+  const positions = TECHNICAL_DATA.positions;
+  
+  function statusIcon(status, currentPrice, support, resistance, target) {
+    // Auto-determine status from price vs levels if set
+    if (support && currentPrice && currentPrice <= support * 1.02) return '🔴';
+    if (target && currentPrice && currentPrice >= target * 0.98) return '🚀';
+    if (resistance && currentPrice && currentPrice >= resistance * 0.95) return '🟡';
+    
+    const map = {
+      'bullish': '🟢', 'neutral': '🟡', 'bearish': '🔴', 'target_hit': '🚀',
+      'at_support': '🔴', 'at_resistance': '🟡'
+    };
+    return map[status] || '⚪';
+  }
+  
+  // Get current prices from portfolio data
+  const currentPrices = {};
+  if (DATA) {
+    const s = latest();
+    for (const acct of Object.values(s.accounts)) {
+      for (const pos of acct.positions) {
+        currentPrices[pos.ticker] = pos.current_price;
+      }
+    }
+  }
+  
+  let html = `<div style="margin-bottom:8px;font-size:11px;color:var(--text-muted)">
+    Entry setups and key price levels • Edit <code>data/technical_tracking.json</code> to update
+  </div>`;
+  
+  html += '<table class="tech-table"><thead><tr><th>Ticker</th><th>Entry Setup</th><th>Price</th><th>Support</th><th>Resistance</th><th>Target</th><th>Stop</th><th>Status</th><th>Notes</th></tr></thead><tbody>';
+  
+  for (const [ticker, data] of Object.entries(positions).sort((a,b) => a[0].localeCompare(b[0]))) {
+    const price = currentPrices[ticker];
+    const priceStr = price ? price.toFixed(3) : '—';
+    const supStr = data.key_support ? data.key_support.toFixed(3) : '—';
+    const resStr = data.key_resistance ? data.key_resistance.toFixed(3) : '—';
+    const tgtStr = data.target ? data.target.toFixed(3) : '—';
+    const stopStr = data.stop_loss ? data.stop_loss.toFixed(3) : '—';
+    const icon = statusIcon(data.status, price, data.key_support, data.key_resistance, data.target);
+    
+    // Color price relative to support/resistance
+    let priceColor = 'var(--text)';
+    if (data.key_support && price && price <= data.key_support * 1.05) priceColor = 'var(--red)';
+    else if (data.key_resistance && price && price >= data.key_resistance * 0.95) priceColor = 'var(--green)';
+    
+    html += `<tr>
+      <td style="font-weight:700">${ticker}</td>
+      <td style="color:${data.entry_setup === 'TBD' ? 'var(--text-muted)' : 'var(--text)'}">${data.entry_setup}</td>
+      <td style="color:${priceColor};font-weight:600">${priceStr}</td>
+      <td style="color:var(--red)">${supStr}</td>
+      <td style="color:var(--green)">${resStr}</td>
+      <td style="color:var(--accent)">${tgtStr}</td>
+      <td style="color:var(--red)">${stopStr}</td>
+      <td style="font-size:16px">${icon}</td>
+      <td style="font-size:10px;color:var(--text-muted);max-width:150px;overflow:hidden;text-overflow:ellipsis">${data.notes || ''}</td>
+    </tr>`;
+  }
+  html += '</tbody></table>';
+  
+  el.innerHTML = html;
+}
+
+// ── 5. Risk Heatmap ──
+function renderRiskHeatmap() {
+  const el = document.getElementById('riskheatmap-content');
+  if (!RISK_DATA || !RISK_DATA.positions || !RISK_DATA.categories) {
+    el.innerHTML = '<p style="color:var(--text-muted);font-size:12px">No risk data available.</p>';
+    return;
+  }
+  
+  const categories = RISK_DATA.categories;
+  const positions = RISK_DATA.positions;
+  
+  // Build flat list of all layers in order
+  const allLayers = [];
+  const categoryBoundaries = [];
+  for (const [cat, layers] of Object.entries(categories)) {
+    categoryBoundaries.push({ name: cat, start: allLayers.length, count: layers.length });
+    layers.forEach(l => allLayers.push({ name: l, category: cat }));
+  }
+  
+  function severityClass(s) { return s || 'low'; }
+  function severityEmoji(s) {
+    const map = { low: '🟢', medium: '🟡', high: '🟠', critical: '🔴' };
+    return map[s] || '⚪';
+  }
+  
+  let html = `<div style="margin-bottom:12px;font-size:11px;color:var(--text-muted)">
+    24 risk layers across Macro (7), Company (8), Portfolio (9) • Edit <code>data/risk_scores.json</code> to update
+  </div>`;
+  
+  // Category header row
+  html += '<div style="overflow-x:auto"><table class="vol-table" style="font-size:9px"><thead>';
+  html += '<tr><th></th>';
+  categoryBoundaries.forEach(cb => {
+    const colors = { macro: '#3b82f6', company: '#f97316', portfolio: '#a855f7' };
+    html += `<th colspan="${cb.count}" style="text-align:center;color:${colors[cb.name] || 'var(--text)'};font-size:10px;font-weight:700;text-transform:uppercase;border-bottom:2px solid ${colors[cb.name] || 'var(--card-border)'}">${cb.name}</th>`;
+  });
+  html += '</tr>';
+  
+  // Layer name row
+  html += '<tr><th style="font-size:10px">Ticker</th>';
+  allLayers.forEach(l => {
+    // Abbreviate layer names
+    const short = l.name.replace('Interest Rates','IR').replace('Inflation','Infl').replace('Currency Risk','FX')
+      .replace('Commodity Prices','Comm').replace('Geopolitical','Geo').replace('Regulatory/Policy','Reg')
+      .replace('Market Sentiment','Sent').replace('Management Quality','Mgmt').replace('Balance Sheet','BS')
+      .replace('Revenue Growth','Rev').replace('Profitability','Prof').replace('Competitive Position','Comp')
+      .replace('ESG/Social License','ESG').replace('Exploration Risk','Expl').replace('Execution Risk','Exec')
+      .replace('Concentration Risk','Conc').replace('Correlation Risk','Corr').replace('Liquidity Risk','Liq')
+      .replace('Sector Exposure','Sect').replace('Currency Exposure','FX').replace('Valuation Risk','Val')
+      .replace('Momentum','Mom').replace('Volatility Trend','Vol').replace('Technical Setup','Tech');
+    html += `<th style="writing-mode:vertical-lr;transform:rotate(180deg);height:70px;font-size:8px;padding:4px 2px" title="${l.name} (${l.category})">${short}</th>`;
+  });
+  html += '</tr></thead><tbody>';
+  
+  // One row per ticker
+  for (const [ticker, data] of Object.entries(positions).sort((a,b) => a[0].localeCompare(b[0]))) {
+    html += `<tr><td style="font-weight:700;font-size:10px">${ticker}</td>`;
+    allLayers.forEach(l => {
+      const score = data.scores?.[l.name];
+      const severity = score?.severity || 'low';
+      const cls = severityClass(severity);
+      const emoji = severityEmoji(severity);
+      const title = `${ticker} — ${l.name}: ${severity}${score?.notes ? ' • ' + score.notes : ''}`;
+      html += `<td class="risk-cell ${cls}" title="${title}" style="text-align:center;padding:2px;font-size:10px;cursor:pointer">${emoji}</td>`;
+    });
+    html += '</tr>';
+  }
+  html += '</tbody></table></div>';
+  
+  el.innerHTML = html;
+}
+
+// ── 6. Stress Test Simulator ──
+let stressScenario = null;
+
+function renderStressTest() {
+  const el = document.getElementById('stresstest-content');
+  if (!DATA) {
+    el.innerHTML = '<p style="color:var(--text-muted);font-size:12px">No portfolio data loaded.</p>';
+    return;
+  }
+  
+  const s = latest();
+  const totalValue = s.family_total.total_gbp;
+  
+  // Pre-built scenarios
+  const scenarios = [
+    { name: 'Gold -30%', type: 'sector', sector: 'Precious Metals', change: -30 },
+    { name: 'Gold +50%', type: 'sector', sector: 'Precious Metals', change: 50 },
+    { name: 'All -20%', type: 'all', change: -20 },
+    { name: 'All -50%', type: 'all', change: -50 },
+    { name: 'CAD -15%', type: 'currency', currency: 'CAD', change: -15 },
+    { name: 'AUD -20%', type: 'currency', currency: 'AUD', change: -20 },
+    { name: 'Tech -40%', type: 'sector', sector: 'Technology', change: -40 },
+    { name: 'ETM -80%', type: 'ticker', ticker: 'ETM', change: -80 },
+    { name: 'Market Crash -40%', type: 'all', change: -40 },
+  ];
+  
+  let html = `<div style="margin-bottom:12px;font-size:11px;color:var(--text-muted)">
+    Select a scenario to see portfolio impact and recovery time estimates
+  </div>`;
+  
+  // Scenario buttons
+  html += '<div class="stress-controls">';
+  scenarios.forEach((sc, i) => {
+    const cls = stressScenario === i ? 'stress-btn active' : 'stress-btn';
+    html += `<button class="${cls}" onclick="runStressTest(${i})">${sc.name}</button>`;
+  });
+  html += '</div>';
+  
+  // Custom scenario
+  html += `<div class="stress-custom">
+    <span style="font-size:12px;color:var(--text-muted)">Custom:</span>
+    <select id="stressType" style="min-width:100px">
+      <option value="all">All Positions</option>
+      <option value="ticker">Single Ticker</option>
+      <option value="currency">Currency</option>
+    </select>
+    <select id="stressTarget" style="min-width:80px;display:none"></select>
+    <input id="stressChange" type="number" placeholder="-20" value="-20" style="width:70px">
+    <span style="font-size:12px;color:var(--text-muted)">%</span>
+    <button class="stress-btn" onclick="runCustomStress()">Run</button>
+  </div>`;
+  
+  // Results area
+  html += '<div id="stressResults"></div>';
+  
+  el.innerHTML = html;
+  
+  // Setup custom type change handler
+  const typeSelect = document.getElementById('stressType');
+  const targetSelect = document.getElementById('stressTarget');
+  if (typeSelect) {
+    typeSelect.addEventListener('change', () => {
+      const type = typeSelect.value;
+      if (type === 'all') {
+        targetSelect.style.display = 'none';
+      } else {
+        targetSelect.style.display = 'block';
+        targetSelect.innerHTML = '';
+        if (type === 'ticker') {
+          const tickers = new Set();
+          for (const acct of Object.values(s.accounts)) {
+            for (const pos of acct.positions) tickers.add(pos.ticker);
+          }
+          [...tickers].sort().forEach(t => targetSelect.innerHTML += `<option value="${t}">${t}</option>`);
+        } else if (type === 'currency') {
+          ['CAD','USD','AUD','GBP'].forEach(c => targetSelect.innerHTML += `<option value="${c}">${c}</option>`);
+        }
+      }
+    });
+  }
+  
+  // Show results if scenario was already selected
+  if (stressScenario !== null) {
+    runStressTest(stressScenario);
+  }
+}
+
+// Store scenarios globally for access
+const STRESS_SCENARIOS = [
+  { name: 'Gold -30%', type: 'sector', sector: 'Precious Metals', change: -30 },
+  { name: 'Gold +50%', type: 'sector', sector: 'Precious Metals', change: 50 },
+  { name: 'All -20%', type: 'all', change: -20 },
+  { name: 'All -50%', type: 'all', change: -50 },
+  { name: 'CAD -15%', type: 'currency', currency: 'CAD', change: -15 },
+  { name: 'AUD -20%', type: 'currency', currency: 'AUD', change: -20 },
+  { name: 'Tech -40%', type: 'sector', sector: 'Technology', change: -40 },
+  { name: 'ETM -80%', type: 'ticker', ticker: 'ETM', change: -80 },
+  { name: 'Market Crash -40%', type: 'all', change: -40 },
+];
+
+function calculateStressImpact(scenario) {
+  if (!DATA) return null;
+  const s = latest();
+  let impactGbp = 0;
+  
+  const allPositions = [];
+  for (const acct of Object.values(s.accounts)) {
+    for (const pos of acct.positions) allPositions.push(pos);
+  }
+  
+  const changeFactor = scenario.change / 100;
+  
+  for (const pos of allPositions) {
+    let affected = false;
+    
+    if (scenario.type === 'all') {
+      affected = true;
+    } else if (scenario.type === 'sector') {
+      const sec = (SECTORS[pos.ticker] || ['Other'])[0];
+      affected = sec === scenario.sector;
+    } else if (scenario.type === 'currency') {
+      affected = pos.currency === scenario.currency;
+    } else if (scenario.type === 'ticker') {
+      affected = pos.ticker === scenario.ticker;
+    }
+    
+    if (affected) {
+      impactGbp += pos.value_gbp * changeFactor;
+    }
+  }
+  
+  return impactGbp;
+}
+
+function runStressTest(index) {
+  stressScenario = index;
+  const scenario = STRESS_SCENARIOS[index];
+  
+  // Update button states
+  document.querySelectorAll('.stress-btn').forEach((btn, i) => {
+    if (i < STRESS_SCENARIOS.length) {
+      btn.className = i === index ? 'stress-btn active' : 'stress-btn';
+    }
+  });
+  
+  showStressResults(scenario);
+}
+
+function runCustomStress() {
+  const type = document.getElementById('stressType').value;
+  const target = document.getElementById('stressTarget')?.value;
+  const change = parseFloat(document.getElementById('stressChange').value);
+  
+  if (isNaN(change)) return;
+  
+  const scenario = { name: 'Custom', type, change };
+  if (type === 'ticker') scenario.ticker = target;
+  if (type === 'currency') scenario.currency = target;
+  
+  stressScenario = -1; // custom
+  document.querySelectorAll('.stress-btn').forEach(btn => btn.classList.remove('active'));
+  
+  showStressResults(scenario);
+}
+
+function showStressResults(scenario) {
+  const resultsEl = document.getElementById('stressResults');
+  if (!resultsEl || !DATA) return;
+  
+  const s = latest();
+  const totalValue = s.family_total.total_gbp;
+  const impactGbp = calculateStressImpact(scenario);
+  const newValue = totalValue + impactGbp;
+  const impactPct = (impactGbp / totalValue * 100);
+  const isLoss = impactGbp < 0;
+  
+  // Recovery calculations (for losses only)
+  const recoveryRates = [5, 10, 15, 20, 30];
+  
+  let html = `<div class="stress-result">
+    <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin-bottom:16px">
+      <div>
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">${scenario.name} Scenario</div>
+        <div class="stress-impact ${isLoss ? 'negative' : 'positive'}">${isLoss ? '' : '+'}${impactPct.toFixed(1)}%</div>
+        <div style="font-size:14px;color:var(--text-muted);margin-top:4px">${isLoss ? '' : '+'}£${Math.abs(impactGbp).toLocaleString('en-GB',{maximumFractionDigits:0})}</div>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span style="color:var(--text-muted)">Current Value</span>
+          <span>£${totalValue.toLocaleString('en-GB',{maximumFractionDigits:0})}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span style="color:var(--text-muted)">Post-Stress Value</span>
+          <span class="${isLoss ? 'negative' : 'positive'}" style="font-weight:700">£${newValue.toLocaleString('en-GB',{maximumFractionDigits:0})}</span>
+        </div>
+        <div style="height:6px;background:rgba(255,255,255,0.1);border-radius:3px;overflow:hidden;margin-top:8px">
+          <div style="height:100%;width:${Math.max(0, (newValue/totalValue)*100)}%;background:${isLoss ? 'var(--red)' : 'var(--green)'};border-radius:3px;transition:width .3s"></div>
+        </div>
+      </div>
+    </div>`;
+  
+  if (isLoss) {
+    html += `<div style="font-size:12px;font-weight:600;margin-bottom:8px;color:var(--text-muted)">Recovery Time at Different Annual Return Rates</div>
+    <div class="recovery-grid">`;
+    
+    recoveryRates.forEach(rate => {
+      // Years to recover: log(original/new) / log(1 + rate/100)
+      const yearsToRecover = Math.log(totalValue / newValue) / Math.log(1 + rate / 100);
+      const months = Math.ceil(yearsToRecover * 12);
+      const timeStr = months >= 24 ? `${(months/12).toFixed(1)}y` : `${months}mo`;
+      
+      html += `<div class="recovery-card">
+        <div class="rate">${rate}% p.a.</div>
+        <div class="time">${timeStr}</div>
+        <div class="label">to recover</div>
+      </div>`;
+    });
+    
+    html += '</div>';
+  }
+  
+  html += '</div>';
+  resultsEl.innerHTML = html;
+}
+
+// ── Hook into main data load ──
+const _origOnDataLoaded = typeof onDataLoaded === 'function' ? onDataLoaded : null;
+
+// Override to also load risk engine data after main data loads
+const _origLoadData = loadData;
+
+// Patch: load risk engine data after authentication and data load
+(function patchRiskEngine() {
+  // Wait for DATA to be available, then load risk engine
+  const checkInterval = setInterval(() => {
+    if (DATA) {
+      clearInterval(checkInterval);
+      loadRiskEngineData();
+    }
+  }, 500);
+  // Safety: stop checking after 30s
+  setTimeout(() => clearInterval(checkInterval), 30000);
+})();
 
 // ============================================================================
 // PWA: Service Worker Registration

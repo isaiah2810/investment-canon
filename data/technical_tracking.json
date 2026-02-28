@@ -1,0 +1,226 @@
+{
+  "generated_at": "2026-02-28T21:00:00",
+  "note": "Placeholder data - update with actual entry setups and key levels",
+  "positions": {
+    "ALTA": {
+      "name": "Altamira Gold Corp",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "CDE": {
+      "name": "Coeur Mining Inc",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "CTGO": {
+      "name": "Contango Ore Inc",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "ETM": {
+      "name": "Energy Transition Minerals Ltd",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "FF": {
+      "name": "First Mining Gold Corp",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "GDGB": {
+      "name": "VanEck Gold Miners UCITS ETF (GBP Acc)",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "GDX": {
+      "name": "VanEck Gold Miners ETF",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "GDXJ": {
+      "name": "VanEck Junior Gold Miners UCITS ETF",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "GRG": {
+      "name": "Greggs plc",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "GSPR": {
+      "name": "GSP Resource Corp",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "HSLV": {
+      "name": "Highlander Silver Corp",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "HSTR": {
+      "name": "Heliostar Metals Ltd",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "LG": {
+      "name": "Lahontan Gold Corp",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "MASS": {
+      "name": "Masivo Silver Corp",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "MGG": {
+      "name": "Minaurum Silver Inc",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "NAU": {
+      "name": "Nevgold Corp",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "OSS": {
+      "name": "One Stop Systems Inc",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "QIMC": {
+      "name": "Quebec Innovative Materials Corp",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "SBRY": {
+      "name": "J Sainsbury plc",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "SSLN": {
+      "name": "iShares Physical Silver ETC",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "TI": {
+      "name": "Titan Mining Corp",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    },
+    "TRT": {
+      "name": "Trio-Tech International",
+      "entry_setup": "TBD",
+      "key_support": null,
+      "key_resistance": null,
+      "target": null,
+      "stop_loss": null,
+      "status": "neutral",
+      "notes": ""
+    }
+  }
+}
