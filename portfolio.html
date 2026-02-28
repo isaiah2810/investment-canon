@@ -366,7 +366,14 @@ async function loadData() {
     } catch(e2) {
       // Try embedded data
       if(window.PORTFOLIO_DATA) { DATA = window.PORTFOLIO_DATA; render(); onDataLoaded(); }
-      else { document.getElementById("hero").innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted)">No data yet — dashboard populates after first market close snapshot.</div>'; }
+      else { 
+      document.getElementById("hero").innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--red)">
+        <h3>❌ Data Load Error</h3>
+        <p>${e.message}</p>
+        <p style="font-size:10px;color:var(--text-muted);margin-top:8px">Try checking the console for details or hard refreshing.</p>
+      </div>`;
+      console.error("Data load failed:", e);
+    }
     }
   }
 }

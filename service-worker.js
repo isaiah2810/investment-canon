@@ -53,6 +53,11 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // Skip portfolio data file (always fetch fresh, no SW caching)
+  if (request.url.includes('portfolio_history.json')) {
+    return;
+  }
+
   event.respondWith(
     caches.open(RUNTIME_CACHE).then(async (cache) => {
       const cachedResponse = await cache.match(request);
