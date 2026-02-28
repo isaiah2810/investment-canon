@@ -404,9 +404,34 @@ function onDataLoaded() {
 let activeView = "accounts";
 let activeFilter = "all"; // "all" or account/person name
 let chart = null;
+let chartMode = 'pnl'; // 'pnl' or 'value'
 let BENCHMARK_DATA = null; // Cached benchmark historical data
 let sortCol = "valueGbp";
 let sortDir = "desc";
+
+function setChartMode(mode) {
+  chartMode = mode;
+  // Update UI
+  const btnPnl = document.getElementById('modePnl');
+  const btnVal = document.getElementById('modeValue');
+  
+  if (mode === 'pnl') {
+    btnPnl.style.background = 'var(--accent)';
+    btnPnl.style.color = '#000';
+    btnPnl.style.fontWeight = '700';
+    btnVal.style.background = 'transparent';
+    btnVal.style.color = 'var(--text-muted)';
+    btnVal.style.fontWeight = '500';
+  } else {
+    btnVal.style.background = 'var(--accent)';
+    btnVal.style.color = '#000';
+    btnVal.style.fontWeight = '700';
+    btnPnl.style.background = 'transparent';
+    btnPnl.style.color = 'var(--text-muted)';
+    btnPnl.style.fontWeight = '500';
+  }
+  renderChart();
+}
 
 function latest() { return DATA.snapshots[DATA.snapshots.length - 1]; }
 function prev() { return DATA.snapshots.length > 1 ? DATA.snapshots[DATA.snapshots.length - 2] : null; }
@@ -864,96 +889,93 @@ async function renderChart() {
   if (!DATA || DATA.snapshots.length < 1) return;
   
   // Lazy-load full history if not already loaded
-  await loadFullHistory();
+  if (typeof loadFullHistory === 'function') await loadFullHistory();
   
   const labels = DATA.snapshots.map(s => s.date);
-  const familyPnl = DATA.snapshots.map(s => s.family_total.pnl_pct);
+  
+  // Data selection based on mode
+  const isValue = chartMode === 'value';
+  const familyData = DATA.snapshots.map(s => isValue ? s.family_total.total_gbp : s.family_total.pnl_pct);
   
   // Person-level series
   const people = Object.keys(DATA.snapshots[DATA.snapshots.length-1].people || {});
   const personSeries = {};
   people.forEach(p => {
-    personSeries[p] = DATA.snapshots.map(s => s.people?.[p]?.pnl_pct ?? null);
+    personSeries[p] = DATA.snapshots.map(s => {
+      const pData = s.people?.[p];
+      if (!pData) return null;
+      return isValue ? pData.total_gbp : pData.pnl_pct;
+    });
   });
   
   const colors = {Family:'#f59e0b', Carlin:'#3b82f6', Nana:'#10b981', Dada:'#a855f7'};
   
   const datasets = [
-    {label:'Family', data:familyPnl, borderColor:colors.Family, backgroundColor:colors.Family+'20', tension:0.3, borderWidth:2, fill:true}
+    {
+      label: 'Family', 
+      data: familyData, 
+      borderColor: colors.Family, 
+      backgroundColor: colors.Family+'20', 
+      tension: 0.3, 
+      borderWidth: 2, 
+      fill: true
+    }
   ];
+  
   people.forEach(p => {
-    datasets.push({label:p, data:personSeries[p], borderColor:colors[p]||'#888', tension:0.3, borderWidth:1.5, borderDash:[4,2], fill:false, pointRadius:2});
+    datasets.push({
+      label: p, 
+      data: personSeries[p], 
+      borderColor: colors[p]||'#888', 
+      tension: 0.3, 
+      borderWidth: 1.5, 
+      borderDash: [4,2], 
+      fill: false, 
+      pointRadius: 2
+    });
   });
   
-  // Add benchmarks if selected
+  // Add benchmarks (ONLY IN P&L MODE)
   const includeSP500 = document.getElementById('benchSP500')?.checked;
   const includeFTSE = document.getElementById('benchFTSE')?.checked;
   const includeGold = document.getElementById('benchGold')?.checked;
 
-  if ((includeSP500 || includeFTSE || includeGold) && !BENCHMARK_DATA) {
-    // Fetch benchmark data if not cached
-    await fetchBenchmarkData();
-  }
+  if (!isValue && (includeSP500 || includeFTSE || includeGold)) {
+    if (!BENCHMARK_DATA) await fetchBenchmarkData();
 
-  if (BENCHMARK_DATA) {
-    const portfolioDates = DATA.snapshots.map(s => s.date);
-    
-    if (includeSP500 && BENCHMARK_DATA['^GSPC']) {
-      const bench = BENCHMARK_DATA['^GSPC'];
-      const aligned = alignBenchmarkData(bench, portfolioDates);
-      datasets.push({
-        label: '📊 S&P 500',
-        data: aligned,
-        borderColor: '#6b7280',
-        backgroundColor: 'transparent',
-        tension: 0.3,
-        borderWidth: 1.5,
-        borderDash: [6, 4],
-        fill: false,
-        pointRadius: 1,
-        pointHoverRadius: 4
-      });
-    }
-    
-    if (includeFTSE && BENCHMARK_DATA['^FTSE']) {
-      const bench = BENCHMARK_DATA['^FTSE'];
-      const aligned = alignBenchmarkData(bench, portfolioDates);
-      datasets.push({
-        label: '🇬🇧 FTSE 100',
-        data: aligned,
-        borderColor: '#8b5cf6',
-        backgroundColor: 'transparent',
-        tension: 0.3,
-        borderWidth: 1.5,
-        borderDash: [2, 3],
-        fill: false,
-        pointRadius: 1,
-        pointHoverRadius: 4
-      });
-    }
-    
-    if (includeGold && BENCHMARK_DATA['GC=F']) {
-      const bench = BENCHMARK_DATA['GC=F'];
-      const aligned = alignBenchmarkData(bench, portfolioDates);
-      datasets.push({
-        label: '✨ Gold',
-        data: aligned,
-        borderColor: '#fbbf24',
-        backgroundColor: 'transparent',
-        tension: 0.3,
-        borderWidth: 1.5,
-        borderDash: [8, 2],
-        fill: false,
-        pointRadius: 1,
-        pointHoverRadius: 4
-      });
+    if (BENCHMARK_DATA) {
+      const portfolioDates = DATA.snapshots.map(s => s.date);
+      
+      if (includeSP500 && BENCHMARK_DATA['^GSPC']) {
+        datasets.push({
+          label: '📊 S&P 500',
+          data: alignBenchmarkData(BENCHMARK_DATA['^GSPC'], portfolioDates),
+          borderColor: '#6b7280',
+          tension: 0.3, borderWidth: 1.5, borderDash: [6, 4], pointRadius: 0
+        });
+      }
+      if (includeFTSE && BENCHMARK_DATA['^FTSE']) {
+        datasets.push({
+          label: '🇬🇧 FTSE 100',
+          data: alignBenchmarkData(BENCHMARK_DATA['^FTSE'], portfolioDates),
+          borderColor: '#8b5cf6',
+          tension: 0.3, borderWidth: 1.5, borderDash: [2, 3], pointRadius: 0
+        });
+      }
+      if (includeGold && BENCHMARK_DATA['GC=F']) {
+        datasets.push({
+          label: '✨ Gold',
+          data: alignBenchmarkData(BENCHMARK_DATA['GC=F'], portfolioDates),
+          borderColor: '#fbbf24',
+          tension: 0.3, borderWidth: 1.5, borderDash: [8, 2], pointRadius: 0
+        });
+      }
     }
   }
   
   const ctx = document.getElementById('pnlChart').getContext('2d');
   if (chart) chart.destroy();
   
-  // Get current text color for theme-aware chart
   const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim();
   const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--card-border').trim();
   
@@ -966,13 +988,27 @@ async function renderChart() {
       plugins: {
         legend: {labels:{color:textColor,font:{size:11}}},
         tooltip: {
-          callbacks: {label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y >= 0 ? '+' : ''}${ctx.parsed.y.toFixed(2)}%`}
+          callbacks: {
+            label: ctx => {
+              const label = ctx.dataset.label;
+              const val = ctx.parsed.y;
+              if (isValue) return `${label}: £${val.toLocaleString('en-GB', {maximumFractionDigits:0})}`;
+              return `${label}: ${val >= 0 ? '+' : ''}${val.toFixed(2)}%`;
+            }
+          }
         }
       },
       scales: {
         x: {ticks:{color:textColor,font:{size:10}},grid:{color:gridColor}},
-        y: {ticks:{color:textColor,font:{size:10},callback:v=>v+'%'},grid:{color:gridColor},
-          title:{display:true,text:'P&L %',color:textColor}}
+        y: {
+          ticks:{
+            color:textColor,
+            font:{size:10},
+            callback: v => isValue ? '£' + (v/1000).toFixed(0) + 'k' : v + '%'
+          },
+          grid:{color:gridColor},
+          title:{display:true, text: isValue ? 'Portfolio Value' : 'P&L %', color:textColor}
+        }
       }
     }
   });
