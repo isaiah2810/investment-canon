@@ -12130,7 +12130,7 @@
     },
     {
       "date": "2026-03-01",
-      "timestamp": "2026-03-01T01:30:12.512617",
+      "timestamp": "2026-03-01T01:31:46.462482",
       "fx_rates": {
         "GBP": 1.0,
         "CAD": 0.5419399738311768,
@@ -12331,12 +12331,26 @@
               "book_cost_gbp": 2579.21,
               "pnl_gbp": -736.92,
               "pnl_pct": -28.57
+            },
+            {
+              "ticker": "TRT",
+              "name": "Trio-Tech International",
+              "exchange": "NYSEAMERICAN",
+              "currency": "USD",
+              "units": 60,
+              "avg_price": 5.43,
+              "current_price": 4.86,
+              "daily_change_pct": -0.41,
+              "value_gbp": 216.14,
+              "book_cost_gbp": 241.49,
+              "pnl_gbp": -25.35,
+              "pnl_pct": -10.5
             }
           ],
-          "total_value_gbp": 3049.47,
-          "total_cost_gbp": 3662.01,
-          "pnl_gbp": -612.54,
-          "pnl_pct": -16.73
+          "total_value_gbp": 3265.6,
+          "total_cost_gbp": 3903.5,
+          "pnl_gbp": -637.9,
+          "pnl_pct": -16.34
         },
         "NANA": {
           "cash_gbp": 2416.89,
@@ -12807,9 +12821,9 @@
           "name": "Trio-Tech International",
           "currency": "USD",
           "exchange": "NYSEAMERICAN",
-          "total_units": 593.647258,
-          "total_cost_local": 4098.861380259999,
-          "total_cost_gbp": 3038.12,
+          "total_units": 653.647258,
+          "total_cost_local": 4424.6613802599995,
+          "total_cost_gbp": 3279.6,
           "current_price": 4.86,
           "daily_change_pct": -0.41,
           "accounts": [
@@ -12819,15 +12833,20 @@
               "avg_price": 5.203636
             },
             {
+              "account": "CP IBKR",
+              "units": 60,
+              "avg_price": 5.43
+            },
+            {
               "account": "DADA",
               "units": 571.647258,
               "avg_price": 6.97
             }
           ],
-          "value_gbp": 2138.48,
-          "weighted_avg_price": 6.9045,
-          "pnl_gbp": -899.64,
-          "pnl_pct": -29.61
+          "value_gbp": 2354.62,
+          "weighted_avg_price": 6.7692,
+          "pnl_gbp": -924.98,
+          "pnl_pct": -28.2
         },
         "MASS": {
           "name": "Masivo Silver Corp",
@@ -13062,12 +13081,12 @@
         }
       },
       "family_total": {
-        "investments_gbp": 107173.5,
+        "investments_gbp": 107389.63,
         "cash_gbp": 5553.87,
-        "total_gbp": 112727.37,
-        "book_cost_gbp": 103798.68,
-        "pnl_gbp": 3374.82,
-        "pnl_pct": 3.25
+        "total_gbp": 112943.5,
+        "book_cost_gbp": 104040.17,
+        "pnl_gbp": 3349.46,
+        "pnl_pct": 3.22
       },
       "people": {
         "Carlin": {
@@ -13075,12 +13094,12 @@
             "CP II",
             "CP IBKR"
           ],
-          "investments_gbp": 65985.25,
+          "investments_gbp": 66201.38,
           "cash_gbp": 336.98,
-          "total_gbp": 66322.23,
-          "book_cost_gbp": 69693.74,
-          "pnl_gbp": -3708.49,
-          "pnl_pct": -5.32,
+          "total_gbp": 66538.36,
+          "book_cost_gbp": 69935.23,
+          "pnl_gbp": -3733.85,
+          "pnl_pct": -5.34,
           "positions": {
             "HSLV": {
               "name": "Highlander Silver Corp",
@@ -13301,22 +13320,27 @@
               "name": "Trio-Tech International",
               "currency": "USD",
               "exchange": "NYSEAMERICAN",
-              "total_units": 22,
-              "total_cost_local": 114.47999200000001,
-              "total_cost_gbp": 84.85,
+              "total_units": 82,
+              "total_cost_local": 440.279992,
+              "total_cost_gbp": 326.34,
               "current_price": 4.86,
               "daily_change_pct": -0.41,
-              "value_gbp": 79.25,
+              "value_gbp": 295.39,
               "accounts": [
                 {
                   "account": "CP II",
                   "units": 22,
                   "avg_price": 5.203636
+                },
+                {
+                  "account": "CP IBKR",
+                  "units": 60,
+                  "avg_price": 5.43
                 }
               ],
-              "weighted_avg_price": 5.2036,
-              "pnl_gbp": -5.6,
-              "pnl_pct": -6.6
+              "weighted_avg_price": 5.3693,
+              "pnl_gbp": -30.95,
+              "pnl_pct": -9.48
             },
             "MASS": {
               "name": "Masivo Silver Corp",
@@ -13688,7 +13712,7 @@
   "metadata": {
     "created": "2026-02-19T21:45:29.935815",
     "version": 1,
-    "lastUpdated": "2026-03-01T01:30:14.097032",
+    "lastUpdated": "2026-03-01T01:31:47.967980",
     "totalSnapshots": 9
   }
 }
