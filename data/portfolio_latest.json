@@ -2,7 +2,7 @@
   "snapshots": [
     {
       "date": "2026-03-01",
-      "timestamp": "2026-03-01T01:35:41.759078",
+      "timestamp": "2026-03-01T01:36:57.916437",
       "fx_rates": {
         "GBP": 1.0,
         "CAD": 0.5419399738311768,
@@ -332,7 +332,7 @@
           "pnl_pct": 30.35
         },
         "DADA": {
-          "cash_gbp": 2800.0,
+          "cash_gbp": 730.0,
           "positions": [
             {
               "ticker": "GDX",
@@ -954,8 +954,8 @@
       },
       "family_total": {
         "investments_gbp": 110427.13,
-        "cash_gbp": 3249.89,
-        "total_gbp": 113677.02,
+        "cash_gbp": 1179.89,
+        "total_gbp": 111607.02,
         "book_cost_gbp": 107138.01,
         "pnl_gbp": 3289.12,
         "pnl_pct": 3.07
@@ -1402,8 +1402,8 @@
             "DADA"
           ],
           "investments_gbp": 10858.2,
-          "cash_gbp": 2800.0,
-          "total_gbp": 13658.2,
+          "cash_gbp": 730.0,
+          "total_gbp": 11588.2,
           "book_cost_gbp": 11603.88,
           "pnl_gbp": -745.68,
           "pnl_pct": -6.43,
