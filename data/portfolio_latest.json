@@ -1,8 +1,8 @@
 {
   "snapshots": [
     {
-      "date": "2026-02-28",
-      "timestamp": "2026-02-28T21:05:02.929733",
+      "date": "2026-03-01",
+      "timestamp": "2026-03-01T01:29:19.104990",
       "fx_rates": {
         "GBP": 1.0,
         "CAD": 0.5419399738311768,
@@ -61,7 +61,7 @@
               "exchange": "NYSEAMERICAN",
               "currency": "USD",
               "units": 150,
-              "avg_price": 32.0555,
+              "avg_price": 32.055467,
               "current_price": 30.07,
               "daily_change_pct": 4.01,
               "value_gbp": 3343.23,
@@ -103,13 +103,13 @@
               "exchange": "TSXV",
               "currency": "CAD",
               "units": 28000,
-              "avg_price": 0.1416,
+              "avg_price": 0.141566,
               "current_price": 0.13,
               "daily_change_pct": -7.14,
               "value_gbp": 1972.66,
               "book_cost_gbp": 2148.16,
               "pnl_gbp": -175.5,
-              "pnl_pct": -8.19
+              "pnl_pct": -8.17
             },
             {
               "ticker": "TI",
@@ -152,11 +152,25 @@
               "book_cost_gbp": 2091.05,
               "pnl_gbp": 27.93,
               "pnl_pct": 1.34
+            },
+            {
+              "ticker": "TRT",
+              "name": "Trio-Tech International",
+              "exchange": "NYSEAMERICAN",
+              "currency": "USD",
+              "units": 22,
+              "avg_price": 5.203636,
+              "current_price": 4.86,
+              "daily_change_pct": -0.41,
+              "value_gbp": 79.25,
+              "book_cost_gbp": 84.85,
+              "pnl_gbp": -5.6,
+              "pnl_pct": -6.6
             }
           ],
-          "total_value_gbp": 62856.53,
-          "total_cost_gbp": 65946.88,
-          "pnl_gbp": -3090.35,
+          "total_value_gbp": 62935.78,
+          "total_cost_gbp": 66031.73,
+          "pnl_gbp": -3095.95,
           "pnl_pct": -4.69
         },
         "CP IBKR": {
@@ -499,7 +513,7 @@
           "currency": "USD",
           "exchange": "NYSEAMERICAN",
           "total_units": 268.57348842,
-          "total_cost_local": 8575.404727103401,
+          "total_cost_local": 8575.399777103401,
           "total_cost_gbp": 6356.17,
           "current_price": 30.07,
           "daily_change_pct": 4.01,
@@ -507,7 +521,7 @@
             {
               "account": "CP II",
               "units": 150,
-              "avg_price": 32.0555
+              "avg_price": 32.055467
             },
             {
               "account": "DADA",
@@ -516,7 +530,7 @@
             }
           ],
           "value_gbp": 5986.02,
-          "weighted_avg_price": 31.9295,
+          "weighted_avg_price": 31.9294,
           "pnl_gbp": -370.15,
           "pnl_pct": -5.82
         },
@@ -572,7 +586,7 @@
           "currency": "CAD",
           "exchange": "TSXV",
           "total_units": 28000,
-          "total_cost_local": 3964.8,
+          "total_cost_local": 3963.848,
           "total_cost_gbp": 2148.16,
           "current_price": 0.13,
           "daily_change_pct": -7.14,
@@ -580,7 +594,7 @@
             {
               "account": "CP II",
               "units": 28000,
-              "avg_price": 0.1416
+              "avg_price": 0.141566
             }
           ],
           "value_gbp": 1972.66,
@@ -660,6 +674,32 @@
           "weighted_avg_price": 0.227,
           "pnl_gbp": 27.94,
           "pnl_pct": 1.34
+        },
+        "TRT": {
+          "name": "Trio-Tech International",
+          "currency": "USD",
+          "exchange": "NYSEAMERICAN",
+          "total_units": 593.647258,
+          "total_cost_local": 4098.861380259999,
+          "total_cost_gbp": 3038.12,
+          "current_price": 4.86,
+          "daily_change_pct": -0.41,
+          "accounts": [
+            {
+              "account": "CP II",
+              "units": 22,
+              "avg_price": 5.203636
+            },
+            {
+              "account": "DADA",
+              "units": 571.647258,
+              "avg_price": 6.97
+            }
+          ],
+          "value_gbp": 2138.48,
+          "weighted_avg_price": 6.9045,
+          "pnl_gbp": -899.64,
+          "pnl_pct": -29.61
         },
         "MASS": {
           "name": "Masivo Silver Corp",
@@ -808,27 +848,6 @@
           "pnl_gbp": -1747.97,
           "pnl_pct": -98.14
         },
-        "TRT": {
-          "name": "Trio-Tech International",
-          "currency": "USD",
-          "exchange": "NYSEAMERICAN",
-          "total_units": 571.647258,
-          "total_cost_local": 3984.3813882599998,
-          "total_cost_gbp": 2953.26,
-          "current_price": 4.86,
-          "daily_change_pct": -0.41,
-          "accounts": [
-            {
-              "account": "DADA",
-              "units": 571.647258,
-              "avg_price": 6.97
-            }
-          ],
-          "value_gbp": 2059.23,
-          "weighted_avg_price": 6.97,
-          "pnl_gbp": -894.03,
-          "pnl_pct": -30.27
-        },
         "CDE": {
           "name": "Coeur Mining Inc",
           "currency": "USD",
@@ -915,12 +934,12 @@
         }
       },
       "family_total": {
-        "investments_gbp": 107094.25,
+        "investments_gbp": 107173.5,
         "cash_gbp": 5636.36,
-        "total_gbp": 112730.61,
-        "book_cost_gbp": 103713.83,
-        "pnl_gbp": 3380.42,
-        "pnl_pct": 3.26
+        "total_gbp": 112809.86,
+        "book_cost_gbp": 103798.68,
+        "pnl_gbp": 3374.82,
+        "pnl_pct": 3.25
       },
       "people": {
         "Carlin": {
@@ -928,11 +947,11 @@
             "CP II",
             "CP IBKR"
           ],
-          "investments_gbp": 65906.0,
+          "investments_gbp": 65985.25,
           "cash_gbp": 419.47,
-          "total_gbp": 66325.47,
-          "book_cost_gbp": 69608.89,
-          "pnl_gbp": -3702.89,
+          "total_gbp": 66404.72,
+          "book_cost_gbp": 69693.74,
+          "pnl_gbp": -3708.49,
           "pnl_pct": -5.32,
           "positions": {
             "HSLV": {
@@ -1008,7 +1027,7 @@
               "currency": "USD",
               "exchange": "NYSEAMERICAN",
               "total_units": 150,
-              "total_cost_local": 4808.325000000001,
+              "total_cost_local": 4808.32005,
               "total_cost_gbp": 3563.97,
               "current_price": 30.07,
               "daily_change_pct": 4.01,
@@ -1017,7 +1036,7 @@
                 {
                   "account": "CP II",
                   "units": 150,
-                  "avg_price": 32.0555
+                  "avg_price": 32.055467
                 }
               ],
               "weighted_avg_price": 32.0555,
@@ -1071,7 +1090,7 @@
               "currency": "CAD",
               "exchange": "TSXV",
               "total_units": 28000,
-              "total_cost_local": 3964.8,
+              "total_cost_local": 3963.848,
               "total_cost_gbp": 2148.16,
               "current_price": 0.13,
               "daily_change_pct": -7.14,
@@ -1080,7 +1099,7 @@
                 {
                   "account": "CP II",
                   "units": 28000,
-                  "avg_price": 0.1416
+                  "avg_price": 0.141566
                 }
               ],
               "weighted_avg_price": 0.1416,
@@ -1149,6 +1168,27 @@
               "weighted_avg_price": 0.227,
               "pnl_gbp": 27.94,
               "pnl_pct": 1.34
+            },
+            "TRT": {
+              "name": "Trio-Tech International",
+              "currency": "USD",
+              "exchange": "NYSEAMERICAN",
+              "total_units": 22,
+              "total_cost_local": 114.47999200000001,
+              "total_cost_gbp": 84.85,
+              "current_price": 4.86,
+              "daily_change_pct": -0.41,
+              "value_gbp": 79.25,
+              "accounts": [
+                {
+                  "account": "CP II",
+                  "units": 22,
+                  "avg_price": 5.203636
+                }
+              ],
+              "weighted_avg_price": 5.2036,
+              "pnl_gbp": -5.6,
+              "pnl_pct": -6.6
             },
             "MASS": {
               "name": "Masivo Silver Corp",
