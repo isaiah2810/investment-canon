@@ -12130,7 +12130,7 @@
     },
     {
       "date": "2026-03-01",
-      "timestamp": "2026-03-01T01:34:53.069351",
+      "timestamp": "2026-03-01T01:35:41.759078",
       "fx_rates": {
         "GBP": 1.0,
         "CAD": 0.5419399738311768,
@@ -12353,7 +12353,7 @@
           "pnl_pct": -16.34
         },
         "NANA": {
-          "cash_gbp": 2416.89,
+          "cash_gbp": 112.91,
           "positions": [
             {
               "ticker": "HSTR",
@@ -12388,13 +12388,13 @@
               "name": "VanEck Junior Gold Miners UCITS ETF",
               "exchange": "LSE",
               "currency": "GBP",
-              "units": 122,
-              "avg_price": 77.538443,
+              "units": 110,
+              "avg_price": 77.538455,
               "current_price": 141.9,
               "daily_change_pct": 2.88,
-              "value_gbp": 12831.68,
-              "book_cost_gbp": 9459.69,
-              "pnl_gbp": 3371.99,
+              "value_gbp": 11569.55,
+              "book_cost_gbp": 8529.23,
+              "pnl_gbp": 3040.32,
               "pnl_pct": 35.65
             },
             {
@@ -12454,10 +12454,10 @@
               "pnl_pct": 17.29
             }
           ],
-          "total_value_gbp": 34629.69,
-          "total_cost_gbp": 26529.36,
-          "pnl_gbp": 8100.33,
-          "pnl_pct": 30.53
+          "total_value_gbp": 33367.55,
+          "total_cost_gbp": 25598.9,
+          "pnl_gbp": 7768.65,
+          "pnl_pct": 30.35
         },
         "DADA": {
           "cash_gbp": 2800.0,
@@ -12894,21 +12894,21 @@
           "name": "VanEck Junior Gold Miners UCITS ETF",
           "currency": "GBP",
           "exchange": "LSE",
-          "total_units": 122,
-          "total_cost_local": 9459.690046,
-          "total_cost_gbp": 9459.69,
+          "total_units": 110,
+          "total_cost_local": 8529.23005,
+          "total_cost_gbp": 8529.23,
           "current_price": 141.9,
           "daily_change_pct": 2.88,
           "accounts": [
             {
               "account": "NANA",
-              "units": 122,
-              "avg_price": 77.538443
+              "units": 110,
+              "avg_price": 77.538455
             }
           ],
-          "value_gbp": 12831.68,
-          "weighted_avg_price": 77.5384,
-          "pnl_gbp": 3371.99,
+          "value_gbp": 11569.55,
+          "weighted_avg_price": 77.5385,
+          "pnl_gbp": 3040.32,
           "pnl_pct": 35.65
         },
         "FF": {
@@ -13081,12 +13081,12 @@
         }
       },
       "family_total": {
-        "investments_gbp": 111689.27,
-        "cash_gbp": 5553.87,
-        "total_gbp": 117243.14,
-        "book_cost_gbp": 108068.47,
-        "pnl_gbp": 3620.8,
-        "pnl_pct": 3.35
+        "investments_gbp": 110427.13,
+        "cash_gbp": 3249.89,
+        "total_gbp": 113677.02,
+        "book_cost_gbp": 107138.01,
+        "pnl_gbp": 3289.12,
+        "pnl_pct": 3.07
       },
       "people": {
         "Carlin": {
@@ -13369,12 +13369,12 @@
           "accounts": [
             "NANA"
           ],
-          "investments_gbp": 34629.69,
-          "cash_gbp": 2416.89,
-          "total_gbp": 37046.58,
-          "book_cost_gbp": 26529.36,
-          "pnl_gbp": 8100.33,
-          "pnl_pct": 30.53,
+          "investments_gbp": 33367.55,
+          "cash_gbp": 112.91,
+          "total_gbp": 33480.46,
+          "book_cost_gbp": 25598.9,
+          "pnl_gbp": 7768.65,
+          "pnl_pct": 30.35,
           "positions": {
             "HSTR": {
               "name": "Heliostar Metals Ltd",
@@ -13422,21 +13422,21 @@
               "name": "VanEck Junior Gold Miners UCITS ETF",
               "currency": "GBP",
               "exchange": "LSE",
-              "total_units": 122,
-              "total_cost_local": 9459.690046,
-              "total_cost_gbp": 9459.69,
+              "total_units": 110,
+              "total_cost_local": 8529.23005,
+              "total_cost_gbp": 8529.23,
               "current_price": 141.9,
               "daily_change_pct": 2.88,
-              "value_gbp": 12831.68,
+              "value_gbp": 11569.55,
               "accounts": [
                 {
                   "account": "NANA",
-                  "units": 122,
-                  "avg_price": 77.538443
+                  "units": 110,
+                  "avg_price": 77.538455
                 }
               ],
-              "weighted_avg_price": 77.5384,
-              "pnl_gbp": 3371.99,
+              "weighted_avg_price": 77.5385,
+              "pnl_gbp": 3040.32,
               "pnl_pct": 35.65
             },
             "NAU": {
@@ -13712,7 +13712,7 @@
   "metadata": {
     "created": "2026-02-19T21:45:29.935815",
     "version": 1,
-    "lastUpdated": "2026-03-01T01:34:54.590543",
+    "lastUpdated": "2026-03-01T01:35:43.193660",
     "totalSnapshots": 9
   }
 }
