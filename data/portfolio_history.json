@@ -12130,7 +12130,7 @@
     },
     {
       "date": "2026-03-01",
-      "timestamp": "2026-03-01T01:29:19.104990",
+      "timestamp": "2026-03-01T01:30:12.512617",
       "fx_rates": {
         "GBP": 1.0,
         "CAD": 0.5419399738311768,
@@ -12139,7 +12139,7 @@
       },
       "accounts": {
         "CP II": {
-          "cash_gbp": 90.91,
+          "cash_gbp": 8.42,
           "positions": [
             {
               "ticker": "HSLV",
@@ -12147,7 +12147,7 @@
               "exchange": "TSX",
               "currency": "CAD",
               "units": 950,
-              "avg_price": 5.497,
+              "avg_price": 5.497042,
               "current_price": 10.11,
               "daily_change_pct": 3.8,
               "value_gbp": 5205.06,
@@ -12161,13 +12161,13 @@
               "exchange": "CSE",
               "currency": "CAD",
               "units": 5000,
-              "avg_price": 0.5418,
+              "avg_price": 0.541776,
               "current_price": 1.06,
               "daily_change_pct": 13.98,
               "value_gbp": 2872.28,
               "book_cost_gbp": 1468.05,
               "pnl_gbp": 1404.23,
-              "pnl_pct": 95.64
+              "pnl_pct": 95.65
             },
             {
               "ticker": "ETM",
@@ -12245,7 +12245,7 @@
               "exchange": "TSX",
               "currency": "CAD",
               "units": 1320,
-              "avg_price": 5.4497,
+              "avg_price": 5.449652,
               "current_price": 5.9,
               "daily_change_pct": 10.28,
               "value_gbp": 4220.63,
@@ -12259,13 +12259,13 @@
               "exchange": "TSXV",
               "currency": "CAD",
               "units": 8000,
-              "avg_price": 1.0103,
+              "avg_price": 1.010293,
               "current_price": 1.3,
               "daily_change_pct": -3.7,
               "value_gbp": 5636.18,
               "book_cost_gbp": 4380.14,
               "pnl_gbp": 1256.03,
-              "pnl_pct": 28.67
+              "pnl_pct": 28.68
             },
             {
               "ticker": "ALTA",
@@ -12573,7 +12573,7 @@
           "currency": "CAD",
           "exchange": "TSX",
           "total_units": 950,
-          "total_cost_local": 5222.15,
+          "total_cost_local": 5222.1899,
           "total_cost_gbp": 2830.11,
           "current_price": 10.11,
           "daily_change_pct": 3.8,
@@ -12581,7 +12581,7 @@
             {
               "account": "CP II",
               "units": 950,
-              "avg_price": 5.497
+              "avg_price": 5.497042
             }
           ],
           "value_gbp": 5205.06,
@@ -12594,7 +12594,7 @@
           "currency": "CAD",
           "exchange": "CSE",
           "total_units": 5000,
-          "total_cost_local": 2708.9999999999995,
+          "total_cost_local": 2708.88,
           "total_cost_gbp": 1468.05,
           "current_price": 1.06,
           "daily_change_pct": 13.98,
@@ -12602,7 +12602,7 @@
             {
               "account": "CP II",
               "units": 5000,
-              "avg_price": 0.5418
+              "avg_price": 0.541776
             }
           ],
           "value_gbp": 2872.28,
@@ -12735,7 +12735,7 @@
           "currency": "CAD",
           "exchange": "TSX",
           "total_units": 2267,
-          "total_cost_local": 10961.883672,
+          "total_cost_local": 10961.820312,
           "total_cost_gbp": 5940.65,
           "current_price": 5.9,
           "daily_change_pct": 10.28,
@@ -12743,7 +12743,7 @@
             {
               "account": "CP II",
               "units": 1320,
-              "avg_price": 5.4497
+              "avg_price": 5.449652
             },
             {
               "account": "NANA",
@@ -12761,7 +12761,7 @@
           "currency": "CAD",
           "exchange": "TSXV",
           "total_units": 12398,
-          "total_cost_local": 11896.068526,
+          "total_cost_local": 11896.012526000002,
           "total_cost_gbp": 6446.92,
           "current_price": 1.3,
           "daily_change_pct": -3.7,
@@ -12769,7 +12769,7 @@
             {
               "account": "CP II",
               "units": 8000,
-              "avg_price": 1.0103
+              "avg_price": 1.010293
             },
             {
               "account": "NANA",
@@ -13063,8 +13063,8 @@
       },
       "family_total": {
         "investments_gbp": 107173.5,
-        "cash_gbp": 5636.36,
-        "total_gbp": 112809.86,
+        "cash_gbp": 5553.87,
+        "total_gbp": 112727.37,
         "book_cost_gbp": 103798.68,
         "pnl_gbp": 3374.82,
         "pnl_pct": 3.25
@@ -13076,8 +13076,8 @@
             "CP IBKR"
           ],
           "investments_gbp": 65985.25,
-          "cash_gbp": 419.47,
-          "total_gbp": 66404.72,
+          "cash_gbp": 336.98,
+          "total_gbp": 66322.23,
           "book_cost_gbp": 69693.74,
           "pnl_gbp": -3708.49,
           "pnl_pct": -5.32,
@@ -13087,7 +13087,7 @@
               "currency": "CAD",
               "exchange": "TSX",
               "total_units": 950,
-              "total_cost_local": 5222.15,
+              "total_cost_local": 5222.1899,
               "total_cost_gbp": 2830.11,
               "current_price": 10.11,
               "daily_change_pct": 3.8,
@@ -13096,7 +13096,7 @@
                 {
                   "account": "CP II",
                   "units": 950,
-                  "avg_price": 5.497
+                  "avg_price": 5.497042
                 }
               ],
               "weighted_avg_price": 5.497,
@@ -13108,7 +13108,7 @@
               "currency": "CAD",
               "exchange": "CSE",
               "total_units": 5000,
-              "total_cost_local": 2708.9999999999995,
+              "total_cost_local": 2708.88,
               "total_cost_gbp": 1468.05,
               "current_price": 1.06,
               "daily_change_pct": 13.98,
@@ -13117,7 +13117,7 @@
                 {
                   "account": "CP II",
                   "units": 5000,
-                  "avg_price": 0.5418
+                  "avg_price": 0.541776
                 }
               ],
               "weighted_avg_price": 0.5418,
@@ -13239,7 +13239,7 @@
               "currency": "CAD",
               "exchange": "TSX",
               "total_units": 1320,
-              "total_cost_local": 7193.604,
+              "total_cost_local": 7193.54064,
               "total_cost_gbp": 3898.47,
               "current_price": 5.9,
               "daily_change_pct": 10.28,
@@ -13248,7 +13248,7 @@
                 {
                   "account": "CP II",
                   "units": 1320,
-                  "avg_price": 5.4497
+                  "avg_price": 5.449652
                 }
               ],
               "weighted_avg_price": 5.4497,
@@ -13260,7 +13260,7 @@
               "currency": "CAD",
               "exchange": "TSXV",
               "total_units": 8000,
-              "total_cost_local": 8082.4,
+              "total_cost_local": 8082.344000000001,
               "total_cost_gbp": 4380.14,
               "current_price": 1.3,
               "daily_change_pct": -3.7,
@@ -13269,7 +13269,7 @@
                 {
                   "account": "CP II",
                   "units": 8000,
-                  "avg_price": 1.0103
+                  "avg_price": 1.010293
                 }
               ],
               "weighted_avg_price": 1.0103,
@@ -13688,7 +13688,7 @@
   "metadata": {
     "created": "2026-02-19T21:45:29.935815",
     "version": 1,
-    "lastUpdated": "2026-03-01T01:29:20.662338",
+    "lastUpdated": "2026-03-01T01:30:14.097032",
     "totalSnapshots": 9
   }
 }
