@@ -2,7 +2,7 @@
   "snapshots": [
     {
       "date": "2026-03-01",
-      "timestamp": "2026-03-01T01:37:26.120969",
+      "timestamp": "2026-03-01T01:49:26.043052",
       "fx_rates": {
         "GBP": 1.0,
         "CAD": 0.5419399738311768,
@@ -355,12 +355,12 @@
               "currency": "GBP",
               "units": 50.34708836,
               "avg_price": 35.378,
-              "current_price": 0.6597,
+              "current_price": 65.97,
               "daily_change_pct": 7.36,
-              "value_gbp": 33.21,
+              "value_gbp": 3321.4,
               "book_cost_gbp": 1781.18,
-              "pnl_gbp": -1747.97,
-              "pnl_pct": -98.14
+              "pnl_gbp": 1540.22,
+              "pnl_pct": 86.47
             },
             {
               "ticker": "CTGO",
@@ -447,10 +447,10 @@
               "pnl_pct": -37.61
             }
           ],
-          "total_value_gbp": 10858.2,
+          "total_value_gbp": 14146.39,
           "total_cost_gbp": 11603.88,
-          "pnl_gbp": -745.68,
-          "pnl_pct": -6.43
+          "pnl_gbp": 2542.51,
+          "pnl_pct": 21.91
         }
       },
       "aggregate": {
@@ -853,7 +853,7 @@
           "total_units": 50.34708836,
           "total_cost_local": 1781.17929200008,
           "total_cost_gbp": 1781.18,
-          "current_price": 0.6597,
+          "current_price": 65.97,
           "daily_change_pct": 7.36,
           "accounts": [
             {
@@ -862,10 +862,10 @@
               "avg_price": 35.378
             }
           ],
-          "value_gbp": 33.21,
+          "value_gbp": 3321.4,
           "weighted_avg_price": 35.378,
-          "pnl_gbp": -1747.97,
-          "pnl_pct": -98.14
+          "pnl_gbp": 1540.22,
+          "pnl_pct": 86.47
         },
         "CDE": {
           "name": "Coeur Mining Inc",
@@ -953,12 +953,12 @@
         }
       },
       "family_total": {
-        "investments_gbp": 110427.13,
+        "investments_gbp": 113715.32,
         "cash_gbp": 1179.89,
-        "total_gbp": 111607.02,
+        "total_gbp": 114895.21,
         "book_cost_gbp": 107138.01,
-        "pnl_gbp": 3289.12,
-        "pnl_pct": 3.07
+        "pnl_gbp": 6577.31,
+        "pnl_pct": 6.14
       },
       "people": {
         "Carlin": {
@@ -1401,12 +1401,12 @@
           "accounts": [
             "DADA"
           ],
-          "investments_gbp": 10858.2,
+          "investments_gbp": 14146.39,
           "cash_gbp": 730.0,
-          "total_gbp": 11588.2,
+          "total_gbp": 14876.39,
           "book_cost_gbp": 11603.88,
-          "pnl_gbp": -745.68,
-          "pnl_pct": -6.43,
+          "pnl_gbp": 2542.51,
+          "pnl_pct": 21.91,
           "positions": {
             "GDX": {
               "name": "VanEck Gold Miners ETF",
@@ -1436,9 +1436,9 @@
               "total_units": 50.34708836,
               "total_cost_local": 1781.17929200008,
               "total_cost_gbp": 1781.18,
-              "current_price": 0.6597,
+              "current_price": 65.97,
               "daily_change_pct": 7.36,
-              "value_gbp": 33.21,
+              "value_gbp": 3321.4,
               "accounts": [
                 {
                   "account": "DADA",
@@ -1447,8 +1447,8 @@
                 }
               ],
               "weighted_avg_price": 35.378,
-              "pnl_gbp": -1747.97,
-              "pnl_pct": -98.14
+              "pnl_gbp": 1540.22,
+              "pnl_pct": 86.47
             },
             "CTGO": {
               "name": "Contango ORE Inc",
