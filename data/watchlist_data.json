@@ -1,0 +1,20 @@
+{
+  "lastUpdated": "2026-03-01T02:00:00Z",
+  "watchlist": [
+    {
+      "ticker": "PSIL.CN",
+      "name": "Pacifica Silver",
+      "exchange": "CSE",
+      "currency": "CAD",
+      "note": "Claudia Project Mexico. NIA alert Feb 16 2026. Monitoring drill results.",
+      "addedDate": "2026-02-17",
+      "targetPrice": null,
+      "targetTimeframe": null,
+      "catalysts": [
+        "Drill results expected Q2 2026",
+        "NIA coverage Feb 2026"
+      ],
+      "tags": ["silver", "mexico", "nia-alert", "explorer"]
+    }
+  ]
+}

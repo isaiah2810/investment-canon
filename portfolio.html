@@ -188,7 +188,25 @@
   .tech-table td{padding:8px 10px;border-bottom:1px solid rgba(30,30,46,0.3)}
   .tech-table tr:hover{background:var(--card-hover)}
 
-  @media(max-width:600px){body{padding:12px}.hero{grid-template-columns:repeat(2,1fr)}.modal-content{width:95%;padding:16px}}
+  /* Watchlist */
+  .watchlist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;margin-top:12px}
+  .watchlist-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:14px;transition:border-color .2s,transform .2s}
+  .watchlist-card:hover{border-color:var(--accent-dim);transform:translateY(-2px)}
+  .watchlist-header{display:flex;justify-content:space-between;align-items:start;margin-bottom:10px}
+  .watchlist-ticker{font-size:16px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .watchlist-name{font-size:12px;color:var(--text-muted);margin-bottom:4px}
+  .watchlist-exchange{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px}
+  .watchlist-price{text-align:right}
+  .watchlist-price .price-value{font-size:18px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .watchlist-note{font-size:12px;color:var(--text);background:rgba(255,255,255,0.04);padding:8px 10px;border-radius:6px;margin-bottom:10px;line-height:1.4;border-left:3px solid var(--accent-dim)}
+  .watchlist-catalysts{margin-top:12px;padding:10px;background:rgba(0,0,0,0.2);border-radius:6px}
+  .watchlist-catalysts ul{list-style:none;padding:0;margin:0}
+  .watchlist-catalysts li{font-size:11px;color:var(--text);padding:4px 0;position:relative;padding-left:14px}
+  .watchlist-catalysts li:before{content:'•';position:absolute;left:0;color:var(--accent);font-weight:bold}
+  .watchlist-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+  .watchlist-tags .tag{font-size:9px;padding:3px 8px;border-radius:10px;background:rgba(255,255,255,0.08);color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;font-weight:600}
+
+  @media(max-width:600px){body{padding:12px}.hero{grid-template-columns:repeat(2,1fr)}.modal-content{width:95%;padding:16px};.watchlist-grid{grid-template-columns:1fr}}
   @media(max-width:768px){
     #analytics div[style*="grid-template-columns: 1fr 1fr"],
     #analytics div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
@@ -294,6 +312,20 @@
 <div class="table-wrap"><table id="positions-table"><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div>
 
 <div id="analytics"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- WATCHLIST SECTION                                                      -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<div class="risk-section" id="watchlist-section">
+  <div class="risk-section-header" onclick="toggleSection('watchlist')">
+    <h2>👁️ <span>Watchlist</span></h2>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="risk-section-body collapsed" id="watchlist-body">
+    <div id="watchlist-content"><p style="color:var(--text-muted);font-size:12px">Loading watchlist...</p></div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 <!-- OTF RISK ENGINE SECTIONS                                              -->
@@ -1780,6 +1812,118 @@ let TECHNICAL_DATA = null;
 let RISK_DATA = null;
 
 // ── Load all risk engine data ──
+// ============================================================================
+// WATCHLIST LOADING & RENDERING
+// ============================================================================
+
+let WATCHLIST_DATA = null;
+
+async function loadWatchlistData() {
+  const t = Date.now();
+  try {
+    const resp = await fetch(`data/watchlist_data.json?t=${t}`);
+    if (resp.ok) {
+      WATCHLIST_DATA = await resp.json();
+      renderWatchlist();
+    }
+  } catch(e) {
+    console.warn('Watchlist data load error:', e);
+  }
+}
+
+async function renderWatchlist() {
+  const el = document.getElementById('watchlist-content');
+  if (!WATCHLIST_DATA || !WATCHLIST_DATA.watchlist || WATCHLIST_DATA.watchlist.length === 0) {
+    el.innerHTML = '<p style="color:var(--text-muted);font-size:12px">No tickers in watchlist. Add tickers to <code>data/watchlist_data.json</code>.</p>';
+    return;
+  }
+  
+  const watchlist = WATCHLIST_DATA.watchlist;
+  
+  // Fetch live prices for watchlist tickers
+  const tickers = watchlist.map(w => w.ticker);
+  let prices = {};
+  try {
+    const priceResp = await fetch(PRICE_SERVER_URL + '/api/prices');
+    if (priceResp.ok) {
+      const priceData = await priceResp.json();
+      if (priceData.success && priceData.prices) {
+        prices = priceData.prices;
+      }
+    }
+  } catch(e) {
+    console.warn('Failed to fetch watchlist prices:', e);
+  }
+  
+  let html = `<div style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+    <span style="font-size:11px;color:var(--text-muted)">${watchlist.length} ticker${watchlist.length === 1 ? '' : 's'} on watchlist</span>
+    <span style="font-size:10px;color:var(--text-muted)">Last updated: ${new Date(WATCHLIST_DATA.lastUpdated).toLocaleString('en-GB')}</span>
+  </div>`;
+  
+  html += '<div class="watchlist-grid">';
+  
+  for (const item of watchlist) {
+    const priceData = prices[item.ticker];
+    const hasPrice = priceData && priceData.price !== null;
+    
+    const price = hasPrice ? priceData.price.toFixed(2) : '—';
+    const currency = hasPrice ? priceData.currency : item.currency;
+    const dailyChange = hasPrice && priceData.daily_change_pct !== null 
+      ? priceData.daily_change_pct.toFixed(2) + '%' 
+      : '—';
+    const changeClass = hasPrice && priceData.daily_change_pct !== null
+      ? (priceData.daily_change_pct >= 0 ? 'positive' : 'negative')
+      : 'text-muted';
+    
+    const tags = item.tags ? item.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : '';
+    const catalysts = item.catalysts ? item.catalysts.map(c => `<li>${c}</li>`).join('') : '<li style="color:var(--text-muted);font-style:italic">No catalysts listed</li>';
+    
+    html += `
+      <div class="watchlist-card">
+        <div class="watchlist-header">
+          <div>
+            <div class="watchlist-ticker">${item.ticker}</div>
+            <div class="watchlist-name">${item.name}</div>
+            <div class="watchlist-exchange">${item.exchange} · ${currency}</div>
+          </div>
+          <div class="watchlist-price">
+            <div class="price-value">${currency === 'GBP' ? '£' : currency === 'USD' ? '$' : currency === 'CAD' ? 'C$' : currency === 'AUD' ? 'A$' : ''}${price}</div>
+            <div class="${changeClass}" style="font-size:11px;font-weight:600">${dailyChange}</div>
+          </div>
+        </div>
+        
+        ${item.note ? `<div class="watchlist-note">${item.note}</div>` : ''}
+        
+        ${item.targetPrice ? `
+          <div style="margin-top:10px;padding:8px;background:rgba(245,158,11,0.1);border-left:3px solid var(--accent);border-radius:4px;font-size:11px">
+            <span style="color:var(--text-muted)">Target:</span> 
+            <span style="font-weight:700;color:var(--accent)">${currency === 'GBP' ? '£' : '$'}${item.targetPrice}</span>
+            ${item.targetTimeframe ? `<span style="color:var(--text-muted);margin-left:8px">(${item.targetTimeframe})</span>` : ''}
+          </div>
+        ` : ''}
+        
+        <div class="watchlist-catalysts">
+          <div style="font-size:10px;font-weight:700;color:var(--text-muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px">Catalysts</div>
+          <ul>${catalysts}</ul>
+        </div>
+        
+        ${tags ? `<div class="watchlist-tags">${tags}</div>` : ''}
+        
+        <div style="font-size:10px;color:var(--text-muted);margin-top:8px;padding-top:8px;border-top:1px solid var(--card-border)">
+          Added ${new Date(item.addedDate).toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'})}
+        </div>
+      </div>
+    `;
+  }
+  
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+// ============================================================================
+// RISK ENGINE LOADING & RENDERING
+// ============================================================================
+
 async function loadRiskEngineData() {
   const t = Date.now();
   try {
@@ -2370,13 +2514,14 @@ const _origOnDataLoaded = typeof onDataLoaded === 'function' ? onDataLoaded : nu
 // Override to also load risk engine data after main data loads
 const _origLoadData = loadData;
 
-// Patch: load risk engine data after authentication and data load
+// Patch: load watchlist + risk engine data after authentication and data load
 (function patchRiskEngine() {
-  // Wait for DATA to be available, then load risk engine
+  // Wait for DATA to be available, then load watchlist + risk engine
   const checkInterval = setInterval(() => {
     if (DATA) {
       clearInterval(checkInterval);
-      loadRiskEngineData();
+      loadWatchlistData();  // Load watchlist
+      loadRiskEngineData(); // Load risk engine
     }
   }, 500);
   // Safety: stop checking after 30s
