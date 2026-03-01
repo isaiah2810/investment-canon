@@ -509,13 +509,16 @@ function checkAuthStatus() {
 }
 
 // Check auth on page load
-checkAuthStatus();
+// checkAuthStatus(); // Moved down to avoid TDZ
 
 // Data will be injected by the build script or loaded from JSON
 let DATA = null;
 let FULL_HISTORY_LOADED = false;
 const LATEST_URL = "data/portfolio_latest.json?t=" + Date.now();
 const HISTORY_URL = "data/portfolio_history.json?t=" + Date.now();
+
+// Check auth on page load
+checkAuthStatus();
 
 async function loadData() {
   // Load latest snapshot first (small, fast)
