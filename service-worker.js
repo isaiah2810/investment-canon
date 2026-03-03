@@ -1,17 +1,19 @@
 // Portfolio Dashboard Service Worker
 // Implements stale-while-revalidate caching strategy for offline support
 
-const CACHE_NAME = 'portfolio-cache-v1';
-const RUNTIME_CACHE = 'portfolio-runtime-v1';
+const CACHE_NAME = 'portfolio-cache-v2';
+const RUNTIME_CACHE = 'portfolio-runtime-v2';
 
 // Assets to cache on install (static files)
 // Use relative paths for GitHub Pages compatibility
 const BASE_PATH = self.location.pathname.replace(/\/[^/]*$/, '');
 const STATIC_ASSETS = [
-  `${BASE_PATH}/portfolio.html`,
   `${BASE_PATH}/manifest.json`,
   'https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js'
 ];
+
+// Never cache these (contain dynamic config like tunnel URLs)
+const NEVER_CACHE = ['portfolio.html', 'portfolio_history.json'];
 
 // Install event: cache static assets
 self.addEventListener('install', (event) => {
@@ -53,8 +55,8 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Skip portfolio data file (always fetch fresh, no SW caching)
-  if (request.url.includes('portfolio_history.json')) {
+  // Skip files that contain dynamic config (tunnel URLs etc) — always network-first
+  if (NEVER_CACHE.some(f => request.url.includes(f))) {
     return;
   }
 
