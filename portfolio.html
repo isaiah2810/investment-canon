@@ -206,7 +206,27 @@
   .watchlist-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
   .watchlist-tags .tag{font-size:9px;padding:3px 8px;border-radius:10px;background:rgba(255,255,255,0.08);color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;font-weight:600}
 
-  @media(max-width:600px){body{padding:12px}.hero{grid-template-columns:repeat(2,1fr)}.modal-content{width:95%;padding:16px};.watchlist-grid{grid-template-columns:1fr}}
+  /* Price Alerts */
+  .alerts-summary{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+  .alert-stat{flex:1;min-width:140px;background:rgba(255,255,255,0.04);padding:10px 14px;border-radius:8px;border-left:3px solid var(--accent-dim)}
+  .alert-stat-label{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+  .alert-stat-value{font-size:20px;font-weight:700;color:var(--text)}
+  .alerts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:12px}
+  .alert-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:12px 14px;transition:border-color .2s,transform .1s}
+  .alert-card:hover{border-color:var(--accent-dim);transform:translateY(-1px)}
+  .alert-card.severity-high{border-left:3px solid #ef4444}
+  .alert-card.severity-medium{border-left:3px solid #f59e0b}
+  .alert-card.severity-low{border-left:3px solid #10b981}
+  .alert-header{display:flex;justify-content:space-between;align-items:start;margin-bottom:8px}
+  .alert-ticker{font-size:15px;font-weight:700;color:var(--text)}
+  .alert-ticker.exited{opacity:0.6}
+  .alert-type{font-size:9px;color:var(--text-muted);background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600}
+  .alert-message{font-size:13px;color:var(--text);margin-bottom:6px;line-height:1.3}
+  .alert-details{font-size:11px;color:var(--text-muted);line-height:1.4}
+  .alert-timestamp{font-size:9px;color:var(--text-muted);margin-top:8px;padding-top:8px;border-top:1px solid var(--card-border);text-align:right}
+  .no-alerts{text-align:center;padding:40px 20px;color:var(--text-muted);font-size:13px}
+
+  @media(max-width:600px){body{padding:12px}.hero{grid-template-columns:repeat(2,1fr)}.modal-content{width:95%;padding:16px};.watchlist-grid{grid-template-columns:1fr};.alerts-grid{grid-template-columns:1fr}}
   @media(max-width:768px){
     #analytics div[style*="grid-template-columns: 1fr 1fr"],
     #analytics div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
@@ -312,6 +332,20 @@
 <div class="table-wrap"><table id="positions-table"><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div>
 
 <div id="analytics"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PRICE ALERTS SECTION                                                   -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<div class="risk-section" id="alerts-section">
+  <div class="risk-section-header" onclick="toggleSection('alerts')">
+    <h2>🔔 <span>Price Alerts</span></h2>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="risk-section-body" id="alerts-body">
+    <div id="alerts-content"><p style="color:var(--text-muted);font-size:12px">Loading alerts...</p></div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 <!-- WATCHLIST SECTION                                                      -->
@@ -1479,6 +1513,9 @@ async function refreshPrices() {
     // 7. Re-render everything
     render();
     
+    // 8. Refresh alerts (non-blocking)
+    loadAlertsData().catch(e => console.warn('Alert refresh failed:', e));
+    
     document.getElementById('lastUpdated').textContent = `Live prices refreshed: ${now.toLocaleTimeString('en-GB', {hour:'2-digit',minute:'2-digit',second:'2-digit'})}`;
 
     
@@ -1917,6 +1954,127 @@ async function renderWatchlist() {
   }
   
   html += '</div>';
+  el.innerHTML = html;
+}
+
+// ============================================================================
+// PRICE ALERTS LOADING & RENDERING
+// ============================================================================
+
+let ALERTS_DATA = null;
+
+async function loadAlertsData() {
+  try {
+    const resp = await fetch(PRICE_SERVER_URL + '/api/alerts');
+    if (resp.ok) {
+      ALERTS_DATA = await resp.json();
+      renderAlerts();
+    }
+  } catch(e) {
+    console.warn('Alerts data load error:', e);
+    // Show empty state on error
+    document.getElementById('alerts-content').innerHTML = '<div class="no-alerts">⚠️ Unable to load alerts</div>';
+  }
+}
+
+function renderAlerts() {
+  const el = document.getElementById('alerts-content');
+  
+  if (!ALERTS_DATA || !ALERTS_DATA.alerts || ALERTS_DATA.alerts.length === 0) {
+    const lastUpdate = ALERTS_DATA?.last_updated ? new Date(ALERTS_DATA.last_updated).toLocaleString('en-GB', {
+      day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+    }) : 'Never';
+    el.innerHTML = `<div class="no-alerts">✅ No active alerts<br><span style="font-size:10px;margin-top:8px;display:inline-block">Last checked: ${lastUpdate}</span></div>`;
+    return;
+  }
+  
+  const alerts = ALERTS_DATA.alerts;
+  const summary = ALERTS_DATA.summary;
+  
+  // Build summary stats
+  let html = '<div class="alerts-summary">';
+  html += `
+    <div class="alert-stat">
+      <div class="alert-stat-label">Total Alerts</div>
+      <div class="alert-stat-value">${summary.total}</div>
+    </div>
+    <div class="alert-stat">
+      <div class="alert-stat-label">🔴 High</div>
+      <div class="alert-stat-value">${summary.by_severity.high}</div>
+    </div>
+    <div class="alert-stat">
+      <div class="alert-stat-label">🟡 Medium</div>
+      <div class="alert-stat-value">${summary.by_severity.medium}</div>
+    </div>
+    <div class="alert-stat">
+      <div class="alert-stat-label">🟢 Low</div>
+      <div class="alert-stat-value">${summary.by_severity.low}</div>
+    </div>
+  </div>`;
+  
+  // Build alert cards
+  html += '<div class="alerts-grid">';
+  
+  for (const alert of alerts) {
+    const severityClass = `severity-${alert.severity}`;
+    const exitedClass = alert.is_exited ? 'exited' : '';
+    const exitedPrefix = alert.is_exited ? '[EXITED] ' : '';
+    
+    let emoji = '';
+    let typeLabel = '';
+    let details = '';
+    
+    switch(alert.type) {
+      case 'price_move':
+        emoji = alert.direction === 'up' ? '🚀' : '⚠️';
+        typeLabel = alert.direction === 'up' ? 'Price Up' : 'Price Down';
+        details = `Current: ${alert.currency_symbol}${alert.current_price.toFixed(2)} | Prev: ${alert.currency_symbol}${alert.prev_close.toFixed(2)} | Change: ${alert.change_pct > 0 ? '+' : ''}${alert.change_pct}%`;
+        break;
+      case '52w_high':
+        emoji = '🎯';
+        typeLabel = '52W High';
+        details = `Current: ${alert.currency_symbol}${alert.current_price.toFixed(2)} | 52W High: ${alert.currency_symbol}${alert.target_level.toFixed(2)}`;
+        break;
+      case '52w_low':
+        emoji = '📍';
+        typeLabel = '52W Low';
+        details = `Current: ${alert.currency_symbol}${alert.current_price.toFixed(2)} | 52W Low: ${alert.currency_symbol}${alert.target_level.toFixed(2)}`;
+        break;
+      case 'volume_spike':
+        emoji = '📊';
+        typeLabel = 'Volume Spike';
+        details = `Current: ${alert.current_volume.toLocaleString()} (${alert.volume_ratio}x avg ${alert.avg_volume.toLocaleString()})`;
+        break;
+    }
+    
+    const timestamp = new Date(alert.timestamp).toLocaleString('en-GB', {
+      day: 'numeric',
+      month: 'short',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+    
+    html += `
+      <div class="alert-card ${severityClass}">
+        <div class="alert-header">
+          <div class="alert-ticker ${exitedClass}">${emoji} ${exitedPrefix}${alert.ticker}</div>
+          <div class="alert-type">${typeLabel}</div>
+        </div>
+        <div class="alert-message">${alert.message}</div>
+        <div class="alert-details">${details}</div>
+        <div class="alert-timestamp">${timestamp}</div>
+      </div>
+    `;
+  }
+  
+  html += '</div>';
+  
+  // Add last updated footer
+  const lastUpdate = new Date(ALERTS_DATA.last_updated).toLocaleString('en-GB', {
+    day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+  });
+  html += `<div style="margin-top:16px;font-size:10px;color:var(--text-muted);text-align:right">Last updated: ${lastUpdate}</div>`;
+  
   el.innerHTML = html;
 }
 
@@ -2520,6 +2678,7 @@ const _origLoadData = loadData;
   const checkInterval = setInterval(() => {
     if (DATA) {
       clearInterval(checkInterval);
+      loadAlertsData();     // Load price alerts
       loadWatchlistData();  // Load watchlist
       loadRiskEngineData(); // Load risk engine
     }
