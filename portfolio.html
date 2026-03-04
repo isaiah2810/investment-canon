@@ -108,6 +108,18 @@
   /* Auto-refresh indicator */
   .auto-refresh-info{font-size:10px;color:var(--text-muted);margin-top:4px}
 
+  /* Loading skeleton */
+  .skeleton{background:linear-gradient(90deg,var(--card-bg) 25%,var(--card-hover) 50%,var(--card-bg) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:6px;height:20px;margin:6px 0}
+  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  .skeleton-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:16px}
+  .skeleton-hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:20px}
+  .skeleton-people{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:20px}
+  .skeleton-text{height:16px;width:80%}
+  .skeleton-text-small{height:12px;width:60%}
+  .skeleton-number{height:24px;width:90px;margin-bottom:4px}
+  .skeleton-table-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;padding:10px;border-bottom:1px solid rgba(30,30,46,0.3)}
+  .skeleton-table-cell{height:14px}
+
   /* Position detail modal */
   .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;align-items:center;justify-content:center}
   .modal-overlay.visible{display:flex}
@@ -537,7 +549,8 @@ async function checkAuth() {
     document.getElementById('authOverlay').style.display = 'none';
     error.textContent = '';
     input.value = '';
-    // Load data after authentication
+    // Show loading skeleton then load data
+    showSkeletons();
     loadData();
   } else {
     // Wrong PIN
@@ -560,6 +573,7 @@ function checkAuthStatus() {
   
   if (isAuth) {
     overlay.style.display = 'none';
+    showSkeletons(); // Show loading skeleton
     loadData(); // Load data if already authenticated
   } else {
     overlay.style.display = 'flex';
@@ -585,6 +599,65 @@ const HISTORY_URL = "data/portfolio_history.json?t=" + Date.now();
 
 // Check auth on page load
 checkAuthStatus();
+
+function showSkeletons() {
+  // Hero stats skeleton
+  document.getElementById("hero").innerHTML = `
+    <div class="skeleton-hero">
+      ${Array(6).fill(0).map(() => `
+        <div class="skeleton-card">
+          <div class="skeleton skeleton-number"></div>
+          <div class="skeleton skeleton-text-small"></div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+
+  // People row skeleton
+  document.getElementById("people-row").innerHTML = `
+    <div class="skeleton-people">
+      ${Array(3).fill(0).map(() => `
+        <div class="skeleton-card">
+          <div class="skeleton skeleton-text" style="width:100px;margin-bottom:8px"></div>
+          <div class="skeleton skeleton-text-small" style="width:120px;margin-bottom:12px"></div>
+          <div class="skeleton skeleton-text-small"></div>
+          <div class="skeleton skeleton-text-small"></div>
+          <div class="skeleton skeleton-text-small"></div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+
+  // Table skeleton
+  document.getElementById("table-body").innerHTML = `
+    ${Array(8).fill(0).map(() => `
+      <tr>
+        <td><div class="skeleton skeleton-table-cell" style="width:60px"></div></td>
+        <td><div class="skeleton skeleton-table-cell"></div></td>
+        <td><div class="skeleton skeleton-table-cell" style="width:80px"></div></td>
+        <td><div class="skeleton skeleton-table-cell" style="width:80px"></div></td>
+        <td><div class="skeleton skeleton-table-cell" style="width:80px"></div></td>
+        <td><div class="skeleton skeleton-table-cell" style="width:80px"></div></td>
+        <td><div class="skeleton skeleton-table-cell" style="width:90px"></div></td>
+        <td><div class="skeleton skeleton-table-cell" style="width:90px"></div></td>
+      </tr>
+    `).join('')}
+  `;
+
+  // Table header (keep static, no skeleton needed - just shows column names)
+  document.getElementById("table-head").innerHTML = `
+    <tr>
+      <th>Ticker</th>
+      <th>Units</th>
+      <th>Curr Price</th>
+      <th>Value (GBP)</th>
+      <th>Book Cost</th>
+      <th>P&L (GBP)</th>
+      <th>P&L %</th>
+      <th>Daily Δ%</th>
+    </tr>
+  `;
+}
 
 async function loadData() {
   // Load latest snapshot first (small, fast)
