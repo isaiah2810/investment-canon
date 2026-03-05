@@ -218,6 +218,12 @@
   .watchlist-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
   .watchlist-tags .tag{font-size:9px;padding:3px 8px;border-radius:10px;background:rgba(255,255,255,0.08);color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;font-weight:600}
 
+  /* Dividend Tracker */
+  .dividend-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:12px}
+  .dividend-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:14px;transition:border-color .2s,transform .2s}
+  .dividend-card:hover{border-color:var(--accent-dim);transform:translateY(-2px)}
+  .dividend-header{display:flex;justify-content:space-between;align-items:start;margin-bottom:8px}
+
   /* Price Alerts */
   .alerts-summary{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
   .alert-stat{flex:1;min-width:140px;background:rgba(255,255,255,0.04);padding:10px 14px;border-radius:8px;border-left:3px solid var(--accent-dim)}
@@ -356,6 +362,20 @@
   </div>
   <div class="risk-section-body" id="alerts-body">
     <div id="alerts-content"><p style="color:var(--text-muted);font-size:12px">Loading alerts...</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- DIVIDEND TRACKER SECTION                                               -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<div class="risk-section" id="dividends-section">
+  <div class="risk-section-header" onclick="toggleSection('dividends')">
+    <h2>💰 <span>Dividend Income</span></h2>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="risk-section-body collapsed" id="dividends-body">
+    <div id="dividends-content"><p style="color:var(--text-muted);font-size:12px">Loading dividend data...</p></div>
   </div>
 </div>
 
@@ -2031,6 +2051,132 @@ async function renderWatchlist() {
 }
 
 // ============================================================================
+// DIVIDEND TRACKER LOADING & RENDERING
+// ============================================================================
+
+let DIVIDENDS_DATA = null;
+
+async function loadDividendsData() {
+  try {
+    const resp = await fetch(PRICE_SERVER_URL + '/api/dividends');
+    if (resp.ok) {
+      DIVIDENDS_DATA = await resp.json();
+      renderDividends();
+    }
+  } catch(e) {
+    console.warn('Dividends data load error:', e);
+    document.getElementById('dividends-content').innerHTML = '<div style="color:var(--text-muted);font-size:12px;padding:20px;text-align:center">⚠️ Unable to load dividend data</div>';
+  }
+}
+
+function renderDividends() {
+  const el = document.getElementById('dividends-content');
+  
+  if (!DIVIDENDS_DATA || !DIVIDENDS_DATA.tickers || DIVIDENDS_DATA.tickers.length === 0) {
+    el.innerHTML = '<div style="color:var(--text-muted);font-size:12px;padding:20px;text-align:center">No dividend data available</div>';
+    return;
+  }
+  
+  const summary = DIVIDENDS_DATA.summary;
+  const tickers = DIVIDENDS_DATA.tickers.filter(t => t.hasDividends);
+  const portfolioIncome = DIVIDENDS_DATA.portfolioIncome || {};
+  
+  // Summary cards
+  let html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px">';
+  html += `
+    <div style="padding:16px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px">
+      <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">Dividend Payers</div>
+      <div style="font-size:24px;font-weight:700;color:var(--accent)">${summary.dividendPayers}/${summary.totalTickers}</div>
+    </div>
+    <div style="padding:16px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px">
+      <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">Annual Income</div>
+      <div style="font-size:24px;font-weight:700;color:var(--positive)">£${summary.totalAnnualIncome?.toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2}) || '0.00'}</div>
+    </div>
+    <div style="padding:16px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px">
+      <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">YTD Income</div>
+      <div style="font-size:24px;font-weight:700;color:var(--positive)">£${summary.totalYtdIncome?.toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2}) || '0.00'}</div>
+    </div>
+  `;
+  html += '</div>';
+  
+  // Dividend payers table
+  if (tickers.length === 0) {
+    html += '<div style="color:var(--text-muted);font-size:12px;padding:20px;text-align:center">No dividend-paying positions in portfolio</div>';
+  } else {
+    html += '<div style="margin-bottom:20px"><div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:12px">Dividend-Paying Positions</div>';
+    html += '<div class="dividend-grid">';
+    
+    // Sort by yield descending
+    tickers.sort((a, b) => (b.dividendYield || 0) - (a.dividendYield || 0));
+    
+    for (const ticker of tickers) {
+      const income = portfolioIncome[ticker.ticker] || {};
+      const hasIncome = income.annualIncome && income.annualIncome > 0;
+      
+      html += `
+        <div class="dividend-card">
+          <div class="dividend-header">
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--text)">${ticker.ticker}</div>
+              <div style="font-size:11px;color:var(--text-muted)">${ticker.currency}</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:18px;font-weight:700;color:var(--accent)">${ticker.dividendYield ? ticker.dividendYield.toFixed(2) + '%' : 'N/A'}</div>
+              <div style="font-size:10px;color:var(--text-muted)">Yield</div>
+            </div>
+          </div>
+          
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+            <div>
+              <div style="font-size:10px;color:var(--text-muted);margin-bottom:2px">Annual Div</div>
+              <div style="font-size:12px;font-weight:600;color:var(--text)">${ticker.currency === 'GBP' ? '£' : '$'}${ticker.annualDividend?.toFixed(4) || '0'}</div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--text-muted);margin-bottom:2px">Frequency</div>
+              <div style="font-size:12px;font-weight:600;color:var(--text);text-transform:capitalize">${ticker.frequency || 'Unknown'}</div>
+            </div>
+          </div>
+          
+          ${hasIncome ? `
+            <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--card-border)">
+              <div style="font-size:10px;color:var(--text-muted);margin-bottom:6px">Portfolio Income (${income.units} units)</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div>
+                  <div style="font-size:10px;color:var(--text-muted)">Annual</div>
+                  <div style="font-size:13px;font-weight:700;color:var(--positive)">£${income.annualIncome?.toFixed(2)}</div>
+                </div>
+                <div>
+                  <div style="font-size:10px;color:var(--text-muted)">YTD</div>
+                  <div style="font-size:13px;font-weight:700;color:var(--positive)">£${income.ytdIncome?.toFixed(2)}</div>
+                </div>
+              </div>
+            </div>
+          ` : ''}
+          
+          ${ticker.nextExDivDate ? `
+            <div style="margin-top:8px;font-size:10px;color:var(--text-muted)">
+              Next ex-div: ${new Date(ticker.nextExDivDate).toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'})}
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+    
+    html += '</div></div>';
+  }
+  
+  // Last updated footer
+  if (DIVIDENDS_DATA.lastUpdated) {
+    const lastUpdate = new Date(DIVIDENDS_DATA.lastUpdated).toLocaleString('en-GB', {
+      day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+    });
+    html += `<div style="font-size:10px;color:var(--text-muted);margin-top:12px;text-align:right">Last updated: ${lastUpdate}</div>`;
+  }
+  
+  el.innerHTML = html;
+}
+
+// ============================================================================
 // PRICE ALERTS LOADING & RENDERING
 // ============================================================================
 
@@ -2753,6 +2899,7 @@ const _origLoadData = loadData;
       clearInterval(checkInterval);
       loadAlertsData();     // Load price alerts
       loadWatchlistData();  // Load watchlist
+      loadDividendsData();  // Load dividends
       loadRiskEngineData(); // Load risk engine
     }
   }, 500);

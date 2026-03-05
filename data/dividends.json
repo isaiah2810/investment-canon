@@ -1,0 +1,435 @@
+{
+  "lastUpdated": "2026-03-05T02:01:52.862673",
+  "summary": {
+    "totalTickers": 22,
+    "dividendPayers": 6,
+    "nonDividendPayers": 16,
+    "totalAnnualIncome": 2578.24,
+    "totalYtdIncome": 0.0
+  },
+  "tickers": [
+    {
+      "ticker": "CTGO",
+      "yahooTicker": "CTGO",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "USD",
+      "lastUpdated": "2026-03-05T02:01:51.511289"
+    },
+    {
+      "ticker": "FF",
+      "yahooTicker": "FF.TO",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "CAD",
+      "lastUpdated": "2026-03-05T02:01:51.514492"
+    },
+    {
+      "ticker": "GDGB",
+      "yahooTicker": "GDGB.L",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "GBP",
+      "lastUpdated": "2026-03-05T02:01:51.524712"
+    },
+    {
+      "ticker": "ETM",
+      "yahooTicker": "ETM.AX",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "AUD",
+      "lastUpdated": "2026-03-05T02:01:51.527085"
+    },
+    {
+      "ticker": "ALTA",
+      "yahooTicker": "ALTA.V",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "CAD",
+      "lastUpdated": "2026-03-05T02:01:51.527688"
+    },
+    {
+      "ticker": "CDE",
+      "yahooTicker": "CDE",
+      "hasDividends": true,
+      "currency": "USD",
+      "dividendYield": null,
+      "annualDividend": 0,
+      "ytdDividend": 0,
+      "frequency": "unknown",
+      "nextExDivDate": "1996-04-03",
+      "history": [],
+      "lastUpdated": "2026-03-05T02:01:51.573589"
+    },
+    {
+      "ticker": "HSLV",
+      "yahooTicker": "HSLV.TO",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "CAD",
+      "lastUpdated": "2026-03-05T02:01:51.891779"
+    },
+    {
+      "ticker": "GDXJ",
+      "yahooTicker": "GDXJ.L",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "USD",
+      "lastUpdated": "2026-03-05T02:01:51.924592"
+    },
+    {
+      "ticker": "GSPR",
+      "yahooTicker": "GSPR.V",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "CAD",
+      "lastUpdated": "2026-03-05T02:01:51.932845"
+    },
+    {
+      "ticker": "GDX",
+      "yahooTicker": "GDX",
+      "hasDividends": true,
+      "currency": "USD",
+      "dividendYield": 0.6,
+      "annualDividend": 0.633,
+      "ytdDividend": 0,
+      "frequency": "annual",
+      "nextExDivDate": null,
+      "history": [
+        {
+          "date": "2025-12-22",
+          "amount": 0.633,
+          "currency": "USD"
+        },
+        {
+          "date": "2024-12-23",
+          "amount": 0.403,
+          "currency": "USD"
+        },
+        {
+          "date": "2023-12-18",
+          "amount": 0.5,
+          "currency": "USD"
+        },
+        {
+          "date": "2022-12-19",
+          "amount": 0.476,
+          "currency": "USD"
+        },
+        {
+          "date": "2021-12-20",
+          "amount": 0.535,
+          "currency": "USD"
+        }
+      ],
+      "lastUpdated": "2026-03-05T02:01:51.974014"
+    },
+    {
+      "ticker": "HSTR",
+      "yahooTicker": "HSTR.V",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "CAD",
+      "lastUpdated": "2026-03-05T02:01:51.997494"
+    },
+    {
+      "ticker": "GRG",
+      "yahooTicker": "GRG.L",
+      "hasDividends": true,
+      "currency": "GBp",
+      "dividendYield": 4.23,
+      "annualDividend": 69.0,
+      "ytdDividend": 0,
+      "frequency": "semi-annual",
+      "nextExDivDate": "2026-04-30",
+      "history": [
+        {
+          "date": "2025-09-11",
+          "amount": 19.0,
+          "currency": "GBp"
+        },
+        {
+          "date": "2025-05-01",
+          "amount": 50.0,
+          "currency": "GBp"
+        },
+        {
+          "date": "2024-09-05",
+          "amount": 19.0,
+          "currency": "GBp"
+        },
+        {
+          "date": "2024-04-25",
+          "amount": 86.0,
+          "currency": "GBp"
+        },
+        {
+          "date": "2023-09-07",
+          "amount": 16.0,
+          "currency": "GBp"
+        },
+        {
+          "date": "2023-04-27",
+          "amount": 44.0,
+          "currency": "GBp"
+        },
+        {
+          "date": "2022-09-08",
+          "amount": 15.0,
+          "currency": "GBp"
+        },
+        {
+          "date": "2022-05-12",
+          "amount": 42.0,
+          "currency": "GBp"
+        },
+        {
+          "date": "2022-03-24",
+          "amount": 40.0,
+          "currency": "GBp"
+        },
+        {
+          "date": "2021-09-09",
+          "amount": 15.0,
+          "currency": "GBp"
+        }
+      ],
+      "lastUpdated": "2026-03-05T02:01:52.053623"
+    },
+    {
+      "ticker": "LG",
+      "yahooTicker": "LG.V",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "CAD",
+      "lastUpdated": "2026-03-05T02:01:52.253991"
+    },
+    {
+      "ticker": "MGG",
+      "yahooTicker": "MGG.V",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "CAD",
+      "lastUpdated": "2026-03-05T02:01:52.317365"
+    },
+    {
+      "ticker": "MASS",
+      "yahooTicker": "MASS.V",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "CAD",
+      "lastUpdated": "2026-03-05T02:01:52.337274"
+    },
+    {
+      "ticker": "NAU",
+      "yahooTicker": "NAU.V",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "CAD",
+      "lastUpdated": "2026-03-05T02:01:52.354481"
+    },
+    {
+      "ticker": "OSS",
+      "yahooTicker": "OSS",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "USD",
+      "lastUpdated": "2026-03-05T02:01:52.386308"
+    },
+    {
+      "ticker": "QIMC",
+      "yahooTicker": "QIMC.CN",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "CAD",
+      "lastUpdated": "2026-03-05T02:01:52.392824"
+    },
+    {
+      "ticker": "TI",
+      "yahooTicker": "TI.TO",
+      "hasDividends": true,
+      "currency": "CAD",
+      "dividendYield": null,
+      "annualDividend": 0,
+      "ytdDividend": 0,
+      "frequency": "quarterly",
+      "nextExDivDate": "2023-03-30",
+      "history": [
+        {
+          "date": "2023-03-30",
+          "amount": 0.015,
+          "currency": "CAD"
+        },
+        {
+          "date": "2022-12-29",
+          "amount": 0.015,
+          "currency": "CAD"
+        },
+        {
+          "date": "2022-09-28",
+          "amount": 0.015,
+          "currency": "CAD"
+        },
+        {
+          "date": "2022-06-29",
+          "amount": 0.015,
+          "currency": "CAD"
+        },
+        {
+          "date": "2022-03-30",
+          "amount": 0.015,
+          "currency": "CAD"
+        },
+        {
+          "date": "2021-12-29",
+          "amount": 0.015,
+          "currency": "CAD"
+        },
+        {
+          "date": "2021-09-28",
+          "amount": 0.015,
+          "currency": "CAD"
+        }
+      ],
+      "lastUpdated": "2026-03-05T02:01:52.729234"
+    },
+    {
+      "ticker": "SSLN",
+      "yahooTicker": "SSLN.L",
+      "hasDividends": false,
+      "dividendYield": null,
+      "currency": "GBp",
+      "lastUpdated": "2026-03-05T02:01:52.750143"
+    },
+    {
+      "ticker": "TRT",
+      "yahooTicker": "TRT",
+      "hasDividends": true,
+      "currency": "USD",
+      "dividendYield": null,
+      "annualDividend": 0,
+      "ytdDividend": 0,
+      "frequency": "unknown",
+      "nextExDivDate": "2008-02-21",
+      "history": [],
+      "lastUpdated": "2026-03-05T02:01:52.821813"
+    },
+    {
+      "ticker": "SBRY",
+      "yahooTicker": "SBRY.L",
+      "hasDividends": true,
+      "currency": "GBp",
+      "dividendYield": 7.12,
+      "annualDividend": 24.8,
+      "ytdDividend": 0,
+      "frequency": "semi-annual",
+      "nextExDivDate": "2025-11-13",
+      "history": [
+        {
+          "date": "2025-11-13",
+          "amount": 15.1,
+          "currency": "GBp"
+        },
+        {
+          "date": "2025-06-05",
+          "amount": 9.7,
+          "currency": "GBp"
+        },
+        {
+          "date": "2024-11-14",
+          "amount": 3.9,
+          "currency": "GBp"
+        },
+        {
+          "date": "2024-06-06",
+          "amount": 9.2,
+          "currency": "GBp"
+        },
+        {
+          "date": "2023-11-09",
+          "amount": 3.9,
+          "currency": "GBp"
+        },
+        {
+          "date": "2023-06-08",
+          "amount": 9.2,
+          "currency": "GBp"
+        },
+        {
+          "date": "2022-11-10",
+          "amount": 3.9,
+          "currency": "GBp"
+        },
+        {
+          "date": "2022-06-09",
+          "amount": 9.9,
+          "currency": "GBp"
+        },
+        {
+          "date": "2021-11-11",
+          "amount": 3.2,
+          "currency": "GBp"
+        },
+        {
+          "date": "2021-06-10",
+          "amount": 7.4,
+          "currency": "GBp"
+        }
+      ],
+      "lastUpdated": "2026-03-05T02:01:52.862169"
+    }
+  ],
+  "portfolioIncome": {
+    "CDE": {
+      "annualIncome": 0.0,
+      "ytdIncome": 0.0,
+      "units": 75.20689063,
+      "accountBreakdown": {
+        "DADA": 75.20689063
+      }
+    },
+    "GDX": {
+      "annualIncome": 29.24,
+      "ytdIncome": 0.0,
+      "units": 46.1994237,
+      "accountBreakdown": {
+        "DADA": 46.1994237
+      }
+    },
+    "GRG": {
+      "annualIncome": 69.0,
+      "ytdIncome": 0,
+      "units": 1,
+      "accountBreakdown": {
+        "DADA": 1
+      }
+    },
+    "TI": {
+      "annualIncome": 0,
+      "ytdIncome": 0,
+      "units": 2667,
+      "accountBreakdown": {
+        "CP II": 1320,
+        "NANA": 1347
+      }
+    },
+    "TRT": {
+      "annualIncome": 0.0,
+      "ytdIncome": 0.0,
+      "units": 653.647258,
+      "accountBreakdown": {
+        "CP II": 22,
+        "CP IBKR": 60,
+        "DADA": 571.647258
+      }
+    },
+    "SBRY": {
+      "annualIncome": 2480.0,
+      "ytdIncome": 0,
+      "units": 100,
+      "accountBreakdown": {
+        "DADA": 100
+      }
+    }
+  }
+}
