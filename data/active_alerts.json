@@ -1,17 +1,17 @@
 {
-  "last_updated": "2026-03-06T02:03:29.444461",
+  "last_updated": "2026-03-06T20:48:15.016725",
   "alerts": [
     {
-      "ticker": "ETM.AX",
+      "ticker": "QIMC.CN",
       "type": "price_move",
       "severity": "medium",
-      "direction": "down",
-      "change_pct": -6.0,
-      "current_price": 0.09,
-      "prev_close": 0.1,
-      "currency_symbol": "A$",
-      "message": "ETM.AX down 6.00%",
-      "timestamp": "2026-03-06T02:03:22.027220",
+      "direction": "up",
+      "change_pct": 6.82,
+      "current_price": 1.41,
+      "prev_close": 1.32,
+      "currency_symbol": "C$",
+      "message": "QIMC.CN up 6.82%",
+      "timestamp": "2026-03-06T20:48:06.135758",
       "is_exited": false
     }
   ],
