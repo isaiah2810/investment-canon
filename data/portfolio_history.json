@@ -10939,12 +10939,12 @@
               "currency": "GBP",
               "units": 50.34708836,
               "avg_price": 35.378,
-              "current_price": 0.6597,
+              "current_price": 65.97,
               "daily_change_pct": 7.36,
-              "value_gbp": 33.21,
+              "value_gbp": 3321.3974191092,
               "book_cost_gbp": 1781.18,
-              "pnl_gbp": -1747.97,
-              "pnl_pct": -98.14
+              "pnl_gbp": 1540.2174191092001,
+              "pnl_pct": 86.47174452381007
             },
             {
               "ticker": "CTGO",
@@ -11031,7 +11031,7 @@
               "pnl_pct": -37.61
             }
           ],
-          "total_value_gbp": 10858.2,
+          "total_value_gbp": 14146.3774191092,
           "total_cost_gbp": 11603.88,
           "pnl_gbp": -745.68,
           "pnl_pct": -6.43
@@ -11527,12 +11527,12 @@
         }
       },
       "family_total": {
-        "investments_gbp": 107094.25,
+        "investments_gbp": 110382.4274191092,
         "cash_gbp": 5636.36,
-        "total_gbp": 112730.61,
+        "total_gbp": 116018.7874191092,
         "book_cost_gbp": 103713.83,
-        "pnl_gbp": 3380.42,
-        "pnl_pct": 3.26
+        "pnl_gbp": 6668.627419109194,
+        "pnl_pct": 6.429836163663075
       },
       "people": {
         "Carlin": {
@@ -11949,12 +11949,12 @@
           "accounts": [
             "DADA"
           ],
-          "investments_gbp": 10858.2,
+          "investments_gbp": 14146.3774191092,
           "cash_gbp": 2800.0,
-          "total_gbp": 13658.2,
+          "total_gbp": 16946.3774191092,
           "book_cost_gbp": 11603.88,
-          "pnl_gbp": -745.68,
-          "pnl_pct": -6.43,
+          "pnl_gbp": 2542.4974191091987,
+          "pnl_pct": 21.910752430300885,
           "positions": {
             "GDX": {
               "name": "VanEck Gold Miners ETF",
