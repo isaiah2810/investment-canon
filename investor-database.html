@@ -62,6 +62,8 @@
   .tag-private{background:rgba(148,163,184,0.1);color:var(--silver);border:1px solid rgba(148,163,184,0.2)}
   .tag-cat{background:rgba(59,130,246,0.1);color:var(--blue);border:1px solid rgba(59,130,246,0.2)}
   .tag-book{background:rgba(168,85,247,0.1);color:var(--purple);border:1px solid rgba(168,85,247,0.2)}
+  .tag-sector{background:rgba(132,204,22,0.12);color:#84cc16;border:1px solid rgba(132,204,22,0.25)}
+  .tag-sector{background:rgba(245,158,11,0.12);color:var(--gold);border:1px solid rgba(245,158,11,0.25)}
   .score-bar{height:4px;border-radius:2px;background:var(--card-border);margin-top:10px;overflow:hidden}
   .score-bar .fill{height:100%;border-radius:2px;transition:width .3s}
   .no-data{text-align:center;padding:12px;color:var(--text-muted);font-size:12px;font-style:italic}
@@ -178,13 +180,18 @@ const investors = [
   {n:"John Paulson",cat:"Distressed",firm:"Paulson & Co",yStart:1994,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$36B peak",verify:"partial",desc:"'The Greatest Trade Ever' — shorted subprime 2007-08, made ~$15B for fund, $4B personal. Mixed since.",books:[],source:"Zuckerman 'The Greatest Trade Ever'"},
   {n:"Michael Burry",cat:"Distressed",firm:"Scion Asset Management",yStart:2000,yEnd:2026,active:true,cagr:null,period:"2000–2008 (489% total)",bench:2,alpha:null,aum:"$600M",verify:"partial",desc:"489% total return 2000-2008 vs S&P +2%. Famous subprime short. Re-opened Scion 2013.",books:[],source:"The Big Short (Lewis); SEC filings"},
   // RESOURCES
-  {n:"Rick Rule",cat:"Resources",firm:"Sprott → Rule Investment Media",yStart:1974,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"N/A (private)",verify:"private",desc:"Legendary resource sector investor. 'You're either a contrarian or a victim.' 50+ years in junior mining.",books:[],source:"Private — no audited CAGR"},
-  {n:"Eric Sprott",cat:"Resources",firm:"Sprott Asset Management",yStart:1981,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$20B+ (firm)",verify:"partial",desc:"Made fortune in gold stocks 2001-2011 bull. Famous physical silver calls. Some listed funds.",books:[],source:"Sprott funds (partial)"},
-  {n:"Ross Beaty",cat:"Resources",firm:"Pan American Silver; Equinox Gold",yStart:1985,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"N/A",verify:"partial",desc:"Built Pan American Silver into major producer. Pivoted to copper (Lumina) and gold. Serial mine builder.",books:[],source:"Company-level returns only"},
+  {n:"Rick Rule",cat:"Resources",firm:"Sprott → Rule Investment Media",yStart:1974,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"N/A (private)",verify:"private",desc:"Legendary resource sector investor. 'You're either a contrarian or a victim.' 50+ years in junior mining.",books:[],source:"Private — no audited CAGR",tags:["Gold/Precious Metals"]},
+  {n:"Eric Sprott",cat:"Resources",firm:"Sprott Asset Management",yStart:1981,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$20B+ (firm)",verify:"partial",desc:"Made fortune in gold stocks 2001-2011 bull. Famous physical silver calls. Some listed funds.",books:[],source:"Sprott funds (partial)",tags:["Gold/Precious Metals"]},
+  {n:"Ross Beaty",cat:"Resources",firm:"Pan American Silver; Equinox Gold",yStart:1985,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"N/A",verify:"partial",desc:"Built Pan American Silver into major producer. Pivoted to copper (Lumina) and gold. Serial mine builder.",books:[],source:"Company-level returns only",tags:["Gold/Precious Metals"]},
   {n:"Robert Friedland",cat:"Resources",firm:"Ivanhoe Mines",yStart:1980,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"N/A",verify:"partial",desc:"Voisey's Bay nickel → $4.3B sale to Inco (1996). Now Kamoa-Kakula copper (DRC). Extraordinary deal returns.",books:[],source:"Deal-level; not fund-style CAGR"},
-  {n:"Frank Holmes",cat:"Resources",firm:"US Global Investors",yStart:1989,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$4B",verify:"yes",desc:"Gold and resource fund manager. US Global Investors publicly listed (GROW). Accessible resource commentary.",books:[],source:"US Global Investors (listed)"},
-  {n:"Keith Neumeyer",cat:"Resources",firm:"First Majestic Silver",yStart:2000,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"N/A",verify:"partial",desc:"CEO-investor. Built First Majestic into major silver producer. Vocal silver bull and market commentator.",books:[],source:"Company returns; not personal CAGR"},
-  {n:"Pierre Lassonde",cat:"Resources",firm:"Franco-Nevada",yStart:1983,yEnd:2026,active:true,cagr:null,period:"$1 → $1,000+ (1983–2020)",bench:null,alpha:null,aum:"$30B+ (FNV mkt cap)",verify:"partial",desc:"Co-founded Franco-Nevada 1983, pioneered gold royalty/streaming model. Spawned entire royalty sub-sector.",books:["The Gold Book"],source:"Franco-Nevada company filings"},
+  {n:"Frank Holmes",cat:"Resources",firm:"US Global Investors",yStart:1989,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$4B",verify:"yes",desc:"Gold and resource fund manager. US Global Investors publicly listed (GROW). Accessible resource commentary.",books:[],source:"US Global Investors (listed)",tags:["Gold/Precious Metals"]},
+  {n:"Keith Neumeyer",cat:"Resources",firm:"First Majestic Silver",yStart:2000,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"N/A",verify:"partial",desc:"CEO-investor. Built First Majestic into major silver producer. Vocal silver bull and market commentator.",books:[],source:"Company returns; not personal CAGR",tags:["Gold/Precious Metals"]},
+  {n:"Pierre Lassonde",cat:"Resources",firm:"Franco-Nevada",yStart:1983,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$30B+ (FNV mkt cap)",verify:"partial",desc:"Co-founded Franco-Nevada 1983, pioneered gold royalty/streaming model. Spawned entire royalty sub-sector.",books:["The Gold Book"],source:"Franco-Nevada company filings",tags:["Gold/Precious Metals"]},
+  {n:"John Embry",cat:"Resources",firm:"RBC → Sprott Asset Management",yStart:1963,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"N/A",verify:"partial",desc:"50+ year gold bull. Managed RBC precious metals fund before joining Sprott. Vocal advocate of gold as monetary asset.",books:[],source:"Sprott commentaries; interviews",tags:["Gold/Precious Metals"]},
+  {n:"Jim Sinclair",cat:"Resources",firm:"Tanzanian Royalty → Own account",yStart:1972,yEnd:2024,active:false,cagr:null,period:"",bench:null,alpha:null,aum:"N/A",verify:"private",desc:"'Mr. Gold.' Called the 1970s gold top and 2001 bottom. Father was Bert Seligman (Jesse Livermore's broker). Died 2024.",books:[],source:"Private — no audited CAGR",tags:["Gold/Precious Metals"]},
+  {n:"Doug Casey",cat:"Resources",firm:"Casey Research",yStart:1979,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"N/A",verify:"private",desc:"Libertarian speculator and contrarian. Built Casey Research into major resource newsletter franchise. Junior mining focus.",books:["Crisis Investing","The International Man"],source:"Newsletter — no audited fund data",tags:["Gold/Precious Metals"]},
+  {n:"Ian Telfer",cat:"Resources",firm:"Goldcorp",yStart:1990,yEnd:2019,active:false,cagr:null,period:"",bench:null,alpha:null,aum:"N/A",verify:"partial",desc:"Chairman of Goldcorp during its rise to top-tier gold producer. Oversaw Red Lake discovery and Éléonore development. Goldcorp acquired by Newmont for $10B in 2019.",books:[],source:"Company-level returns",tags:["Gold/Precious Metals"]},
+  {n:"Rob McEwen",cat:"Resources",firm:"Goldcorp → McEwen Mining",yStart:1990,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"N/A",verify:"partial",desc:"Founded Goldcorp, turned $50M market cap into $8B+. Now building McEwen Mining. Famous Red Lake high-grade discovery via open-source geology.",books:[],source:"Company-level returns",tags:["Gold/Precious Metals"]},
   // FIXED INCOME
   {n:"Bill Gross",cat:"Fixed Income",firm:"PIMCO → Janus Henderson",yStart:1971,yEnd:2019,active:false,cagr:null,period:"",bench:null,alpha:null,aum:"$270B (PIMCO Total Return)",verify:"yes",desc:"'The Bond King.' PIMCO Total Return was world's largest bond fund. Best bond track record of the era.",books:[],source:"Bloomberg; Morningstar"},
   {n:"Jeffrey Gundlach",cat:"Fixed Income",firm:"TCW → DoubleLine Capital",yStart:1984,yEnd:2026,active:true,cagr:null,period:"",bench:null,alpha:null,aum:"$100B+",verify:"yes",desc:"'The New Bond King.' DoubleLine Total Return (DBLTX) publicly tracked. Accurate macro calls.",books:[],source:"DoubleLine fund data (DBLTX)"},
@@ -274,7 +281,7 @@ function render(){
     if(verifiedOnly && inv.verify !== "yes") return false;
     if(booksOnly && (!inv.books || inv.books.length === 0)) return false;
     if(search) {
-      const haystack = (inv.n + " " + inv.firm + " " + inv.cat + " " + inv.desc + " " + (inv.books||[]).join(" ")).toLowerCase();
+      const haystack = (inv.n + " " + inv.firm + " " + inv.cat + " " + inv.desc + " " + (inv.books||[]).join(" ") + " " + (inv.tags||[]).join(" ")).toLowerCase();
       if(!haystack.includes(search)) return false;
     }
     return true;
@@ -358,6 +365,7 @@ function render(){
       <div class="tags">
         <span class="tag tag-cat" style="background:${catColor}22;color:${catColor};border-color:${catColor}44">${inv.cat}</span>
         ${getVerifyTag(inv.verify)}
+        ${(inv.tags||[]).map(t=>'<span class="tag tag-sector">'+t+'</span>').join("")}
         ${booksHtml}
       </div>
       <div class="score-bar"><div class="fill" style="width:${scorePct}%;background:${scoreColor}"></div></div>
