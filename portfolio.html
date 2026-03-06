@@ -2281,6 +2281,14 @@ function renderAlerts() {
         typeLabel = 'Volume Spike';
         details = `Current: ${alert.current_volume.toLocaleString()} (${alert.volume_ratio}x avg ${alert.avg_volume.toLocaleString()})`;
         break;
+      case 'ex_dividend':
+        emoji = '💰';
+        typeLabel = 'Ex-Dividend';
+        let exDivDetails = `Date: ${alert.ex_div_date}`;
+        if (alert.dividend_yield) exDivDetails += ` | Yield: ${alert.dividend_yield}%`;
+        if (alert.annual_dividend) exDivDetails += ` | Annual: ${alert.currency_symbol}${alert.annual_dividend}`;
+        details = exDivDetails;
+        break;
     }
     
     const timestamp = new Date(alert.timestamp).toLocaleString('en-GB', {
