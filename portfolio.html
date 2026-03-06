@@ -1462,6 +1462,23 @@ async function refreshPrices() {
     
     console.log('Live prices:', prices);
     console.log('FX rates:', fxRates);
+    
+    // Abort if FX rates are incomplete — recalculating without them corrupts P&L
+    const requiredFx = ['USD', 'CAD', 'AUD'];
+    const missingFx = requiredFx.filter(c => !fxRates[c]);
+    if (missingFx.length > 0) {
+      status.textContent = `❌ FX rates missing (${missingFx.join(', ')}). Try again in a moment.`;
+      btn.classList.remove('loading');
+      return;
+    }
+    
+    // Abort if no prices were fetched
+    if (data.fetched === 0) {
+      status.textContent = `❌ No prices fetched (${data.failed} failed). Price server may need restart.`;
+      btn.classList.remove('loading');
+      return;
+    }
+    
     status.textContent = `Recalculating P&L (${data.fetched} prices, ${data.elapsed_seconds}s)...`;
     
     const s = latest();
