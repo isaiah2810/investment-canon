@@ -1,29 +1,15 @@
 {
-  "last_updated": "2026-03-06T20:48:15.016725",
-  "alerts": [
-    {
-      "ticker": "QIMC.CN",
-      "type": "price_move",
-      "severity": "medium",
-      "direction": "up",
-      "change_pct": 6.82,
-      "current_price": 1.41,
-      "prev_close": 1.32,
-      "currency_symbol": "C$",
-      "message": "QIMC.CN up 6.82%",
-      "timestamp": "2026-03-06T20:48:06.135758",
-      "is_exited": false
-    }
-  ],
+  "last_updated": "2026-03-06T21:48:14.632103",
+  "alerts": [],
   "summary": {
-    "total": 1,
+    "total": 0,
     "by_severity": {
       "high": 0,
-      "medium": 1,
+      "medium": 0,
       "low": 0
     },
     "by_type": {
-      "price_move": 1,
+      "price_move": 0,
       "52w_high": 0,
       "52w_low": 0,
       "volume_spike": 0,
