@@ -244,7 +244,26 @@
   .alert-timestamp{font-size:9px;color:var(--text-muted);margin-top:8px;padding-top:8px;border-top:1px solid var(--card-border);text-align:right}
   .no-alerts{text-align:center;padding:40px 20px;color:var(--text-muted);font-size:13px}
 
-  @media(max-width:600px){body{padding:12px}.hero{grid-template-columns:repeat(2,1fr)}.modal-content{width:95%;padding:16px};.watchlist-grid{grid-template-columns:1fr};.alerts-grid{grid-template-columns:1fr}}
+  /* Transaction History */
+  .txn-filters{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+  .txn-filter{background:rgba(255,255,255,0.06);border:1px solid var(--card-border);color:var(--text-muted);padding:4px 12px;border-radius:16px;cursor:pointer;font-size:11px;font-weight:500;transition:all .2s}
+  .txn-filter:hover{border-color:var(--accent);color:var(--text)}
+  .txn-filter.active{background:var(--accent);color:#000;border-color:var(--accent);font-weight:600}
+  .txn-summary{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+  .txn-stat{flex:1;min-width:120px;background:rgba(255,255,255,0.04);padding:10px 14px;border-radius:8px;border-left:3px solid var(--accent-dim)}
+  .txn-stat-label{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+  .txn-stat-value{font-size:20px;font-weight:700;color:var(--text)}
+  .txn-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+  .txn-table th{text-align:left;padding:8px 10px;font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--text-muted);border-bottom:1px solid var(--card-border);white-space:nowrap}
+  .txn-table td{padding:10px;border-bottom:1px solid rgba(30,30,46,0.5);white-space:nowrap}
+  .txn-table tr:hover{background:var(--card-hover)}
+  .txn-buy{color:var(--green);font-weight:700}
+  .txn-sell{color:var(--red);font-weight:700}
+  .txn-source{font-size:9px;color:var(--text-muted);background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px}
+  .txn-notes{font-size:10px;color:var(--text-muted);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:help}
+  .txn-empty{text-align:center;padding:40px 20px;color:var(--text-muted);font-size:13px}
+
+  @media(max-width:600px){body{padding:12px}.hero{grid-template-columns:repeat(2,1fr)}.modal-content{width:95%;padding:16px};.watchlist-grid{grid-template-columns:1fr};.alerts-grid{grid-template-columns:1fr}.txn-table td,.txn-table th{padding:6px 4px;font-size:10px}}
   @media(max-width:768px){
     #analytics div[style*="grid-template-columns: 1fr 1fr"],
     #analytics div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
@@ -376,6 +395,20 @@
   </div>
   <div class="risk-section-body collapsed" id="dividends-body">
     <div id="dividends-content"><p style="color:var(--text-muted);font-size:12px">Loading dividend data...</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- TRANSACTION HISTORY SECTION                                            -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<div class="risk-section" id="transactions-section">
+  <div class="risk-section-header" onclick="toggleSection('transactions')">
+    <h2>📒 <span>Transaction History</span></h2>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="risk-section-body collapsed" id="transactions-body">
+    <div id="transactions-content"><p style="color:var(--text-muted);font-size:12px">Loading transaction history...</p></div>
   </div>
 </div>
 
@@ -2194,6 +2227,146 @@ function renderDividends() {
 }
 
 // ============================================================================
+// TRANSACTION HISTORY LOADING & RENDERING
+// ============================================================================
+
+let TRANSACTIONS_DATA = null;
+let TXN_FILTER_PERSON = 'all';
+let TXN_FILTER_ACTION = 'all';
+
+async function loadTransactionsData() {
+  try {
+    const resp = await fetch(PRICE_SERVER_URL + '/api/transactions');
+    if (resp.ok) {
+      TRANSACTIONS_DATA = await resp.json();
+      renderTransactions();
+    }
+  } catch(e) {
+    console.warn('Transactions data load error:', e);
+  }
+}
+
+function setTxnFilter(type, value) {
+  if (type === 'person') TXN_FILTER_PERSON = value;
+  if (type === 'action') TXN_FILTER_ACTION = value;
+  renderTransactions();
+}
+
+function renderTransactions() {
+  const el = document.getElementById('transactions-content');
+  if (!el) return;
+  
+  if (!TRANSACTIONS_DATA || !TRANSACTIONS_DATA.transactions || TRANSACTIONS_DATA.transactions.length === 0) {
+    el.innerHTML = '<div class="txn-empty">📒 No transactions recorded yet.<br><span style="font-size:11px;margin-top:8px;display:inline-block">Transactions are auto-detected from daily snapshot changes.</span></div>';
+    return;
+  }
+  
+  const summary = TRANSACTIONS_DATA.summary;
+  const allTxns = TRANSACTIONS_DATA.transactions;
+  
+  // Get unique people for filter
+  const people = [...new Set(allTxns.map(t => t.person))].sort();
+  
+  // Apply filters
+  let filtered = allTxns;
+  if (TXN_FILTER_PERSON !== 'all') {
+    filtered = filtered.filter(t => t.person === TXN_FILTER_PERSON);
+  }
+  if (TXN_FILTER_ACTION !== 'all') {
+    filtered = filtered.filter(t => t.action === TXN_FILTER_ACTION);
+  }
+  
+  const currSym = c => ({GBP:'£',USD:'$',CAD:'C$',AUD:'A$'}[c] || c);
+  
+  let html = '';
+  
+  // Summary cards
+  html += '<div class="txn-summary">';
+  html += `<div class="txn-stat">
+    <div class="txn-stat-label">Total Trades</div>
+    <div class="txn-stat-value">${summary.totalTransactions}</div>
+  </div>`;
+  html += `<div class="txn-stat" style="border-left-color:var(--green)">
+    <div class="txn-stat-label">Buys</div>
+    <div class="txn-stat-value" style="color:var(--green)">${summary.totalBuys}</div>
+  </div>`;
+  html += `<div class="txn-stat" style="border-left-color:var(--red)">
+    <div class="txn-stat-label">Sells</div>
+    <div class="txn-stat-value" style="color:var(--red)">${summary.totalSells}</div>
+  </div>`;
+  if (summary.realizedPnlGBP) {
+    const pnlColor = summary.realizedPnlGBP >= 0 ? 'var(--green)' : 'var(--red)';
+    const pnlSign = summary.realizedPnlGBP >= 0 ? '+' : '';
+    html += `<div class="txn-stat" style="border-left-color:${pnlColor}">
+      <div class="txn-stat-label">Realized P&L</div>
+      <div class="txn-stat-value" style="color:${pnlColor}">${pnlSign}£${summary.realizedPnlGBP.toLocaleString('en-GB', {minimumFractionDigits:2})}</div>
+    </div>`;
+  }
+  html += '</div>';
+  
+  // Filters
+  html += '<div class="txn-filters">';
+  html += '<span style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-right:4px">Filter:</span>';
+  // Person filters
+  html += `<span class="txn-filter ${TXN_FILTER_PERSON === 'all' ? 'active' : ''}" onclick="setTxnFilter('person','all')">All</span>`;
+  for (const p of people) {
+    html += `<span class="txn-filter ${TXN_FILTER_PERSON === p ? 'active' : ''}" onclick="setTxnFilter('person','${p}')">${p}</span>`;
+  }
+  html += '<span style="margin:0 4px;color:var(--card-border)">|</span>';
+  // Action filters
+  html += `<span class="txn-filter ${TXN_FILTER_ACTION === 'all' ? 'active' : ''}" onclick="setTxnFilter('action','all')">All</span>`;
+  html += `<span class="txn-filter ${TXN_FILTER_ACTION === 'BUY' ? 'active' : ''}" onclick="setTxnFilter('action','BUY')">Buys</span>`;
+  html += `<span class="txn-filter ${TXN_FILTER_ACTION === 'SELL' ? 'active' : ''}" onclick="setTxnFilter('action','SELL')">Sells</span>`;
+  html += '</div>';
+  
+  // Results count
+  html += `<div style="font-size:11px;color:var(--text-muted);margin-bottom:8px">Showing ${filtered.length} of ${allTxns.length} transactions</div>`;
+  
+  // Transaction table
+  if (filtered.length === 0) {
+    html += '<div class="txn-empty">No transactions match the selected filters.</div>';
+  } else {
+    html += '<div class="table-wrap"><table class="txn-table"><thead><tr>';
+    html += '<th>Date</th><th>Action</th><th>Ticker</th><th>Name</th><th>Units</th><th>Price</th><th>Account</th><th>Person</th><th>Source</th>';
+    html += '</tr></thead><tbody>';
+    
+    for (const t of filtered) {
+      const actionClass = t.action === 'BUY' ? 'txn-buy' : 'txn-sell';
+      const actionEmoji = t.action === 'BUY' ? '🟢' : '🔴';
+      const cs = currSym(t.currency);
+      const priceStr = t.price != null ? `${cs}${t.price.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:4})}` : '—';
+      const unitsStr = t.units != null ? t.units.toLocaleString('en-GB', {minimumFractionDigits:0, maximumFractionDigits:2}) : '—';
+      const sourceLabel = t.source === 'auto-detected' ? 'AUTO' : 'MANUAL';
+      const notesTip = t.notes ? ` title="${t.notes.replace(/"/g, '&quot;')}"` : '';
+      
+      html += `<tr>`;
+      html += `<td style="font-family:monospace;font-size:11px">${t.date}</td>`;
+      html += `<td><span class="${actionClass}">${actionEmoji} ${t.action}</span></td>`;
+      html += `<td style="font-weight:700">${t.ticker}</td>`;
+      html += `<td style="color:var(--text-muted);max-width:150px;overflow:hidden;text-overflow:ellipsis">${t.name || ''}</td>`;
+      html += `<td style="text-align:right">${unitsStr}</td>`;
+      html += `<td style="text-align:right;font-family:monospace">${priceStr}</td>`;
+      html += `<td><span class="acct-badge">${t.account}</span></td>`;
+      html += `<td>${t.person || ''}</td>`;
+      html += `<td><span class="txn-source"${notesTip}>${sourceLabel}</span></td>`;
+      html += `</tr>`;
+    }
+    
+    html += '</tbody></table></div>';
+  }
+  
+  // Footer with timestamp
+  if (TRANSACTIONS_DATA.generatedAt) {
+    const genDate = new Date(TRANSACTIONS_DATA.generatedAt).toLocaleString('en-GB', {
+      day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+    });
+    html += `<div style="text-align:right;margin-top:12px;font-size:10px;color:var(--text-muted)">Last generated: ${genDate} · ${summary.autoDetected} auto-detected, ${summary.manual} manual</div>`;
+  }
+  
+  el.innerHTML = html;
+}
+
+// ============================================================================
 // PRICE ALERTS LOADING & RENDERING
 // ============================================================================
 
@@ -2922,10 +3095,11 @@ const _origLoadData = loadData;
   const checkInterval = setInterval(() => {
     if (DATA) {
       clearInterval(checkInterval);
-      loadAlertsData();     // Load price alerts
-      loadWatchlistData();  // Load watchlist
-      loadDividendsData();  // Load dividends
-      loadRiskEngineData(); // Load risk engine
+      loadAlertsData();        // Load price alerts
+      loadTransactionsData(); // Load transaction history
+      loadWatchlistData();    // Load watchlist
+      loadDividendsData();    // Load dividends
+      loadRiskEngineData();   // Load risk engine
     }
   }, 500);
   // Safety: stop checking after 30s
