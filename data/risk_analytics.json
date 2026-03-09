@@ -1,0 +1,546 @@
+{
+  "generated_at": "2026-03-09T02:03:21.606184",
+  "snapshot_date": "2026-03-08",
+  "period": "248 trading days (~11 months)",
+  "risk_free_rate": 0.045,
+  "benchmark": "S&P 500",
+  "total_portfolio_value_gbp": 105166.65,
+  "num_positions": 22,
+  "portfolio_metrics": {
+    "annualized_return": {
+      "value": 134.39,
+      "unit": "%",
+      "interpretation": "Portfolio returned 134.4% annualized vs 10.5% for S&P 500"
+    },
+    "annualized_volatility": {
+      "value": 57.08,
+      "unit": "%",
+      "classification": "very_high",
+      "interpretation": "Very high annualized volatility (57.1%). Portfolio experiences large swings."
+    },
+    "beta": {
+      "value": 0.79,
+      "benchmark": "S&P 500",
+      "classification": "low",
+      "interpretation": "Low systematic risk (\u03b2=0.79). Portfolio moves less than the market."
+    },
+    "sharpe_ratio": {
+      "value": 2.275,
+      "risk_free_rate": "4.5%",
+      "classification": "excellent",
+      "interpretation": "Outstanding risk-adjusted returns (2.28). Portfolio generating strong returns relative to risk taken."
+    },
+    "sortino_ratio": {
+      "value": 4.265,
+      "classification": "excellent",
+      "interpretation": "Excellent downside-adjusted returns (4.27). Limited harmful volatility."
+    },
+    "treynor_ratio": {
+      "value": 1.6434,
+      "unit": "per unit beta",
+      "interpretation": "Excess return of 1.6434 per unit of systematic risk"
+    },
+    "information_ratio": {
+      "value": 2.201,
+      "benchmark": "S&P 500",
+      "interpretation": "Outperforming S&P 500 with IR of 2.201"
+    },
+    "calmar_ratio": {
+      "value": 5.975,
+      "interpretation": "Annualized return is 6.0x the max drawdown"
+    },
+    "tracking_error": {
+      "value": 55.35,
+      "unit": "%",
+      "benchmark": "S&P 500",
+      "interpretation": "Portfolio deviates from S&P 500 by 55.3% annualized"
+    }
+  },
+  "risk_measures": {
+    "var_95": {
+      "daily_pct": 4.374,
+      "daily_gbp": 4599.74,
+      "classification": "high",
+      "interpretation": "High daily risk. In 1 out of 20 trading days, losses could exceed 4.37%.",
+      "description": "95% confident daily loss will not exceed this amount"
+    },
+    "var_99": {
+      "daily_pct": 7.315,
+      "daily_gbp": 7693.04,
+      "description": "99% confident daily loss will not exceed this amount"
+    },
+    "cvar_95": {
+      "daily_pct": 6.24,
+      "daily_gbp": 6562.89,
+      "description": "Expected loss on days that exceed the VaR threshold (tail risk)"
+    },
+    "cvar_99": {
+      "daily_pct": 8.321,
+      "daily_gbp": 8750.81,
+      "description": "Average loss in the worst 1% of days"
+    },
+    "max_drawdown": {
+      "value_pct": -22.49,
+      "value_gbp": -23654.13,
+      "start_date": "2025-10-08",
+      "end_date": "2025-11-21",
+      "classification": "high",
+      "interpretation": "Large maximum drawdown (-22.5%). Portfolio has experienced substantial losses."
+    }
+  },
+  "return_statistics": {
+    "trading_days": 248,
+    "winning_days": 132,
+    "losing_days": 116,
+    "flat_days": 0,
+    "win_rate_pct": 53.2,
+    "avg_win_pct": 3.019,
+    "avg_loss_pct": -2.295,
+    "best_day": {
+      "return_pct": 14.06,
+      "date": "2025-03-17"
+    },
+    "worst_day": {
+      "return_pct": -9.92,
+      "date": "2026-01-30"
+    },
+    "skewness": 0.607,
+    "kurtosis": 1.365,
+    "skew_interpretation": "Positively skewed (more large gains than drops)",
+    "kurtosis_interpretation": "Fat tails (more extreme events than normal)"
+  },
+  "benchmark_comparison": {
+    "name": "S&P 500",
+    "ticker": "^GSPC",
+    "annualized_return_pct": 10.49,
+    "annualized_volatility_pct": 18.18,
+    "sharpe_ratio": 0.329,
+    "excess_return_pct": 123.9,
+    "excess_volatility_pct": 38.9
+  },
+  "per_position": {
+    "HSLV": {
+      "name": "Highlander Silver Corp",
+      "weight": 4.78,
+      "beta": 0.576,
+      "volatility": 105.0,
+      "var_95_pct": 10.77,
+      "var_95_gbp": 541.19,
+      "sharpe": 0.03,
+      "max_drawdown": -50.8,
+      "marginal_risk_contribution": 5.02,
+      "annualized_return": 8.2
+    },
+    "QIMC": {
+      "name": "Quebec Innovative Materials Corp",
+      "weight": 3.77,
+      "beta": 0.871,
+      "volatility": 67.6,
+      "var_95_pct": 6.14,
+      "var_95_gbp": 243.24,
+      "sharpe": 1.33,
+      "max_drawdown": -27.1,
+      "marginal_risk_contribution": 2.55,
+      "annualized_return": 94.2
+    },
+    "ETM": {
+      "name": "Energy Transition Minerals Ltd",
+      "weight": 28.73,
+      "beta": 1.321,
+      "volatility": 122.8,
+      "var_95_pct": 9.53,
+      "var_95_gbp": 2879.73,
+      "sharpe": 1.87,
+      "max_drawdown": -45.4,
+      "marginal_risk_contribution": 35.27,
+      "annualized_return": 233.9
+    },
+    "CTGO": {
+      "name": "Contango Ore Inc",
+      "weight": 5.11,
+      "beta": 0.704,
+      "volatility": 61.7,
+      "var_95_pct": 5.76,
+      "var_95_gbp": 309.77,
+      "sharpe": 1.12,
+      "max_drawdown": -25.5,
+      "marginal_risk_contribution": 3.16,
+      "annualized_return": 73.6
+    },
+    "OSS": {
+      "name": "One Stop Systems Inc",
+      "weight": 0.6,
+      "beta": 0.805,
+      "volatility": 99.9,
+      "var_95_pct": 7.24,
+      "var_95_gbp": 45.65,
+      "sharpe": 2.27,
+      "max_drawdown": -38.1,
+      "marginal_risk_contribution": 0.6,
+      "annualized_return": 231.1
+    },
+    "MGG": {
+      "name": "Minaurum Silver Inc",
+      "weight": 8.02,
+      "beta": 0.696,
+      "volatility": 94.7,
+      "var_95_pct": 7.6,
+      "var_95_gbp": 641.22,
+      "sharpe": 1.63,
+      "max_drawdown": -43.9,
+      "marginal_risk_contribution": 7.6,
+      "annualized_return": 158.6
+    },
+    "GSPR": {
+      "name": "GSP Resource Corp",
+      "weight": 1.76,
+      "beta": 0.193,
+      "volatility": 89.5,
+      "var_95_pct": 9.36,
+      "var_95_gbp": 173.12,
+      "sharpe": 0.58,
+      "max_drawdown": -55.0,
+      "marginal_risk_contribution": 1.58,
+      "annualized_return": 56.0
+    },
+    "TI": {
+      "name": "Titan Mining Corp",
+      "weight": 6.91,
+      "beta": 0.204,
+      "volatility": 59.4,
+      "var_95_pct": 5.09,
+      "var_95_gbp": 369.89,
+      "sharpe": 0.83,
+      "max_drawdown": -42.2,
+      "marginal_risk_contribution": 4.11,
+      "annualized_return": 54.0
+    },
+    "NAU": {
+      "name": "Nevgold Corp",
+      "weight": 9.1,
+      "beta": 1.0,
+      "volatility": 18.2,
+      "var_95_pct": 1.62,
+      "var_95_gbp": 155.04,
+      "sharpe": 0.33,
+      "max_drawdown": -19.4,
+      "marginal_risk_contribution": 1.65,
+      "annualized_return": 10.5
+    },
+    "ALTA": {
+      "name": "Altamira Gold Corp",
+      "weight": 1.78,
+      "beta": 0.026,
+      "volatility": 152.4,
+      "var_95_pct": 14.77,
+      "var_95_gbp": 276.49,
+      "sharpe": 0.45,
+      "max_drawdown": -72.2,
+      "marginal_risk_contribution": 2.71,
+      "annualized_return": 72.4
+    },
+    "TRT": {
+      "name": "Trio-Tech International",
+      "weight": 2.55,
+      "beta": 1.321,
+      "volatility": 122.8,
+      "var_95_pct": 9.53,
+      "var_95_gbp": 255.51,
+      "sharpe": 1.87,
+      "max_drawdown": -45.4,
+      "marginal_risk_contribution": 3.13,
+      "annualized_return": 233.9
+    },
+    "MASS": {
+      "name": "Masivo Silver Corp",
+      "weight": 0.92,
+      "beta": 0.871,
+      "volatility": 67.6,
+      "var_95_pct": 6.14,
+      "var_95_gbp": 59.29,
+      "sharpe": 1.33,
+      "max_drawdown": -27.1,
+      "marginal_risk_contribution": 0.62,
+      "annualized_return": 94.2
+    },
+    "HSTR": {
+      "name": "Heliostar Metals Ltd",
+      "weight": 2.05,
+      "beta": -1.999,
+      "volatility": 636.2,
+      "var_95_pct": 3.42,
+      "var_95_gbp": 73.5,
+      "sharpe": 0.12,
+      "max_drawdown": -1591.6,
+      "marginal_risk_contribution": 13.01,
+      "annualized_return": 82.2
+    },
+    "GDXJ": {
+      "name": "VanEck Junior Gold Miners UCITS ETF",
+      "weight": 9.84,
+      "beta": 1.321,
+      "volatility": 122.8,
+      "var_95_pct": 9.53,
+      "var_95_gbp": 986.48,
+      "sharpe": 1.87,
+      "max_drawdown": -45.4,
+      "marginal_risk_contribution": 12.08,
+      "annualized_return": 233.9
+    },
+    "FF": {
+      "name": "First Mining Gold Corp",
+      "weight": 3.53,
+      "beta": 0.2,
+      "volatility": 75.3,
+      "var_95_pct": 6.66,
+      "var_95_gbp": 247.35,
+      "sharpe": 1.42,
+      "max_drawdown": -33.4,
+      "marginal_risk_contribution": 2.66,
+      "annualized_return": 111.3
+    },
+    "LG": {
+      "name": "Lahontan Gold Corp",
+      "weight": 2.56,
+      "beta": 1.0,
+      "volatility": 18.2,
+      "var_95_pct": 1.62,
+      "var_95_gbp": 43.62,
+      "sharpe": 0.33,
+      "max_drawdown": -19.4,
+      "marginal_risk_contribution": 0.47,
+      "annualized_return": 10.5
+    },
+    "GDX": {
+      "name": "VanEck Gold Miners ETF",
+      "weight": 3.34,
+      "beta": 1.0,
+      "volatility": 18.2,
+      "var_95_pct": 1.62,
+      "var_95_gbp": 56.92,
+      "sharpe": 0.33,
+      "max_drawdown": -19.4,
+      "marginal_risk_contribution": 0.61,
+      "annualized_return": 10.5
+    },
+    "SSLN": {
+      "name": "iShares Physical Silver ETC",
+      "weight": 2.87,
+      "beta": 1.0,
+      "volatility": 18.2,
+      "var_95_pct": 1.62,
+      "var_95_gbp": 48.91,
+      "sharpe": 0.33,
+      "max_drawdown": -19.4,
+      "marginal_risk_contribution": 0.52,
+      "annualized_return": 10.5
+    },
+    "CDE": {
+      "name": "Coeur Mining Inc",
+      "weight": 1.21,
+      "beta": 1.429,
+      "volatility": 72.4,
+      "var_95_pct": 5.9,
+      "var_95_gbp": 75.36,
+      "sharpe": 1.47,
+      "max_drawdown": -42.6,
+      "marginal_risk_contribution": 0.88,
+      "annualized_return": 111.0
+    },
+    "SBRY": {
+      "name": "J Sainsbury plc",
+      "weight": 0.32,
+      "beta": -0.021,
+      "volatility": 22.9,
+      "var_95_pct": 2.06,
+      "var_95_gbp": 7.02,
+      "sharpe": 0.86,
+      "max_drawdown": -14.1,
+      "marginal_risk_contribution": 0.07,
+      "annualized_return": 24.1
+    },
+    "GDGB": {
+      "name": "VanEck Gold Miners UCITS ETF (GBP Acc)",
+      "weight": 0.23,
+      "beta": 0.157,
+      "volatility": 38.4,
+      "var_95_pct": 3.45,
+      "var_95_gbp": 8.52,
+      "sharpe": 1.9,
+      "max_drawdown": -17.8,
+      "marginal_risk_contribution": 0.09,
+      "annualized_return": 77.4
+    },
+    "GRG": {
+      "name": "Greggs plc",
+      "weight": 0.02,
+      "beta": 1.0,
+      "volatility": 18.2,
+      "var_95_pct": 1.62,
+      "var_95_gbp": 0.27,
+      "sharpe": 0.33,
+      "max_drawdown": -19.4,
+      "marginal_risk_contribution": 0.0,
+      "annualized_return": 10.5
+    }
+  },
+  "risk_budget": {
+    "description": "Position contribution to overall portfolio risk (by weight \u00d7 volatility)",
+    "positions": [
+      {
+        "ticker": "ETM",
+        "name": "Energy Transition Minerals Ltd",
+        "weight_pct": 28.73,
+        "risk_contribution_pct": 35.27,
+        "risk_vs_weight": 1.23
+      },
+      {
+        "ticker": "HSTR",
+        "name": "Heliostar Metals Ltd",
+        "weight_pct": 2.05,
+        "risk_contribution_pct": 13.01,
+        "risk_vs_weight": 6.35
+      },
+      {
+        "ticker": "GDXJ",
+        "name": "VanEck Junior Gold Miners UCITS ETF",
+        "weight_pct": 9.84,
+        "risk_contribution_pct": 12.08,
+        "risk_vs_weight": 1.23
+      },
+      {
+        "ticker": "MGG",
+        "name": "Minaurum Silver Inc",
+        "weight_pct": 8.02,
+        "risk_contribution_pct": 7.6,
+        "risk_vs_weight": 0.95
+      },
+      {
+        "ticker": "HSLV",
+        "name": "Highlander Silver Corp",
+        "weight_pct": 4.78,
+        "risk_contribution_pct": 5.02,
+        "risk_vs_weight": 1.05
+      },
+      {
+        "ticker": "TI",
+        "name": "Titan Mining Corp",
+        "weight_pct": 6.91,
+        "risk_contribution_pct": 4.11,
+        "risk_vs_weight": 0.59
+      },
+      {
+        "ticker": "CTGO",
+        "name": "Contango Ore Inc",
+        "weight_pct": 5.11,
+        "risk_contribution_pct": 3.16,
+        "risk_vs_weight": 0.62
+      },
+      {
+        "ticker": "TRT",
+        "name": "Trio-Tech International",
+        "weight_pct": 2.55,
+        "risk_contribution_pct": 3.13,
+        "risk_vs_weight": 1.23
+      },
+      {
+        "ticker": "ALTA",
+        "name": "Altamira Gold Corp",
+        "weight_pct": 1.78,
+        "risk_contribution_pct": 2.71,
+        "risk_vs_weight": 1.52
+      },
+      {
+        "ticker": "FF",
+        "name": "First Mining Gold Corp",
+        "weight_pct": 3.53,
+        "risk_contribution_pct": 2.66,
+        "risk_vs_weight": 0.75
+      },
+      {
+        "ticker": "QIMC",
+        "name": "Quebec Innovative Materials Corp",
+        "weight_pct": 3.77,
+        "risk_contribution_pct": 2.55,
+        "risk_vs_weight": 0.68
+      },
+      {
+        "ticker": "NAU",
+        "name": "Nevgold Corp",
+        "weight_pct": 9.1,
+        "risk_contribution_pct": 1.65,
+        "risk_vs_weight": 0.18
+      },
+      {
+        "ticker": "GSPR",
+        "name": "GSP Resource Corp",
+        "weight_pct": 1.76,
+        "risk_contribution_pct": 1.58,
+        "risk_vs_weight": 0.9
+      },
+      {
+        "ticker": "CDE",
+        "name": "Coeur Mining Inc",
+        "weight_pct": 1.21,
+        "risk_contribution_pct": 0.88,
+        "risk_vs_weight": 0.73
+      },
+      {
+        "ticker": "MASS",
+        "name": "Masivo Silver Corp",
+        "weight_pct": 0.92,
+        "risk_contribution_pct": 0.62,
+        "risk_vs_weight": 0.67
+      },
+      {
+        "ticker": "GDX",
+        "name": "VanEck Gold Miners ETF",
+        "weight_pct": 3.34,
+        "risk_contribution_pct": 0.61,
+        "risk_vs_weight": 0.18
+      },
+      {
+        "ticker": "OSS",
+        "name": "One Stop Systems Inc",
+        "weight_pct": 0.6,
+        "risk_contribution_pct": 0.6,
+        "risk_vs_weight": 1.0
+      },
+      {
+        "ticker": "SSLN",
+        "name": "iShares Physical Silver ETC",
+        "weight_pct": 2.87,
+        "risk_contribution_pct": 0.52,
+        "risk_vs_weight": 0.18
+      },
+      {
+        "ticker": "LG",
+        "name": "Lahontan Gold Corp",
+        "weight_pct": 2.56,
+        "risk_contribution_pct": 0.47,
+        "risk_vs_weight": 0.18
+      },
+      {
+        "ticker": "GDGB",
+        "name": "VanEck Gold Miners UCITS ETF (GBP Acc)",
+        "weight_pct": 0.23,
+        "risk_contribution_pct": 0.09,
+        "risk_vs_weight": 0.39
+      },
+      {
+        "ticker": "SBRY",
+        "name": "J Sainsbury plc",
+        "weight_pct": 0.32,
+        "risk_contribution_pct": 0.07,
+        "risk_vs_weight": 0.22
+      },
+      {
+        "ticker": "GRG",
+        "name": "Greggs plc",
+        "weight_pct": 0.02,
+        "risk_contribution_pct": 0.0,
+        "risk_vs_weight": 0.0
+      }
+    ]
+  }
+}
