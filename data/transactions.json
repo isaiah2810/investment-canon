@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-08T21:30:00.100319",
+  "generatedAt": "2026-03-09T21:30:00.144787",
   "summary": {
     "totalTransactions": 6,
     "totalBuys": 5,
@@ -21,25 +21,25 @@
         "sells": 0,
         "name": "Trio-Tech International"
       },
-      "GDXJ": {
-        "buys": 0,
-        "sells": 1,
-        "name": "VanEck Junior Gold Miners UCITS ETF"
-      },
-      "TI": {
-        "buys": 1,
-        "sells": 0,
-        "name": "Titan Mining Corp"
-      },
       "NAU": {
         "buys": 1,
         "sells": 0,
         "name": "Nevgold Corp"
       },
+      "GDXJ": {
+        "buys": 0,
+        "sells": 1,
+        "name": "VanEck Junior Gold Miners UCITS ETF"
+      },
       "MGG": {
         "buys": 1,
         "sells": 0,
         "name": "Minaurum Silver Inc"
+      },
+      "TI": {
+        "buys": 1,
+        "sells": 0,
+        "name": "Titan Mining Corp"
       }
     },
     "dateRange": {
@@ -51,7 +51,7 @@
   },
   "transactions": [
     {
-      "id": "auto_2026-03-01_CP IBKR_TRT_buy",
+      "id": "auto_2026-03-01_CP II_TRT_buy",
       "date": "2026-03-01",
       "detectedBetween": [
         "2026-02-28",
@@ -59,54 +59,16 @@
       ],
       "ticker": "TRT",
       "name": "Trio-Tech International",
-      "account": "CP IBKR",
+      "account": "CP II",
       "person": "Carlin",
       "action": "BUY",
-      "units": 60,
-      "price": 5.43,
+      "units": 22,
+      "price": 5.203636,
       "currency": "USD",
       "exchange": "NYSEAMERICAN",
-      "valueGBP": 242.86,
+      "valueGBP": 85.34,
       "source": "auto-detected",
       "notes": "New position detected between 2026-02-28 and 2026-03-01"
-    },
-    {
-      "id": "auto_2026-03-01_NANA_GDXJ_reduce",
-      "date": "2026-03-01",
-      "detectedBetween": [
-        "2026-02-28",
-        "2026-03-01"
-      ],
-      "ticker": "GDXJ",
-      "name": "VanEck Junior Gold Miners UCITS ETF",
-      "account": "NANA",
-      "person": "Nana",
-      "action": "SELL",
-      "units": 12,
-      "price": 141.9,
-      "currency": "GBP",
-      "exchange": "LSE",
-      "source": "auto-detected",
-      "notes": "Position reduced by 12 units between 2026-02-28 and 2026-03-01"
-    },
-    {
-      "id": "auto_2026-03-01_NANA_TI_add",
-      "date": "2026-03-01",
-      "detectedBetween": [
-        "2026-02-28",
-        "2026-03-01"
-      ],
-      "ticker": "TI",
-      "name": "Titan Mining Corp",
-      "account": "NANA",
-      "person": "Nana",
-      "action": "BUY",
-      "units": 400,
-      "price": 5.235351,
-      "currency": "CAD",
-      "exchange": "TSX",
-      "source": "auto-detected",
-      "notes": "Position increased by 400 units between 2026-02-28 and 2026-03-01"
     },
     {
       "id": "auto_2026-03-01_NANA_NAU_add",
@@ -128,6 +90,25 @@
       "notes": "Position increased by 1500 units between 2026-02-28 and 2026-03-01"
     },
     {
+      "id": "auto_2026-03-01_NANA_GDXJ_reduce",
+      "date": "2026-03-01",
+      "detectedBetween": [
+        "2026-02-28",
+        "2026-03-01"
+      ],
+      "ticker": "GDXJ",
+      "name": "VanEck Junior Gold Miners UCITS ETF",
+      "account": "NANA",
+      "person": "Nana",
+      "action": "SELL",
+      "units": 12,
+      "price": 141.9,
+      "currency": "GBP",
+      "exchange": "LSE",
+      "source": "auto-detected",
+      "notes": "Position reduced by 12 units between 2026-02-28 and 2026-03-01"
+    },
+    {
       "id": "auto_2026-03-01_NANA_MGG_add",
       "date": "2026-03-01",
       "detectedBetween": [
@@ -147,7 +128,26 @@
       "notes": "Position increased by 6142 units between 2026-02-28 and 2026-03-01"
     },
     {
-      "id": "auto_2026-03-01_CP II_TRT_buy",
+      "id": "auto_2026-03-01_NANA_TI_add",
+      "date": "2026-03-01",
+      "detectedBetween": [
+        "2026-02-28",
+        "2026-03-01"
+      ],
+      "ticker": "TI",
+      "name": "Titan Mining Corp",
+      "account": "NANA",
+      "person": "Nana",
+      "action": "BUY",
+      "units": 400,
+      "price": 5.235351,
+      "currency": "CAD",
+      "exchange": "TSX",
+      "source": "auto-detected",
+      "notes": "Position increased by 400 units between 2026-02-28 and 2026-03-01"
+    },
+    {
+      "id": "auto_2026-03-01_CP IBKR_TRT_buy",
       "date": "2026-03-01",
       "detectedBetween": [
         "2026-02-28",
@@ -155,14 +155,14 @@
       ],
       "ticker": "TRT",
       "name": "Trio-Tech International",
-      "account": "CP II",
+      "account": "CP IBKR",
       "person": "Carlin",
       "action": "BUY",
-      "units": 22,
-      "price": 5.203636,
+      "units": 60,
+      "price": 5.43,
       "currency": "USD",
       "exchange": "NYSEAMERICAN",
-      "valueGBP": 85.34,
+      "valueGBP": 242.86,
       "source": "auto-detected",
       "notes": "New position detected between 2026-02-28 and 2026-03-01"
     }
