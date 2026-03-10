@@ -1,0 +1,56 @@
+{
+  "generated": "2026-03-10T02:01:44.909119",
+  "tax_years": {
+    "2025/26": {
+      "total_gains": 1702.8,
+      "total_losses": 0.0,
+      "net_gain_loss": 1702.8,
+      "annual_exempt_amount": 3000.0,
+      "taxable_gain": 0.0,
+      "cgt_due_basic_rate": 0.0,
+      "cgt_due_higher_rate": 0.0,
+      "disposals_count": 1,
+      "disposals": [
+        {
+          "ticker": "GDXJ",
+          "date": "2026-03-01",
+          "units": 12.0,
+          "sale_proceeds_gbp": 1702.8000000000002,
+          "allowable_cost_gbp": 0.0,
+          "gain_loss_gbp": 1702.8000000000002,
+          "account": "NANA",
+          "person": "Nana",
+          "matching_details": [
+            {
+              "rule": "section-104-pool",
+              "units": 12.0,
+              "cost_gbp": 0.0
+            }
+          ],
+          "tax_year": "2025/26"
+        }
+      ]
+    }
+  },
+  "section_104_pools": {},
+  "all_disposals": [
+    {
+      "ticker": "GDXJ",
+      "date": "2026-03-01",
+      "units": 12.0,
+      "sale_proceeds_gbp": 1702.8000000000002,
+      "allowable_cost_gbp": 0.0,
+      "gain_loss_gbp": 1702.8000000000002,
+      "account": "NANA",
+      "person": "Nana",
+      "matching_details": [
+        {
+          "rule": "section-104-pool",
+          "units": 12.0,
+          "cost_gbp": 0.0
+        }
+      ],
+      "tax_year": "2025/26"
+    }
+  ]
+}

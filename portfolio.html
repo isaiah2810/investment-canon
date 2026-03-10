@@ -462,6 +462,20 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- UK CAPITAL GAINS TAX SECTION                                          -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<div class="risk-section" id="cgt-section">
+  <div class="risk-section-header" onclick="toggleSection('cgt')">
+    <h2>🧾 <span>UK Capital Gains Tax</span></h2>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="risk-section-body collapsed" id="cgt-body">
+    <div id="cgt-content"><p style="color:var(--text-muted);font-size:12px">Loading CGT report...</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
 <!-- WATCHLIST SECTION                                                      -->
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 
@@ -3460,6 +3474,203 @@ function renderRiskAnalytics() {
   el.innerHTML = html;
 }
 
+// ═══════════════════════════════════════════════════════════════════════
+// UK CAPITAL GAINS TAX
+// ═══════════════════════════════════════════════════════════════════════
+
+async function loadCGTData() {
+  try {
+    const response = await fetch(`${API_BASE}/api/cgt`);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return await response.json();
+  } catch (error) {
+    console.error('Failed to load CGT data:', error);
+    return null;
+  }
+}
+
+function renderCGT(data) {
+  const container = document.getElementById('cgt-content');
+  
+  if (!data || !data.tax_years || Object.keys(data.tax_years).length === 0) {
+    container.innerHTML = `
+      <p style="color:var(--text-muted);font-size:14px;margin-top:1rem">
+        ✅ No realized gains/losses yet. CGT report will appear when you sell positions.
+      </p>
+      <p style="color:var(--text-muted);font-size:12px;margin-top:0.5rem">
+        Last updated: ${data?.generated ? new Date(data.generated).toLocaleString('en-GB') : 'Never'}
+      </p>
+    `;
+    return;
+  }
+  
+  // Build HTML for each tax year
+  let html = '';
+  
+  for (const [taxYear, yearData] of Object.entries(data.tax_years)) {
+    const netGain = yearData.net_gain_loss || 0;
+    const taxableGain = yearData.taxable_gain || 0;
+    const cgtDue = yearData.cgt_due_higher_rate || 0;
+    const disposalsCount = yearData.disposals_count || 0;
+    
+    // Tax year summary cards
+    html += `
+      <div style="margin-bottom:2rem">
+        <h3 style="color:var(--accent);margin-bottom:1rem">📅 Tax Year ${taxYear}</h3>
+        
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem">
+          <div style="background:var(--card-bg);padding:1rem;border-radius:8px;border-left:3px solid var(--accent)">
+            <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;margin-bottom:0.5rem">Disposals</div>
+            <div style="font-size:24px;font-weight:600;color:var(--text-primary)">${disposalsCount}</div>
+          </div>
+          
+          <div style="background:var(--card-bg);padding:1rem;border-radius:8px;border-left:3px solid ${netGain >= 0 ? '#10b981' : '#ef4444'}">
+            <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;margin-bottom:0.5rem">Net Gain/Loss</div>
+            <div style="font-size:24px;font-weight:600;color:${netGain >= 0 ? '#10b981' : '#ef4444'}">£${Math.abs(netGain).toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})}</div>
+          </div>
+          
+          <div style="background:var(--card-bg);padding:1rem;border-radius:8px;border-left:3px solid var(--accent)">
+            <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;margin-bottom:0.5rem">Annual Exempt Amount</div>
+            <div style="font-size:24px;font-weight:600;color:var(--text-primary)">£${yearData.annual_exempt_amount.toLocaleString('en-GB')}</div>
+          </div>
+          
+          <div style="background:var(--card-bg);padding:1rem;border-radius:8px;border-left:3px solid ${taxableGain > 0 ? '#ef4444' : '#10b981'}">
+            <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;margin-bottom:0.5rem">Taxable Gain</div>
+            <div style="font-size:24px;font-weight:600;color:${taxableGain > 0 ? '#ef4444' : '#10b981'}">£${taxableGain.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})}</div>
+          </div>
+          
+          <div style="background:var(--card-bg);padding:1rem;border-radius:8px;border-left:3px solid ${cgtDue > 0 ? '#ef4444' : '#10b981'}">
+            <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;margin-bottom:0.5rem">CGT Due (20%)</div>
+            <div style="font-size:24px;font-weight:600;color:${cgtDue > 0 ? '#ef4444' : '#10b981'}">£${cgtDue.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})}</div>
+          </div>
+        </div>
+        
+        ${cgtDue === 0 && netGain > 0 ? `
+          <div style="background:#10b98120;border-left:3px solid #10b981;padding:1rem;border-radius:8px;margin-bottom:1.5rem">
+            <p style="margin:0;color:#10b981;font-weight:500">✅ No CGT due — gains covered by annual exempt amount (£${yearData.annual_exempt_amount.toLocaleString('en-GB')})</p>
+          </div>
+        ` : ''}
+        
+        ${cgtDue > 0 ? `
+          <div style="background:#ef444420;border-left:3px solid #ef4444;padding:1rem;border-radius:8px;margin-bottom:1.5rem">
+            <p style="margin:0;color:#ef4444;font-weight:500">⚠️ CGT payment required — report on self-assessment tax return</p>
+            <p style="margin:0.5rem 0 0 0;color:var(--text-muted);font-size:12px">Basic rate (10%): £${yearData.cgt_due_basic_rate.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})}<br>Higher rate (20%): £${yearData.cgt_due_higher_rate.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})}</p>
+          </div>
+        ` : ''}
+        
+        <!-- Disposals table -->
+        <h4 style="color:var(--text-primary);margin-bottom:1rem">Disposals (${disposalsCount})</h4>
+        <div class="table-wrap" style="margin-bottom:1.5rem">
+          <table style="width:100%;border-collapse:collapse">
+            <thead>
+              <tr style="background:var(--card-hover)">
+                <th style="padding:0.75rem;text-align:left;font-size:12px;text-transform:uppercase;color:var(--text-muted)">Date</th>
+                <th style="padding:0.75rem;text-align:left;font-size:12px;text-transform:uppercase;color:var(--text-muted)">Ticker</th>
+                <th style="padding:0.75rem;text-align:right;font-size:12px;text-transform:uppercase;color:var(--text-muted)">Units</th>
+                <th style="padding:0.75rem;text-align:right;font-size:12px;text-transform:uppercase;color:var(--text-muted)">Proceeds</th>
+                <th style="padding:0.75rem;text-align:right;font-size:12px;text-transform:uppercase;color:var(--text-muted)">Cost</th>
+                <th style="padding:0.75rem;text-align:right;font-size:12px;text-transform:uppercase;color:var(--text-muted)">Gain/Loss</th>
+                <th style="padding:0.75rem;text-align:left;font-size:12px;text-transform:uppercase;color:var(--text-muted)">Person</th>
+                <th style="padding:0.75rem;text-align:left;font-size:12px;text-transform:uppercase;color:var(--text-muted)">Matching</th>
+              </tr>
+            </thead>
+            <tbody>
+    `;
+    
+    // Sort disposals by date descending
+    const sortedDisposals = [...(yearData.disposals || [])].sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    for (const disposal of sortedDisposals) {
+      const gain = disposal.gain_loss_gbp || 0;
+      const matchingSummary = (disposal.matching_details || []).map(m => {
+        if (m.rule === 'same-day') return 'Same-day';
+        if (m.rule === 'bed-and-breakfast') return 'B&B';
+        if (m.rule === 'section-104-pool') return 'S104';
+        return m.rule;
+      }).join(', ');
+      
+      html += `
+        <tr style="border-top:1px solid var(--border)">
+          <td style="padding:0.75rem;font-family:monospace;font-size:13px">${disposal.date}</td>
+          <td style="padding:0.75rem;font-weight:500">${disposal.ticker}</td>
+          <td style="padding:0.75rem;text-align:right">${disposal.units.toLocaleString('en-GB', {maximumFractionDigits:0})}</td>
+          <td style="padding:0.75rem;text-align:right;font-family:monospace">£${disposal.sale_proceeds_gbp.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})}</td>
+          <td style="padding:0.75rem;text-align:right;font-family:monospace">£${disposal.allowable_cost_gbp.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})}</td>
+          <td style="padding:0.75rem;text-align:right;font-weight:600;color:${gain >= 0 ? '#10b981' : '#ef4444'}">£${Math.abs(gain).toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})}</td>
+          <td style="padding:0.75rem">${disposal.person}</td>
+          <td style="padding:0.75rem;font-size:11px;color:var(--text-muted)">${matchingSummary}</td>
+        </tr>
+      `;
+    }
+    
+    html += `
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  }
+  
+  // Section 104 pools (current holdings not yet sold)
+  if (data.section_104_pools && Object.keys(data.section_104_pools).length > 0) {
+    html += `
+      <div style="margin-top:2rem">
+        <h3 style="color:var(--accent);margin-bottom:1rem">📦 Section 104 Pools (Unsold Holdings)</h3>
+        <p style="color:var(--text-muted);font-size:13px;margin-bottom:1rem">
+          These are your current pooled holdings. When you sell, the cost will be based on the average cost shown below.
+        </p>
+        <div class="table-wrap">
+          <table style="width:100%;border-collapse:collapse">
+            <thead>
+              <tr style="background:var(--card-hover)">
+                <th style="padding:0.75rem;text-align:left;font-size:12px;text-transform:uppercase;color:var(--text-muted)">Ticker</th>
+                <th style="padding:0.75rem;text-align:right;font-size:12px;text-transform:uppercase;color:var(--text-muted)">Units</th>
+                <th style="padding:0.75rem;text-align:right;font-size:12px;text-transform:uppercase;color:var(--text-muted)">Avg Cost/Unit</th>
+                <th style="padding:0.75rem;text-align:right;font-size:12px;text-transform:uppercase;color:var(--text-muted)">Pool Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+    `;
+    
+    for (const [ticker, pool] of Object.entries(data.section_104_pools)) {
+      html += `
+        <tr style="border-top:1px solid var(--border)">
+          <td style="padding:0.75rem;font-weight:500">${ticker}</td>
+          <td style="padding:0.75rem;text-align:right">${pool.units.toLocaleString('en-GB', {maximumFractionDigits:0})}</td>
+          <td style="padding:0.75rem;text-align:right;font-family:monospace">£${pool.avg_cost_per_unit.toLocaleString('en-GB', {minimumFractionDigits:4, maximumFractionDigits:4})}</td>
+          <td style="padding:0.75rem;text-align:right;font-family:monospace">£${pool.cost_gbp.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})}</td>
+        </tr>
+      `;
+    }
+    
+    html += `
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  }
+  
+  // Footer
+  html += `
+    <div style="margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted)">
+      <p style="margin:0">
+        <strong>How CGT is calculated:</strong> UK tax rules apply same-day matching, then bed-and-breakfasting (30 days), then Section 104 pooling.
+        Annual exempt amount: £3,000 for 2025/26 (reduced from £6,000 in prior years).
+        Rates: 10% basic rate, 20% higher rate.
+      </p>
+      <p style="margin:0.5rem 0 0 0">
+        Generated: ${new Date(data.generated).toLocaleString('en-GB')}
+      </p>
+      <p style="margin:0.5rem 0 0 0;font-style:italic">
+        ⚠️ This is for informational purposes only. Consult a tax advisor for official CGT calculations and filing.
+      </p>
+    </div>
+  `;
+  
+  container.innerHTML = html;
+}
+
 // ── Hook into main data load ──
 const _origOnDataLoaded = typeof onDataLoaded === 'function' ? onDataLoaded : null;
 
@@ -3477,6 +3688,7 @@ const _origLoadData = loadData;
       loadWatchlistData();    // Load watchlist
       loadDividendsData();    // Load dividends
       loadRiskEngineData();   // Load risk engine
+      loadCGTData();          // Load CGT report
     }
   }, 500);
   // Safety: stop checking after 30s
