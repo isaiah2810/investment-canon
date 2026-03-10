@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-09T21:30:00.144787",
+  "generatedAt": "2026-03-10T21:30:00.080939",
   "summary": {
     "totalTransactions": 6,
     "totalBuys": 5,
@@ -26,11 +26,6 @@
         "sells": 0,
         "name": "Nevgold Corp"
       },
-      "GDXJ": {
-        "buys": 0,
-        "sells": 1,
-        "name": "VanEck Junior Gold Miners UCITS ETF"
-      },
       "MGG": {
         "buys": 1,
         "sells": 0,
@@ -40,6 +35,11 @@
         "buys": 1,
         "sells": 0,
         "name": "Titan Mining Corp"
+      },
+      "GDXJ": {
+        "buys": 0,
+        "sells": 1,
+        "name": "VanEck Junior Gold Miners UCITS ETF"
       }
     },
     "dateRange": {
@@ -50,6 +50,26 @@
     "manual": 0
   },
   "transactions": [
+    {
+      "id": "auto_2026-03-01_CP IBKR_TRT_buy",
+      "date": "2026-03-01",
+      "detectedBetween": [
+        "2026-02-28",
+        "2026-03-01"
+      ],
+      "ticker": "TRT",
+      "name": "Trio-Tech International",
+      "account": "CP IBKR",
+      "person": "Carlin",
+      "action": "BUY",
+      "units": 60,
+      "price": 5.43,
+      "currency": "USD",
+      "exchange": "NYSEAMERICAN",
+      "valueGBP": 242.86,
+      "source": "auto-detected",
+      "notes": "New position detected between 2026-02-28 and 2026-03-01"
+    },
     {
       "id": "auto_2026-03-01_CP II_TRT_buy",
       "date": "2026-03-01",
@@ -90,25 +110,6 @@
       "notes": "Position increased by 1500 units between 2026-02-28 and 2026-03-01"
     },
     {
-      "id": "auto_2026-03-01_NANA_GDXJ_reduce",
-      "date": "2026-03-01",
-      "detectedBetween": [
-        "2026-02-28",
-        "2026-03-01"
-      ],
-      "ticker": "GDXJ",
-      "name": "VanEck Junior Gold Miners UCITS ETF",
-      "account": "NANA",
-      "person": "Nana",
-      "action": "SELL",
-      "units": 12,
-      "price": 141.9,
-      "currency": "GBP",
-      "exchange": "LSE",
-      "source": "auto-detected",
-      "notes": "Position reduced by 12 units between 2026-02-28 and 2026-03-01"
-    },
-    {
       "id": "auto_2026-03-01_NANA_MGG_add",
       "date": "2026-03-01",
       "detectedBetween": [
@@ -147,24 +148,23 @@
       "notes": "Position increased by 400 units between 2026-02-28 and 2026-03-01"
     },
     {
-      "id": "auto_2026-03-01_CP IBKR_TRT_buy",
+      "id": "auto_2026-03-01_NANA_GDXJ_reduce",
       "date": "2026-03-01",
       "detectedBetween": [
         "2026-02-28",
         "2026-03-01"
       ],
-      "ticker": "TRT",
-      "name": "Trio-Tech International",
-      "account": "CP IBKR",
-      "person": "Carlin",
-      "action": "BUY",
-      "units": 60,
-      "price": 5.43,
-      "currency": "USD",
-      "exchange": "NYSEAMERICAN",
-      "valueGBP": 242.86,
+      "ticker": "GDXJ",
+      "name": "VanEck Junior Gold Miners UCITS ETF",
+      "account": "NANA",
+      "person": "Nana",
+      "action": "SELL",
+      "units": 12,
+      "price": 141.9,
+      "currency": "GBP",
+      "exchange": "LSE",
       "source": "auto-detected",
-      "notes": "New position detected between 2026-02-28 and 2026-03-01"
+      "notes": "Position reduced by 12 units between 2026-02-28 and 2026-03-01"
     }
   ]
 }
