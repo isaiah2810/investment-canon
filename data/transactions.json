@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-10T21:30:00.080939",
+  "generatedAt": "2026-03-11T21:30:00.090247",
   "summary": {
     "totalTransactions": 6,
     "totalBuys": 5,
@@ -21,15 +21,15 @@
         "sells": 0,
         "name": "Trio-Tech International"
       },
-      "NAU": {
-        "buys": 1,
-        "sells": 0,
-        "name": "Nevgold Corp"
-      },
       "MGG": {
         "buys": 1,
         "sells": 0,
         "name": "Minaurum Silver Inc"
+      },
+      "NAU": {
+        "buys": 1,
+        "sells": 0,
+        "name": "Nevgold Corp"
       },
       "TI": {
         "buys": 1,
@@ -51,26 +51,6 @@
   },
   "transactions": [
     {
-      "id": "auto_2026-03-01_CP IBKR_TRT_buy",
-      "date": "2026-03-01",
-      "detectedBetween": [
-        "2026-02-28",
-        "2026-03-01"
-      ],
-      "ticker": "TRT",
-      "name": "Trio-Tech International",
-      "account": "CP IBKR",
-      "person": "Carlin",
-      "action": "BUY",
-      "units": 60,
-      "price": 5.43,
-      "currency": "USD",
-      "exchange": "NYSEAMERICAN",
-      "valueGBP": 242.86,
-      "source": "auto-detected",
-      "notes": "New position detected between 2026-02-28 and 2026-03-01"
-    },
-    {
       "id": "auto_2026-03-01_CP II_TRT_buy",
       "date": "2026-03-01",
       "detectedBetween": [
@@ -91,23 +71,24 @@
       "notes": "New position detected between 2026-02-28 and 2026-03-01"
     },
     {
-      "id": "auto_2026-03-01_NANA_NAU_add",
+      "id": "auto_2026-03-01_CP IBKR_TRT_buy",
       "date": "2026-03-01",
       "detectedBetween": [
         "2026-02-28",
         "2026-03-01"
       ],
-      "ticker": "NAU",
-      "name": "Nevgold Corp",
-      "account": "NANA",
-      "person": "Nana",
+      "ticker": "TRT",
+      "name": "Trio-Tech International",
+      "account": "CP IBKR",
+      "person": "Carlin",
       "action": "BUY",
-      "units": 1500,
-      "price": 1.322101,
-      "currency": "CAD",
-      "exchange": "TSXV",
+      "units": 60,
+      "price": 5.43,
+      "currency": "USD",
+      "exchange": "NYSEAMERICAN",
+      "valueGBP": 242.86,
       "source": "auto-detected",
-      "notes": "Position increased by 1500 units between 2026-02-28 and 2026-03-01"
+      "notes": "New position detected between 2026-02-28 and 2026-03-01"
     },
     {
       "id": "auto_2026-03-01_NANA_MGG_add",
@@ -127,6 +108,25 @@
       "exchange": "TSXV",
       "source": "auto-detected",
       "notes": "Position increased by 6142 units between 2026-02-28 and 2026-03-01"
+    },
+    {
+      "id": "auto_2026-03-01_NANA_NAU_add",
+      "date": "2026-03-01",
+      "detectedBetween": [
+        "2026-02-28",
+        "2026-03-01"
+      ],
+      "ticker": "NAU",
+      "name": "Nevgold Corp",
+      "account": "NANA",
+      "person": "Nana",
+      "action": "BUY",
+      "units": 1500,
+      "price": 1.322101,
+      "currency": "CAD",
+      "exchange": "TSXV",
+      "source": "auto-detected",
+      "notes": "Position increased by 1500 units between 2026-02-28 and 2026-03-01"
     },
     {
       "id": "auto_2026-03-01_NANA_TI_add",
