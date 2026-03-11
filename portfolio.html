@@ -81,6 +81,15 @@
   .chart-area{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:20px;margin-bottom:20px;min-height:200px}
   .chart-area canvas{width:100%!important;height:200px!important}
 
+  /* Dividend History Chart */
+  #dividend-history-chart{width:100%;height:250px;margin-bottom:20px}
+  .dividend-chart-container{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:16px;margin-bottom:16px}
+  .dividend-stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+  .dividend-stat-card{background:var(--card-hover);border:1px solid var(--card-border);border-radius:6px;padding:12px;text-align:center}
+  .dividend-stat-card .label{font-size:11px;text-transform:uppercase;color:var(--text-muted);letter-spacing:0.5px;margin-bottom:4px}
+  .dividend-stat-card .value{font-size:18px;font-weight:700;color:var(--green)}
+  .dividend-legend{font-size:11px;color:var(--text-muted);padding:8px 12px;background:var(--card-hover);border-radius:6px;margin-bottom:12px;border-left:3px solid var(--green)}
+
   .footer{text-align:center;color:var(--text-muted);font-size:10px;margin-top:32px;padding-top:12px;border-top:1px solid var(--card-border)}
 
   /* Refresh button */
@@ -444,6 +453,20 @@
   </div>
   <div class="risk-section-body collapsed" id="dividends-body">
     <div id="dividends-content"><p style="color:var(--text-muted);font-size:12px">Loading dividend data...</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- DIVIDEND HISTORY CHART                                                 -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<div class="risk-section" id="dividend-history-section">
+  <div class="risk-section-header" onclick="toggleSection('dividend-history')">
+    <h2>📈 <span>Dividend History</span></h2>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="risk-section-body collapsed" id="dividend-history-body">
+    <div id="dividend-history-content"><p style="color:var(--text-muted);font-size:12px">Loading dividend history...</p></div>
   </div>
 </div>
 
@@ -2302,6 +2325,168 @@ function renderDividends() {
 }
 
 // ============================================================================
+// DIVIDEND HISTORY LOADING & RENDERING
+// ============================================================================
+
+async function renderDividendHistory() {
+  const el = document.getElementById('dividend-history-content');
+  
+  try {
+    const res = await fetch(`${PRICE_SERVER}/api/dividend-history`);
+    const data = await res.json();
+    
+    if (!data.monthlyHistory || data.monthlyHistory.length === 0) {
+      el.innerHTML = '<div style="color:var(--text-muted);font-size:12px;padding:20px;text-align:center">No dividend payment history available</div>';
+      return;
+    }
+    
+    const summary = data.summary;
+    const monthly = data.monthlyHistory || [];
+    const yearly = data.yearlyHistory || [];
+    
+    // Summary stats
+    let html = '<div class="dividend-stats-row">';
+    html += `
+      <div class="dividend-stat-card">
+        <div class="label">Total Payments</div>
+        <div class="value">${summary.totalPayments || 0}</div>
+      </div>
+      <div class="dividend-stat-card">
+        <div class="label">Payers</div>
+        <div class="value">${summary.tickersWithDividends || 0}</div>
+      </div>
+      <div class="dividend-stat-card">
+        <div class="label">Recent 5Y Income</div>
+        <div class="value">£${Object.values(summary.recentYears || {}).reduce((a,b)=>a+b, 0).toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+      </div>
+      <div class="dividend-stat-card">
+        <div class="label">All-Time Total</div>
+        <div class="value">£${(summary.totalHistoricalDividends || 0).toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+      </div>
+    `;
+    html += '</div>';
+    
+    // Chart container
+    html += '<div class="dividend-chart-container">';
+    html += '<div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:12px">Annual Dividend Income (Last 10 Years)</div>';
+    html += '<canvas id="dividend-history-chart"></canvas>';
+    html += '</div>';
+    
+    // Yearly table
+    html += '<div style="margin-top:16px">';
+    html += '<div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:12px">Year-by-Year Breakdown</div>';
+    html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">';
+    
+    // Show last 10 years
+    const recentYearly = yearly.slice(-10).reverse();
+    for (const [year, amount] of recentYearly) {
+      const yearNum = parseInt(year);
+      const barWidth = Math.max(50, (amount / (Math.max(...yearly.map(y => y[1])) || 100)) * 80);
+      html += `
+        <div style="padding:8px;background:var(--card-hover);border-radius:6px;border:1px solid var(--card-border)">
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:2px">${year}</div>
+          <div style="font-size:14px;font-weight:700;color:var(--positive)">£${amount.toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+        </div>
+      `;
+    }
+    
+    html += '</div>';
+    html += '</div>';
+    
+    html += `<div style="font-size:10px;color:var(--text-muted);margin-top:16px;padding-top:12px;border-top:1px solid var(--card-border)">Data period: ${summary.firstPaymentDate} to ${summary.lastPaymentDate}</div>`;
+    
+    el.innerHTML = html;
+    
+    // Render Chart.js chart
+    await renderDividendHistoryChart(yearly);
+    
+  } catch(e) {
+    console.error('Error loading dividend history:', e);
+    el.innerHTML = `<div style="color:var(--red);font-size:12px;padding:20px;text-align:center">Error loading dividend history: ${e.message}</div>`;
+  }
+}
+
+async function renderDividendHistoryChart(yearly) {
+  const canvas = document.getElementById('dividend-history-chart');
+  if (!canvas) return;
+  
+  // Get last 10 years
+  const last10 = yearly.slice(-10);
+  const labels = last10.map(y => y[0]);
+  const data = last10.map(y => y[1]);
+  
+  // Destroy existing chart if any
+  if (window.dividendChart instanceof Chart) {
+    window.dividendChart.destroy();
+  }
+  
+  window.dividendChart = new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Annual Dividend Income (GBP)',
+        data: data,
+        backgroundColor: 'var(--green)',
+        borderColor: 'var(--green)',
+        borderWidth: 1,
+        borderRadius: 4,
+        barThickness: 'flex',
+        maxBarThickness: 40
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      indexAxis: 'x',
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          backgroundColor: 'rgba(0,0,0,0.8)',
+          padding: 12,
+          titleColor: '#fff',
+          bodyColor: '#fff',
+          bodyFont: { size: 12 },
+          callbacks: {
+            label: function(context) {
+              return '£' + context.parsed.y.toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: 'var(--text-muted)',
+            callback: function(value) {
+              return '£' + value.toLocaleString('en-GB');
+            }
+          },
+          grid: { color: 'var(--card-border)', drawBorder: false },
+          title: { display: true, text: 'GBP' }
+        },
+        x: {
+          ticks: { color: 'var(--text-muted)' },
+          grid: { display: false }
+        }
+      }
+    }
+  });
+}
+
+async function loadDividendHistoryData() {
+  try {
+    await renderDividendHistory();
+  } catch(e) {
+    console.warn('Dividend history load error:', e);
+    document.getElementById('dividend-history-content').innerHTML = '<div style="color:var(--text-muted);font-size:12px;padding:20px;text-align:center">⚠️ Unable to load dividend history</div>';
+  }
+}
+
+// ============================================================================
 // TRANSACTION HISTORY LOADING & RENDERING
 // ============================================================================
 
@@ -3683,12 +3868,13 @@ const _origLoadData = loadData;
   const checkInterval = setInterval(() => {
     if (DATA) {
       clearInterval(checkInterval);
-      loadAlertsData();        // Load price alerts
-      loadTransactionsData(); // Load transaction history
-      loadWatchlistData();    // Load watchlist
-      loadDividendsData();    // Load dividends
-      loadRiskEngineData();   // Load risk engine
-      loadCGTData();          // Load CGT report
+      loadAlertsData();          // Load price alerts
+      loadTransactionsData();   // Load transaction history
+      loadWatchlistData();      // Load watchlist
+      loadDividendsData();      // Load dividends
+      loadDividendHistoryData(); // Load dividend history chart
+      loadRiskEngineData();     // Load risk engine
+      loadCGTData();            // Load CGT report
     }
   }, 500);
   // Safety: stop checking after 30s
