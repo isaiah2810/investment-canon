@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-12T21:30:00.077291",
+  "generatedAt": "2026-03-13T21:30:00.083205",
   "summary": {
     "totalTransactions": 6,
     "totalBuys": 5,
@@ -16,10 +16,10 @@
       }
     },
     "byTicker": {
-      "GDXJ": {
-        "buys": 0,
-        "sells": 1,
-        "name": "VanEck Junior Gold Miners UCITS ETF"
+      "NAU": {
+        "buys": 1,
+        "sells": 0,
+        "name": "Nevgold Corp"
       },
       "MGG": {
         "buys": 1,
@@ -31,10 +31,10 @@
         "sells": 0,
         "name": "Titan Mining Corp"
       },
-      "NAU": {
-        "buys": 1,
-        "sells": 0,
-        "name": "Nevgold Corp"
+      "GDXJ": {
+        "buys": 0,
+        "sells": 1,
+        "name": "VanEck Junior Gold Miners UCITS ETF"
       },
       "TRT": {
         "buys": 2,
@@ -51,23 +51,23 @@
   },
   "transactions": [
     {
-      "id": "auto_2026-03-01_NANA_GDXJ_reduce",
+      "id": "auto_2026-03-01_NANA_NAU_add",
       "date": "2026-03-01",
       "detectedBetween": [
         "2026-02-28",
         "2026-03-01"
       ],
-      "ticker": "GDXJ",
-      "name": "VanEck Junior Gold Miners UCITS ETF",
+      "ticker": "NAU",
+      "name": "Nevgold Corp",
       "account": "NANA",
       "person": "Nana",
-      "action": "SELL",
-      "units": 12,
-      "price": 141.9,
-      "currency": "GBP",
-      "exchange": "LSE",
+      "action": "BUY",
+      "units": 1500,
+      "price": 1.322101,
+      "currency": "CAD",
+      "exchange": "TSXV",
       "source": "auto-detected",
-      "notes": "Position reduced by 12 units between 2026-02-28 and 2026-03-01"
+      "notes": "Position increased by 1500 units between 2026-02-28 and 2026-03-01"
     },
     {
       "id": "auto_2026-03-01_NANA_MGG_add",
@@ -108,23 +108,23 @@
       "notes": "Position increased by 400 units between 2026-02-28 and 2026-03-01"
     },
     {
-      "id": "auto_2026-03-01_NANA_NAU_add",
+      "id": "auto_2026-03-01_NANA_GDXJ_reduce",
       "date": "2026-03-01",
       "detectedBetween": [
         "2026-02-28",
         "2026-03-01"
       ],
-      "ticker": "NAU",
-      "name": "Nevgold Corp",
+      "ticker": "GDXJ",
+      "name": "VanEck Junior Gold Miners UCITS ETF",
       "account": "NANA",
       "person": "Nana",
-      "action": "BUY",
-      "units": 1500,
-      "price": 1.322101,
-      "currency": "CAD",
-      "exchange": "TSXV",
+      "action": "SELL",
+      "units": 12,
+      "price": 141.9,
+      "currency": "GBP",
+      "exchange": "LSE",
       "source": "auto-detected",
-      "notes": "Position increased by 1500 units between 2026-02-28 and 2026-03-01"
+      "notes": "Position reduced by 12 units between 2026-02-28 and 2026-03-01"
     },
     {
       "id": "auto_2026-03-01_CP II_TRT_buy",
