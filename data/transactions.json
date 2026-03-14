@@ -1,21 +1,36 @@
 {
-  "generatedAt": "2026-03-13T21:30:00.083205",
+  "generatedAt": "2026-03-14T21:30:00.115985",
   "summary": {
     "totalTransactions": 6,
     "totalBuys": 5,
     "totalSells": 1,
     "realizedPnlGBP": 0,
     "byPerson": {
-      "Nana": {
-        "buys": 3,
-        "sells": 1
-      },
       "Carlin": {
         "buys": 2,
         "sells": 0
+      },
+      "Nana": {
+        "buys": 3,
+        "sells": 1
       }
     },
     "byTicker": {
+      "TRT": {
+        "buys": 2,
+        "sells": 0,
+        "name": "Trio-Tech International"
+      },
+      "GDXJ": {
+        "buys": 0,
+        "sells": 1,
+        "name": "VanEck Junior Gold Miners UCITS ETF"
+      },
+      "TI": {
+        "buys": 1,
+        "sells": 0,
+        "name": "Titan Mining Corp"
+      },
       "NAU": {
         "buys": 1,
         "sells": 0,
@@ -25,21 +40,6 @@
         "buys": 1,
         "sells": 0,
         "name": "Minaurum Silver Inc"
-      },
-      "TI": {
-        "buys": 1,
-        "sells": 0,
-        "name": "Titan Mining Corp"
-      },
-      "GDXJ": {
-        "buys": 0,
-        "sells": 1,
-        "name": "VanEck Junior Gold Miners UCITS ETF"
-      },
-      "TRT": {
-        "buys": 2,
-        "sells": 0,
-        "name": "Trio-Tech International"
       }
     },
     "dateRange": {
@@ -50,82 +50,6 @@
     "manual": 0
   },
   "transactions": [
-    {
-      "id": "auto_2026-03-01_NANA_NAU_add",
-      "date": "2026-03-01",
-      "detectedBetween": [
-        "2026-02-28",
-        "2026-03-01"
-      ],
-      "ticker": "NAU",
-      "name": "Nevgold Corp",
-      "account": "NANA",
-      "person": "Nana",
-      "action": "BUY",
-      "units": 1500,
-      "price": 1.322101,
-      "currency": "CAD",
-      "exchange": "TSXV",
-      "source": "auto-detected",
-      "notes": "Position increased by 1500 units between 2026-02-28 and 2026-03-01"
-    },
-    {
-      "id": "auto_2026-03-01_NANA_MGG_add",
-      "date": "2026-03-01",
-      "detectedBetween": [
-        "2026-02-28",
-        "2026-03-01"
-      ],
-      "ticker": "MGG",
-      "name": "Minaurum Silver Inc",
-      "account": "NANA",
-      "person": "Nana",
-      "action": "BUY",
-      "units": 6142,
-      "price": 0.546372,
-      "currency": "CAD",
-      "exchange": "TSXV",
-      "source": "auto-detected",
-      "notes": "Position increased by 6142 units between 2026-02-28 and 2026-03-01"
-    },
-    {
-      "id": "auto_2026-03-01_NANA_TI_add",
-      "date": "2026-03-01",
-      "detectedBetween": [
-        "2026-02-28",
-        "2026-03-01"
-      ],
-      "ticker": "TI",
-      "name": "Titan Mining Corp",
-      "account": "NANA",
-      "person": "Nana",
-      "action": "BUY",
-      "units": 400,
-      "price": 5.235351,
-      "currency": "CAD",
-      "exchange": "TSX",
-      "source": "auto-detected",
-      "notes": "Position increased by 400 units between 2026-02-28 and 2026-03-01"
-    },
-    {
-      "id": "auto_2026-03-01_NANA_GDXJ_reduce",
-      "date": "2026-03-01",
-      "detectedBetween": [
-        "2026-02-28",
-        "2026-03-01"
-      ],
-      "ticker": "GDXJ",
-      "name": "VanEck Junior Gold Miners UCITS ETF",
-      "account": "NANA",
-      "person": "Nana",
-      "action": "SELL",
-      "units": 12,
-      "price": 141.9,
-      "currency": "GBP",
-      "exchange": "LSE",
-      "source": "auto-detected",
-      "notes": "Position reduced by 12 units between 2026-02-28 and 2026-03-01"
-    },
     {
       "id": "auto_2026-03-01_CP II_TRT_buy",
       "date": "2026-03-01",
@@ -165,6 +89,82 @@
       "valueGBP": 242.86,
       "source": "auto-detected",
       "notes": "New position detected between 2026-02-28 and 2026-03-01"
+    },
+    {
+      "id": "auto_2026-03-01_NANA_GDXJ_reduce",
+      "date": "2026-03-01",
+      "detectedBetween": [
+        "2026-02-28",
+        "2026-03-01"
+      ],
+      "ticker": "GDXJ",
+      "name": "VanEck Junior Gold Miners UCITS ETF",
+      "account": "NANA",
+      "person": "Nana",
+      "action": "SELL",
+      "units": 12,
+      "price": 141.9,
+      "currency": "GBP",
+      "exchange": "LSE",
+      "source": "auto-detected",
+      "notes": "Position reduced by 12 units between 2026-02-28 and 2026-03-01"
+    },
+    {
+      "id": "auto_2026-03-01_NANA_TI_add",
+      "date": "2026-03-01",
+      "detectedBetween": [
+        "2026-02-28",
+        "2026-03-01"
+      ],
+      "ticker": "TI",
+      "name": "Titan Mining Corp",
+      "account": "NANA",
+      "person": "Nana",
+      "action": "BUY",
+      "units": 400,
+      "price": 5.235351,
+      "currency": "CAD",
+      "exchange": "TSX",
+      "source": "auto-detected",
+      "notes": "Position increased by 400 units between 2026-02-28 and 2026-03-01"
+    },
+    {
+      "id": "auto_2026-03-01_NANA_NAU_add",
+      "date": "2026-03-01",
+      "detectedBetween": [
+        "2026-02-28",
+        "2026-03-01"
+      ],
+      "ticker": "NAU",
+      "name": "Nevgold Corp",
+      "account": "NANA",
+      "person": "Nana",
+      "action": "BUY",
+      "units": 1500,
+      "price": 1.322101,
+      "currency": "CAD",
+      "exchange": "TSXV",
+      "source": "auto-detected",
+      "notes": "Position increased by 1500 units between 2026-02-28 and 2026-03-01"
+    },
+    {
+      "id": "auto_2026-03-01_NANA_MGG_add",
+      "date": "2026-03-01",
+      "detectedBetween": [
+        "2026-02-28",
+        "2026-03-01"
+      ],
+      "ticker": "MGG",
+      "name": "Minaurum Silver Inc",
+      "account": "NANA",
+      "person": "Nana",
+      "action": "BUY",
+      "units": 6142,
+      "price": 0.546372,
+      "currency": "CAD",
+      "exchange": "TSXV",
+      "source": "auto-detected",
+      "notes": "Position increased by 6142 units between 2026-02-28 and 2026-03-01"
     }
   ]
 }
