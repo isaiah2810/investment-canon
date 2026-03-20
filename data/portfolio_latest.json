@@ -1,13 +1,13 @@
 {
   "snapshots": [
     {
-      "date": "2026-03-19",
-      "timestamp": "2026-03-19T21:05:02.919113",
+      "date": "2026-03-20",
+      "timestamp": "2026-03-20T21:05:00.834206",
       "fx_rates": {
         "GBP": 1.0,
-        "CAD": 0.5420650243759155,
-        "USD": 0.7445719838142395,
-        "AUD": 0.5276920199394226
+        "CAD": 0.5461680293083191,
+        "USD": 0.7495110034942627,
+        "AUD": 0.5264350175857544
       },
       "data_sources": {
         "CP II": "json_manual",
@@ -26,12 +26,12 @@
               "currency": "CAD",
               "units": 950,
               "avg_price": 5.497042,
-              "current_price": 7.02,
-              "daily_change_pct": -7.75,
-              "value_gbp": 3615.03,
-              "book_cost_gbp": 2830.77,
-              "pnl_gbp": 784.27,
-              "pnl_pct": 27.71
+              "current_price": 6.76,
+              "daily_change_pct": -3.7,
+              "value_gbp": 3507.49,
+              "book_cost_gbp": 2852.19,
+              "pnl_gbp": 655.3,
+              "pnl_pct": 22.98
             },
             {
               "ticker": "QIMC",
@@ -40,12 +40,12 @@
               "currency": "CAD",
               "units": 5000,
               "avg_price": 0.541776,
-              "current_price": 1.45,
-              "daily_change_pct": 2.84,
-              "value_gbp": 3929.97,
-              "book_cost_gbp": 1468.39,
-              "pnl_gbp": 2461.58,
-              "pnl_pct": 167.64
+              "current_price": 1.02,
+              "daily_change_pct": -29.66,
+              "value_gbp": 2785.46,
+              "book_cost_gbp": 1479.5,
+              "pnl_gbp": 1305.95,
+              "pnl_pct": 88.27
             },
             {
               "ticker": "ETM",
@@ -54,12 +54,12 @@
               "currency": "AUD",
               "units": 573000,
               "avg_price": 0.132099,
-              "current_price": 0.083,
-              "daily_change_pct": -3.49,
-              "value_gbp": 25096.5,
-              "book_cost_gbp": 39942.51,
-              "pnl_gbp": -14846.0,
-              "pnl_pct": -37.17
+              "current_price": 0.086,
+              "daily_change_pct": 3.61,
+              "value_gbp": 25941.67,
+              "book_cost_gbp": 39847.36,
+              "pnl_gbp": -13905.7,
+              "pnl_pct": -34.9
             },
             {
               "ticker": "CTGO",
@@ -68,12 +68,12 @@
               "currency": "USD",
               "units": 150,
               "avg_price": 32.055467,
-              "current_price": 17.56,
-              "daily_change_pct": -10.5,
-              "value_gbp": 1961.2,
-              "book_cost_gbp": 3580.14,
-              "pnl_gbp": -1618.94,
-              "pnl_pct": -45.22
+              "current_price": 17.2,
+              "daily_change_pct": -2.05,
+              "value_gbp": 1933.74,
+              "book_cost_gbp": 3603.89,
+              "pnl_gbp": -1670.15,
+              "pnl_pct": -46.34
             },
             {
               "ticker": "OSS",
@@ -82,12 +82,12 @@
               "currency": "USD",
               "units": 100,
               "avg_price": 7.9637,
-              "current_price": 10.27,
-              "daily_change_pct": -8.63,
-              "value_gbp": 764.68,
-              "book_cost_gbp": 592.95,
-              "pnl_gbp": 171.72,
-              "pnl_pct": 28.96
+              "current_price": 8.82,
+              "daily_change_pct": -14.12,
+              "value_gbp": 661.07,
+              "book_cost_gbp": 596.89,
+              "pnl_gbp": 64.18,
+              "pnl_pct": 10.75
             },
             {
               "ticker": "MGG",
@@ -96,12 +96,12 @@
               "currency": "CAD",
               "units": 21000,
               "avg_price": 0.45113,
-              "current_price": 0.355,
-              "daily_change_pct": 1.43,
-              "value_gbp": 4041.09,
-              "book_cost_gbp": 5135.38,
-              "pnl_gbp": -1094.28,
-              "pnl_pct": -21.31
+              "current_price": 0.335,
+              "daily_change_pct": -6.94,
+              "value_gbp": 3842.29,
+              "book_cost_gbp": 5174.25,
+              "pnl_gbp": -1331.96,
+              "pnl_pct": -25.74
             },
             {
               "ticker": "GSPR",
@@ -111,10 +111,10 @@
               "units": 28000,
               "avg_price": 0.141566,
               "current_price": 0.1,
-              "daily_change_pct": -4.76,
-              "value_gbp": 1517.78,
-              "book_cost_gbp": 2148.66,
-              "pnl_gbp": -630.88,
+              "daily_change_pct": 0,
+              "value_gbp": 1529.27,
+              "book_cost_gbp": 2164.92,
+              "pnl_gbp": -635.65,
               "pnl_pct": -29.36
             },
             {
@@ -124,12 +124,12 @@
               "currency": "CAD",
               "units": 1320,
               "avg_price": 5.449652,
-              "current_price": 3.72,
-              "daily_change_pct": -10.79,
-              "value_gbp": 2661.76,
-              "book_cost_gbp": 3899.37,
-              "pnl_gbp": -1237.61,
-              "pnl_pct": -31.74
+              "current_price": 3.53,
+              "daily_change_pct": -5.11,
+              "value_gbp": 2544.92,
+              "book_cost_gbp": 3928.88,
+              "pnl_gbp": -1383.96,
+              "pnl_pct": -35.23
             },
             {
               "ticker": "NAU",
@@ -138,12 +138,12 @@
               "currency": "CAD",
               "units": 8000,
               "avg_price": 1.010293,
-              "current_price": 1.12,
-              "daily_change_pct": -5.08,
-              "value_gbp": 4856.9,
-              "book_cost_gbp": 4381.15,
-              "pnl_gbp": 475.75,
-              "pnl_pct": 10.86
+              "current_price": 1.1,
+              "daily_change_pct": -1.79,
+              "value_gbp": 4806.28,
+              "book_cost_gbp": 4414.32,
+              "pnl_gbp": 391.96,
+              "pnl_pct": 8.88
             },
             {
               "ticker": "ALTA",
@@ -152,12 +152,12 @@
               "currency": "CAD",
               "units": 17000,
               "avg_price": 0.226968,
-              "current_price": 0.155,
-              "daily_change_pct": -8.82,
-              "value_gbp": 1428.34,
-              "book_cost_gbp": 2091.54,
-              "pnl_gbp": -663.19,
-              "pnl_pct": -31.71
+              "current_price": 0.14,
+              "daily_change_pct": -12.5,
+              "value_gbp": 1299.88,
+              "book_cost_gbp": 2107.37,
+              "pnl_gbp": -807.49,
+              "pnl_pct": -38.32
             },
             {
               "ticker": "TRT",
@@ -166,18 +166,18 @@
               "currency": "USD",
               "units": 22,
               "avg_price": 5.203636,
-              "current_price": 6.2,
-              "daily_change_pct": 0,
-              "value_gbp": 101.56,
-              "book_cost_gbp": 85.24,
-              "pnl_gbp": 16.32,
-              "pnl_pct": 19.15
+              "current_price": 5.82,
+              "daily_change_pct": -6.13,
+              "value_gbp": 95.97,
+              "book_cost_gbp": 85.8,
+              "pnl_gbp": 10.16,
+              "pnl_pct": 11.84
             }
           ],
-          "total_value_gbp": 49974.82,
-          "total_cost_gbp": 66156.09,
-          "pnl_gbp": -16181.27,
-          "pnl_pct": -24.46
+          "total_value_gbp": 48948.03,
+          "total_cost_gbp": 66255.38,
+          "pnl_gbp": -17307.35,
+          "pnl_pct": -26.12
         },
         "CP IBKR": {
           "cash_gbp": 328.56,
@@ -189,12 +189,12 @@
               "currency": "CAD",
               "units": 13500,
               "avg_price": 0.148,
-              "current_price": 0.105,
-              "daily_change_pct": 10.53,
-              "value_gbp": 768.38,
-              "book_cost_gbp": 1083.05,
-              "pnl_gbp": -314.67,
-              "pnl_pct": -29.05
+              "current_price": 0.12,
+              "daily_change_pct": 14.29,
+              "value_gbp": 884.79,
+              "book_cost_gbp": 1091.24,
+              "pnl_gbp": -206.45,
+              "pnl_pct": -18.92
             },
             {
               "ticker": "ETM",
@@ -203,12 +203,12 @@
               "currency": "AUD",
               "units": 35000,
               "avg_price": 0.14,
-              "current_price": 0.083,
-              "daily_change_pct": -3.49,
-              "value_gbp": 1532.95,
-              "book_cost_gbp": 2585.69,
-              "pnl_gbp": -1052.75,
-              "pnl_pct": -40.71
+              "current_price": 0.086,
+              "daily_change_pct": 3.61,
+              "value_gbp": 1584.57,
+              "book_cost_gbp": 2579.53,
+              "pnl_gbp": -994.96,
+              "pnl_pct": -38.57
             },
             {
               "ticker": "TRT",
@@ -217,18 +217,18 @@
               "currency": "USD",
               "units": 60,
               "avg_price": 5.43,
-              "current_price": 6.2,
-              "daily_change_pct": 0,
-              "value_gbp": 276.98,
-              "book_cost_gbp": 242.58,
-              "pnl_gbp": 34.4,
-              "pnl_pct": 14.18
+              "current_price": 5.82,
+              "daily_change_pct": -6.13,
+              "value_gbp": 261.73,
+              "book_cost_gbp": 244.19,
+              "pnl_gbp": 17.54,
+              "pnl_pct": 7.18
             }
           ],
-          "total_value_gbp": 2578.3,
-          "total_cost_gbp": 3911.32,
-          "pnl_gbp": -1333.02,
-          "pnl_pct": -34.08
+          "total_value_gbp": 2731.09,
+          "total_cost_gbp": 3914.97,
+          "pnl_gbp": -1183.88,
+          "pnl_pct": -30.24
         },
         "NANA": {
           "cash_gbp": 112.91,
@@ -240,12 +240,12 @@
               "currency": "CAD",
               "units": 1474,
               "avg_price": 2.783738,
-              "current_price": 1.94,
-              "daily_change_pct": -9.77,
-              "value_gbp": 1550.07,
-              "book_cost_gbp": 2224.22,
-              "pnl_gbp": -674.15,
-              "pnl_pct": -30.31
+              "current_price": 1.83,
+              "daily_change_pct": -5.67,
+              "value_gbp": 1473.24,
+              "book_cost_gbp": 2241.05,
+              "pnl_gbp": -767.81,
+              "pnl_pct": -34.26
             },
             {
               "ticker": "TI",
@@ -254,12 +254,12 @@
               "currency": "CAD",
               "units": 1347,
               "avg_price": 4.352205,
-              "current_price": 3.72,
-              "daily_change_pct": -10.79,
-              "value_gbp": 2716.2,
-              "book_cost_gbp": 3177.81,
-              "pnl_gbp": -461.61,
-              "pnl_pct": -14.53
+              "current_price": 3.53,
+              "daily_change_pct": -5.11,
+              "value_gbp": 2596.98,
+              "book_cost_gbp": 3201.87,
+              "pnl_gbp": -604.89,
+              "pnl_pct": -18.89
             },
             {
               "ticker": "GDXJ",
@@ -268,12 +268,12 @@
               "currency": "GBP",
               "units": 110,
               "avg_price": 77.538455,
-              "current_price": 99.35,
-              "daily_change_pct": -9.28,
-              "value_gbp": 8137.05,
+              "current_price": 98.39,
+              "daily_change_pct": -0.97,
+              "value_gbp": 8111.88,
               "book_cost_gbp": 8529.23,
-              "pnl_gbp": -392.18,
-              "pnl_pct": -4.6
+              "pnl_gbp": -417.35,
+              "pnl_pct": -4.89
             },
             {
               "ticker": "NAU",
@@ -282,12 +282,12 @@
               "currency": "CAD",
               "units": 5898,
               "avg_price": 0.982845,
-              "current_price": 1.12,
-              "daily_change_pct": -5.08,
-              "value_gbp": 3580.75,
-              "book_cost_gbp": 3142.25,
-              "pnl_gbp": 438.5,
-              "pnl_pct": 13.95
+              "current_price": 1.1,
+              "daily_change_pct": -1.79,
+              "value_gbp": 3543.43,
+              "book_cost_gbp": 3166.04,
+              "pnl_gbp": 377.39,
+              "pnl_pct": 11.92
             },
             {
               "ticker": "FF",
@@ -296,12 +296,12 @@
               "currency": "CAD",
               "units": 12048,
               "avg_price": 0.473424,
-              "current_price": 0.425,
-              "daily_change_pct": -9.57,
-              "value_gbp": 2775.59,
-              "book_cost_gbp": 3091.84,
-              "pnl_gbp": -316.25,
-              "pnl_pct": -10.23
+              "current_price": 0.395,
+              "daily_change_pct": -7.06,
+              "value_gbp": 2599.19,
+              "book_cost_gbp": 3115.24,
+              "pnl_gbp": -516.05,
+              "pnl_pct": -16.57
             },
             {
               "ticker": "LG",
@@ -310,12 +310,12 @@
               "currency": "CAD",
               "units": 11500,
               "avg_price": 0.334236,
-              "current_price": 0.34,
-              "daily_change_pct": 0,
-              "value_gbp": 2119.47,
-              "book_cost_gbp": 2083.54,
-              "pnl_gbp": 35.93,
-              "pnl_pct": 1.72
+              "current_price": 0.32,
+              "daily_change_pct": -5.88,
+              "value_gbp": 2009.9,
+              "book_cost_gbp": 2099.31,
+              "pnl_gbp": -89.41,
+              "pnl_pct": -4.26
             },
             {
               "ticker": "MGG",
@@ -324,18 +324,18 @@
               "currency": "CAD",
               "units": 12300,
               "avg_price": 0.503037,
-              "current_price": 0.355,
-              "daily_change_pct": 1.43,
-              "value_gbp": 2366.93,
-              "book_cost_gbp": 3353.95,
-              "pnl_gbp": -987.02,
-              "pnl_pct": -29.43
+              "current_price": 0.335,
+              "daily_change_pct": -6.94,
+              "value_gbp": 2250.49,
+              "book_cost_gbp": 3379.34,
+              "pnl_gbp": -1128.85,
+              "pnl_pct": -33.4
             }
           ],
-          "total_value_gbp": 23246.07,
-          "total_cost_gbp": 25602.84,
-          "pnl_gbp": -2356.77,
-          "pnl_pct": -9.21
+          "total_value_gbp": 22585.11,
+          "total_cost_gbp": 25732.08,
+          "pnl_gbp": -3146.97,
+          "pnl_pct": -12.23
         },
         "DADA": {
           "cash_gbp": 730.0,
@@ -347,12 +347,12 @@
               "currency": "USD",
               "units": 46.1994237,
               "avg_price": 75.358,
-              "current_price": 82.9,
-              "daily_change_pct": -5.91,
-              "value_gbp": 2851.66,
-              "book_cost_gbp": 2592.22,
-              "pnl_gbp": 259.44,
-              "pnl_pct": 10.01
+              "current_price": 80.12,
+              "daily_change_pct": -3.35,
+              "value_gbp": 2774.31,
+              "book_cost_gbp": 2609.42,
+              "pnl_gbp": 164.89,
+              "pnl_pct": 6.32
             },
             {
               "ticker": "SSLN",
@@ -361,12 +361,12 @@
               "currency": "GBP",
               "units": 50.34708836,
               "avg_price": 35.378,
-              "current_price": 50.22,
-              "daily_change_pct": -8.71,
-              "value_gbp": 2528.43,
+              "current_price": 49.98,
+              "daily_change_pct": -0.48,
+              "value_gbp": 2516.35,
               "book_cost_gbp": 1781.18,
-              "pnl_gbp": 747.25,
-              "pnl_pct": 41.95
+              "pnl_gbp": 735.17,
+              "pnl_pct": 41.27
             },
             {
               "ticker": "CTGO",
@@ -375,12 +375,12 @@
               "currency": "USD",
               "units": 118.57348842,
               "avg_price": 31.77,
-              "current_price": 17.56,
-              "daily_change_pct": -10.5,
-              "value_gbp": 1550.31,
-              "book_cost_gbp": 2804.86,
-              "pnl_gbp": -1254.55,
-              "pnl_pct": -44.73
+              "current_price": 17.2,
+              "daily_change_pct": -2.05,
+              "value_gbp": 1528.6,
+              "book_cost_gbp": 2823.47,
+              "pnl_gbp": -1294.87,
+              "pnl_pct": -45.86
             },
             {
               "ticker": "TRT",
@@ -389,12 +389,12 @@
               "currency": "USD",
               "units": 571.647258,
               "avg_price": 6.97,
-              "current_price": 6.2,
-              "daily_change_pct": 0,
-              "value_gbp": 2638.92,
-              "book_cost_gbp": 2966.66,
-              "pnl_gbp": -327.74,
-              "pnl_pct": -11.05
+              "current_price": 5.82,
+              "daily_change_pct": -6.13,
+              "value_gbp": 2493.61,
+              "book_cost_gbp": 2986.34,
+              "pnl_gbp": -492.72,
+              "pnl_pct": -16.5
             },
             {
               "ticker": "CDE",
@@ -403,12 +403,12 @@
               "currency": "USD",
               "units": 75.20689063,
               "avg_price": 17.6,
-              "current_price": 18.27,
-              "daily_change_pct": -5.14,
-              "value_gbp": 1023.06,
-              "book_cost_gbp": 985.55,
-              "pnl_gbp": 37.52,
-              "pnl_pct": 3.81
+              "current_price": 17.67,
+              "daily_change_pct": -3.28,
+              "value_gbp": 996.03,
+              "book_cost_gbp": 992.08,
+              "pnl_gbp": 3.95,
+              "pnl_pct": 0.4
             },
             {
               "ticker": "SBRY",
@@ -417,12 +417,12 @@
               "currency": "GBP",
               "units": 100,
               "avg_price": 2.6023,
-              "current_price": 3.418,
-              "daily_change_pct": -1.78,
-              "value_gbp": 341.8,
+              "current_price": 3.33,
+              "daily_change_pct": -2.57,
+              "value_gbp": 333.0,
               "book_cost_gbp": 260.23,
-              "pnl_gbp": 81.57,
-              "pnl_pct": 31.35
+              "pnl_gbp": 72.77,
+              "pnl_pct": 27.96
             },
             {
               "ticker": "GDGB",
@@ -431,12 +431,12 @@
               "currency": "GBP",
               "units": 2.87248657,
               "avg_price": 80.07,
-              "current_price": 69.5,
-              "daily_change_pct": -8.95,
-              "value_gbp": 199.64,
+              "current_price": 68.72,
+              "daily_change_pct": -1.12,
+              "value_gbp": 197.4,
               "book_cost_gbp": 230.0,
-              "pnl_gbp": -30.36,
-              "pnl_pct": -13.2
+              "pnl_gbp": -32.6,
+              "pnl_pct": -14.18
             },
             {
               "ticker": "GRG",
@@ -445,18 +445,18 @@
               "currency": "GBP",
               "units": 1,
               "avg_price": 25.39,
-              "current_price": 15.6,
-              "daily_change_pct": -2.01,
-              "value_gbp": 15.6,
+              "current_price": 15.43,
+              "daily_change_pct": -1.09,
+              "value_gbp": 15.43,
               "book_cost_gbp": 25.39,
-              "pnl_gbp": -9.79,
-              "pnl_pct": -38.56
+              "pnl_gbp": -9.96,
+              "pnl_pct": -39.23
             }
           ],
-          "total_value_gbp": 11149.43,
-          "total_cost_gbp": 11646.09,
-          "pnl_gbp": -496.66,
-          "pnl_pct": -4.26
+          "total_value_gbp": 10854.73,
+          "total_cost_gbp": 11708.11,
+          "pnl_gbp": -853.38,
+          "pnl_pct": -7.29
         }
       },
       "aggregate": {
@@ -466,9 +466,9 @@
           "exchange": "TSX",
           "total_units": 950,
           "total_cost_local": 5222.1899,
-          "total_cost_gbp": 2830.77,
-          "current_price": 7.02,
-          "daily_change_pct": -7.75,
+          "total_cost_gbp": 2852.19,
+          "current_price": 6.76,
+          "daily_change_pct": -3.7,
           "accounts": [
             {
               "account": "CP II",
@@ -476,10 +476,10 @@
               "avg_price": 5.497042
             }
           ],
-          "value_gbp": 3615.03,
+          "value_gbp": 3507.49,
           "weighted_avg_price": 5.497,
-          "pnl_gbp": 784.26,
-          "pnl_pct": 27.7
+          "pnl_gbp": 655.3,
+          "pnl_pct": 22.98
         },
         "QIMC": {
           "name": "Quebec Innovative Materials Corp",
@@ -487,9 +487,9 @@
           "exchange": "CSE",
           "total_units": 5000,
           "total_cost_local": 2708.88,
-          "total_cost_gbp": 1468.39,
-          "current_price": 1.45,
-          "daily_change_pct": 2.84,
+          "total_cost_gbp": 1479.5,
+          "current_price": 1.02,
+          "daily_change_pct": -29.66,
           "accounts": [
             {
               "account": "CP II",
@@ -497,10 +497,10 @@
               "avg_price": 0.541776
             }
           ],
-          "value_gbp": 3929.97,
+          "value_gbp": 2785.46,
           "weighted_avg_price": 0.5418,
-          "pnl_gbp": 2461.58,
-          "pnl_pct": 167.64
+          "pnl_gbp": 1305.96,
+          "pnl_pct": 88.27
         },
         "ETM": {
           "name": "Energy Transition Minerals Ltd",
@@ -508,9 +508,9 @@
           "exchange": "ASX",
           "total_units": 608000,
           "total_cost_local": 80592.727,
-          "total_cost_gbp": 42528.2,
-          "current_price": 0.083,
-          "daily_change_pct": -3.49,
+          "total_cost_gbp": 42426.89,
+          "current_price": 0.086,
+          "daily_change_pct": 3.61,
           "accounts": [
             {
               "account": "CP II",
@@ -523,10 +523,10 @@
               "avg_price": 0.14
             }
           ],
-          "value_gbp": 26629.45,
+          "value_gbp": 27526.24,
           "weighted_avg_price": 0.1326,
-          "pnl_gbp": -15898.75,
-          "pnl_pct": -37.38
+          "pnl_gbp": -14900.65,
+          "pnl_pct": -35.12
         },
         "CTGO": {
           "name": "Contango ORE Inc",
@@ -534,9 +534,9 @@
           "exchange": "NYSEAMERICAN",
           "total_units": 268.57348842,
           "total_cost_local": 8575.399777103401,
-          "total_cost_gbp": 6385.0,
-          "current_price": 17.56,
-          "daily_change_pct": -10.5,
+          "total_cost_gbp": 6427.36,
+          "current_price": 17.2,
+          "daily_change_pct": -2.05,
           "accounts": [
             {
               "account": "CP II",
@@ -549,10 +549,10 @@
               "avg_price": 31.77
             }
           ],
-          "value_gbp": 3511.51,
+          "value_gbp": 3462.34,
           "weighted_avg_price": 31.9294,
-          "pnl_gbp": -2873.49,
-          "pnl_pct": -45.0
+          "pnl_gbp": -2965.02,
+          "pnl_pct": -46.13
         },
         "OSS": {
           "name": "One Stop Systems Inc",
@@ -560,9 +560,9 @@
           "exchange": "NASDAQ",
           "total_units": 100,
           "total_cost_local": 796.37,
-          "total_cost_gbp": 592.95,
-          "current_price": 10.27,
-          "daily_change_pct": -8.63,
+          "total_cost_gbp": 596.89,
+          "current_price": 8.82,
+          "daily_change_pct": -14.12,
           "accounts": [
             {
               "account": "CP II",
@@ -570,10 +570,10 @@
               "avg_price": 7.9637
             }
           ],
-          "value_gbp": 764.68,
+          "value_gbp": 661.07,
           "weighted_avg_price": 7.9637,
-          "pnl_gbp": 171.73,
-          "pnl_pct": 28.96
+          "pnl_gbp": 64.18,
+          "pnl_pct": 10.75
         },
         "MGG": {
           "name": "Minaurum Silver Inc",
@@ -581,9 +581,9 @@
           "exchange": "TSXV",
           "total_units": 33300,
           "total_cost_local": 15661.0851,
-          "total_cost_gbp": 8489.33,
-          "current_price": 0.355,
-          "daily_change_pct": 1.43,
+          "total_cost_gbp": 8553.59,
+          "current_price": 0.335,
+          "daily_change_pct": -6.94,
           "accounts": [
             {
               "account": "CP II",
@@ -596,10 +596,10 @@
               "avg_price": 0.503037
             }
           ],
-          "value_gbp": 6408.02,
+          "value_gbp": 6092.78,
           "weighted_avg_price": 0.4703,
-          "pnl_gbp": -2081.31,
-          "pnl_pct": -24.52
+          "pnl_gbp": -2460.81,
+          "pnl_pct": -28.77
         },
         "GSPR": {
           "name": "GSP Resource Corp",
@@ -607,9 +607,9 @@
           "exchange": "TSXV",
           "total_units": 28000,
           "total_cost_local": 3963.848,
-          "total_cost_gbp": 2148.66,
+          "total_cost_gbp": 2164.92,
           "current_price": 0.1,
-          "daily_change_pct": -4.76,
+          "daily_change_pct": 0,
           "accounts": [
             {
               "account": "CP II",
@@ -617,9 +617,9 @@
               "avg_price": 0.141566
             }
           ],
-          "value_gbp": 1517.78,
+          "value_gbp": 1529.27,
           "weighted_avg_price": 0.1416,
-          "pnl_gbp": -630.88,
+          "pnl_gbp": -635.65,
           "pnl_pct": -29.36
         },
         "TI": {
@@ -628,9 +628,9 @@
           "exchange": "TSX",
           "total_units": 2667,
           "total_cost_local": 13055.960775,
-          "total_cost_gbp": 7077.18,
-          "current_price": 3.72,
-          "daily_change_pct": -10.79,
+          "total_cost_gbp": 7130.75,
+          "current_price": 3.53,
+          "daily_change_pct": -5.11,
           "accounts": [
             {
               "account": "CP II",
@@ -643,10 +643,10 @@
               "avg_price": 4.352205
             }
           ],
-          "value_gbp": 5377.96,
+          "value_gbp": 5141.9,
           "weighted_avg_price": 4.8954,
-          "pnl_gbp": -1699.22,
-          "pnl_pct": -24.01
+          "pnl_gbp": -1988.85,
+          "pnl_pct": -27.89
         },
         "NAU": {
           "name": "Nevgold Corp",
@@ -654,9 +654,9 @@
           "exchange": "TSXV",
           "total_units": 13898,
           "total_cost_local": 13879.163810000002,
-          "total_cost_gbp": 7523.41,
-          "current_price": 1.12,
-          "daily_change_pct": -5.08,
+          "total_cost_gbp": 7580.35,
+          "current_price": 1.1,
+          "daily_change_pct": -1.79,
           "accounts": [
             {
               "account": "CP II",
@@ -669,10 +669,10 @@
               "avg_price": 0.982845
             }
           ],
-          "value_gbp": 8437.65,
+          "value_gbp": 8349.71,
           "weighted_avg_price": 0.9986,
-          "pnl_gbp": 914.24,
-          "pnl_pct": 12.15
+          "pnl_gbp": 769.36,
+          "pnl_pct": 10.15
         },
         "ALTA": {
           "name": "Altamira Gold Corp",
@@ -680,9 +680,9 @@
           "exchange": "TSXV",
           "total_units": 17000,
           "total_cost_local": 3858.456,
-          "total_cost_gbp": 2091.54,
-          "current_price": 0.155,
-          "daily_change_pct": -8.82,
+          "total_cost_gbp": 2107.37,
+          "current_price": 0.14,
+          "daily_change_pct": -12.5,
           "accounts": [
             {
               "account": "CP II",
@@ -690,10 +690,10 @@
               "avg_price": 0.226968
             }
           ],
-          "value_gbp": 1428.34,
+          "value_gbp": 1299.88,
           "weighted_avg_price": 0.227,
-          "pnl_gbp": -663.2,
-          "pnl_pct": -31.71
+          "pnl_gbp": -807.49,
+          "pnl_pct": -38.32
         },
         "TRT": {
           "name": "Trio-Tech International",
@@ -701,9 +701,9 @@
           "exchange": "NYSEAMERICAN",
           "total_units": 653.647258,
           "total_cost_local": 4424.6613802599995,
-          "total_cost_gbp": 3294.48,
-          "current_price": 6.2,
-          "daily_change_pct": 0,
+          "total_cost_gbp": 3316.33,
+          "current_price": 5.82,
+          "daily_change_pct": -6.13,
           "accounts": [
             {
               "account": "CP II",
@@ -721,10 +721,10 @@
               "avg_price": 6.97
             }
           ],
-          "value_gbp": 3017.46,
+          "value_gbp": 2851.31,
           "weighted_avg_price": 6.7692,
-          "pnl_gbp": -277.02,
-          "pnl_pct": -8.41
+          "pnl_gbp": -465.02,
+          "pnl_pct": -14.02
         },
         "MASS": {
           "name": "Masivo Silver Corp",
@@ -732,9 +732,9 @@
           "exchange": "TSXV",
           "total_units": 13500,
           "total_cost_local": 1998.0,
-          "total_cost_gbp": 1083.05,
-          "current_price": 0.105,
-          "daily_change_pct": 10.53,
+          "total_cost_gbp": 1091.24,
+          "current_price": 0.12,
+          "daily_change_pct": 14.29,
           "accounts": [
             {
               "account": "CP IBKR",
@@ -742,10 +742,10 @@
               "avg_price": 0.148
             }
           ],
-          "value_gbp": 768.38,
+          "value_gbp": 884.79,
           "weighted_avg_price": 0.148,
-          "pnl_gbp": -314.67,
-          "pnl_pct": -29.05
+          "pnl_gbp": -206.45,
+          "pnl_pct": -18.92
         },
         "HSTR": {
           "name": "Heliostar Metals Ltd",
@@ -753,9 +753,9 @@
           "exchange": "TSXV",
           "total_units": 1474,
           "total_cost_local": 4103.2298120000005,
-          "total_cost_gbp": 2224.22,
-          "current_price": 1.94,
-          "daily_change_pct": -9.77,
+          "total_cost_gbp": 2241.05,
+          "current_price": 1.83,
+          "daily_change_pct": -5.67,
           "accounts": [
             {
               "account": "NANA",
@@ -763,10 +763,10 @@
               "avg_price": 2.783738
             }
           ],
-          "value_gbp": 1550.07,
+          "value_gbp": 1473.24,
           "weighted_avg_price": 2.7837,
-          "pnl_gbp": -674.15,
-          "pnl_pct": -30.31
+          "pnl_gbp": -767.81,
+          "pnl_pct": -34.26
         },
         "GDXJ": {
           "name": "VanEck Junior Gold Miners UCITS ETF",
@@ -775,8 +775,8 @@
           "total_units": 110,
           "total_cost_local": 8529.23005,
           "total_cost_gbp": 8529.23,
-          "current_price": 99.35,
-          "daily_change_pct": -9.28,
+          "current_price": 98.39,
+          "daily_change_pct": -0.97,
           "accounts": [
             {
               "account": "NANA",
@@ -784,10 +784,10 @@
               "avg_price": 77.538455
             }
           ],
-          "value_gbp": 8137.05,
+          "value_gbp": 8111.88,
           "weighted_avg_price": 77.5385,
-          "pnl_gbp": -392.18,
-          "pnl_pct": -4.6
+          "pnl_gbp": -417.35,
+          "pnl_pct": -4.89
         },
         "FF": {
           "name": "First Mining Gold Corp",
@@ -795,9 +795,9 @@
           "exchange": "TSX",
           "total_units": 12048,
           "total_cost_local": 5703.812352,
-          "total_cost_gbp": 3091.84,
-          "current_price": 0.425,
-          "daily_change_pct": -9.57,
+          "total_cost_gbp": 3115.24,
+          "current_price": 0.395,
+          "daily_change_pct": -7.06,
           "accounts": [
             {
               "account": "NANA",
@@ -805,10 +805,10 @@
               "avg_price": 0.473424
             }
           ],
-          "value_gbp": 2775.59,
+          "value_gbp": 2599.19,
           "weighted_avg_price": 0.4734,
-          "pnl_gbp": -316.25,
-          "pnl_pct": -10.23
+          "pnl_gbp": -516.05,
+          "pnl_pct": -16.57
         },
         "LG": {
           "name": "Lahontan Gold Corp",
@@ -816,9 +816,9 @@
           "exchange": "TSXV",
           "total_units": 11500,
           "total_cost_local": 3843.714,
-          "total_cost_gbp": 2083.54,
-          "current_price": 0.34,
-          "daily_change_pct": 0,
+          "total_cost_gbp": 2099.31,
+          "current_price": 0.32,
+          "daily_change_pct": -5.88,
           "accounts": [
             {
               "account": "NANA",
@@ -826,10 +826,10 @@
               "avg_price": 0.334236
             }
           ],
-          "value_gbp": 2119.47,
+          "value_gbp": 2009.9,
           "weighted_avg_price": 0.3342,
-          "pnl_gbp": 35.93,
-          "pnl_pct": 1.72
+          "pnl_gbp": -89.41,
+          "pnl_pct": -4.26
         },
         "GDX": {
           "name": "VanEck Gold Miners ETF",
@@ -837,9 +837,9 @@
           "exchange": "NYSE",
           "total_units": 46.1994237,
           "total_cost_local": 3481.4961711846,
-          "total_cost_gbp": 2592.22,
-          "current_price": 82.9,
-          "daily_change_pct": -5.91,
+          "total_cost_gbp": 2609.42,
+          "current_price": 80.12,
+          "daily_change_pct": -3.35,
           "accounts": [
             {
               "account": "DADA",
@@ -847,10 +847,10 @@
               "avg_price": 75.358
             }
           ],
-          "value_gbp": 2851.66,
+          "value_gbp": 2774.31,
           "weighted_avg_price": 75.358,
-          "pnl_gbp": 259.44,
-          "pnl_pct": 10.01
+          "pnl_gbp": 164.89,
+          "pnl_pct": 6.32
         },
         "SSLN": {
           "name": "iShares Physical Silver ETC",
@@ -859,8 +859,8 @@
           "total_units": 50.34708836,
           "total_cost_local": 1781.17929200008,
           "total_cost_gbp": 1781.18,
-          "current_price": 50.22,
-          "daily_change_pct": -8.71,
+          "current_price": 49.98,
+          "daily_change_pct": -0.48,
           "accounts": [
             {
               "account": "DADA",
@@ -868,10 +868,10 @@
               "avg_price": 35.378
             }
           ],
-          "value_gbp": 2528.43,
+          "value_gbp": 2516.35,
           "weighted_avg_price": 35.378,
-          "pnl_gbp": 747.25,
-          "pnl_pct": 41.95
+          "pnl_gbp": 735.17,
+          "pnl_pct": 41.27
         },
         "CDE": {
           "name": "Coeur Mining Inc",
@@ -879,9 +879,9 @@
           "exchange": "NYSE",
           "total_units": 75.20689063,
           "total_cost_local": 1323.6412750880002,
-          "total_cost_gbp": 985.55,
-          "current_price": 18.27,
-          "daily_change_pct": -5.14,
+          "total_cost_gbp": 992.08,
+          "current_price": 17.67,
+          "daily_change_pct": -3.28,
           "accounts": [
             {
               "account": "DADA",
@@ -889,10 +889,10 @@
               "avg_price": 17.6
             }
           ],
-          "value_gbp": 1023.06,
+          "value_gbp": 996.03,
           "weighted_avg_price": 17.6,
-          "pnl_gbp": 37.51,
-          "pnl_pct": 3.81
+          "pnl_gbp": 3.95,
+          "pnl_pct": 0.4
         },
         "SBRY": {
           "name": "J Sainsbury plc",
@@ -901,8 +901,8 @@
           "total_units": 100,
           "total_cost_local": 260.23,
           "total_cost_gbp": 260.23,
-          "current_price": 3.418,
-          "daily_change_pct": -1.78,
+          "current_price": 3.33,
+          "daily_change_pct": -2.57,
           "accounts": [
             {
               "account": "DADA",
@@ -910,10 +910,10 @@
               "avg_price": 2.6023
             }
           ],
-          "value_gbp": 341.8,
+          "value_gbp": 333.0,
           "weighted_avg_price": 2.6023,
-          "pnl_gbp": 81.57,
-          "pnl_pct": 31.35
+          "pnl_gbp": 72.77,
+          "pnl_pct": 27.96
         },
         "GDGB": {
           "name": "VanEck Gold Miners UCITS ETF (GBP Acc)",
@@ -922,8 +922,8 @@
           "total_units": 2.87248657,
           "total_cost_local": 229.99999965989997,
           "total_cost_gbp": 230.0,
-          "current_price": 69.5,
-          "daily_change_pct": -8.95,
+          "current_price": 68.72,
+          "daily_change_pct": -1.12,
           "accounts": [
             {
               "account": "DADA",
@@ -931,10 +931,10 @@
               "avg_price": 80.07
             }
           ],
-          "value_gbp": 199.64,
+          "value_gbp": 197.4,
           "weighted_avg_price": 80.07,
-          "pnl_gbp": -30.36,
-          "pnl_pct": -13.2
+          "pnl_gbp": -32.6,
+          "pnl_pct": -14.17
         },
         "GRG": {
           "name": "Greggs plc",
@@ -943,8 +943,8 @@
           "total_units": 1,
           "total_cost_local": 25.39,
           "total_cost_gbp": 25.39,
-          "current_price": 15.6,
-          "daily_change_pct": -2.01,
+          "current_price": 15.43,
+          "daily_change_pct": -1.09,
           "accounts": [
             {
               "account": "DADA",
@@ -952,19 +952,19 @@
               "avg_price": 25.39
             }
           ],
-          "value_gbp": 15.6,
+          "value_gbp": 15.43,
           "weighted_avg_price": 25.39,
-          "pnl_gbp": -9.79,
-          "pnl_pct": -38.56
+          "pnl_gbp": -9.96,
+          "pnl_pct": -39.23
         }
       },
       "family_total": {
-        "investments_gbp": 86948.62,
+        "investments_gbp": 85118.96,
         "cash_gbp": 1179.89,
-        "total_gbp": 88128.51,
-        "book_cost_gbp": 107316.34,
-        "pnl_gbp": -20367.72,
-        "pnl_pct": -18.98
+        "total_gbp": 86298.85,
+        "book_cost_gbp": 107610.54,
+        "pnl_gbp": -22491.58,
+        "pnl_pct": -20.9
       },
       "people": {
         "Carlin": {
@@ -972,12 +972,12 @@
             "CP II",
             "CP IBKR"
           ],
-          "investments_gbp": 52553.12,
+          "investments_gbp": 51679.12,
           "cash_gbp": 336.98,
-          "total_gbp": 52890.1,
-          "book_cost_gbp": 70067.41,
-          "pnl_gbp": -17514.29,
-          "pnl_pct": -25.0,
+          "total_gbp": 52016.1,
+          "book_cost_gbp": 70170.35,
+          "pnl_gbp": -18491.23,
+          "pnl_pct": -26.35,
           "positions": {
             "HSLV": {
               "name": "Highlander Silver Corp",
@@ -985,10 +985,10 @@
               "exchange": "TSX",
               "total_units": 950,
               "total_cost_local": 5222.1899,
-              "total_cost_gbp": 2830.77,
-              "current_price": 7.02,
-              "daily_change_pct": -7.75,
-              "value_gbp": 3615.03,
+              "total_cost_gbp": 2852.19,
+              "current_price": 6.76,
+              "daily_change_pct": -3.7,
+              "value_gbp": 3507.49,
               "accounts": [
                 {
                   "account": "CP II",
@@ -997,8 +997,8 @@
                 }
               ],
               "weighted_avg_price": 5.497,
-              "pnl_gbp": 784.26,
-              "pnl_pct": 27.7
+              "pnl_gbp": 655.3,
+              "pnl_pct": 22.98
             },
             "QIMC": {
               "name": "Quebec Innovative Materials Corp",
@@ -1006,10 +1006,10 @@
               "exchange": "CSE",
               "total_units": 5000,
               "total_cost_local": 2708.88,
-              "total_cost_gbp": 1468.39,
-              "current_price": 1.45,
-              "daily_change_pct": 2.84,
-              "value_gbp": 3929.97,
+              "total_cost_gbp": 1479.5,
+              "current_price": 1.02,
+              "daily_change_pct": -29.66,
+              "value_gbp": 2785.46,
               "accounts": [
                 {
                   "account": "CP II",
@@ -1018,8 +1018,8 @@
                 }
               ],
               "weighted_avg_price": 0.5418,
-              "pnl_gbp": 2461.58,
-              "pnl_pct": 167.64
+              "pnl_gbp": 1305.96,
+              "pnl_pct": 88.27
             },
             "ETM": {
               "name": "Energy Transition Minerals Ltd",
@@ -1027,10 +1027,10 @@
               "exchange": "ASX",
               "total_units": 608000,
               "total_cost_local": 80592.727,
-              "total_cost_gbp": 42528.2,
-              "current_price": 0.083,
-              "daily_change_pct": -3.49,
-              "value_gbp": 26629.45,
+              "total_cost_gbp": 42426.89,
+              "current_price": 0.086,
+              "daily_change_pct": 3.61,
+              "value_gbp": 27526.24,
               "accounts": [
                 {
                   "account": "CP II",
@@ -1044,8 +1044,8 @@
                 }
               ],
               "weighted_avg_price": 0.1326,
-              "pnl_gbp": -15898.75,
-              "pnl_pct": -37.38
+              "pnl_gbp": -14900.65,
+              "pnl_pct": -35.12
             },
             "CTGO": {
               "name": "Contango Ore Inc",
@@ -1053,10 +1053,10 @@
               "exchange": "NYSEAMERICAN",
               "total_units": 150,
               "total_cost_local": 4808.32005,
-              "total_cost_gbp": 3580.14,
-              "current_price": 17.56,
-              "daily_change_pct": -10.5,
-              "value_gbp": 1961.2,
+              "total_cost_gbp": 3603.89,
+              "current_price": 17.2,
+              "daily_change_pct": -2.05,
+              "value_gbp": 1933.74,
               "accounts": [
                 {
                   "account": "CP II",
@@ -1065,8 +1065,8 @@
                 }
               ],
               "weighted_avg_price": 32.0555,
-              "pnl_gbp": -1618.94,
-              "pnl_pct": -45.22
+              "pnl_gbp": -1670.15,
+              "pnl_pct": -46.34
             },
             "OSS": {
               "name": "One Stop Systems Inc",
@@ -1074,10 +1074,10 @@
               "exchange": "NASDAQ",
               "total_units": 100,
               "total_cost_local": 796.37,
-              "total_cost_gbp": 592.95,
-              "current_price": 10.27,
-              "daily_change_pct": -8.63,
-              "value_gbp": 764.68,
+              "total_cost_gbp": 596.89,
+              "current_price": 8.82,
+              "daily_change_pct": -14.12,
+              "value_gbp": 661.07,
               "accounts": [
                 {
                   "account": "CP II",
@@ -1086,8 +1086,8 @@
                 }
               ],
               "weighted_avg_price": 7.9637,
-              "pnl_gbp": 171.73,
-              "pnl_pct": 28.96
+              "pnl_gbp": 64.18,
+              "pnl_pct": 10.75
             },
             "MGG": {
               "name": "Minaurum Silver Inc",
@@ -1095,10 +1095,10 @@
               "exchange": "TSXV",
               "total_units": 21000,
               "total_cost_local": 9473.73,
-              "total_cost_gbp": 5135.38,
-              "current_price": 0.355,
-              "daily_change_pct": 1.43,
-              "value_gbp": 4041.09,
+              "total_cost_gbp": 5174.25,
+              "current_price": 0.335,
+              "daily_change_pct": -6.94,
+              "value_gbp": 3842.29,
               "accounts": [
                 {
                   "account": "CP II",
@@ -1107,8 +1107,8 @@
                 }
               ],
               "weighted_avg_price": 0.4511,
-              "pnl_gbp": -1094.29,
-              "pnl_pct": -21.31
+              "pnl_gbp": -1331.96,
+              "pnl_pct": -25.74
             },
             "GSPR": {
               "name": "GSP Resource Corp",
@@ -1116,10 +1116,10 @@
               "exchange": "TSXV",
               "total_units": 28000,
               "total_cost_local": 3963.848,
-              "total_cost_gbp": 2148.66,
+              "total_cost_gbp": 2164.92,
               "current_price": 0.1,
-              "daily_change_pct": -4.76,
-              "value_gbp": 1517.78,
+              "daily_change_pct": 0,
+              "value_gbp": 1529.27,
               "accounts": [
                 {
                   "account": "CP II",
@@ -1128,7 +1128,7 @@
                 }
               ],
               "weighted_avg_price": 0.1416,
-              "pnl_gbp": -630.88,
+              "pnl_gbp": -635.65,
               "pnl_pct": -29.36
             },
             "TI": {
@@ -1137,10 +1137,10 @@
               "exchange": "TSX",
               "total_units": 1320,
               "total_cost_local": 7193.54064,
-              "total_cost_gbp": 3899.37,
-              "current_price": 3.72,
-              "daily_change_pct": -10.79,
-              "value_gbp": 2661.76,
+              "total_cost_gbp": 3928.88,
+              "current_price": 3.53,
+              "daily_change_pct": -5.11,
+              "value_gbp": 2544.92,
               "accounts": [
                 {
                   "account": "CP II",
@@ -1149,8 +1149,8 @@
                 }
               ],
               "weighted_avg_price": 5.4497,
-              "pnl_gbp": -1237.61,
-              "pnl_pct": -31.74
+              "pnl_gbp": -1383.96,
+              "pnl_pct": -35.23
             },
             "NAU": {
               "name": "Nevgold Corp",
@@ -1158,10 +1158,10 @@
               "exchange": "TSXV",
               "total_units": 8000,
               "total_cost_local": 8082.344000000001,
-              "total_cost_gbp": 4381.15,
-              "current_price": 1.12,
-              "daily_change_pct": -5.08,
-              "value_gbp": 4856.9,
+              "total_cost_gbp": 4414.32,
+              "current_price": 1.1,
+              "daily_change_pct": -1.79,
+              "value_gbp": 4806.28,
               "accounts": [
                 {
                   "account": "CP II",
@@ -1170,8 +1170,8 @@
                 }
               ],
               "weighted_avg_price": 1.0103,
-              "pnl_gbp": 475.75,
-              "pnl_pct": 10.86
+              "pnl_gbp": 391.96,
+              "pnl_pct": 8.88
             },
             "ALTA": {
               "name": "Altamira Gold Corp",
@@ -1179,10 +1179,10 @@
               "exchange": "TSXV",
               "total_units": 17000,
               "total_cost_local": 3858.456,
-              "total_cost_gbp": 2091.54,
-              "current_price": 0.155,
-              "daily_change_pct": -8.82,
-              "value_gbp": 1428.34,
+              "total_cost_gbp": 2107.37,
+              "current_price": 0.14,
+              "daily_change_pct": -12.5,
+              "value_gbp": 1299.88,
               "accounts": [
                 {
                   "account": "CP II",
@@ -1191,8 +1191,8 @@
                 }
               ],
               "weighted_avg_price": 0.227,
-              "pnl_gbp": -663.2,
-              "pnl_pct": -31.71
+              "pnl_gbp": -807.49,
+              "pnl_pct": -38.32
             },
             "TRT": {
               "name": "Trio-Tech International",
@@ -1200,10 +1200,10 @@
               "exchange": "NYSEAMERICAN",
               "total_units": 82,
               "total_cost_local": 440.279992,
-              "total_cost_gbp": 327.82,
-              "current_price": 6.2,
-              "daily_change_pct": 0,
-              "value_gbp": 378.54,
+              "total_cost_gbp": 329.99,
+              "current_price": 5.82,
+              "daily_change_pct": -6.13,
+              "value_gbp": 357.7,
               "accounts": [
                 {
                   "account": "CP II",
@@ -1217,8 +1217,8 @@
                 }
               ],
               "weighted_avg_price": 5.3693,
-              "pnl_gbp": 50.72,
-              "pnl_pct": 15.47
+              "pnl_gbp": 27.71,
+              "pnl_pct": 8.4
             },
             "MASS": {
               "name": "Masivo Silver Corp",
@@ -1226,10 +1226,10 @@
               "exchange": "TSXV",
               "total_units": 13500,
               "total_cost_local": 1998.0,
-              "total_cost_gbp": 1083.05,
-              "current_price": 0.105,
-              "daily_change_pct": 10.53,
-              "value_gbp": 768.38,
+              "total_cost_gbp": 1091.24,
+              "current_price": 0.12,
+              "daily_change_pct": 14.29,
+              "value_gbp": 884.79,
               "accounts": [
                 {
                   "account": "CP IBKR",
@@ -1238,8 +1238,8 @@
                 }
               ],
               "weighted_avg_price": 0.148,
-              "pnl_gbp": -314.67,
-              "pnl_pct": -29.05
+              "pnl_gbp": -206.45,
+              "pnl_pct": -18.92
             }
           }
         },
@@ -1247,12 +1247,12 @@
           "accounts": [
             "NANA"
           ],
-          "investments_gbp": 23246.07,
+          "investments_gbp": 22585.11,
           "cash_gbp": 112.91,
-          "total_gbp": 23358.98,
-          "book_cost_gbp": 25602.84,
-          "pnl_gbp": -2356.77,
-          "pnl_pct": -9.21,
+          "total_gbp": 22698.02,
+          "book_cost_gbp": 25732.08,
+          "pnl_gbp": -3146.97,
+          "pnl_pct": -12.23,
           "positions": {
             "HSTR": {
               "name": "Heliostar Metals Ltd",
@@ -1260,10 +1260,10 @@
               "exchange": "TSXV",
               "total_units": 1474,
               "total_cost_local": 4103.2298120000005,
-              "total_cost_gbp": 2224.22,
-              "current_price": 1.94,
-              "daily_change_pct": -9.77,
-              "value_gbp": 1550.07,
+              "total_cost_gbp": 2241.05,
+              "current_price": 1.83,
+              "daily_change_pct": -5.67,
+              "value_gbp": 1473.24,
               "accounts": [
                 {
                   "account": "NANA",
@@ -1272,8 +1272,8 @@
                 }
               ],
               "weighted_avg_price": 2.7837,
-              "pnl_gbp": -674.15,
-              "pnl_pct": -30.31
+              "pnl_gbp": -767.81,
+              "pnl_pct": -34.26
             },
             "TI": {
               "name": "Titan Mining Corp",
@@ -1281,10 +1281,10 @@
               "exchange": "TSX",
               "total_units": 1347,
               "total_cost_local": 5862.420134999999,
-              "total_cost_gbp": 3177.81,
-              "current_price": 3.72,
-              "daily_change_pct": -10.79,
-              "value_gbp": 2716.2,
+              "total_cost_gbp": 3201.87,
+              "current_price": 3.53,
+              "daily_change_pct": -5.11,
+              "value_gbp": 2596.98,
               "accounts": [
                 {
                   "account": "NANA",
@@ -1293,8 +1293,8 @@
                 }
               ],
               "weighted_avg_price": 4.3522,
-              "pnl_gbp": -461.61,
-              "pnl_pct": -14.53
+              "pnl_gbp": -604.89,
+              "pnl_pct": -18.89
             },
             "GDXJ": {
               "name": "VanEck Junior Gold Miners UCITS ETF",
@@ -1303,9 +1303,9 @@
               "total_units": 110,
               "total_cost_local": 8529.23005,
               "total_cost_gbp": 8529.23,
-              "current_price": 99.35,
-              "daily_change_pct": -9.28,
-              "value_gbp": 8137.05,
+              "current_price": 98.39,
+              "daily_change_pct": -0.97,
+              "value_gbp": 8111.88,
               "accounts": [
                 {
                   "account": "NANA",
@@ -1314,8 +1314,8 @@
                 }
               ],
               "weighted_avg_price": 77.5385,
-              "pnl_gbp": -392.18,
-              "pnl_pct": -4.6
+              "pnl_gbp": -417.35,
+              "pnl_pct": -4.89
             },
             "NAU": {
               "name": "Nevgold Corp",
@@ -1323,10 +1323,10 @@
               "exchange": "TSXV",
               "total_units": 5898,
               "total_cost_local": 5796.81981,
-              "total_cost_gbp": 3142.25,
-              "current_price": 1.12,
-              "daily_change_pct": -5.08,
-              "value_gbp": 3580.75,
+              "total_cost_gbp": 3166.04,
+              "current_price": 1.1,
+              "daily_change_pct": -1.79,
+              "value_gbp": 3543.43,
               "accounts": [
                 {
                   "account": "NANA",
@@ -1335,8 +1335,8 @@
                 }
               ],
               "weighted_avg_price": 0.9828,
-              "pnl_gbp": 438.5,
-              "pnl_pct": 13.95
+              "pnl_gbp": 377.39,
+              "pnl_pct": 11.92
             },
             "FF": {
               "name": "First Mining Gold Corp",
@@ -1344,10 +1344,10 @@
               "exchange": "TSX",
               "total_units": 12048,
               "total_cost_local": 5703.812352,
-              "total_cost_gbp": 3091.84,
-              "current_price": 0.425,
-              "daily_change_pct": -9.57,
-              "value_gbp": 2775.59,
+              "total_cost_gbp": 3115.24,
+              "current_price": 0.395,
+              "daily_change_pct": -7.06,
+              "value_gbp": 2599.19,
               "accounts": [
                 {
                   "account": "NANA",
@@ -1356,8 +1356,8 @@
                 }
               ],
               "weighted_avg_price": 0.4734,
-              "pnl_gbp": -316.25,
-              "pnl_pct": -10.23
+              "pnl_gbp": -516.05,
+              "pnl_pct": -16.57
             },
             "LG": {
               "name": "Lahontan Gold Corp",
@@ -1365,10 +1365,10 @@
               "exchange": "TSXV",
               "total_units": 11500,
               "total_cost_local": 3843.714,
-              "total_cost_gbp": 2083.54,
-              "current_price": 0.34,
-              "daily_change_pct": 0,
-              "value_gbp": 2119.47,
+              "total_cost_gbp": 2099.31,
+              "current_price": 0.32,
+              "daily_change_pct": -5.88,
+              "value_gbp": 2009.9,
               "accounts": [
                 {
                   "account": "NANA",
@@ -1377,8 +1377,8 @@
                 }
               ],
               "weighted_avg_price": 0.3342,
-              "pnl_gbp": 35.93,
-              "pnl_pct": 1.72
+              "pnl_gbp": -89.41,
+              "pnl_pct": -4.26
             },
             "MGG": {
               "name": "Minaurum Silver Inc",
@@ -1386,10 +1386,10 @@
               "exchange": "TSXV",
               "total_units": 12300,
               "total_cost_local": 6187.3551,
-              "total_cost_gbp": 3353.95,
-              "current_price": 0.355,
-              "daily_change_pct": 1.43,
-              "value_gbp": 2366.93,
+              "total_cost_gbp": 3379.34,
+              "current_price": 0.335,
+              "daily_change_pct": -6.94,
+              "value_gbp": 2250.49,
               "accounts": [
                 {
                   "account": "NANA",
@@ -1398,8 +1398,8 @@
                 }
               ],
               "weighted_avg_price": 0.503,
-              "pnl_gbp": -987.02,
-              "pnl_pct": -29.43
+              "pnl_gbp": -1128.85,
+              "pnl_pct": -33.4
             }
           }
         },
@@ -1407,12 +1407,12 @@
           "accounts": [
             "DADA"
           ],
-          "investments_gbp": 11149.43,
+          "investments_gbp": 10854.73,
           "cash_gbp": 730.0,
-          "total_gbp": 11879.43,
-          "book_cost_gbp": 11646.09,
-          "pnl_gbp": -496.66,
-          "pnl_pct": -4.26,
+          "total_gbp": 11584.73,
+          "book_cost_gbp": 11708.11,
+          "pnl_gbp": -853.38,
+          "pnl_pct": -7.29,
           "positions": {
             "GDX": {
               "name": "VanEck Gold Miners ETF",
@@ -1420,10 +1420,10 @@
               "exchange": "NYSE",
               "total_units": 46.1994237,
               "total_cost_local": 3481.4961711846,
-              "total_cost_gbp": 2592.22,
-              "current_price": 82.9,
-              "daily_change_pct": -5.91,
-              "value_gbp": 2851.66,
+              "total_cost_gbp": 2609.42,
+              "current_price": 80.12,
+              "daily_change_pct": -3.35,
+              "value_gbp": 2774.31,
               "accounts": [
                 {
                   "account": "DADA",
@@ -1432,8 +1432,8 @@
                 }
               ],
               "weighted_avg_price": 75.358,
-              "pnl_gbp": 259.44,
-              "pnl_pct": 10.01
+              "pnl_gbp": 164.89,
+              "pnl_pct": 6.32
             },
             "SSLN": {
               "name": "iShares Physical Silver ETC",
@@ -1442,9 +1442,9 @@
               "total_units": 50.34708836,
               "total_cost_local": 1781.17929200008,
               "total_cost_gbp": 1781.18,
-              "current_price": 50.22,
-              "daily_change_pct": -8.71,
-              "value_gbp": 2528.43,
+              "current_price": 49.98,
+              "daily_change_pct": -0.48,
+              "value_gbp": 2516.35,
               "accounts": [
                 {
                   "account": "DADA",
@@ -1453,8 +1453,8 @@
                 }
               ],
               "weighted_avg_price": 35.378,
-              "pnl_gbp": 747.25,
-              "pnl_pct": 41.95
+              "pnl_gbp": 735.17,
+              "pnl_pct": 41.27
             },
             "CTGO": {
               "name": "Contango ORE Inc",
@@ -1462,10 +1462,10 @@
               "exchange": "NYSEAMERICAN",
               "total_units": 118.57348842,
               "total_cost_local": 3767.0797271034003,
-              "total_cost_gbp": 2804.86,
-              "current_price": 17.56,
-              "daily_change_pct": -10.5,
-              "value_gbp": 1550.31,
+              "total_cost_gbp": 2823.47,
+              "current_price": 17.2,
+              "daily_change_pct": -2.05,
+              "value_gbp": 1528.6,
               "accounts": [
                 {
                   "account": "DADA",
@@ -1474,8 +1474,8 @@
                 }
               ],
               "weighted_avg_price": 31.77,
-              "pnl_gbp": -1254.55,
-              "pnl_pct": -44.73
+              "pnl_gbp": -1294.87,
+              "pnl_pct": -45.86
             },
             "TRT": {
               "name": "Trio-Tech International",
@@ -1483,10 +1483,10 @@
               "exchange": "NYSEAMERICAN",
               "total_units": 571.647258,
               "total_cost_local": 3984.3813882599998,
-              "total_cost_gbp": 2966.66,
-              "current_price": 6.2,
-              "daily_change_pct": 0,
-              "value_gbp": 2638.92,
+              "total_cost_gbp": 2986.34,
+              "current_price": 5.82,
+              "daily_change_pct": -6.13,
+              "value_gbp": 2493.61,
               "accounts": [
                 {
                   "account": "DADA",
@@ -1495,8 +1495,8 @@
                 }
               ],
               "weighted_avg_price": 6.97,
-              "pnl_gbp": -327.74,
-              "pnl_pct": -11.05
+              "pnl_gbp": -492.73,
+              "pnl_pct": -16.5
             },
             "CDE": {
               "name": "Coeur Mining Inc",
@@ -1504,10 +1504,10 @@
               "exchange": "NYSE",
               "total_units": 75.20689063,
               "total_cost_local": 1323.6412750880002,
-              "total_cost_gbp": 985.55,
-              "current_price": 18.27,
-              "daily_change_pct": -5.14,
-              "value_gbp": 1023.06,
+              "total_cost_gbp": 992.08,
+              "current_price": 17.67,
+              "daily_change_pct": -3.28,
+              "value_gbp": 996.03,
               "accounts": [
                 {
                   "account": "DADA",
@@ -1516,8 +1516,8 @@
                 }
               ],
               "weighted_avg_price": 17.6,
-              "pnl_gbp": 37.51,
-              "pnl_pct": 3.81
+              "pnl_gbp": 3.95,
+              "pnl_pct": 0.4
             },
             "SBRY": {
               "name": "J Sainsbury plc",
@@ -1526,9 +1526,9 @@
               "total_units": 100,
               "total_cost_local": 260.23,
               "total_cost_gbp": 260.23,
-              "current_price": 3.418,
-              "daily_change_pct": -1.78,
-              "value_gbp": 341.8,
+              "current_price": 3.33,
+              "daily_change_pct": -2.57,
+              "value_gbp": 333.0,
               "accounts": [
                 {
                   "account": "DADA",
@@ -1537,8 +1537,8 @@
                 }
               ],
               "weighted_avg_price": 2.6023,
-              "pnl_gbp": 81.57,
-              "pnl_pct": 31.35
+              "pnl_gbp": 72.77,
+              "pnl_pct": 27.96
             },
             "GDGB": {
               "name": "VanEck Gold Miners UCITS ETF (GBP Acc)",
@@ -1547,9 +1547,9 @@
               "total_units": 2.87248657,
               "total_cost_local": 229.99999965989997,
               "total_cost_gbp": 230.0,
-              "current_price": 69.5,
-              "daily_change_pct": -8.95,
-              "value_gbp": 199.64,
+              "current_price": 68.72,
+              "daily_change_pct": -1.12,
+              "value_gbp": 197.4,
               "accounts": [
                 {
                   "account": "DADA",
@@ -1558,8 +1558,8 @@
                 }
               ],
               "weighted_avg_price": 80.07,
-              "pnl_gbp": -30.36,
-              "pnl_pct": -13.2
+              "pnl_gbp": -32.6,
+              "pnl_pct": -14.17
             },
             "GRG": {
               "name": "Greggs plc",
@@ -1568,9 +1568,9 @@
               "total_units": 1,
               "total_cost_local": 25.39,
               "total_cost_gbp": 25.39,
-              "current_price": 15.6,
-              "daily_change_pct": -2.01,
-              "value_gbp": 15.6,
+              "current_price": 15.43,
+              "daily_change_pct": -1.09,
+              "value_gbp": 15.43,
               "accounts": [
                 {
                   "account": "DADA",
@@ -1579,8 +1579,8 @@
                 }
               ],
               "weighted_avg_price": 25.39,
-              "pnl_gbp": -9.79,
-              "pnl_pct": -38.56
+              "pnl_gbp": -9.96,
+              "pnl_pct": -39.23
             }
           }
         }
