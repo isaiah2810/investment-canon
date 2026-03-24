@@ -1,8 +1,8 @@
 // Portfolio Dashboard Service Worker
 // Implements stale-while-revalidate caching strategy for offline support
 
-const CACHE_NAME = 'portfolio-cache-v2';
-const RUNTIME_CACHE = 'portfolio-runtime-v2';
+const CACHE_NAME = 'portfolio-cache-v1774369865';
+const RUNTIME_CACHE = 'portfolio-runtime-v1774369865';
 
 // Assets to cache on install (static files)
 // Use relative paths for GitHub Pages compatibility
