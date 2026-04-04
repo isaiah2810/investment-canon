@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-03T21:30:05.400224",
+  "generatedAt": "2026-04-04T21:30:03.417049",
   "summary": {
     "totalTransactions": 32,
     "totalBuys": 7,
@@ -20,11 +20,6 @@
       }
     },
     "byTicker": {
-      "GDGB": {
-        "buys": 0,
-        "sells": 1,
-        "name": "VanEck Gold Miners UCITS ETF (GBP Acc)"
-      },
       "CTGO": {
         "buys": 0,
         "sells": 2,
@@ -35,25 +30,40 @@
         "sells": 1,
         "name": "iShares Physical Silver ETC"
       },
+      "GDGB": {
+        "buys": 0,
+        "sells": 1,
+        "name": "VanEck Gold Miners UCITS ETF (GBP Acc)"
+      },
       "GRG": {
         "buys": 0,
         "sells": 1,
         "name": "Greggs plc"
-      },
-      "CDE": {
-        "buys": 0,
-        "sells": 1,
-        "name": "Coeur Mining Inc"
       },
       "TRT": {
         "buys": 4,
         "sells": 1,
         "name": "Trio-Tech International"
       },
+      "CDE": {
+        "buys": 0,
+        "sells": 1,
+        "name": "Coeur Mining Inc"
+      },
       "GDX": {
         "buys": 0,
         "sells": 1,
         "name": "VanEck Gold Miners ETF"
+      },
+      "TI": {
+        "buys": 1,
+        "sells": 2,
+        "name": "Titan Mining Corp"
+      },
+      "HSTR": {
+        "buys": 0,
+        "sells": 1,
+        "name": "Heliostar Metals Ltd"
       },
       "LG": {
         "buys": 0,
@@ -70,50 +80,40 @@
         "sells": 2,
         "name": "Minaurum Silver Inc"
       },
-      "FF": {
-        "buys": 0,
-        "sells": 1,
-        "name": "First Mining Gold Corp"
-      },
-      "HSTR": {
-        "buys": 0,
-        "sells": 1,
-        "name": "Heliostar Metals Ltd"
-      },
-      "TI": {
-        "buys": 1,
-        "sells": 2,
-        "name": "Titan Mining Corp"
-      },
       "GDXJ": {
         "buys": 0,
         "sells": 2,
         "name": "VanEck Junior Gold Miners UCITS ETF"
       },
-      "OSS": {
+      "FF": {
         "buys": 0,
         "sells": 1,
-        "name": "One Stop Systems Inc"
+        "name": "First Mining Gold Corp"
       },
-      "GSPR": {
+      "ALTA": {
         "buys": 0,
         "sells": 1,
-        "name": "GSP Resource Corp"
-      },
-      "HSLV": {
-        "buys": 0,
-        "sells": 1,
-        "name": "Highlander Silver Corp"
+        "name": "Altamira Gold Corp"
       },
       "QIMC": {
         "buys": 0,
         "sells": 1,
         "name": "Quebec Innovative Materials Corp"
       },
-      "ALTA": {
+      "GSPR": {
         "buys": 0,
         "sells": 1,
-        "name": "Altamira Gold Corp"
+        "name": "GSP Resource Corp"
+      },
+      "OSS": {
+        "buys": 0,
+        "sells": 1,
+        "name": "One Stop Systems Inc"
+      },
+      "HSLV": {
+        "buys": 0,
+        "sells": 1,
+        "name": "Highlander Silver Corp"
       },
       "ETM": {
         "buys": 0,
@@ -129,27 +129,6 @@
     "manual": 0
   },
   "transactions": [
-    {
-      "id": "auto_2026-03-30_DADA_GDGB_sell",
-      "date": "2026-03-30",
-      "detectedBetween": [
-        "2026-03-29",
-        "2026-03-30"
-      ],
-      "ticker": "GDGB",
-      "name": "VanEck Gold Miners UCITS ETF (GBP Acc)",
-      "account": "DADA",
-      "person": "Dada",
-      "action": "SELL",
-      "units": 2.872487,
-      "price": 73.15,
-      "currency": "GBP",
-      "exchange": "LSE",
-      "valueGBP": 210.12,
-      "realizedPnlGBP": -19.88,
-      "source": "auto-detected",
-      "notes": "Position exited between 2026-03-29 and 2026-03-30"
-    },
     {
       "id": "auto_2026-03-30_DADA_CTGO_sell",
       "date": "2026-03-30",
@@ -193,6 +172,27 @@
       "notes": "Position exited between 2026-03-29 and 2026-03-30"
     },
     {
+      "id": "auto_2026-03-30_DADA_GDGB_sell",
+      "date": "2026-03-30",
+      "detectedBetween": [
+        "2026-03-29",
+        "2026-03-30"
+      ],
+      "ticker": "GDGB",
+      "name": "VanEck Gold Miners UCITS ETF (GBP Acc)",
+      "account": "DADA",
+      "person": "Dada",
+      "action": "SELL",
+      "units": 2.872487,
+      "price": 73.15,
+      "currency": "GBP",
+      "exchange": "LSE",
+      "valueGBP": 210.12,
+      "realizedPnlGBP": -19.88,
+      "source": "auto-detected",
+      "notes": "Position exited between 2026-03-29 and 2026-03-30"
+    },
+    {
       "id": "auto_2026-03-30_DADA_GRG_sell",
       "date": "2026-03-30",
       "detectedBetween": [
@@ -210,27 +210,6 @@
       "exchange": "LSE",
       "valueGBP": 14.8,
       "realizedPnlGBP": -10.59,
-      "source": "auto-detected",
-      "notes": "Position exited between 2026-03-29 and 2026-03-30"
-    },
-    {
-      "id": "auto_2026-03-30_DADA_CDE_sell",
-      "date": "2026-03-30",
-      "detectedBetween": [
-        "2026-03-29",
-        "2026-03-30"
-      ],
-      "ticker": "CDE",
-      "name": "Coeur Mining Inc",
-      "account": "DADA",
-      "person": "Dada",
-      "action": "SELL",
-      "units": 75.206891,
-      "price": 17.13,
-      "currency": "USD",
-      "exchange": "NYSE",
-      "valueGBP": 971.33,
-      "realizedPnlGBP": -26.65,
       "source": "auto-detected",
       "notes": "Position exited between 2026-03-29 and 2026-03-30"
     },
@@ -256,6 +235,27 @@
       "notes": "Position exited between 2026-03-29 and 2026-03-30"
     },
     {
+      "id": "auto_2026-03-30_DADA_CDE_sell",
+      "date": "2026-03-30",
+      "detectedBetween": [
+        "2026-03-29",
+        "2026-03-30"
+      ],
+      "ticker": "CDE",
+      "name": "Coeur Mining Inc",
+      "account": "DADA",
+      "person": "Dada",
+      "action": "SELL",
+      "units": 75.206891,
+      "price": 17.13,
+      "currency": "USD",
+      "exchange": "NYSE",
+      "valueGBP": 971.33,
+      "realizedPnlGBP": -26.65,
+      "source": "auto-detected",
+      "notes": "Position exited between 2026-03-29 and 2026-03-30"
+    },
+    {
       "id": "auto_2026-03-30_DADA_GDX_sell",
       "date": "2026-03-30",
       "detectedBetween": [
@@ -273,6 +273,48 @@
       "exchange": "NYSE",
       "valueGBP": 2988.3,
       "realizedPnlGBP": 363.38,
+      "source": "auto-detected",
+      "notes": "Position exited between 2026-03-29 and 2026-03-30"
+    },
+    {
+      "id": "auto_2026-03-30_NANA_TI_sell",
+      "date": "2026-03-30",
+      "detectedBetween": [
+        "2026-03-29",
+        "2026-03-30"
+      ],
+      "ticker": "TI",
+      "name": "Titan Mining Corp",
+      "account": "NANA",
+      "person": "Nana",
+      "action": "SELL",
+      "units": 1347,
+      "price": 3.79,
+      "currency": "CAD",
+      "exchange": "TSX",
+      "valueGBP": 2775.53,
+      "realizedPnlGBP": -411.72,
+      "source": "auto-detected",
+      "notes": "Position exited between 2026-03-29 and 2026-03-30"
+    },
+    {
+      "id": "auto_2026-03-30_NANA_HSTR_sell",
+      "date": "2026-03-30",
+      "detectedBetween": [
+        "2026-03-29",
+        "2026-03-30"
+      ],
+      "ticker": "HSTR",
+      "name": "Heliostar Metals Ltd",
+      "account": "NANA",
+      "person": "Nana",
+      "action": "SELL",
+      "units": 1474,
+      "price": 2.2,
+      "currency": "CAD",
+      "exchange": "TSXV",
+      "valueGBP": 1763.03,
+      "realizedPnlGBP": -467.79,
       "source": "auto-detected",
       "notes": "Position exited between 2026-03-29 and 2026-03-30"
     },
@@ -319,48 +361,6 @@
       "notes": "Position exited between 2026-03-29 and 2026-03-30"
     },
     {
-      "id": "auto_2026-03-30_NANA_MGG_sell",
-      "date": "2026-03-30",
-      "detectedBetween": [
-        "2026-03-29",
-        "2026-03-30"
-      ],
-      "ticker": "MGG",
-      "name": "Minaurum Silver Inc",
-      "account": "NANA",
-      "person": "Nana",
-      "action": "SELL",
-      "units": 12300,
-      "price": 0.37,
-      "currency": "CAD",
-      "exchange": "TSXV",
-      "valueGBP": 2474.26,
-      "realizedPnlGBP": -889.65,
-      "source": "auto-detected",
-      "notes": "Position exited between 2026-03-29 and 2026-03-30"
-    },
-    {
-      "id": "auto_2026-03-30_NANA_FF_sell",
-      "date": "2026-03-30",
-      "detectedBetween": [
-        "2026-03-29",
-        "2026-03-30"
-      ],
-      "ticker": "FF",
-      "name": "First Mining Gold Corp",
-      "account": "NANA",
-      "person": "Nana",
-      "action": "SELL",
-      "units": 12048,
-      "price": 0.45,
-      "currency": "CAD",
-      "exchange": "TSX",
-      "valueGBP": 2947.59,
-      "realizedPnlGBP": -153.43,
-      "source": "auto-detected",
-      "notes": "Position exited between 2026-03-29 and 2026-03-30"
-    },
-    {
       "id": "auto_2026-03-30_NANA_TRT_buy",
       "date": "2026-03-30",
       "detectedBetween": [
@@ -381,44 +381,23 @@
       "notes": "New position detected between 2026-03-29 and 2026-03-30"
     },
     {
-      "id": "auto_2026-03-30_NANA_HSTR_sell",
+      "id": "auto_2026-03-30_NANA_MGG_sell",
       "date": "2026-03-30",
       "detectedBetween": [
         "2026-03-29",
         "2026-03-30"
       ],
-      "ticker": "HSTR",
-      "name": "Heliostar Metals Ltd",
+      "ticker": "MGG",
+      "name": "Minaurum Silver Inc",
       "account": "NANA",
       "person": "Nana",
       "action": "SELL",
-      "units": 1474,
-      "price": 2.2,
+      "units": 12300,
+      "price": 0.37,
       "currency": "CAD",
       "exchange": "TSXV",
-      "valueGBP": 1763.03,
-      "realizedPnlGBP": -467.79,
-      "source": "auto-detected",
-      "notes": "Position exited between 2026-03-29 and 2026-03-30"
-    },
-    {
-      "id": "auto_2026-03-30_NANA_TI_sell",
-      "date": "2026-03-30",
-      "detectedBetween": [
-        "2026-03-29",
-        "2026-03-30"
-      ],
-      "ticker": "TI",
-      "name": "Titan Mining Corp",
-      "account": "NANA",
-      "person": "Nana",
-      "action": "SELL",
-      "units": 1347,
-      "price": 3.79,
-      "currency": "CAD",
-      "exchange": "TSX",
-      "valueGBP": 2775.53,
-      "realizedPnlGBP": -411.72,
+      "valueGBP": 2474.26,
+      "realizedPnlGBP": -889.65,
       "source": "auto-detected",
       "notes": "Position exited between 2026-03-29 and 2026-03-30"
     },
@@ -444,23 +423,107 @@
       "notes": "Position exited between 2026-03-29 and 2026-03-30"
     },
     {
-      "id": "auto_2026-03-22_CP II_OSS_sell",
+      "id": "auto_2026-03-30_NANA_FF_sell",
+      "date": "2026-03-30",
+      "detectedBetween": [
+        "2026-03-29",
+        "2026-03-30"
+      ],
+      "ticker": "FF",
+      "name": "First Mining Gold Corp",
+      "account": "NANA",
+      "person": "Nana",
+      "action": "SELL",
+      "units": 12048,
+      "price": 0.45,
+      "currency": "CAD",
+      "exchange": "TSX",
+      "valueGBP": 2947.59,
+      "realizedPnlGBP": -153.43,
+      "source": "auto-detected",
+      "notes": "Position exited between 2026-03-29 and 2026-03-30"
+    },
+    {
+      "id": "auto_2026-03-22_CP II_ALTA_sell",
       "date": "2026-03-22",
       "detectedBetween": [
         "2026-03-21",
         "2026-03-22"
       ],
-      "ticker": "OSS",
-      "name": "One Stop Systems Inc",
+      "ticker": "ALTA",
+      "name": "Altamira Gold Corp",
       "account": "CP II",
       "person": "Carlin",
       "action": "SELL",
-      "units": 100,
-      "price": 8.82,
+      "units": 17000,
+      "price": 0.14,
+      "currency": "CAD",
+      "exchange": "TSXV",
+      "valueGBP": 1299.78,
+      "realizedPnlGBP": -807.43,
+      "source": "auto-detected",
+      "notes": "Position exited between 2026-03-21 and 2026-03-22"
+    },
+    {
+      "id": "auto_2026-03-22_CP II_QIMC_sell",
+      "date": "2026-03-22",
+      "detectedBetween": [
+        "2026-03-21",
+        "2026-03-22"
+      ],
+      "ticker": "QIMC",
+      "name": "Quebec Innovative Materials Corp",
+      "account": "CP II",
+      "person": "Carlin",
+      "action": "SELL",
+      "units": 5000,
+      "price": 1.02,
+      "currency": "CAD",
+      "exchange": "CSE",
+      "valueGBP": 2785.25,
+      "realizedPnlGBP": 1305.86,
+      "source": "auto-detected",
+      "notes": "Position exited between 2026-03-21 and 2026-03-22"
+    },
+    {
+      "id": "auto_2026-03-22_CP II_TI_sell",
+      "date": "2026-03-22",
+      "detectedBetween": [
+        "2026-03-21",
+        "2026-03-22"
+      ],
+      "ticker": "TI",
+      "name": "Titan Mining Corp",
+      "account": "CP II",
+      "person": "Carlin",
+      "action": "SELL",
+      "units": 1320,
+      "price": 3.53,
+      "currency": "CAD",
+      "exchange": "TSX",
+      "valueGBP": 2544.73,
+      "realizedPnlGBP": -1383.86,
+      "source": "auto-detected",
+      "notes": "Position exited between 2026-03-21 and 2026-03-22"
+    },
+    {
+      "id": "auto_2026-03-22_CP II_CTGO_sell",
+      "date": "2026-03-22",
+      "detectedBetween": [
+        "2026-03-21",
+        "2026-03-22"
+      ],
+      "ticker": "CTGO",
+      "name": "Contango Ore Inc",
+      "account": "CP II",
+      "person": "Carlin",
+      "action": "SELL",
+      "units": 150,
+      "price": 17.2,
       "currency": "USD",
-      "exchange": "NASDAQ",
-      "valueGBP": 661.1,
-      "realizedPnlGBP": 64.19,
+      "exchange": "NYSEAMERICAN",
+      "valueGBP": 1933.82,
+      "realizedPnlGBP": -1670.23,
       "source": "auto-detected",
       "notes": "Position exited between 2026-03-21 and 2026-03-22"
     },
@@ -507,44 +570,23 @@
       "notes": "Position exited between 2026-03-21 and 2026-03-22"
     },
     {
-      "id": "auto_2026-03-22_CP II_HSLV_sell",
+      "id": "auto_2026-03-22_CP II_OSS_sell",
       "date": "2026-03-22",
       "detectedBetween": [
         "2026-03-21",
         "2026-03-22"
       ],
-      "ticker": "HSLV",
-      "name": "Highlander Silver Corp",
+      "ticker": "OSS",
+      "name": "One Stop Systems Inc",
       "account": "CP II",
       "person": "Carlin",
       "action": "SELL",
-      "units": 950,
-      "price": 6.76,
-      "currency": "CAD",
-      "exchange": "TSX",
-      "valueGBP": 3507.23,
-      "realizedPnlGBP": 655.25,
-      "source": "auto-detected",
-      "notes": "Position exited between 2026-03-21 and 2026-03-22"
-    },
-    {
-      "id": "auto_2026-03-22_CP II_MGG_sell",
-      "date": "2026-03-22",
-      "detectedBetween": [
-        "2026-03-21",
-        "2026-03-22"
-      ],
-      "ticker": "MGG",
-      "name": "Minaurum Silver Inc",
-      "account": "CP II",
-      "person": "Carlin",
-      "action": "SELL",
-      "units": 21000,
-      "price": 0.335,
-      "currency": "CAD",
-      "exchange": "TSXV",
-      "valueGBP": 3842.0,
-      "realizedPnlGBP": -1331.86,
+      "units": 100,
+      "price": 8.82,
+      "currency": "USD",
+      "exchange": "NASDAQ",
+      "valueGBP": 661.1,
+      "realizedPnlGBP": 64.19,
       "source": "auto-detected",
       "notes": "Position exited between 2026-03-21 and 2026-03-22"
     },
@@ -568,86 +610,44 @@
       "notes": "Position increased by 1978 units between 2026-03-21 and 2026-03-22"
     },
     {
-      "id": "auto_2026-03-22_CP II_TI_sell",
+      "id": "auto_2026-03-22_CP II_MGG_sell",
       "date": "2026-03-22",
       "detectedBetween": [
         "2026-03-21",
         "2026-03-22"
       ],
-      "ticker": "TI",
-      "name": "Titan Mining Corp",
+      "ticker": "MGG",
+      "name": "Minaurum Silver Inc",
       "account": "CP II",
       "person": "Carlin",
       "action": "SELL",
-      "units": 1320,
-      "price": 3.53,
-      "currency": "CAD",
-      "exchange": "TSX",
-      "valueGBP": 2544.73,
-      "realizedPnlGBP": -1383.86,
-      "source": "auto-detected",
-      "notes": "Position exited between 2026-03-21 and 2026-03-22"
-    },
-    {
-      "id": "auto_2026-03-22_CP II_QIMC_sell",
-      "date": "2026-03-22",
-      "detectedBetween": [
-        "2026-03-21",
-        "2026-03-22"
-      ],
-      "ticker": "QIMC",
-      "name": "Quebec Innovative Materials Corp",
-      "account": "CP II",
-      "person": "Carlin",
-      "action": "SELL",
-      "units": 5000,
-      "price": 1.02,
-      "currency": "CAD",
-      "exchange": "CSE",
-      "valueGBP": 2785.25,
-      "realizedPnlGBP": 1305.86,
-      "source": "auto-detected",
-      "notes": "Position exited between 2026-03-21 and 2026-03-22"
-    },
-    {
-      "id": "auto_2026-03-22_CP II_ALTA_sell",
-      "date": "2026-03-22",
-      "detectedBetween": [
-        "2026-03-21",
-        "2026-03-22"
-      ],
-      "ticker": "ALTA",
-      "name": "Altamira Gold Corp",
-      "account": "CP II",
-      "person": "Carlin",
-      "action": "SELL",
-      "units": 17000,
-      "price": 0.14,
+      "units": 21000,
+      "price": 0.335,
       "currency": "CAD",
       "exchange": "TSXV",
-      "valueGBP": 1299.78,
-      "realizedPnlGBP": -807.43,
+      "valueGBP": 3842.0,
+      "realizedPnlGBP": -1331.86,
       "source": "auto-detected",
       "notes": "Position exited between 2026-03-21 and 2026-03-22"
     },
     {
-      "id": "auto_2026-03-22_CP II_CTGO_sell",
+      "id": "auto_2026-03-22_CP II_HSLV_sell",
       "date": "2026-03-22",
       "detectedBetween": [
         "2026-03-21",
         "2026-03-22"
       ],
-      "ticker": "CTGO",
-      "name": "Contango Ore Inc",
+      "ticker": "HSLV",
+      "name": "Highlander Silver Corp",
       "account": "CP II",
       "person": "Carlin",
       "action": "SELL",
-      "units": 150,
-      "price": 17.2,
-      "currency": "USD",
-      "exchange": "NYSEAMERICAN",
-      "valueGBP": 1933.82,
-      "realizedPnlGBP": -1670.23,
+      "units": 950,
+      "price": 6.76,
+      "currency": "CAD",
+      "exchange": "TSX",
+      "valueGBP": 3507.23,
+      "realizedPnlGBP": 655.25,
       "source": "auto-detected",
       "notes": "Position exited between 2026-03-21 and 2026-03-22"
     },
@@ -669,6 +669,65 @@
       "exchange": "ASX",
       "source": "auto-detected",
       "notes": "Position reduced by 496100 units between 2026-03-21 and 2026-03-22"
+    },
+    {
+      "id": "auto_2026-03-01_CP IBKR_TRT_buy",
+      "date": "2026-03-01",
+      "detectedBetween": [
+        "2026-02-28",
+        "2026-03-01"
+      ],
+      "ticker": "TRT",
+      "name": "Trio-Tech International",
+      "account": "CP IBKR",
+      "person": "Carlin",
+      "action": "BUY",
+      "units": 60,
+      "price": 5.43,
+      "currency": "USD",
+      "exchange": "NYSEAMERICAN",
+      "valueGBP": 242.86,
+      "source": "auto-detected",
+      "notes": "New position detected between 2026-02-28 and 2026-03-01"
+    },
+    {
+      "id": "auto_2026-03-01_CP II_TRT_buy",
+      "date": "2026-03-01",
+      "detectedBetween": [
+        "2026-02-28",
+        "2026-03-01"
+      ],
+      "ticker": "TRT",
+      "name": "Trio-Tech International",
+      "account": "CP II",
+      "person": "Carlin",
+      "action": "BUY",
+      "units": 22,
+      "price": 5.203636,
+      "currency": "USD",
+      "exchange": "NYSEAMERICAN",
+      "valueGBP": 85.34,
+      "source": "auto-detected",
+      "notes": "New position detected between 2026-02-28 and 2026-03-01"
+    },
+    {
+      "id": "auto_2026-03-01_NANA_TI_add",
+      "date": "2026-03-01",
+      "detectedBetween": [
+        "2026-02-28",
+        "2026-03-01"
+      ],
+      "ticker": "TI",
+      "name": "Titan Mining Corp",
+      "account": "NANA",
+      "person": "Nana",
+      "action": "BUY",
+      "units": 400,
+      "price": 5.235351,
+      "currency": "CAD",
+      "exchange": "TSX",
+      "source": "auto-detected",
+      "notes": "Position increased by 400 units between 2026-02-28 and 2026-03-01"
     },
     {
       "id": "auto_2026-03-01_NANA_NAU_add",
@@ -709,25 +768,6 @@
       "notes": "Position increased by 6142 units between 2026-02-28 and 2026-03-01"
     },
     {
-      "id": "auto_2026-03-01_NANA_TI_add",
-      "date": "2026-03-01",
-      "detectedBetween": [
-        "2026-02-28",
-        "2026-03-01"
-      ],
-      "ticker": "TI",
-      "name": "Titan Mining Corp",
-      "account": "NANA",
-      "person": "Nana",
-      "action": "BUY",
-      "units": 400,
-      "price": 5.235351,
-      "currency": "CAD",
-      "exchange": "TSX",
-      "source": "auto-detected",
-      "notes": "Position increased by 400 units between 2026-02-28 and 2026-03-01"
-    },
-    {
       "id": "auto_2026-03-01_NANA_GDXJ_reduce",
       "date": "2026-03-01",
       "detectedBetween": [
@@ -745,46 +785,6 @@
       "exchange": "LSE",
       "source": "auto-detected",
       "notes": "Position reduced by 12 units between 2026-02-28 and 2026-03-01"
-    },
-    {
-      "id": "auto_2026-03-01_CP II_TRT_buy",
-      "date": "2026-03-01",
-      "detectedBetween": [
-        "2026-02-28",
-        "2026-03-01"
-      ],
-      "ticker": "TRT",
-      "name": "Trio-Tech International",
-      "account": "CP II",
-      "person": "Carlin",
-      "action": "BUY",
-      "units": 22,
-      "price": 5.203636,
-      "currency": "USD",
-      "exchange": "NYSEAMERICAN",
-      "valueGBP": 85.34,
-      "source": "auto-detected",
-      "notes": "New position detected between 2026-02-28 and 2026-03-01"
-    },
-    {
-      "id": "auto_2026-03-01_CP IBKR_TRT_buy",
-      "date": "2026-03-01",
-      "detectedBetween": [
-        "2026-02-28",
-        "2026-03-01"
-      ],
-      "ticker": "TRT",
-      "name": "Trio-Tech International",
-      "account": "CP IBKR",
-      "person": "Carlin",
-      "action": "BUY",
-      "units": 60,
-      "price": 5.43,
-      "currency": "USD",
-      "exchange": "NYSEAMERICAN",
-      "valueGBP": 242.86,
-      "source": "auto-detected",
-      "notes": "New position detected between 2026-02-28 and 2026-03-01"
     }
   ]
 }
