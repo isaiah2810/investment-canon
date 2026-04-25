@@ -61285,12 +61285,430 @@
           }
         }
       }
+    },
+    {
+      "date": "2026-04-25",
+      "timestamp": "2026-04-25T21:05:01.129240",
+      "fx_rates": {
+        "GBP": 1.0,
+        "CAD": 0.5400999784469604,
+        "USD": 0.7391600012779236,
+        "AUD": 0.527899980545044
+      },
+      "data_sources": {
+        "CP II": "json_manual",
+        "CP IBKR": "json_manual",
+        "NANA": "json_manual",
+        "DADA": "json_manual"
+      },
+      "accounts": {
+        "CP II": {
+          "cash_gbp": 42281.1,
+          "positions": [
+            {
+              "ticker": "TRT",
+              "name": "Trio-Tech International",
+              "exchange": "NYSEAMERICAN",
+              "currency": "USD",
+              "units": 2000,
+              "avg_price": 6.5,
+              "current_price": 16.52,
+              "daily_change_pct": 19.88,
+              "value_gbp": 24421.85,
+              "book_cost_gbp": 7265.57,
+              "pnl_gbp": 17156.27,
+              "pnl_pct": 154.15
+            },
+            {
+              "ticker": "ETM",
+              "name": "Energy Transition Minerals",
+              "exchange": "ASX",
+              "currency": "AUD",
+              "units": 76900,
+              "avg_price": 0.12,
+              "current_price": 0.067,
+              "daily_change_pct": 0,
+              "value_gbp": 2719.9,
+              "book_cost_gbp": 2518.75,
+              "pnl_gbp": 201.15,
+              "pnl_pct": -44.17
+            }
+          ],
+          "total_value_gbp": 27141.75,
+          "total_cost_gbp": 9784.32,
+          "pnl_gbp": 17357.43,
+          "pnl_pct": 177.4
+        },
+        "CP IBKR": {
+          "cash_gbp": 328.56,
+          "positions": [
+            {
+              "ticker": "MASS",
+              "name": "Masivo Silver Corp",
+              "exchange": "TSXV",
+              "currency": "CAD",
+              "units": 13500,
+              "avg_price": 0.148,
+              "current_price": 0.105,
+              "daily_change_pct": 0,
+              "value_gbp": 765.59,
+              "book_cost_gbp": 1079.12,
+              "pnl_gbp": -313.53,
+              "pnl_pct": -29.05
+            },
+            {
+              "ticker": "ETM",
+              "name": "Energy Transition Minerals Ltd",
+              "exchange": "ASX",
+              "currency": "AUD",
+              "units": 35000,
+              "avg_price": 0.14,
+              "current_price": 0.067,
+              "daily_change_pct": 0,
+              "value_gbp": 1237.93,
+              "book_cost_gbp": 2586.71,
+              "pnl_gbp": -1348.78,
+              "pnl_pct": -52.14
+            },
+            {
+              "ticker": "TRT",
+              "name": "Trio-Tech International",
+              "exchange": "NYSEAMERICAN",
+              "currency": "USD",
+              "units": 60,
+              "avg_price": 5.43,
+              "current_price": 16.52,
+              "daily_change_pct": 19.88,
+              "value_gbp": 732.66,
+              "book_cost_gbp": 240.82,
+              "pnl_gbp": 491.84,
+              "pnl_pct": 204.24
+            }
+          ],
+          "total_value_gbp": 2736.17,
+          "total_cost_gbp": 3906.65,
+          "pnl_gbp": -1170.48,
+          "pnl_pct": -29.96
+        },
+        "NANA": {
+          "cash_gbp": 22565.75,
+          "positions": [
+            {
+              "ticker": "TRT",
+              "name": "Trio-Tech International",
+              "exchange": "NYSEAMERICAN",
+              "currency": "USD",
+              "units": 1000,
+              "avg_price": 6.6555,
+              "current_price": 16.52,
+              "daily_change_pct": 19.88,
+              "value_gbp": 12210.92,
+              "book_cost_gbp": 4919.48,
+              "pnl_gbp": 7291.44,
+              "pnl_pct": 148.22
+            }
+          ],
+          "total_value_gbp": 12210.92,
+          "total_cost_gbp": 4919.48,
+          "pnl_gbp": 7291.44,
+          "pnl_pct": 148.22
+        },
+        "DADA": {
+          "cash_gbp": 13281.09,
+          "positions": [
+            {
+              "ticker": "SBRY",
+              "name": "J Sainsbury plc",
+              "exchange": "LSE",
+              "currency": "GBP",
+              "units": 100,
+              "avg_price": 2.6023,
+              "current_price": 3.445,
+              "daily_change_pct": 1.29,
+              "value_gbp": 344.5,
+              "book_cost_gbp": 260.23,
+              "pnl_gbp": 84.27,
+              "pnl_pct": 32.38
+            }
+          ],
+          "total_value_gbp": 344.5,
+          "total_cost_gbp": 260.23,
+          "pnl_gbp": 84.27,
+          "pnl_pct": 32.38
+        }
+      },
+      "aggregate": {
+        "TRT": {
+          "name": "Trio-Tech International",
+          "currency": "USD",
+          "exchange": "NYSEAMERICAN",
+          "total_units": 3060,
+          "total_cost_local": 19981.3,
+          "total_cost_gbp": 12425.87,
+          "current_price": 16.52,
+          "daily_change_pct": 19.88,
+          "accounts": [
+            {
+              "account": "CP II",
+              "units": 2000,
+              "avg_price": 6.5
+            },
+            {
+              "account": "CP IBKR",
+              "units": 60,
+              "avg_price": 5.43
+            },
+            {
+              "account": "NANA",
+              "units": 1000,
+              "avg_price": 6.6555
+            }
+          ],
+          "value_gbp": 37365.43,
+          "weighted_avg_price": 6.5298,
+          "pnl_gbp": 24939.56,
+          "pnl_pct": 200.71
+        },
+        "ETM": {
+          "name": "Energy Transition Minerals Ltd",
+          "currency": "AUD",
+          "exchange": "ASX",
+          "total_units": 111900,
+          "total_cost_local": 14128.0,
+          "total_cost_gbp": 5105.46,
+          "current_price": 0.067,
+          "daily_change_pct": 0,
+          "accounts": [
+            {
+              "account": "CP II",
+              "units": 76900,
+              "avg_price": 0.12
+            },
+            {
+              "account": "CP IBKR",
+              "units": 35000,
+              "avg_price": 0.14
+            }
+          ],
+          "value_gbp": 3957.82,
+          "weighted_avg_price": 0.1263,
+          "pnl_gbp": -1147.64,
+          "pnl_pct": -22.48
+        },
+        "MASS": {
+          "name": "Masivo Silver Corp",
+          "currency": "CAD",
+          "exchange": "TSXV",
+          "total_units": 13500,
+          "total_cost_local": 1998.0,
+          "total_cost_gbp": 1079.12,
+          "current_price": 0.105,
+          "daily_change_pct": 0,
+          "accounts": [
+            {
+              "account": "CP IBKR",
+              "units": 13500,
+              "avg_price": 0.148
+            }
+          ],
+          "value_gbp": 765.59,
+          "weighted_avg_price": 0.148,
+          "pnl_gbp": -313.53,
+          "pnl_pct": -29.05
+        },
+        "SBRY": {
+          "name": "J Sainsbury plc",
+          "currency": "GBP",
+          "exchange": "LSE",
+          "total_units": 100,
+          "total_cost_local": 260.23,
+          "total_cost_gbp": 260.23,
+          "current_price": 3.445,
+          "daily_change_pct": 1.29,
+          "accounts": [
+            {
+              "account": "DADA",
+              "units": 100,
+              "avg_price": 2.6023
+            }
+          ],
+          "value_gbp": 344.5,
+          "weighted_avg_price": 2.6023,
+          "pnl_gbp": 84.27,
+          "pnl_pct": 32.38
+        }
+      },
+      "family_total": {
+        "investments_gbp": 42433.34,
+        "cash_gbp": 78456.5,
+        "total_gbp": 120889.84,
+        "book_cost_gbp": 18870.68,
+        "pnl_gbp": 23562.66,
+        "pnl_pct": 124.86
+      },
+      "people": {
+        "Carlin": {
+          "accounts": [
+            "CP II",
+            "CP IBKR"
+          ],
+          "investments_gbp": 29877.92,
+          "cash_gbp": 42609.66,
+          "total_gbp": 72487.58,
+          "book_cost_gbp": 13690.97,
+          "pnl_gbp": 16186.95,
+          "pnl_pct": 118.23,
+          "positions": {
+            "TRT": {
+              "name": "Trio-Tech International",
+              "currency": "USD",
+              "exchange": "NYSEAMERICAN",
+              "total_units": 2060,
+              "total_cost_local": 13325.8,
+              "total_cost_gbp": 7506.39,
+              "current_price": 16.52,
+              "daily_change_pct": 19.88,
+              "value_gbp": 25154.51,
+              "accounts": [
+                {
+                  "account": "CP II",
+                  "units": 2000,
+                  "avg_price": 6.5
+                },
+                {
+                  "account": "CP IBKR",
+                  "units": 60,
+                  "avg_price": 5.43
+                }
+              ],
+              "weighted_avg_price": 6.4688,
+              "pnl_gbp": 17648.12,
+              "pnl_pct": 235.11
+            },
+            "ETM": {
+              "name": "Energy Transition Minerals",
+              "currency": "AUD",
+              "exchange": "ASX",
+              "total_units": 111900,
+              "total_cost_local": 14128.0,
+              "total_cost_gbp": 5105.46,
+              "current_price": 0.067,
+              "daily_change_pct": 0,
+              "value_gbp": 3957.83,
+              "accounts": [
+                {
+                  "account": "CP II",
+                  "units": 76900,
+                  "avg_price": 0.12
+                },
+                {
+                  "account": "CP IBKR",
+                  "units": 35000,
+                  "avg_price": 0.14
+                }
+              ],
+              "weighted_avg_price": 0.1263,
+              "pnl_gbp": -1147.63,
+              "pnl_pct": -22.48
+            },
+            "MASS": {
+              "name": "Masivo Silver Corp",
+              "currency": "CAD",
+              "exchange": "TSXV",
+              "total_units": 13500,
+              "total_cost_local": 1998.0,
+              "total_cost_gbp": 1079.12,
+              "current_price": 0.105,
+              "daily_change_pct": 0,
+              "value_gbp": 765.59,
+              "accounts": [
+                {
+                  "account": "CP IBKR",
+                  "units": 13500,
+                  "avg_price": 0.148
+                }
+              ],
+              "weighted_avg_price": 0.148,
+              "pnl_gbp": -313.53,
+              "pnl_pct": -29.05
+            }
+          }
+        },
+        "Nana": {
+          "accounts": [
+            "NANA"
+          ],
+          "investments_gbp": 12210.92,
+          "cash_gbp": 22565.75,
+          "total_gbp": 34776.67,
+          "book_cost_gbp": 4919.48,
+          "pnl_gbp": 7291.44,
+          "pnl_pct": 148.22,
+          "positions": {
+            "TRT": {
+              "name": "Trio-Tech International",
+              "currency": "USD",
+              "exchange": "NYSEAMERICAN",
+              "total_units": 1000,
+              "total_cost_local": 6655.5,
+              "total_cost_gbp": 4919.48,
+              "current_price": 16.52,
+              "daily_change_pct": 19.88,
+              "value_gbp": 12210.92,
+              "accounts": [
+                {
+                  "account": "NANA",
+                  "units": 1000,
+                  "avg_price": 6.6555
+                }
+              ],
+              "weighted_avg_price": 6.6555,
+              "pnl_gbp": 7291.44,
+              "pnl_pct": 148.22
+            }
+          }
+        },
+        "Dada": {
+          "accounts": [
+            "DADA"
+          ],
+          "investments_gbp": 344.5,
+          "cash_gbp": 13281.09,
+          "total_gbp": 13625.59,
+          "book_cost_gbp": 260.23,
+          "pnl_gbp": 84.27,
+          "pnl_pct": 32.38,
+          "positions": {
+            "SBRY": {
+              "name": "J Sainsbury plc",
+              "currency": "GBP",
+              "exchange": "LSE",
+              "total_units": 100,
+              "total_cost_local": 260.23,
+              "total_cost_gbp": 260.23,
+              "current_price": 3.445,
+              "daily_change_pct": 1.29,
+              "value_gbp": 344.5,
+              "accounts": [
+                {
+                  "account": "DADA",
+                  "units": 100,
+                  "avg_price": 2.6023
+                }
+              ],
+              "weighted_avg_price": 2.6023,
+              "pnl_gbp": 84.27,
+              "pnl_pct": 32.38
+            }
+          }
+        }
+      }
     }
   ],
   "metadata": {
     "created": "2026-02-19T21:45:29.935815",
     "version": 1,
-    "lastUpdated": "2026-04-18T21:05:06.567324",
-    "totalSnapshots": 56
+    "lastUpdated": "2026-04-25T21:05:01.605108",
+    "totalSnapshots": 57
   }
 }
